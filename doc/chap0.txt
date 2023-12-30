@@ -1,0 +1,142 @@
+  
+  
+                                [1XThe [5XALCO[105X Package[101X
+  
+  
+                                  Version 0.1
+  
+  
+                                Benjamin Nasmith
+  
+  
+  
+  Benjamin Nasmith
+      Email:    [7Xmailto:bnasmith@proton.me[107X
+  
+  -------------------------------------------------------
+  [1XCopyright[101X
+  [33X[0;0Y© 2023 The Author.[133X
+  
+  
+  -------------------------------------------------------
+  
+  
+  [1XContents (ALCO)[101X
+  
+  1 [33X[0;0YIntroduction[133X
+  2 [33X[0;0YOctonions[133X
+    2.1 [33X[0;0YOctonion Algebras[133X
+      2.1-1 [33X[0;0YOctonion Filters[133X
+      2.1-2 OctonionAlgebra
+      2.1-3 OctonionArithmetic
+      2.1-4 Oct
+      2.1-5 OctonionE8basis
+      2.1-6 \mod
+    2.2 [33X[0;0YProperties of Octonions[133X
+      2.2-1 Norm
+      2.2-2 Trace
+      2.2-3 GramMatrix
+      2.2-4 ComplexConjugate
+      2.2-5 RealPart
+      2.2-6 ImaginaryPart
+    2.3 [33X[0;0YOther Octonion Tools[133X
+      2.3-1 OctonionToRealVector
+      2.3-2 RealToOctonionVector
+    2.4 [33X[0;0YQuaternion and Icosian Tools[133X
+      2.4-1 Norm
+      2.4-2 Trace
+      2.4-3 ComplexConjugate
+      2.4-4 RealPart
+      2.4-5 ImaginaryPart
+      2.4-6 QuaternionD4basis
+      2.4-7 [33X[0;0YGolden Field Values[133X
+      2.4-8 [33X[0;0YGoldenModSigma[133X
+      2.4-9 IcosianH4basis
+  3 [33X[0;0YSimple Euclidean Jordan Algebras[133X
+    3.1 [33X[0;0YFilters and Basic Attributes[133X
+      3.1-1 [33X[0;0YJordan Filters[133X
+      3.1-2 JordanRank
+      3.1-3 JordanDegree
+      3.1-4 Trace
+      3.1-5 Norm
+      3.1-6 GenericMinimalPolynomial
+      3.1-7 Determinant
+    3.2 [33X[0;0YJordan Algebra Constructions[133X
+      3.2-1 SimpleEuclideanJordanAlgebra
+      3.2-2 JordanSpinFactor
+      3.2-3 HermitianSimpleJordanAlgebra
+      3.2-4 JordanHomotope
+      3.2-5 AlbertAlgebra
+      3.2-6 Alb
+    3.3 [33X[0;0YAdditional Tools and Properties[133X
+      3.3-1 HermitianJordanAlgebraBasis
+      3.3-2 JordanMatrixBasis
+      3.3-3 HermitianMatrixToJordanCoefficients
+      3.3-4 JordanAlgebraGramMatrix
+      3.3-5 JordanAdjugate
+      3.3-6 IsPositiveDefinite
+  4 [33X[0;0YJordan Designs and their Association Schemes[133X
+    4.1 [33X[0;0YJacobi Polynomials[133X
+      4.1-1 JacobiPolynomial
+      4.1-2 [33X[0;0YRenormalized Jacobi Polynomials[133X
+    4.2 [33X[0;0YJordan Designs[133X
+      4.2-1 [33X[0;0YJordan Design Filters[133X
+      4.2-2 DesignByJordanParameters
+      4.2-3 [33X[0;0YJordan Rank and Degree[133X
+      4.2-4 DesignQPolynomial
+      4.2-5 DesignConnectionCoefficients
+    4.3 [33X[0;0YDesigns with an Angle Set[133X
+      4.3-1 IsDesignWithAngleSet
+      4.3-2 DesignAddAngleSet
+      4.3-3 DesignByAngleSet
+      4.3-4 DesignNormalizedAnnihilatorPolynomial
+      4.3-5 DesignNormalizedIndicatorCoefficients
+      4.3-6 IsDesignWithPositiveIndicatorCoefficients
+      4.3-7 DesignSpecialBound
+    4.4 [33X[0;0YDesigns with Cardinality and Angle Set[133X
+      4.4-1 [33X[0;0YSome Filters[133X
+      4.4-2 DesignCardinality
+      4.4-3 DesignAddCardinality
+      4.4-4 IsDesignWithStrength
+      4.4-5 DesignStrength
+      4.4-6 DesignAnnihilatorPolynomial
+      4.4-7 DesignIndicatorCoefficients
+    4.5 [33X[0;0YDesigns Admitting a Regular Scheme[133X
+      4.5-1 DesignSubdegrees
+    4.6 [33X[0;0YDesigns Admitting an Association Scheme[133X
+      4.6-1 DesignBoseMesnerAlgebra
+      4.6-2 DesignBoseMesnerIdempotentBasis
+      4.6-3 DesignIntersectionNumbers
+      4.6-4 DesignKreinNumbers
+      4.6-5 DesignFirstEigenmatrix
+      4.6-6 DesignSecondEigenmatrix
+      4.6-7 DesignMultiplicities
+      4.6-8 DesignValencies
+      4.6-9 DesignReducedAdjacencyMatrices
+    4.7 [33X[0;0YExamples[133X
+  5 [33X[0;0YOctonion Lattice Constructions[133X
+    5.1 [33X[0;0YGram Matrix Filters[133X
+      5.1-1 IsLeechLatticeGramMatrix
+      5.1-2 IsGossetLatticeGramMatrix
+      5.1-3 IsOctonionLattice
+    5.2 [33X[0;0YOctonion Lattice Constructions[133X
+      5.2-1 OctonionLatticeByGenerators
+    5.3 [33X[0;0YOctonion Lattice Attributes[133X
+      5.3-1 UnderlyingOctonionRing
+      5.3-2 OctonionGramMatrix
+      5.3-3 Dimension
+      5.3-4 GeneratorsAsCoefficients
+      5.3-5 LLLReducedBasisCoefficients
+      5.3-6 GramMatrix
+      5.3-7 TotallyIsotropicCode
+      5.3-8 [33X[0;0YLattice Basis[133X
+    5.4 [33X[0;0YOctonion Lattice Operations[133X
+      5.4-1 Rank
+      5.4-2 ScalarProduct
+      5.4-3 \in
+      5.4-4 [33X[0;0YSublattice Identification[133X
+      5.4-5 \=
+      5.4-6 [33X[0;0YConverting Between Real and Octonion Vectors[133X
+  
+  
+  [32X

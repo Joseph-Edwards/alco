@@ -1,0 +1,1381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Book SYSTEM "gapdoc.dtd">
+
+<Book Name="ALCO">
+
+<TitlePage>
+  <Title>The <Package>ALCO</Package> Package</Title>
+  <Version>Version 0.1</Version>
+  <Author>Benjamin Nasmith
+    <Email>bnasmith@proton.me</Email>
+  </Author>
+
+  <Copyright>&copyright; 2023 The Author. <P />
+    <P />
+  </Copyright>
+</TitlePage>
+
+<TableOfContents />
+
+<Body>
+
+  <Chapter>
+    <Heading>Introduction</Heading>
+    The <Package>ALCO</Package> package provides tools for algebraic combinatorics, most of which was written for &GAP; during the author's Ph.D. program <Cite
+        Key="nasmith_tight_2023" />. 
+    This package provides convenient constructions in &GAP; of octonion algebras, Jordan algebras, and certain important integer subrings of those algebras.
+    It also provides tools to compute the parameters of t-designs in spherical and projective spaces (modeled as manifolds of primitive idempotent elements in a simple Euclidean Jordan algebra). 
+    Finally, this package provides tools to explore octonion lattice constructions, including octonion Leech lattices.
+    
+  </Chapter>
+
+  <Chapter>
+      <Heading>Octonions</Heading> 
+      &GAP; contains limited built-in functionality for constructing and manipulating octonions. 
+      The built-in <Code>OctaveAlgebra</Code> function constructs the split-octonion algebra over some field.
+      The <Package>ALCO</Package> package provides constructions of non-split octonion algebras in various bases.
+      
+      <Section Label="sec:octalg">
+        <Heading>Octonion Algebras</Heading>
+
+      <ManSection>
+          <Heading>Octonion Filters</Heading>
+          <Filt Name="IsOctonion" />
+          <Filt Name="IsOctonionArithmeticElement" />
+          <Filt Name="IsOctonionCollection" />
+          <Filt Name="IsOctonionAlgebra" />
+          <Description>These filters determine whether an element is an octonion, an octonion
+      arithmetic element, and octonion collection, or an octonion algebra.</Description>
+        </ManSection>
+
+        <ManSection>
+          <Func Name="OctonionAlgebra" Arg="F" />
+          <Description> Returns an octonion algebra over field <Arg>F</Arg> in a standard orthonormal basis <Math>\{e_{i}, i = 1,...,8\}</Math> such that <Math>1 = e_8</Math> is the identity element and <Math>e_{i} = e_{i+1}e_{i+3} = - e_{i+3}e_{i+1}</Math> for <Math>i = 1,...,7</Math>, with indices evaluated modulo 7.
+<Example><![CDATA[gap> O := OctonionAlgebra(Rationals); e := Basis(O);;
+<algebra of dimension 8 over Rationals>
+gap> LeftActingDomain(O);
+Rationals
+gap> AsList(e);
+[ e1, e2, e3, e4, e5, e6, e7, e8 ]
+gap> One(O);
+e8
+gap> e[1]*e[2];
+e4
+gap> e[2]*e[1];
+(-1)*e4
+gap> Derivations(Basis(O)); SemiSimpleType(last);
+<Lie algebra of dimension 14 over Rationals>
+"G2"]]></Example>
+          </Description>
+        </ManSection>
+        
+        <ManSection>
+          <Func Name="OctonionArithmetic" Arg="R" />
+          <Description> Returns an octonion algebra over <Arg>R</Arg>, for <Arg>R</Arg> a field or <Code><Arg>R</Arg> = Integers</Code>, in a basis with the geometry of the simple roots of <Math>E_8</Math> such that &ZZ;-linear combinations of the basis vectors form an octonion arithmetic.
+            <Example><![CDATA[
+gap> A := OctonionArithmetic(Integers); a := Basis(A);;
+<algebra of dimension 8 over Integers>
+gap> LeftActingDomain(A);
+Integers
+gap> AsList(a);
+[ a1, a2, a3, a4, a5, a6, a7, a8 ]
+gap> One(A);
+(-2)*a1+(-3)*a2+(-4)*a3+(-6)*a4+(-5)*a5+(-4)*a6+(-3)*a7+(-2)*a8
+gap> List(a{[1..7]}, x -> x^2 = - One(A));
+[ true, true, true, true, true, true, true ]
+gap> Order(a[8]);
+3
+gap> Random(A)*Random(A) in A;
+true
+]]></Example>
+          </Description>
+        </ManSection>
+
+        
+        <ManSection>
+          <Var Name="Oct" />
+          <Description> The <Package>ALCO</Package> package loads an instance of <Ref Func="OctonionAlgebra" /> over &QQ; as <C>Oct</C>.
+        <Example><![CDATA[
+gap> Oct;
+<algebra of dimension 8 over Rationals>
+]]></Example>
+          </Description>
+        </ManSection>
+
+      <ManSection>
+          <Var Name="OctonionE8basis" />
+        <Description> The <Package>ALCO</Package> package also loads a basis for <Ref Var="Oct" /> which also serves as the &ZZ;-span of an octonion arithmetic. This basis also serves as the basis vectors for the <Ref Func="OctonionArithmetic" /> algebra.
+          <Example><![CDATA[
+gap> 2*BasisVectors(OctonionE8basis);
+[ (-1)*e1+e5+e6+e7, (-1)*e1+(-1)*e2+(-1)*e4+(-1)*e7, e2+e3+(-1)*e5+(-1)*e7,
+  e1+(-1)*e3+e4+e5, (-1)*e2+e3+(-1)*e5+e7, e2+(-1)*e4+e5+(-1)*e6,
+  (-1)*e1+(-1)*e3+e4+(-1)*e5, e1+(-1)*e4+e6+(-1)*e8 ]]]></Example>
+        </Description>
+      </ManSection>
+
+
+
+            <ManSection>
+          <Func Name="\mod" Arg ="x, n"/>
+          <Description> For <Arg>x</Arg> an octonion arithmetic element (namely an element of
+      algebra <Code>OctonionArithmetic(<Arg>F</Arg>)</Code>), and <Arg>n</Arg> and integer, the
+      expression <Code><Arg>x</Arg> mod <Arg>n</Arg></Code> returns the octonion where each of the
+      coefficients in the arithmetic canonical basis have been evaluated modulo <Arg>n</Arg>. <Example><![CDATA[gap> A := OctonionArithmetic(Integers);
+<algebra of dimension 8 over Integers>
+gap> x := Random(A);
+(-2)*a2+(3)*a3+a4+(-2)*a6+(-1)*a7+(-1)*a8
+gap> x mod 2;
+a3+a4+a7+a8
+gap> \mod(x,2);
+a3+a4+a7+a8]]></Example>
+          </Description>
+        </ManSection>
+
+      </Section>
+
+
+
+      <Section Label="sec:octattr">
+        <Heading>Properties of Octonions</Heading>
+
+      <ManSection>
+      <Meth Name="Norm" Arg="x" Label="Octonions" />
+        <Description>Returns the norm of octonion <Arg>x</Arg>. Recall that an octonion algebra satisfies the composition property <Math>N(xy) = N(x)N(y)</Math>. 
+        <Example><![CDATA[
+gap> List(Basis(Oct), x -> Norm(x));
+[ 1, 1, 1, 1, 1, 1, 1, 1 ]
+gap> x := Random(Oct);; y := Random(Oct);;
+gap> Norm(x*y) = Norm(x)*Norm(y);
+true]]></Example>
+        </Description>
+      </ManSection>
+
+      <ManSection>
+      <Meth Name="Trace" Arg="x" Label="Octonions" />
+        <Description>Returns the trace of octonion <Arg>x</Arg>.
+        <Example><![CDATA[
+gap> List(Basis(Oct), x -> Trace(x));
+[ 0, 0, 0, 0, 0, 0, 0, 2 ]]]></Example>
+        </Description>
+      </ManSection>
+
+      <ManSection>
+      <Attr Name="GramMatrix" Arg="O" Label="GramMatrixOctonion" />
+        <Description>Returns the Gram matrix on the basis of octonion algebra (or arithmetic) <Arg>O</Arg> on the basis given by inner product <Math>(x,y) = N(x+y) - N(x) - N(y)</Math>. Of note, the Gram matrix of octonion arithmetic <Code>A</Code> shown below is the Gram matrix of an <Math>E_8</Math> unimodular lattice.
+        <Example><![CDATA[
+gap> O := OctonionAlgebra(Rationals); Display(GramMatrix(O));
+<algebra of dimension 8 over Rationals>
+[ [  2,  0,  0,  0,  0,  0,  0,  0 ],
+  [  0,  2,  0,  0,  0,  0,  0,  0 ],
+  [  0,  0,  2,  0,  0,  0,  0,  0 ],
+  [  0,  0,  0,  2,  0,  0,  0,  0 ],
+  [  0,  0,  0,  0,  2,  0,  0,  0 ],
+  [  0,  0,  0,  0,  0,  2,  0,  0 ],
+  [  0,  0,  0,  0,  0,  0,  2,  0 ],
+  [  0,  0,  0,  0,  0,  0,  0,  2 ] ]
+gap> A := OctonionArithmetic(Rationals); Display(GramMatrix(A));
+<algebra of dimension 8 over Rationals>
+[ [   2,   0,  -1,   0,   0,   0,   0,   0 ],
+  [   0,   2,   0,  -1,   0,   0,   0,   0 ],
+  [  -1,   0,   2,  -1,   0,   0,   0,   0 ],
+  [   0,  -1,  -1,   2,  -1,   0,   0,   0 ],
+  [   0,   0,   0,  -1,   2,  -1,   0,   0 ],
+  [   0,   0,   0,   0,  -1,   2,  -1,   0 ],
+  [   0,   0,   0,   0,   0,  -1,   2,  -1 ],
+  [   0,   0,   0,   0,   0,   0,  -1,   2 ] ]]]></Example>        
+        
+        </Description>
+      </ManSection>
+
+      <ManSection>
+      <Meth Name="ComplexConjugate" Arg="x" Label="Octonions" />
+          <Description>Returns the octonion conjugate of octonion <Arg>x</Arg>, defined by <Code>One(x)*Trace(x) - x</Code>.
+          </Description>
+      </ManSection>
+
+      <ManSection>
+      <Meth Name="RealPart" Arg="x" Label="Octonions" />
+          <Description>Returns the real component of octonion <Arg>x</Arg>, defined by <Code>(1/2)*One(x)*Trace(x)</Code>.
+          </Description>
+      </ManSection>
+
+      <ManSection>
+      <Meth Name="ImaginaryPart" Arg="x" Label="Octonions" />
+          <Description>Returns the imaginary component of octonion <Arg>x</Arg>, defined by <Code>x - RealPart(x)</Code>.
+          </Description>
+      </ManSection>
+
+      </Section>
+
+      <Section>
+        <Heading>Other Octonion Tools</Heading>
+        
+        <ManSection>
+      <Func Name="OctonionToRealVector" Arg="Basis, x" />
+          <Description> Let <Arg>x</Arg> be an octonion vector of the form <Math>x = (x_1, x_2, ..., x_n)</Math>, for <Math>x_i</Math> octonion valued coefficients. Let <Arg>Basis</Arg> be a basis for the octonion algebra containing coefficients <Math>x_i</Math>. This function returns a vector <Arg>y</Arg> of length <Math>8n</Math> containing the concatenation of the coefficients of <Math>x_i</Math> in the octonion basis given by <Arg>Basis</Arg>.
+          </Description>
+        </ManSection>
+
+        <ManSection>
+      <Func Name="RealToOctonionVector" Arg="Basis, y" />
+          <Description> This function is the is the inverse operation to <Ref Func="OctonionToRealVector" />.
+          <Example><![CDATA[
+gap> A := OctonionArithmetic(Integers);
+<algebra of dimension 8 over Integers>
+gap> a := Basis(A);; AsList(a);
+[ a1, a2, a3, a4, a5, a6, a7, a8 ]
+gap> x := List([1..3], n -> Random(A));
+[ (-1)*a1+(-1)*a2+(-1)*a3+a4+(-1)*a5+a6+(-2)*a7+(-1)*a8, (-2)*a1+(-1)*a3+(2)*a4+(-2)*a5+(
+    -1)*a6+(2)*a7+(-3)*a8, (-1)*a1+(3)*a2+(-2)*a4+a5+(-4)*a6+a8 ]
+gap> OctonionToRealVector(a, x);
+[ -1, -1, -1, 1, -1, 1, -2, -1, -2, 0, -1, 2, -2, -1, 2, -3, -1, 3, 0, -2, 1, -4, 0, 1 ]
+gap> RealToOctonionVector(a,last) = last2;
+true]]></Example> 
+          </Description>
+        </ManSection>
+        
+      </Section>
+
+      <Section>
+        <Heading>Quaternion and Icosian Tools</Heading>
+ 
+      <ManSection>
+      <Meth Name="Norm" Arg="x" Label="Quaternions" />
+        <Description>Returns the norm of quaternion <Arg>x</Arg>. Recall that a quaternion algebra satisfies the composition property <Math>N(xy) = N(x)N(y)</Math>. 
+        <Example><![CDATA[
+gap> H := QuaternionAlgebra(Rationals); AsList(Basis(H));
+<algebra-with-one of dimension 4 over Rationals>
+[ e, i, j, k ]
+gap> List(Basis(H), x -> Norm(x));
+[ 1, 1, 1, 1 ]
+gap> x := Random(H);; y := Random(H);; Norm(x*y) = Norm(x)*Norm(y);
+true]]></Example>
+        </Description>
+      </ManSection>
+
+      <ManSection>
+      <Meth Name="Trace" Arg="x" Label="Quaternions" />
+        <Description>Returns the trace of quaternion <Arg>x</Arg>.
+        <Example><![CDATA[
+gap> H := QuaternionAlgebra(Rationals); AsList(Basis(H));
+<algebra-with-one of dimension 4 over Rationals>
+[ e, i, j, k ]
+gap> List(Basis(H), x -> Trace(x));
+[ 2, 0, 0, 0 ]]]></Example>
+        </Description>
+      </ManSection>
+
+      <ManSection>
+      <Meth Name="ComplexConjugate" Arg="x" Label="Quaternions" />
+          <Description>Returns the quaternion conjugate of quaternion <Arg>x</Arg>, defined by <Code>One(x)*Trace(x) - x</Code>.</Description>
+      </ManSection>
+
+      <ManSection>
+      <Meth Name="RealPart" Arg="x" Label="Quaternions" />
+          <Description>Returns the real component of quaternion <Arg>x</Arg>, defined by <Code>(1/2)*One(x)*Trace(x)</Code>.
+          </Description>
+      </ManSection>
+
+      <ManSection>
+      <Meth Name="ImaginaryPart" Arg="x" Label="Quaternions" />
+          <Description>Returns the imaginary component of quaternion <Arg>x</Arg>, defined by <Code>x - RealPart(x)</Code>. The <Package>ALCO</Package> redefines the built in method <Code>ImaginaryPart</Code>
+          acting on quaternions in order to harmonize with the definition given above acting on
+          octonions. The most important feature is that for a quaternion or an octonion, we have <Code>x
+          = RealPart(x) + ImaginaryPart(x)</Code>. 
+          <Example><![CDATA[
+gap> H := QuaternionAlgebra(Rationals); AsList(Basis(H));
+<algebra-with-one of dimension 4 over Rationals>
+[ e, i, j, k ]
+gap> List(Basis(H), x -> ComplexConjugate(x));
+[ e, (-1)*i, (-1)*j, (-1)*k ]
+gap> List(Basis(H), x -> RealPart(x));
+[ e, 0*e, 0*e, 0*e ]
+gap> List(Basis(H), x -> ImaginaryPart(x));
+[ 0*e, i, j, k ]]]></Example>
+          </Description>
+      </ManSection>
+
+      <ManSection>
+      <Var Name="QuaternionD4basis" />
+          <Description> The <Package>ALCO</Package> package loads a basis for a quaternion algebra
+      over &QQ; with the geometry of a <Math>D_4</Math> simpe root system. The &ZZ;-span of this
+      basis is the Hurwitz ring. These basis vectors close under pairwise reflection to form a <Math>
+      D_4</Math> root system. <Example><![CDATA[
+gap> B := QuaternionD4basis;;
+gap> for x in BasisVectors(B) do Display(x); od;
+(-1/2)*e+(-1/2)*i+(-1/2)*j+(1/2)*k
+(-1/2)*e+(-1/2)*i+(1/2)*j+(-1/2)*k
+(-1/2)*e+(1/2)*i+(-1/2)*j+(-1/2)*k
+e]]></Example>
+          </Description>
+      </ManSection>
+
+      <ManSection>
+        <Heading>Golden Field Values</Heading>
+      <Var Name="sigma" />
+      <Var Name="tau" />
+        <Description> The <Package>ALCO</Package> package loads the following elements of the golden field, \<Code>NF(5,[ 1, 4 ])</Code>:
+        <Example><![CDATA[ 
+gap> TeachingMode(true);
+#I  Teaching mode is turned ON
+gap> sigma;
+(1-Sqrt(5))/2
+gap> tau;
+(1+Sqrt(5))/2 
+gap> Field(sigma);
+NF(5,[ 1, 4 ])
+gap> Field(tau);
+NF(5,[ 1, 4 ])
+gap> Field(Sqrt(5));
+NF(5,[ 1, 4 ])]]></Example>
+        </Description>
+      </ManSection>
+
+      <ManSection>
+        <Heading>GoldenModSigma</Heading>
+      <Func Name="GoldenModSigma" Arg="x" />
+        <Description> For <Arg>x</Arg> in the golden field <Code>NF(5,[ 1, 4 ])</Code>, this function returns the rational coefficient of <Code>1</Code> in the basis <Code>Basis(NF(5,[ 1, 4 ]), [1, sigma])</Code>. 
+        <Example><![CDATA[ 
+gap> x := 5 + 3*sigma;; GoldenModSigma(x);
+5 
+gap> GoldenModSigma(sigma);
+0
+gap> GoldenModSigma(tau);
+1]]></Example>
+        </Description>
+      </ManSection>        
+
+            <ManSection>
+      <Var Name="IcosianH4basis" />
+        <Description> The <Package>ALCO</Package> package loads a basis for a quaternion algebra
+          over <Code>NF(5,[1,4])</Code>. The &ZZ;-span of this basis is the icosian ring. These
+          basis vectors close under pairwise reflection to form a <Math>H_4</Math> set of vectors. <Example><![CDATA[
+gap> B := IcosianH4basis;;
+gap> for x in BasisVectors(B) do Display(x); od;
+(-1)*i
+(-1/2*E(5)^2-1/2*E(5)^3)*i+(1/2)*j+(-1/2*E(5)-1/2*E(5)^4)*k
+(-1)*j
+(-1/2*E(5)-1/2*E(5)^4)*e+(1/2)*j+(-1/2*E(5)^2-1/2*E(5)^3)*k]]></Example>
+        </Description>
+      </ManSection>
+
+
+      </Section>
+
+  </Chapter>
+
+
+  <Chapter>
+    <Heading>Simple Euclidean Jordan Algebras</Heading>
+    Simple Euclidean Jordan algebras are described well in <Cite Key="faraut_analysis_1994" />.
+
+    <Section>
+      <Heading>Filters and Basic Attributes</Heading>
+        <ManSection>
+          <Heading>Jordan Filters</Heading>
+      <Filt Name="IsJordanAlgebra" />
+      <Filt Name="IsJordanAlgebraObj" />
+          <Description>These filters determine whether an element is a Jordan algebra (<Code>IsJordanAlgebra</Code>) or is an element in a Jordan algebra (<Code>IsJordanAlgebraObj</Code>).
+          </Description>
+        </ManSection>
+
+        A simple Euclidean Jordan algebra <Math>V</Math> has rank <Math>r</Math> and degree <Math>d</Math>. The following methods return the properties of either a Jordan algebra or of the Jordan algebra containing the object.
+
+        <ManSection>
+      <Meth Name="JordanRank" Arg="x" />
+          <Description>Returns the rank of <Arg>x</Arg> when <Code>IsJordanAlgebra(x)</Code> or the rank of the Jordan algebra containing <Arg>x</Arg> when <Code>IsJordanAlgebraObj(x)</Code>. 
+          </Description>
+        </ManSection>
+
+        <ManSection>
+      <Meth Name="JordanDegree" Arg="x" />
+          <Description>Returns the degree of <Arg>x</Arg> when <Code>IsJordanAlgebra(x)</Code> or the
+            degree of the Jordan algebra containing <Arg>x</Arg> when <Code>IsJordanAlgebraObj(x)</Code>
+            . 
+          </Description>
+        </ManSection>
+
+
+        <ManSection>
+      <Meth Name="Trace" Arg="x" Label="Jordan Algebras" />
+          <Description>Returns the Jordan trace of <Arg>x</Arg> when <Code>IsJordanAlgebraObj(x)</Code>.</Description>
+        </ManSection>
+
+        <ManSection>
+      <Meth Name="Norm" Arg="x" Label="Jordan Algebras" />
+          <Description>Returns the Jordan norm of <Arg>x</Arg> when <Code>IsJordanAlgebraObj(x)</Code>. The Jordan norm has the value <Code>Trace(x^2)/2</Code>.
+          </Description>
+        </ManSection>
+
+        <ManSection>
+      <Attr Name="GenericMinimalPolynomial" Arg="x" />
+          <Description>
+            Returns the generic minimal polynomial of <Arg>x</Arg> when <Code>IsJordanAlgebraObj(x)</Code> as defined in <Cite Key="faraut_analysis_2000"
+          Where="p. 478" />. The output is given as a list of polynomial coefficients. 
+          </Description>
+        </ManSection>
+
+        <ManSection>
+      <Meth Name="Determinant" Arg="x" Label="Jordan Algebras" />
+          <Description>Returns the Jordan determinant of <Arg>x</Arg> when <Code>IsJordanAlgebraObj(x)</Code>
+            .</Description>
+        </ManSection>
+    </Section>
+
+    <Section>
+      <Heading>Jordan Algebra Constructions</Heading>
+
+      <ManSection>
+      <Func Name="SimpleEuclideanJordanAlgebra" Arg="rho, d[, args]" />
+        <Description>
+          Returns a simple Euclidean Jordan algebra over &QQ; in an orthogonal basis.
+          <Example><![CDATA[
+gap> J := SimpleEuclideanJordanAlgebra(3,8);
+<algebra of dimension 27 over Rationals>
+gap> SemiSimpleType(Derivations(Basis(J)));
+"F4"]]></Example>
+        </Description>
+      </ManSection>
+
+
+      <ManSection>
+      <Func Name="JordanSpinFactor" Arg="G" />
+        <Description>
+          Returns a Jordan spin factor algebra when <Arg>G</Arg> is a positive definite Gram matrix. 
+          <Example><![CDATA[
+gap> J := JordanSpinFactor(IdentityMat(8));
+<algebra of dimension 9 over Rationals>
+gap> One(J);
+v.1
+gap> [JordanRank(J), JordanDegree(J)];
+[ 2, 7 ]
+gap> Derivations(Basis(J));
+<Lie algebra of dimension 28 over Rationals>
+gap> SemiSimpleType(last);
+"D4"
+gap> x := Random(J);
+v.2+(-1)*v.3+(-1)*v.4+(1/2)*v.5+(-2)*v.7+(1/2)*v.8+(-3/2)*v.9
+gap> [Trace(x), Determinant(x)];
+[ 0, -39/4 ]
+gap> p := GenericMinimalPolynomial(x);
+[ -39/4, 0, 1 ]
+gap> ValuePol(p, x);
+0*v.1
+]]></Example>
+        </Description>
+      </ManSection>
+
+      <ManSection>
+      <Func Name="HermitianSimpleJordanAlgebra" Arg="r, B" />
+        <Description>
+          Returns a simple Euclidean Jordan algebra of rank <Arg>r</Arg> with the basis for the off-diagonal components defined using composition algebra basis <Arg>B</Arg>. 
+          <Example><![CDATA[
+gap> B := OctonionE8basis;;
+gap> J := HermitianSimpleJordanAlgebra(3,B);
+<algebra of dimension 27 over Rationals>
+gap> [JordanRank(J), JordanDegree(J)];
+[ 3, 8 ]
+gap> Derivations(Basis(J));
+<Lie algebra of dimension 52 over Rationals>
+gap> SemiSimpleType(last);
+"F4"]]></Example>
+        </Description>
+      </ManSection>
+
+      <ManSection>
+      <Func Name="JordanHomotope" Arg="J, u[, s]" />
+        <Description>
+          For <Arg>J</Arg> a Jordan algebra satisfying <Code>IsJordanAlgebra(<Arg>J</Arg>)</Code>, and for <Arg>u</Arg> a vector in <Arg>J</Arg>, this function returns the corresponding <Arg>u</Arg>-homotope algebra with the product of <Math>x</Math> and <Math>y</Math> defined as <Math>x(uy)+(xu)y - u(xy)</Math>. The <Arg>u</Arg>-homotope algebra also belongs to the filter <Code>IsJordanAlgebra</Code>. Of note, if <Arg>u</Arg> is invertible in <Arg>J</Arg> then the corresponding <Arg>u</Arg>-homotope algebra is called a <Arg>u</Arg>-isotope. The optional argument <Arg>s</Arg> is a string that determines the labels of the canonical basis vectors in the new algebra.
+          <Example><![CDATA[gap> J := SimpleEuclideanJordanAlgebra(2,7);
+<algebra of dimension 9 over Rationals>
+gap> u := Random(J);
+(-1/6)*v.1+(3)*v.2+(1/3)*v.3+(-2)*v.4+(-4)*v.6+(-1)*v.8+(-3)*v.9
+gap> GenericMinimalPolynomial(u);
+[ -469/12, 1/3, 1 ]
+gap> H := JordanHomotope(J, u);
+<algebra of dimension 9 over Rationals>
+gap> SemiSimpleType(Derivations(Basis(J)));
+"D4"
+gap> SemiSimpleType(Derivations(Basis(H)));
+"D4"]]></Example>
+        </Description>
+      </ManSection>
+
+      <ManSection>
+      <Func Name="AlbertAlgebra" Arg="F" />
+        <Description>
+          For <Arg>F</Arg> a field, this function returns an Albert algebra over <Arg>F</Arg>. This algebra is isomorphic to <Code>HermitianSimpleJordanAlgebra(3,8,Basis(Oct))</Code> but in a basis that is more convenient for reproducing certain calculations in the literature. 
+        </Description>
+      </ManSection>
+
+      <ManSection>
+      <Var Name="Alb" /> 
+        <Description>
+          The <Package>ALCO</Package> package includes a loaded instance of the Albert algebra over the rationals.
+          <Example><![CDATA[gap> Alb;
+<algebra of dimension 27 over Rationals>]]></Example>
+        </Description>
+      </ManSection>
+
+    </Section>
+
+
+    <Section>
+      <Heading>Additional Tools and Properties</Heading>
+
+      <ManSection>
+      <Func Name="HermitianJordanAlgebraBasis" Arg="r, B" />
+        <Description>
+          Returns a set of Hermitian matrices to serve as a basis for the Jordan algebra with or rank <Arg>r</Arg> and degree given by the cardinality of composition algebra basis <Arg>B</Arg>. The elements spanning each off-diagonal components are determined by basis <Arg>B</Arg>.
+          <Example><![CDATA[
+gap> H := QuaternionAlgebra(Rationals);; AsList(Basis(H));
+[ e, i, j, k ]
+gap> for x in HermitianJordanAlgebraBasis(2, Basis(H)) do Display(x); od;
+[ [    e,  0*e ],
+  [  0*e,  0*e ] ]
+[ [  0*e,  0*e ],
+  [  0*e,    e ] ]
+[ [  0*e,    e ],
+  [    e,  0*e ] ]
+[ [     0*e,       i ],
+  [  (-1)*i,     0*e ] ]
+[ [     0*e,       j ],
+  [  (-1)*j,     0*e ] ]
+[ [     0*e,       k ],
+  [  (-1)*k,     0*e ] ]]]></Example>
+        </Description>
+      </ManSection>
+
+      <ManSection>
+      <Attr Name="JordanMatrixBasis" Arg="J" />
+        <Description>
+          If <Code>IsJordanAlgebra( <Arg>J</Arg> )</Code> and <Arg>J</Arg> has been constructed using a matrix basis, then the set of matrices corresponding to <Code>CanonicalBasis( <Arg>J</Arg> )</Code> can be obtained using <Code>JordanMatrixBasis( <Arg>J</Arg> )</Code>.
+        </Description>
+      </ManSection>
+
+      <ManSection>
+      <Func Name="HermitianMatrixToJordanCoefficients" Arg="mat, J" />
+        <Description>
+            Converts matrix <Arg>mat</Arg> into an element of Jordan algebra <Arg>J</Arg>.
+          <Example>
+            <![CDATA[ 
+gap> H := QuaternionAlgebra(Rationals);; AsList(Basis(H));
+[ e, i, j, k ]
+gap> J := HermitianSimpleJordanAlgebra(2,Basis(H));
+<algebra of dimension 6 over Rationals>
+gap> AsList(CanonicalBasis(J));
+[ v.1, v.2, v.3, v.4, v.5, v.6 ]
+gap> JordanMatrixBasis(J);
+[ [ [ e, 0*e ], [ 0*e, 0*e ] ],    [ [ 0*e, 0*e ], [ 0*e, e ] ], 
+  [ [ 0*e, e ], [ e, 0*e ] ],      [ [ 0*e, i ], [ (-1)*i, 0*e ] ], 
+  [ [ 0*e, j ], [ (-1)*j, 0*e ] ], [ [ 0*e, k ], [ (-1)*k, 0*e ] ] ]
+gap> List(JordanMatrixBasis(J), x -> HermitianMatrixToJordanCoefficients(x, J));
+[ v.1, v.2, v.3, v.4, v.5, v.6 ]]]></Example>
+        </Description>
+      </ManSection>
+
+      <ManSection>
+      <Attr Name="JordanAlgebraGramMatrix" Arg="J" />
+        <Description>
+          For <Code>IsJordanAlgebra( <Arg>J</Arg> )</Code>, returns the Gram matrix on <Code>CanonicalBasis( <Arg>J</Arg> )</Code> using inner product <Code>Trace(x*y)</Code>.
+          <Example><![CDATA[ 
+gap> J := HermitianSimpleJordanAlgebra(2,OctonionE8basis);
+<algebra of dimension 10 over Rationals>
+gap> Display(JordanAlgebraGramMatrix(J));
+[ [   1,   0,   0,   0,   0,   0,   0,   0,   0,   0 ],
+  [   0,   1,   0,   0,   0,   0,   0,   0,   0,   0 ],
+  [   0,   0,   2,   0,  -1,   0,   0,   0,   0,   0 ],
+  [   0,   0,   0,   2,   0,  -1,   0,   0,   0,   0 ],
+  [   0,   0,  -1,   0,   2,  -1,   0,   0,   0,   0 ],
+  [   0,   0,   0,  -1,  -1,   2,  -1,   0,   0,   0 ],
+  [   0,   0,   0,   0,   0,  -1,   2,  -1,   0,   0 ],
+  [   0,   0,   0,   0,   0,   0,  -1,   2,  -1,   0 ],
+  [   0,   0,   0,   0,   0,   0,   0,  -1,   2,  -1 ],
+  [   0,   0,   0,   0,   0,   0,   0,   0,  -1,   2 ] ] ]]> </Example>
+        </Description>
+      </ManSection>
+
+      <ManSection>
+      <Func Name="JordanAdjugate" Arg="x" />
+        <Description>
+          For <Code>IsJordanAlgebraObj( <Arg>x</Arg> )</Code>, returns the adjugate of <Arg>x</Arg>, which satisfies <Code>x*JordanAdjugate(x) = One(x)*Determinant(x)</Code>.
+          When <Code>Determinant(x)</Code> is non-zero, <Code>JordanAdjugate(x)</Code> is proportional to <Code>Inverse(x)</Code>. 
+        </Description>
+      </ManSection>
+
+      <ManSection>
+      <Filt Name="IsPositiveDefinite" Arg="x" />
+        <Description>
+          For <Code>IsJordanAlgebraObj( <Arg>x</Arg> )</Code>, returns <Code>true</Code> when <Arg>x</Arg> is positive definite and <Code>false</Code> otherwise. This filter uses <Ref Func="GenericMinimalPolynomial" /> to determine whether <Arg>x</Arg> is positive definite.
+        </Description>
+      </ManSection>
+
+    </Section>
+
+  </Chapter>
+
+
+  <Chapter>
+    <Heading>Jordan Designs and their Association Schemes</Heading>
+
+    <Section>
+      <Heading>Jacobi Polynomials</Heading>
+
+      <ManSection>
+          <Func Name="JacobiPolynomial" Arg="k, a, b" />
+        <Description>
+          This function returns the Jacobi polynomial <Math>P(x)</Math> of degree <Arg>k</Arg> and type <Arg>(a,b)</Arg> as defined in <Cite Key="abramowitz_handbook_1972"
+              Where="chap. 22" />.
+        <Example><![CDATA[
+gap> a := Indeterminate(Rationals, "a");; 
+gap> b := Indeterminate(Rationals, "b");; 
+gap> x := Indeterminate(Rationals, "x");;
+gap> JacobiPolynomial(0,a,b);
+[ 1 ]
+gap> JacobiPolynomial(1,a,b);
+[ 1/2*a-1/2*b, 1/2*a+1/2*b+1 ]
+gap> ValuePol(last,x);
+1/2*a*x+1/2*b*x+1/2*a-1/2*b+x ]]></Example>
+        </Description>
+      </ManSection>
+
+      <ManSection>
+        <Heading>Renormalized Jacobi Polynomials</Heading>
+          <Func Name="Q_k_epsilon" Arg="k, epsilon, rank, degree, x" />
+          <Func Name="R_k_epsilon" Arg="k, epsilon, rank, degree, x" />
+      <Description>
+        These functions return polynomials of degree <Arg>k</Arg> in the indeterminate <Arg>x</Arg> corresponding the the renormalized Jacobi polynomials given in <Cite
+              Key="hoggar_t-designs_1982" />. The value of <Arg>epsilon</Arg> must be 0 or 1. The arguments <Arg>rank</Arg> and <Arg>degree</Arg> correspond to the rank and degree of the relevant simple Euclidean Jordan algebra.  
+      </Description>
+      </ManSection>
+
+    </Section>
+
+  <Section>
+        <Heading>Jordan Designs</Heading>
+
+        <ManSection>
+          <Heading>Jordan Design Filters</Heading>
+          <Filt Name="IsDesign" />
+          <Filt Name="IsSphericalDesign" />
+          <Filt Name="IsProjectiveDesign" />
+          <Description>These filters determine whether an object is a Jordan design and whether the
+          design is constructed in a spherical or projective manifold of Jordan primitive
+          idempotents.</Description>
+        </ManSection>
+
+        <ManSection>
+          <Func Name="DesignByJordanParameters" Arg="rank, degree" />
+          <Description>
+            This function constructs a Jordan design in the manifold of Jordan primitive idempotents of rank <Arg>rank</Arg> and degree <Arg>degree</Arg>. 
+            <Example><![CDATA[
+gap> D := DesignByJordanParameters(3,8);
+<design with rank 3 and degree 8>
+gap> IsDesign(D);
+true
+gap> IsSphericalDesign(D);
+false
+gap> IsProjectiveDesign(D);
+true ]]></Example>
+          </Description>
+        </ManSection>
+
+        <ManSection>
+          <Heading>Jordan Rank and Degree</Heading>
+          <Attr Name="DesignJordanRank" Arg="D" />
+          <Attr Name="DesignJordanDegree" Arg="D" />
+          <Description> The rank and degree of an object satisfying filter <Code>IsDesign</Code> are stored as attributes. <Example><![CDATA[
+gap> D := DesignByJordanParameters(3,8);
+<design with rank 3 and degree 8>
+gap> [DesignJordanRank(D), DesignJordanDegree(D)];
+[ 3, 8 ] ]]></Example>
+          </Description>
+        </ManSection>
+
+        <ManSection>
+          <Attr Name="DesignQPolynomial" Arg="D" />
+          <Description> This attribute stores a function on non-negative integers that returns the coefficients of the renormalized Jacobi polynomial in the manifold of Jordan primitive idempotents corresponding to the design <Arg>D</Arg>. 
+            <Example><![CDATA[
+gap> D := DesignByJordanParameters(3,8);
+<design with rank 3 and degree 8>
+gap> r := DesignJordanRank(D);; d := DesignJordanDegree(D);; 
+gap> x := Indeterminate(Rationals, "x");;
+gap> DesignQPolynomial(D);
+function( k ) ... end
+gap> DesignQPolynomial(D)(2);
+[ 90, -585, 819 ]
+gap> CoefficientsOfUnivariatePolynomial(Q_k_epsilon(2,0,r,d,x));
+[ 90, -585, 819 ]]]></Example>
+          </Description>
+        </ManSection>
+
+        <ManSection>
+          <Attr Name="DesignConnectionCoefficients" Arg="D" />
+          <Description> 
+            This attribute stores the connection coefficients, defined in <Cite Key="hoggar_t-designs_1992"
+              Where="p. 261" />, which determine the linear combinations of <Code>DesignQPolynomial(<Arg>D</Arg>)</Code> polynomials that yield each power of the indeterminate. <Example><![CDATA[
+gap> D := DesignByJordanParameters(3,8);
+<design with rank 3 and degree 8>
+gap> DesignConnectionCoefficients(D);
+function( s ) ... end
+gap> f := DesignConnectionCoefficients(D)(3);
+[ [ 1, 0, 0, 0 ], [ 1/3, 1/39, 0, 0 ], [ 5/39, 5/273, 1/819, 0 ],
+  [ 5/91, 1/91, 1/728, 1/12376 ] ]
+gap> for j in [1..4] do Display(Sum(List([1..4], i -> f[j][i]*DesignQPolynomial(D)(i-1))));
+od;
+[ 1, 0, 0, 0 ]
+[ 0, 1, 0, 0 ]
+[ 0, 0, 1, 0 ]
+[ 0, 0, 0, 1 ]]]></Example>
+          </Description>
+        </ManSection>
+
+      </Section>
+
+      <Section>
+        <Heading>Designs with an Angle Set</Heading>
+        We can compute a number of properties of a design once the angle set is known.
+
+        <ManSection>
+          <Filt Name="IsDesignWithAngleSet" />
+          <Description>This filter identifies the design as equipped with an angle set.</Description>
+        </ManSection>
+
+
+        <ManSection>
+          <Oper Name="DesignAddAngleSet" Arg="D, A" />
+          <Description>For a design <Arg>D</Arg> without an angle set, records the angle set <Arg>A</Arg> as an attribute <Code>DesignAngleSet</Code>.
+            <Example><![CDATA[
+gap> D := DesignByJordanParameters(4,4);
+<design with rank 4 and degree 4>
+gap> DesignAddAngleSet(D, [1/3,1/9]);
+<design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>
+gap> DesignAngleSet(D);
+[ 1/9, 1/3 ]]]></Example>
+          </Description>
+        </ManSection>
+
+        <ManSection>
+          <Func Name="DesignByAngleSet" Arg="rank, degree, A" />
+          <Description>Constructs a new design with Jordan rank and degree given by <Arg>rank</Arg> and <Arg>degree</Arg>, with angle set <Arg>A</Arg>. 
+          <Example><![CDATA[
+gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);
+<design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>
+gap> DesignAngleSet(D);
+[ 1/9, 1/3 ]]]></Example>
+          </Description>
+        </ManSection>
+
+      <ManSection>
+          <Attr Name="DesignNormalizedAnnihilatorPolynomial" Arg="D" />
+        <Description>The normalized annihilator polynomial is defined for an angle set in <Cite
+              Key="bannai_algebraic_2021" Where="p. 185" />. This polynomial is stored as an attribute of a design with an angle set.
+        <Example><![CDATA[
+gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);
+<design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>
+gap> DesignNormalizedAnnihilatorPolynomial(D);
+[ 1/16, -3/4, 27/16 ]]]></Example>
+        </Description>
+      </ManSection>
+
+      <ManSection>
+          <Attr Name="DesignNormalizedIndicatorCoefficients" Arg="D" />
+          <Description>The normalized indicator coefficients are the <Code>DesignQPolynomial(<Arg>D</Arg>)</Code>-expansion coefficients of <Code>DesignNormalizedAnnihilatorPolynomial(<Arg>D</Arg>)</Code>, discussed for the spherical case in <Cite
+              Key="bannai_algebraic_2021" Where="p. 185" />. These coefficients are stored as an
+      attribute of a design with an angle set. <Example><![CDATA[
+gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);
+<design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>
+gap> f := DesignNormalizedIndicatorCoefficients(D);
+[ 1/64, 7/960, 9/3520 ]
+gap> Sum(List([1..3], i -> f[i]*DesignQPolynomial(D)(i-1)));
+[ 1/16, -3/4, 27/16 ]
+gap> DesignNormalizedAnnihilatorPolynomial(D);
+[ 1/16, -3/4, 27/16 ]]]></Example>
+          </Description>
+        </ManSection>
+
+        <ManSection>
+          <Filt Name="IsDesignWithPositiveIndicatorCoefficients" />
+          <Description>
+            This filter determins whether the normalized indicator coefficients of a design are positive, which has significance for certain theorems about designs. 
+          </Description>
+        </ManSection>
+
+        <ManSection>
+          <Attr Name="DesignSpecialBound" Arg="D" />
+          <Description>
+            The special bound of a design satisfying <Code>IsDesignWithPositiveIndicatorCoefficients</Code> is the upper limit on the possible cardinality for the given angle set. <Example><![CDATA[
+gap> D := DesignByAngleSet(4, 4, [1/3,1/9]);
+<design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>
+gap> IsDesignWithPositiveIndicatorCoefficients(D);
+true
+gap> DesignSpecialBound(D);
+64]]></Example>
+          </Description>
+        </ManSection>
+
+      </Section>
+
+      <Section>
+        <Heading>Designs with Cardinality and Angle Set</Heading>
+
+        <ManSection>
+          <Heading>Some Filters</Heading>
+          <Filt Name="IsDesignWithCardinality" />
+          <Filt Name="IsRegularSchemeDesign" />
+          <Filt Name="IsSpecialBoundDesign" />
+          <Filt Name="IsAssociationSchemeDesign" />
+          <Filt Name="IsTightDesign" />
+          <Description>
+            A design with cardinality has a specified number of points. 
+            Given a design with <Math>v</Math> points and angle set <Math>A</Math>, it is possible to compute the strength <Math>t</Math> of a design and write <Math>s</Math> as the size of set <Math>A</Math>. 
+            When a design satisfies <Math>t >= s - 1 </Math> it admits a regular scheme. 
+            A design at the special bound satisfies <Math>t >= s</Math>. 
+            When a design satisfies <Math>t >= 2s - 2</Math> it admits an association scheme. 
+            Finally, when a design satisfies <Math>t = 2s - 1</Math> for <Math>0</Math> in <Math>A</Math> or <Math>t = 2s</Math> otherwise, it is a tight design.
+          </Description>
+        </ManSection>
+
+        <ManSection>
+          <Attr Name="DesignCardinality" Arg="D" />
+          <Description>
+            Returns the cardinality of design <Arg>D</Arg> when that design satisfies <Code>IsDesignWithCardinality</Code>. 
+          </Description>
+        </ManSection>
+
+        <ManSection>
+          <Func Name="DesignAddCardinality" Arg="D, v" />
+          <Description>This function stores the the specified cardinality <Arg>v</Arg> as attribute <Code>DesignCardinality</Code> of design <Arg>D</Arg>. The method requires the <Arg>D</Arg> satisfies <Code>IsDesignWithAngleSet</Code>.
+          <Example><![CDATA[
+gap> D := DesignByAngleSet(4, 4, [1/3,1/9]);
+<design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>
+gap> DesignSpecialBound(D);
+64
+gap> DesignAddCardinality(D, 64);
+<design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
+gap> IsSpecialBoundDesign(D);
+true
+gap> DesignCardinality(D);
+64]]></Example>
+          </Description>
+        </ManSection>
+
+        <ManSection>
+          <Filt Name="IsDesignWithStrength" />
+          <Description>
+            This filter identifies designs for which the attribute <Code>DesignStrength</Code> is known.
+          </Description>
+        </ManSection>
+
+        <ManSection>
+          <Attr Name="DesignStrength" Arg="D" />
+          <Description>
+            For a design <Arg>D</Arg> that satisfies <Code>IsDesignWithPositiveIndicatorCoefficients</Code>,  <Code>IsDesignWithCardinality</Code>, and <Code>IsSpecialBoundDesign</Code>, we can compute the strength <Math>t</Math> of the design using the normalized indicator coefficients. This allows us to immediately determine whether the design also satisfies <Code>IsTightDesign</Code> or <Code>IsAssociationSchemeDesign</Code>.
+            <Example><![CDATA[ 
+gap> D;
+<design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
+gap> IsAssociationSchemeDesign(D);
+false
+gap> DesignStrength(D);
+2
+gap> D;
+<2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>]]></Example> 
+          </Description>
+        </ManSection>
+
+        <ManSection>
+          <Attr Name="DesignAnnihilatorPolynomial" Arg="D" />
+          <Description>
+            The annihilator polynomial for design <Arg>D</Arg> is defined by multiplying the <Code>DesignNormalizedAnnihilatorPolynomial(<Arg>D</Arg>)</Code> by <Code>
+            DesignCardinality(<Arg>D</Arg>)</Code>.
+            <Example><![CDATA[
+gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);; DesignAddCardinality(D, 64);; D;
+<design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
+gap> DesignAnnihilatorPolynomial(D);
+[ 4, -48, 108 ]]]></Example>
+          </Description>
+        </ManSection>
+
+      <ManSection>
+          <Attr Name="DesignIndicatorCoefficients" Arg="D" />
+          <Description> 
+            The indicator coefficients for design <Arg>D</Arg> are defined by multiplying <Code>
+          DesignNormalizedIndicatorCoefficients(<Arg>D</Arg>)</Code> by <Code> DesignCardinality(<Arg>
+          D</Arg>)</Code>. These indicator coefficients are often useful for directly determining the strength of a design at the special bound. 
+          <Example><![CDATA[
+gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);; DesignAddCardinality(D, 64);; D;
+<design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
+gap> DesignIndicatorCoefficients(D);
+[ 1, 7/15, 9/55 ]]]></Example>
+          </Description>
+        </ManSection>
+
+
+      </Section>
+
+      <Section>
+        <Heading>Designs Admitting a Regular Scheme</Heading>
+      
+        <ManSection>
+          <Attr Name="DesignSubdegrees" Arg="D" />
+          <Description>
+            For a design <Arg>D</Arg> with cardinality and angle set that satisfies <Code>IsRegularSchemeDesign</Code>, namely <Math>t >= s - 1</Math>, we can compute the regular subdegrees as described in <Cite
+              Key="hoggar_t-designs_1992" Where = "Theorem 3.2"/>. 
+              <Example><![CDATA[ 
+gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);; DesignAddCardinality(D, 64);; D;
+<design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
+gap> DesignSubdegrees(D);
+[ 27, 36 ] ]]></Example>
+          </Description>
+        </ManSection>
+      
+      </Section>
+
+      <Section>
+        <Heading>Designs Admitting an Association Scheme</Heading>
+
+        When a design satisfies <Math>t > = 2s - 2</Math> then it also admits an association scheme. We can use results given in <Cite
+          Key="hoggar_t-designs_1992" /> to determine the parameters of the corresponding association scheme.
+
+        <ManSection>
+          <Attr Name="DesignBoseMesnerAlgebra" Arg="D" />
+          <Description>
+            For a design that satisfies <Code>IsAssociationSchemeDesign</Code>, we can define the corresponding Bose-Mesner algebra <Cite Key="bannai_algebraic_2021"
+              Where="pp. 53-57" />.
+            The canonical basis for this algebra corresponds to the adjacency matrices <Math>A_i</Math>, with the <Code>s+1</Code>-th basis vector corresponding to <Math>A_0</Math>. 
+            <Example><![CDATA[gap> D := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;
+<2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
+gap> B := DesignBoseMesnerAlgebra(D);
+<algebra of dimension 3 over Rationals>
+gap> BasisVectors(CanonicalBasis(B));
+[ A1, A2, A3 ]
+gap> One(B);
+A3 ]]></Example>  
+          </Description>
+        </ManSection>
+
+        <ManSection>
+          <Attr Name="DesignBoseMesnerIdempotentBasis" Arg="D" />
+          <Description>For a design that satisfies <Code>IsAssociationSchemeDesign</Code>, we can also define the idempotent basis of the 
+          corresponding Bose-Mesner algebra <Cite Key="bannai_algebraic_2021"
+              Where="pp. 53-57" />.
+          <Example><![CDATA[gap> D := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;
+<2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
+gap> DesignBoseMesnerIdempotentBasis(D);
+Basis( <algebra of dimension 3 over Rationals>, [ (-5/64)*A1+(3/64)*A2+(27/64)*A3,
+  (1/16)*A1+(-1/16)*A2+(9/16)*A3, (1/64)*A1+(1/64)*A2+(1/64)*A3 ] )
+gap> List(last, x -> x^2 = x);
+[ true, true, true ] ]]></Example>  
+          </Description>
+        </ManSection>
+        
+
+        <ManSection>
+          <Attr Name="DesignIntersectionNumbers" Arg="D" />
+          <Description>
+            The intersection numbers <Math>p^k_{i,j}</Math> are given by <Code>DesignIntersectionNumbers(<Arg>D</Arg>)[k][i][j]</Code>.
+            These intersection numbers serve as the structure constants for the <Code>DesignBoseMesnerAlgebra(<Arg>D</Arg>)</Code>. Namely, <Math>A_i A_j = \sum_{k = 1}^{s+1} p^{k}_{i,j} A_k</Math>.
+            <Example><![CDATA[gap> D := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;
+<2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
+gap> A := BasisVectors(Basis(DesignBoseMesnerAlgebra(D)));;
+[ A1, A2, A3 ]
+gap> p := DesignIntersectionNumbers(D);;
+gap> A[1]*A[2] = Sum(List([1..3]), k -> p[k][1][2]*A[k]);
+true]]></Example>
+          </Description>
+        </ManSection>
+
+        <ManSection>
+          <Attr Name="DesignKreinNumbers" Arg="D" />
+          <Description> The Krein numbers <Math>q^k_{i,j}</Math> are given by <Code>
+          DesignKreinNumbers(<Arg>D</Arg>)[k][i][j]</Code>. The Krein numbers serve
+          as the structure constants for the <Code>DesignBoseMesnerAlgebra(<Arg>D</Arg>)</Code> in the idempotent basis given by <Code>DesignBoseMesnerIdempotentBasis(<Arg>D</Arg>)</Code> using the Hadamard matrix product <Math>\circ</Math>.
+          Namely, for idempotent basis <Math>E_i</Math> and Hadamard product <Math>\circ</Math>, we have <Math>E_i \circ E_j = \sum_{k = 1}^{s+1} q^{k}_{i,j} E_k</Math>. <Example><![CDATA[gap> D := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;
+<2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
+gap> q := DesignKreinNumbers(D);
+[ [ [ 10, 16, 1 ], [ 16, 20, 0 ], [ 1, 0, 0 ] ],
+  [ [ 12, 15, 0 ], [ 15, 20, 1 ], [ 0, 1, 0 ] ],
+  [ [ 27, 0, 0 ], [ 0, 36, 0 ], [ 0, 0, 1 ] ] ]]]></Example>
+          </Description>
+        </ManSection>
+
+        <ManSection>
+          <Attr Name="DesignFirstEigenmatrix" Arg="D" />
+          <Description>
+            As describe in <Cite Key="bannai_algebraic_2021"
+              Where="p. 58" />, the first eigenmatrix of a Bose-Mesner algebra <Math>P_i(j)</Math> defines the expansion of the adjacency matrix basis <Math>A_i</Math> in terms of the idempotent basis <Math>E_j</Math> as follows: <Math>A_i = \sum_{j = 1}^{s+1} P_i(j) E_j </Math>. 
+            This attribute returns the component <Math>P_i(j)</Math> as <Code>DesignFirstEigenmatrix(<Arg>D</Arg>)[i][j]</Code>.
+            <Example><![CDATA[gap> D := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;
+<2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
+gap> a := Basis(DesignBoseMesnerAlgebra(D));; e := DesignBoseMesnerIdempotentBasis(D);;
+gap> List([1..3], i -> a[i] = Sum([1..3], j -> DesignFirstEigenmatrix(D)[i][j]*e[j]));
+[ true, true, true ] ]]></Example>  
+          </Description>
+        </ManSection>
+
+        <ManSection>
+          <Attr Name="DesignSecondEigenmatrix" Arg="D" />
+          <Description> As describe in <Cite Key="bannai_algebraic_2021"
+              Where="p. 58" />, the second eigenmatrix of a Bose-Mesner algebra <Math>Q_i(j)</Math> defines the expansion of the idempotent basis <Math>E_i</Math> in terms of the adjacency matrix basis <Math>A_j</Math> as follows: <Math>E_i = (1/v)\sum_{j = 1}^{s+1} Q_i(j) A_j </Math>. This attribute returns the component <Math>Q_i(j)</Math> as <Code>DesignSecondEigenmatrix(<Arg>D</Arg>)[i][j]</Code>. <Example><![CDATA[gap> D := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;
+<2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
+gap> a := Basis(DesignBoseMesnerAlgebra(D));; e := DesignBoseMesnerIdempotentBasis(D);;
+gap> List([1..3], i -> e[i]*DesignCardinality(D) = Sum([1..3], j -> DesignSecondEigenmatrix(D)[i][j]*a[j]));
+[ true, true, true ] 
+gap> DesignFirstEigenmatrix(D) = Inverse(DesignSecondEigenmatrix(D))*DesignCardinality(D);
+true]]></Example>
+          </Description>
+        </ManSection>
+
+        <ManSection>
+          <Attr Name="DesignMultiplicities" Arg="D" />
+          <Description>
+            As describe in <Cite Key="bannai_algebraic_2021"
+              Where="pp. 58-59" />, the design multiplicy <Math>m_i</Math> is defined as the dimension of the space that idempotent matrix <Math>E_i</Math> projects onto, or <Math>m_i = trace(E_i)</Math>. We also have <Math>m_i = Q_i(s+1)</Math>.
+              <Example><![CDATA[gap> D := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;
+<2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
+gap> DesignMultiplicities(D);
+[ 27, 36, 1 ]]]></Example>
+          </Description>
+        </ManSection>
+
+        <ManSection>
+          <Attr Name="DesignValencies" Arg="D" />
+          <Description> As describe in <Cite Key="bannai_algebraic_2021"
+              Where="pp. 55, 59" />, the design valency <Math>k_i</Math> is defined as the fixed number of <Math>i</Math>-associates of any element in the association scheme (also known as the subdegree).
+              We also have <Math>k_i = P_i(s+1)</Math>. <Example><![CDATA[gap> D := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;
+<2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
+gap> DesignValencies(D);
+[ 27, 36, 1 ]]]></Example>
+          </Description>
+        </ManSection>
+
+        <ManSection>
+          <Attr Name="DesignReducedAdjacencyMatrices" Arg="D" />
+          <Description>
+            As defined in <Cite Key="cameron_designs_1991" Where="p. 201" />, the reduced adjacency matrices multiply with the same structure constants as the adjacency matrices, which allows for a simpler construction of an algebra isomorphic to the Bose-Mesner algebra. The matrices <Code>DesignReducedAdjacencyMatrices(<Arg>D</Arg>)</Code> are used to construct <Code>DesignBoseMesnerAlgebra(<Arg>D</Arg>)</Code>.
+          </Description>
+        </ManSection>  
+
+      </Section>
+
+      <Section>
+        <Heading>Examples</Heading>
+
+        The following tight projective t-designs are identified in <Cite
+              Key="hoggar_t-designs_1982" Where="Examples 1-11" />.
+<Example><![CDATA[gap> DesignByAngleSet(2, 1, [0,1/2]);; DesignAddCardinality(last, DesignSpecialBound(last));
+<Tight 3-design with rank 2, degree 1, cardinality 4, and angle set [ 0, 1/2 ]>
+gap> DesignByAngleSet(2, 2, [0,1/2]);; DesignAddCardinality(last, DesignSpecialBound(last));
+<Tight 3-design with rank 2, degree 2, cardinality 6, and angle set [ 0, 1/2 ]>
+gap> DesignByAngleSet(2, 4, [0,1/2]);; DesignAddCardinality(last, DesignSpecialBound(last));
+<Tight 3-design with rank 2, degree 4, cardinality 10, and angle set [ 0, 1/2 ]>
+gap> DesignByAngleSet(2, 8, [0,1/2]);; DesignAddCardinality(last, DesignSpecialBound(last));
+<Tight 3-design with rank 2, degree 8, cardinality 18, and angle set [ 0, 1/2 ]>
+gap> DesignByAngleSet(3, 2, [1/4]);; DesignAddCardinality(last, DesignSpecialBound(last));
+<Tight 2-design with rank 3, degree 2, cardinality 9, and angle set [ 1/4 ]>
+gap> DesignByAngleSet(4, 2, [0,1/3]);; DesignAddCardinality(last, DesignSpecialBound(last));
+<Tight 3-design with rank 4, degree 2, cardinality 40, and angle set [ 0, 1/3 ]>
+gap> DesignByAngleSet(6, 2, [0,1/4]);; DesignAddCardinality(last, DesignSpecialBound(last));
+<Tight 3-design with rank 6, degree 2, cardinality 126, and angle set [ 0, 1/4 ]>
+gap> DesignByAngleSet(8, 2, [1/9]);; DesignAddCardinality(last, DesignSpecialBound(last));
+<Tight 2-design with rank 8, degree 2, cardinality 64, and angle set [ 1/9 ]>
+gap> DesignByAngleSet(5, 4, [0,1/4]);; DesignAddCardinality(last, DesignSpecialBound(last));
+<Tight 3-design with rank 5, degree 4, cardinality 165, and angle set [ 0, 1/4 ]>
+gap> DesignByAngleSet(3, 8, [0,1/4,1/2]);; DesignAddCardinality(last, DesignSpecialBound(las
+t));
+<Tight 5-design with rank 3, degree 8, cardinality 819, and angle set [ 0, 1/4, 1/2 ]>
+gap> DesignByAngleSet(24, 1, [0,1/16,1/4]);; DesignAddCardinality(last, DesignSpecialBound(l
+ast));
+<Tight 5-design with rank 24, degree 1, cardinality 98280, and angle set [ 0, 1/16, 1/4 ]>]]></Example>
+        
+An additional icosahedron projective example is identified in <Cite Key="lyubich_tight_2009" />.
+<Example><![CDATA[gap> DesignByAngleSet(2, 2, [ 0, (5-Sqrt(5))/10, (5+Sqrt(5))/10 ]);; DesignAddCardinality(last, DesignSpecialBound(last));
+<Tight 5-design with rank 2, degree 2, cardinality 12, and angle set
+[ 0, -3/5*E(5)-2/5*E(5)^2-2/5*E(5)^3-3/5*E(5)^4,
+  -2/5*E(5)-3/5*E(5)^2-3/5*E(5)^3-2/5*E(5)^4 ]>]]></Example>
+
+The Leech lattice short vector design and several other tight spherical designs are given below:
+<Example><![CDATA[gap> DesignByAngleSet(2, 23, [ 0, 1/4, 3/8, 1/2, 5/8, 3/4 ]);; DesignAddCardinality(last, De
+signSpecialBound(last));
+<Tight 11-design with rank 2, degree 23, cardinality 196560, and angle set
+[ 0, 1/4, 3/8, 1/2, 5/8, 3/4 ]>
+gap> DesignByAngleSet(2, 5, [ 1/4, 5/8 ]);; DesignAddCardinality(last, DesignSpecialBound(la
+st));
+<Tight 4-design with rank 2, degree 5, cardinality 27, and angle set [ 1/4, 5/8 ]>
+gap> DesignByAngleSet(2, 6, [0,1/3,2/3]);; DesignAddCardinality(last, DesignSpecialBound(las
+t));
+<Tight 5-design with rank 2, degree 6, cardinality 56, and angle set [ 0, 1/3, 2/3 ]>
+gap> DesignByAngleSet(2, 21, [3/8, 7/12]);; DesignAddCardinality(last, DesignSpecialBound(la
+st));
+<Tight 4-design with rank 2, degree 21, cardinality 275, and angle set [ 3/8, 7/12 ]>
+gap> DesignByAngleSet(2, 22, [0,2/5,3/5]);; DesignAddCardinality(last, DesignSpecialBound(la
+st));
+<Tight 5-design with rank 2, degree 22, cardinality 552, and angle set [ 0, 2/5, 3/5 ]>
+gap> DesignByAngleSet(2, 7, [0,1/4,1/2,3/4]);; DesignAddCardinality(last, DesignSpecialBound
+(last));
+<Tight 7-design with rank 2, degree 7, cardinality 240, and angle set [ 0, 1/4, 1/2, 3/4
+ ]>
+gap> DesignByAngleSet(2, 22, [0,1/3,1/2,2/3]);; DesignAddCardinality(last, DesignSpecialBoun
+d(last));
+<Tight 7-design with rank 2, degree 22, cardinality 4600, and angle set
+[ 0, 1/3, 1/2, 2/3 ]>]]></Example>
+Some projective designs meeting the special bound are given in <Cite Key="hoggar_t-designs_1982" Where="Examples 1-11" />:
+<Example><![CDATA[gap> DesignByAngleSet(4, 4, [0,1/4,1/2]);; DesignAddCardinality(last, DesignSpecialBound(las
+t));
+<3-design with rank 4, degree 4, cardinality 180, and angle set [ 0, 1/4, 1/2 ]>
+gap> DesignByAngleSet(3, 2, [0,1/3]);; DesignAddCardinality(last, DesignSpecialBound(last));
+<2-design with rank 3, degree 2, cardinality 12, and angle set [ 0, 1/3 ]>
+gap> DesignByAngleSet(5, 2, [0,1/4]);; DesignAddCardinality(last, DesignSpecialBound(last));
+<2-design with rank 5, degree 2, cardinality 45, and angle set [ 0, 1/4 ]>
+gap> DesignByAngleSet(9, 2, [0,1/9]);; DesignAddCardinality(last, DesignSpecialBound(last));
+<2-design with rank 9, degree 2, cardinality 90, and angle set [ 0, 1/9 ]>
+gap> DesignByAngleSet(28, 2, [0,1/16]);; DesignAddCardinality(last, DesignSpecialBound(last)
+);
+<2-design with rank 28, degree 2, cardinality 4060, and angle set [ 0, 1/16 ]>
+gap> DesignByAngleSet(4, 4, [0,1/4]);; DesignAddCardinality(last, DesignSpecialBound(last));
+<2-design with rank 4, degree 4, cardinality 36, and angle set [ 0, 1/4 ]>
+gap> DesignByAngleSet(4, 4, [1/9,1/3]);; DesignAddCardinality(last, DesignSpecialBound(last)
+);
+<2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
+gap> DesignByAngleSet(16, 1, [0,1/9]);; DesignAddCardinality(last, DesignSpecialBound(last))
+;
+<2-design with rank 16, degree 1, cardinality 256, and angle set [ 0, 1/9 ]>
+gap> DesignByAngleSet(4, 2, [0,1/4,1/2]);; DesignAddCardinality(last, DesignSpecialBound(las
+t));
+<3-design with rank 4, degree 2, cardinality 60, and angle set [ 0, 1/4, 1/2 ]>
+gap> DesignByAngleSet(16, 1, [0,1/16,1/4]);; DesignAddCardinality(last, DesignSpecialBound(l
+ast));
+<3-design with rank 16, degree 1, cardinality 2160, and angle set [ 0, 1/16, 1/4 ]>
+gap> DesignByAngleSet(3, 4, [0,1/4,1/2]);; DesignAddCardinality(last, DesignSpecialBound(las
+t));
+<3-design with rank 3, degree 4, cardinality 63, and angle set [ 0, 1/4, 1/2 ]>
+gap> DesignByAngleSet(3, 4, [0,1/4,1/2,(3+Sqrt(5))/8, (3-Sqrt(5))/8]);; DesignAddCardinality
+(last, DesignSpecialBound(last));
+<5-design with rank 3, degree 4, cardinality 315, and angle set
+[ 0, 1/4, 1/2, -1/2*E(5)-1/4*E(5)^2-1/4*E(5)^3-1/2*E(5)^4,
+  -1/4*E(5)-1/2*E(5)^2-1/2*E(5)^3-1/4*E(5)^4 ]>
+gap> DesignByAngleSet(12, 2, [0,1/3,1/4,1/12]);; DesignAddCardinality(last, DesignSpecialBou
+nd(last));
+<5-design with rank 12, degree 2, cardinality 32760, and angle set [ 0, 1/12, 1/4, 1/3 ]>]]></Example> 
+Two important designs related to the <Math>H_4</Math> Weyl group are as follows:
+<Example><![CDATA[
+gap> A := [ 0, 1/4, 1/2, 3/4, (5-Sqrt(5))/8, (5+Sqrt(5))/8, (3-Sqrt(5))/8, (3+Sqrt(5))/8 ];;
+gap> D := DesignByAngleSet(2, 3, A);; DesignAddCardinality(D, DesignSpecialBound(D));
+<11-design with rank 2, degree 3, cardinality 120, and angle set [ 0, 1/4, 1/2, 3/4, -3/4*E(5)-1/2*E(5)^2-1/2*E(5)^3-3/4*E(5)^4, -1/2*E(5)-3/4*E(5)^2-3/4*E(5)^3-1/2*E(5)^4, -1/2*E(5)-1/4*E(5)^2-1/4*E(5)^3-1/2*E(5)^4, -1/4*E(5)-1/2*E(5)^2-1/2*E(5)^3-1/4*E(5)^4 ]>
+gap> A := [ 0, 1/4, (3-Sqrt(5))/8, (3+Sqrt(5))/8 ];;
+gap> D := DesignByAngleSet(4, 1, A);; DesignAddCardinality(D, DesignSpecialBound(D));
+<5-design with rank 4, degree 1, cardinality 60, and angle set
+[ 0, 1/4, -1/2*E(5)-1/4*E(5)^2-1/4*E(5)^3-1/2*E(5)^4,
+  -1/4*E(5)-1/2*E(5)^2-1/2*E(5)^3-1/4*E(5)^4 ]> ]]></Example>
+      
+
+</Section>
+
+
+  </Chapter>
+
+
+  <Chapter>
+    <Heading>Octonion Lattice Constructions</Heading>
+
+    In what follows let <Arg>L</Arg> be a free left Z-module that satisfies <Code>IsOctonionLattice</Code>.
+
+    <Section>
+        <Heading>Gram Matrix Filters</Heading>
+
+        <ManSection>
+          <Func Name="IsLeechLatticeGramMatrix" Arg="G" />
+          <Description> This function returns <Code>true</Code> when <Arg>G</Arg> is a Gram matrix
+            of a Leech lattice and <Code>false</Code> otherwise. Specifically, this function
+            confirms that the lattice defined by <Arg>G</Arg> is unimodular with shortest vectors of
+            length at least 4. </Description>
+        </ManSection>
+
+        <ManSection>
+          <Func Name="IsGossetLatticeGramMatrix" Arg="G" />
+          <Description> This function returns <Code>true</Code> when <Arg>G</Arg> is a Gram matrix
+            of a Gosset (<Math>E_8</Math>) lattice and <Code>false</Code> otherwise. Specifically, this function
+            confirms that the lattice defined by <Arg>G</Arg> is unimodular with shortest vectors of
+            length at least 2. </Description>
+        </ManSection>
+
+        <ManSection>
+          <Filt Name="IsOctonionLattice" />
+          <Description>This is a subcategory of <Code>IsFreeLeftModule</Code> used below to construct octonion lattices with an inner product defined via an octonion gram matrix.</Description>
+        </ManSection>
+
+    </Section>
+
+    <Section>
+      <Heading>Octonion Lattice Constructions</Heading>
+
+        <ManSection>
+          <Func Name="OctonionLatticeByGenerators" Arg="gens [, g]" />
+          <Description> For <Arg>gens</Arg> a list of octonion vectors, so that <Arg>gens</Arg> satisfies <Code>IsOctonionCollColl</Code>, this function constructs a free left Z-module that satisfies <Code>IsOctonionLattice</Code>.
+          The attribute <Code>LeftActingDomain</Code> is set to <Code>Integers</Code> and the input <Arg>gens</Arg> is stored as the attribute <Code>GeneratorsOfLeftOperatorAdditiveGroup</Code>.  
+          The inner product on the lattice is defined by optional argument <Arg>g</Arg>, which is an octonion square matrix that defaults to the identity matrix. 
+          For <Arg>x,y</Arg> octonion vectors in the lattice, the inner product is computed as <Code>
+            ScalarProduct(<Arg>L</Arg>, <Arg>x</Arg>, <Arg>y</Arg>) = Trace(<Arg>x</Arg>*<Arg>g</Arg>*ComplexConjugate(<Arg>y</Arg>))</Code>.   
+            <Example><![CDATA[gap> O := OctonionArithmetic(Integers);; gens := Concatenation(List(Basis(O), x -> x*IdentityMat(3)));;
+gap> O3 := OctonionLatticeByGenerators(gens);
+<free left module over Integers, with 24 generators>]]></Example>
+          </Description>
+        </ManSection>
+    </Section>
+
+    <Section>
+      <Heading>Octonion Lattice Attributes</Heading>
+
+      <ManSection>
+          <Attr Name="UnderlyingOctonionRing" Arg="L" />
+        <Description>
+          This attribute stores the octonion algebra containing the octonion coefficients of the generating bvectors, stored as <Code>GeneratorsOfLeftOperatorAdditiveGroup(<Arg>L</Arg>)</Code>.
+        </Description>
+      </ManSection>
+
+      <ManSection>
+          <Attr Name="OctonionGramMatrix" Arg="L" />
+        <Description>
+          This attribute stores the optional argument <Arg>g</Arg> of <Code>OctonionLatticeByGenerators(<Arg>gens</Arg> [,<Arg>g</Arg>])</Code>. This attribute stores the octonion matrix used to calculate the inner product on the
+          lattice via <Code>Trace(<Arg>x</Arg>*<Arg>g</Arg>*ComplexConjugate(<Arg>y</Arg>))</Code>. The default value of this attribute is the identity matrix.
+        </Description>
+      </ManSection>
+
+      <ManSection>
+        <Attr Name="Dimension" Arg="L" />
+        <Description>
+            For <Arg>L</Arg> satisfying <Code>IsOctonionLattice</Code> these attributes determine the lattice rank, which is equivalent to the lattice dimension. 
+            The value is computed by determining <Code>Rank(GeneratorsAsCoefficients(<Arg>L</Arg>))</Code>.
+        </Description>
+      </ManSection>
+
+
+        
+
+      <ManSection>
+          <Attr Name="GeneratorsAsCoefficients" Arg="L" />
+        <Description>
+          This attributes converts the lattice generators, stored as <Code>GeneratorsOfLeftOperatorAdditiveGroup(<Arg>L</Arg>)</Code>, into a list of coefficients. For each generating vector <Arg>x</Arg>, the coefficient list <Code>OctonionToRealVector(CanonicalBasis(UnderlyingOctonionRing(<Arg>L</Arg>)), <Arg>x</Arg>)</Code> is added to the list <Code>       GeneratorsAsCoefficients(<Arg>L</Arg>)</Code>. 
+        </Description>
+      </ManSection>
+
+      <ManSection>
+          <Attr Name="LLLReducedBasisCoefficients" Arg="L" />
+        <Description>
+          This attribute stores the result of <Code>LLLReducedBasis(<Arg>L</Arg>, GeneratorsAsCoefficients(<Arg>L</Arg>)).basis</Code>. 
+          This provides a set of basis vectors as coefficients for <Arg>L</Arg>, since there is no test to ensure that <Code>GeneratorsOfLeftOperatorAdditiveGroup</Code> form a Z-module basis.
+          The <Code>LLLReducedBasis</Code> operation is conducted with reference to <Code>ScalarProduct(<Arg>L</Arg>, <Arg>x</Arg>, <Arg>y</Arg>)</Code>, which is defined 
+        </Description>
+      </ManSection>
+
+
+      <ManSection>
+        <Attr Name="GramMatrix" Arg="L" Label="GramMatrixLattice" />
+        <Description>
+          This attribute stores the Gram matrix of vectors <Code>LLLReducedBasisCoefficients(<Arg>L</Arg>)</Code> relative to <Code>ScalarProduct(<Arg>L</Arg>, <Arg>x</Arg>, <Arg>y</Arg>)</Code>.
+        </Description>
+      </ManSection>
+
+
+      <ManSection>
+        <Attr Name="TotallyIsotropicCode" Arg="L" />
+        <Description>
+          This attribute stores the vectorspace over <Code>GF(2)</Code> generated by the vectors <Code>LLLReducedBasisCoefficients(<Arg>L</Arg>)</Code> multiplied by <Code>Z(2)</Code> (see <Cite Key="lepowsky_e8-approach_1982" /> for more details).
+        </Description>
+      </ManSection>
+
+      <ManSection>
+        <Heading>Lattice Basis</Heading>
+          <Attr Name="Basis" Arg="L" />
+          <Attr Name="CanonicalBasis" Arg="L" />
+          <Attr Name="BasisVectors" Arg="B" />
+          <Filt Name="IsOctonionLatticeBasis" />
+        <Description>
+           For <Arg>L</Arg> satisfying <Code>IsOctonionLattice</Code> the attributes <Code>Basis(<Arg>L</Arg>)</Code> and <Code>
+            CanonicalBasis(<Arg>L</Arg>)</Code> are equivalent. 
+            The corresponding basis satisfies <Code>IsOctonionLatticeBasis(<Arg>B</Arg>)</Code> and provides a basis for octonion lattice <Arg>L</Arg> as a left free Z-module. In turn, <Code>BasisVectors(<Arg>B</Arg>)</Code> are given by <Code>LLLReducedBasisCoefficients(<Arg>L</Arg>)</Code>.
+        </Description>
+      </ManSection>
+
+    </Section>
+    
+
+    <Section>
+      <Heading>Octonion Lattice Operations</Heading>
+      
+      <ManSection>
+        <Oper Name="Rank" Arg="L" />
+        <Description>
+            For <Arg>L</Arg> satisfying <Code>IsOctonionLattice</Code> these attributes determine the lattice rank, which is equivalent to the lattice dimension. 
+            The value is computed by determining <Code>Rank(GeneratorsAsCoefficients(<Arg>L</Arg>))</Code>.
+        </Description>
+      </ManSection>
+      
+      <ManSection>
+        <Oper Name="ScalarProduct" Arg="L, x, y" />
+        <Description>For <Arg>L</Arg> that satisfies <Code>IsOctonionLattice</Code> and <Arg>x</Arg>, <Arg>y</Arg> either octonion vectors or coefficient vectors, this operation computes <Code>Trace(<Arg>x</Arg>*<Arg>g</Arg>*ComplexConjugate(<Arg>y</Arg>))</Code>. </Description>
+      </ManSection>
+
+
+      <ManSection>
+        <Oper Name="\in" Arg="x, L" />
+        <Description>
+          For <Arg>x</Arg> an octonion vector (satisfies <Code>IsOctonionCollection</Code> and <Arg>L</Arg> an octonion lattice (satisfies <Code>IsOctonionLattice</Code>), this function evaluates inclusion of <Arg>x</Arg> in <Arg>L</Arg>. Note that <Code>\in(<Arg>x</Arg>,<Arg>L</Arg>)</Code> and <Code><Arg>x</Arg> in <Arg>L</Arg></Code> are equivalent expression.
+        </Description>
+      </ManSection>
+
+      <ManSection>
+        <Heading>Sublattice Identification</Heading>
+        <Oper Name="IsSublattice" Arg="L, M" />
+        <Oper Name="IsSubset" Arg="L, M" />
+        <Description>
+          For both <Arg>L</Arg> and <Arg>M</Arg> octonion lattices (satisfies <Code>IsOctonionLattice</Code>) these two functions determine whether the elements of <Arg>M</Arg> are contained in <Arg>L</Arg>.
+        </Description>
+      </ManSection>
+
+      <ManSection>
+        <Oper Name="\=" Arg="L, M" />
+        <Description>
+          For both <Arg>L</Arg> and <Arg>M</Arg> octonion lattices (satisfies <Code>IsOctonionLattice</Code>) the expression <Code><Arg>L</Arg> = <Arg>M</Arg></Code> return true when <Code>IsSublattice(<Arg>L</Arg>, <Arg>M</Arg>) and IsSublattice(<Arg>L</Arg>, <Arg>M</Arg>) </Code>.
+        </Description>
+      </ManSection>
+
+      <ManSection>
+          <Heading>Converting Between Real and Octonion Vectors</Heading>
+          <Func Name="RealToOctonionVector" Arg="L, x" Label="RealToOctLattices" />
+          <Func Name="OctonionToRealVector" Arg="L, y" Label="OctToRealLattices" />
+          <Description>
+            Let <Arg>L</Arg> be an octonion lattice, satisfying <Code>IsOctonionLattice</Code>, and let <Arg>B</Arg> be a basis for the octonion algebra <Code>UnderlyingOctonionRing(<Arg>L</Arg>)</Code>.
+            Let <Arg>x</Arg> be a real vector with <Code>Length(<Arg>x</Arg>) mod 8 = 0</Code> and let <Arg>y</Arg> be an octonion vector of length <Code>Dimension(<Arg>L</Arg>)/8</Code>. 
+            The function <Code>RealToOctonionVector(<Arg>B</Arg>, <Arg>x</Arg>)</Code> returns an octonion vector constructed by taking each successive octonion entry as the linear combination in the eight basis vectors of <Arg>B</Arg> of the corresponding eight real coefficients.
+            Likewise, the function <Code>OctonionToRealVector(<Arg>B</Arg>, <Arg>y</Arg>)</Code> is the concatenation of the real coefficients of the octonion entries computed using the basis <Arg>B</Arg>.
+            In contrast, <Code>RealToOctonionVector(<Arg>L</Arg>, <Arg>x</Arg>)</Code> returns the linear combination of the octonion lattice canonical basis vectors defined by <Code>LLLReducedBasisCoefficients(<Arg>L</Arg>)</Code> given by the coefficients <Arg>x</Arg>.
+            The function <Code>OctonionToRealVector(<Arg>L</Arg>, <Arg>y</Arg>)</Code> determines the lattice coefficients of octonion vector <Arg>y</Arg> in the canonical basis of octonion lattice <Arg>L</Arg>.
+            <Example><![CDATA[gap> O := OctonionArithmetic(Integers); B := Basis(O);
+<algebra of dimension 8 over Integers>
+CanonicalBasis( <algebra of dimension 8 over Integers> )
+gap> L := OctonionLatticeByGenerators(Concatenation(List(B, x -> x*IdentityMat(3))));
+<free left module over Integers, with 24 generators>
+Time of last command: 464 ms
+gap> List(IdentityMat(24), x -> RealToOctonionVector(L, x)) = List(LLLReducedBasisCoefficien
+ts(L), y -> RealToOctonionVector(Basis(O), y));
+true]]></Example> 
+            Another example illustrates the inverse properties of these functions.
+            <Example><![CDATA[gap> OctonionToRealVector(L, RealToOctonionVector(L, [1..24])) = [1..24];
+true
+gap> OctonionToRealVector(Basis(O),RealToOctonionVector(Basis(O), [1..24])) = [1..24];
+true]]></Example>
+          </Description>
+      </ManSection>
+
+    </Section>
+      
+  </Chapter>
+
+
+
+</Body>
+<Bibliography Databases="zotero" />
+<TheIndex/>
+
+</Book>

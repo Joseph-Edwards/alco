@@ -1,0 +1,12 @@
+  
+  [1X1 [33X[0;0YIntroduction[133X[101X
+  
+  [33X[0;0YThe  [5XALCO[105X  package provides tools for algebraic combinatorics, most of which
+  was  written for [5XGAP[105X during the author's Ph.D. program [Nas23]. This package
+  provides  convenient  constructions  in  [5XGAP[105X  of  octonion  algebras, Jordan
+  algebras,  and certain important integer subrings of those algebras. It also
+  provides  tools  to  compute  the  parameters  of t-designs in spherical and
+  projective  spaces (modeled as manifolds of primitive idempotent elements in
+  a  simple Euclidean Jordan algebra). Finally, this package provides tools to
+  explore octonion lattice constructions, including octonion Leech lattices.[133X
+  

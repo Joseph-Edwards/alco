@@ -1,0 +1,380 @@
+  
+  [1X2 [33X[0;0YOctonions[133X[101X
+  
+  [33X[0;0Y[5XGAP[105X   contains   limited   built-in   functionality   for  constructing  and
+  manipulating  octonions.  The built-in [10XOctaveAlgebra[110X function constructs the
+  split-octonion   algebra   over   some  field.  The  [5XALCO[105X  package  provides
+  constructions of non-split octonion algebras in various bases.[133X
+  
+  
+  [1X2.1 [33X[0;0YOctonion Algebras[133X[101X
+  
+  
+  [1X2.1-1 [33X[0;0YOctonion Filters[133X[101X
+  
+  [33X[1;0Y[29X[2XIsOctonion[102X [32X filter[133X
+  [33X[1;0Y[29X[2XIsOctonionArithmeticElement[102X [32X filter[133X
+  [33X[1;0Y[29X[2XIsOctonionCollection[102X [32X filter[133X
+  [33X[1;0Y[29X[2XIsOctonionAlgebra[102X [32X filter[133X
+  
+  [33X[0;0YThese  filters  determine  whether  an  element  is an octonion, an octonion
+  arithmetic element, and octonion collection, or an octonion algebra.[133X
+  
+  [1X2.1-2 OctonionAlgebra[101X
+  
+  [33X[1;0Y[29X[2XOctonionAlgebra[102X( [3XF[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  an  octonion  algebra  over field [3XF[103X in a standard orthonormal basis
+  [23X\{e_{i}, i = 1,...,8\}[123X such that [23X1 = e_8[123X is the identity element and [23Xe_{i} =
+  e_{i+1}e_{i+3}  =  -  e_{i+3}e_{i+1}[123X for [23Xi = 1,...,7[123X, with indices evaluated
+  modulo 7.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XO := OctonionAlgebra(Rationals); e := Basis(O);;[127X[104X
+    [4X[28X<algebra of dimension 8 over Rationals>[128X[104X
+    [4X[25Xgap>[125X [27XLeftActingDomain(O);[127X[104X
+    [4X[28XRationals[128X[104X
+    [4X[25Xgap>[125X [27XAsList(e);[127X[104X
+    [4X[28X[ e1, e2, e3, e4, e5, e6, e7, e8 ][128X[104X
+    [4X[25Xgap>[125X [27XOne(O);[127X[104X
+    [4X[28Xe8[128X[104X
+    [4X[25Xgap>[125X [27Xe[1]*e[2];[127X[104X
+    [4X[28Xe4[128X[104X
+    [4X[25Xgap>[125X [27Xe[2]*e[1];[127X[104X
+    [4X[28X(-1)*e4[128X[104X
+    [4X[25Xgap>[125X [27XDerivations(Basis(O)); SemiSimpleType(last);[127X[104X
+    [4X[28X<Lie algebra of dimension 14 over Rationals>[128X[104X
+    [4X[28X"G2"[128X[104X
+  [4X[32X[104X
+  
+  [1X2.1-3 OctonionArithmetic[101X
+  
+  [33X[1;0Y[29X[2XOctonionArithmetic[102X( [3XR[103X ) [32X function[133X
+  
+  [33X[0;0YReturns  an  octonion  algebra  over  [3XR[103X, for [3XR[103X a field or [10X[3XR[103X[10X = Integers[110X, in a
+  basis  with  the  geometry  of  the  simple  roots of [23XE_8[123X such that ℤ-linear
+  combinations of the basis vectors form an octonion arithmetic.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XA := OctonionArithmetic(Integers); a := Basis(A);;[127X[104X
+    [4X[28X<algebra of dimension 8 over Integers>[128X[104X
+    [4X[25Xgap>[125X [27XLeftActingDomain(A);[127X[104X
+    [4X[28XIntegers[128X[104X
+    [4X[25Xgap>[125X [27XAsList(a);[127X[104X
+    [4X[28X[ a1, a2, a3, a4, a5, a6, a7, a8 ][128X[104X
+    [4X[25Xgap>[125X [27XOne(A);[127X[104X
+    [4X[28X(-2)*a1+(-3)*a2+(-4)*a3+(-6)*a4+(-5)*a5+(-4)*a6+(-3)*a7+(-2)*a8[128X[104X
+    [4X[25Xgap>[125X [27XList(a{[1..7]}, x -> x^2 = - One(A));[127X[104X
+    [4X[28X[ true, true, true, true, true, true, true ][128X[104X
+    [4X[25Xgap>[125X [27XOrder(a[8]);[127X[104X
+    [4X[28X3[128X[104X
+    [4X[25Xgap>[125X [27XRandom(A)*Random(A) in A;[127X[104X
+    [4X[28Xtrue[128X[104X
+  [4X[32X[104X
+  
+  [1X2.1-4 Oct[101X
+  
+  [33X[1;0Y[29X[2XOct[102X [32X global variable[133X
+  
+  [33X[0;0YThe [5XALCO[105X package loads an instance of [2XOctonionAlgebra[102X ([14X2.1-2[114X) over ℚ as [10XOct[110X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XOct;[127X[104X
+    [4X[28X<algebra of dimension 8 over Rationals>[128X[104X
+  [4X[32X[104X
+  
+  [1X2.1-5 OctonionE8basis[101X
+  
+  [33X[1;0Y[29X[2XOctonionE8basis[102X [32X global variable[133X
+  
+  [33X[0;0YThe [5XALCO[105X package also loads a basis for [2XOct[102X ([14X2.1-4[114X) which also serves as the
+  ℤ-span  of  an  octonion  arithmetic.  This  basis  also serves as the basis
+  vectors for the [2XOctonionArithmetic[102X ([14X2.1-3[114X) algebra.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27X2*BasisVectors(OctonionE8basis);[127X[104X
+    [4X[28X[ (-1)*e1+e5+e6+e7, (-1)*e1+(-1)*e2+(-1)*e4+(-1)*e7, e2+e3+(-1)*e5+(-1)*e7,[128X[104X
+    [4X[28X  e1+(-1)*e3+e4+e5, (-1)*e2+e3+(-1)*e5+e7, e2+(-1)*e4+e5+(-1)*e6,[128X[104X
+    [4X[28X  (-1)*e1+(-1)*e3+e4+(-1)*e5, e1+(-1)*e4+e6+(-1)*e8 ][128X[104X
+  [4X[32X[104X
+  
+  [1X2.1-6 \mod[101X
+  
+  [33X[1;0Y[29X[2X\mod[102X( [3Xx[103X, [3Xn[103X ) [32X function[133X
+  
+  [33X[0;0YFor  [3Xx[103X  an  octonion  arithmetic  element  (namely  an  element  of  algebra
+  [10XOctonionArithmetic([3XF[103X[10X)[110X),  and  [3Xn[103X  and integer, the expression [10X[3Xx[103X[10X mod [3Xn[103X[10X[110X returns
+  the  octonion  where  each  of  the coefficients in the arithmetic canonical
+  basis have been evaluated modulo [3Xn[103X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XA := OctonionArithmetic(Integers);[127X[104X
+    [4X[28X<algebra of dimension 8 over Integers>[128X[104X
+    [4X[25Xgap>[125X [27Xx := Random(A);[127X[104X
+    [4X[28X(-2)*a2+(3)*a3+a4+(-2)*a6+(-1)*a7+(-1)*a8[128X[104X
+    [4X[25Xgap>[125X [27Xx mod 2;[127X[104X
+    [4X[28Xa3+a4+a7+a8[128X[104X
+    [4X[25Xgap>[125X [27X\mod(x,2);[127X[104X
+    [4X[28Xa3+a4+a7+a8[128X[104X
+  [4X[32X[104X
+  
+  
+  [1X2.2 [33X[0;0YProperties of Octonions[133X[101X
+  
+  [1X2.2-1 Norm[101X
+  
+  [33X[1;0Y[29X[2XNorm[102X( [3Xx[103X ) [32X method[133X
+  
+  [33X[0;0YReturns  the  norm  of octonion [3Xx[103X. Recall that an octonion algebra satisfies
+  the composition property [23XN(xy) = N(x)N(y)[123X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XList(Basis(Oct), x -> Norm(x));[127X[104X
+    [4X[28X[ 1, 1, 1, 1, 1, 1, 1, 1 ][128X[104X
+    [4X[25Xgap>[125X [27Xx := Random(Oct);; y := Random(Oct);;[127X[104X
+    [4X[25Xgap>[125X [27XNorm(x*y) = Norm(x)*Norm(y);[127X[104X
+    [4X[28Xtrue[128X[104X
+  [4X[32X[104X
+  
+  [1X2.2-2 Trace[101X
+  
+  [33X[1;0Y[29X[2XTrace[102X( [3Xx[103X ) [32X method[133X
+  
+  [33X[0;0YReturns the trace of octonion [3Xx[103X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XList(Basis(Oct), x -> Trace(x));[127X[104X
+    [4X[28X[ 0, 0, 0, 0, 0, 0, 0, 2 ][128X[104X
+  [4X[32X[104X
+  
+  [1X2.2-3 GramMatrix[101X
+  
+  [33X[1;0Y[29X[2XGramMatrix[102X( [3XO[103X ) [32X attribute[133X
+  
+  [33X[0;0YReturns  the  Gram matrix on the basis of octonion algebra (or arithmetic) [3XO[103X
+  on  the  basis given by inner product [23X(x,y) = N(x+y) - N(x) - N(y)[123X. Of note,
+  the  Gram  matrix of octonion arithmetic [10XA[110X shown below is the Gram matrix of
+  an [23XE_8[123X unimodular lattice.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XO := OctonionAlgebra(Rationals); Display(GramMatrix(O));[127X[104X
+    [4X[28X<algebra of dimension 8 over Rationals>[128X[104X
+    [4X[28X[ [  2,  0,  0,  0,  0,  0,  0,  0 ],[128X[104X
+    [4X[28X  [  0,  2,  0,  0,  0,  0,  0,  0 ],[128X[104X
+    [4X[28X  [  0,  0,  2,  0,  0,  0,  0,  0 ],[128X[104X
+    [4X[28X  [  0,  0,  0,  2,  0,  0,  0,  0 ],[128X[104X
+    [4X[28X  [  0,  0,  0,  0,  2,  0,  0,  0 ],[128X[104X
+    [4X[28X  [  0,  0,  0,  0,  0,  2,  0,  0 ],[128X[104X
+    [4X[28X  [  0,  0,  0,  0,  0,  0,  2,  0 ],[128X[104X
+    [4X[28X  [  0,  0,  0,  0,  0,  0,  0,  2 ] ][128X[104X
+    [4X[25Xgap>[125X [27XA := OctonionArithmetic(Rationals); Display(GramMatrix(A));[127X[104X
+    [4X[28X<algebra of dimension 8 over Rationals>[128X[104X
+    [4X[28X[ [   2,   0,  -1,   0,   0,   0,   0,   0 ],[128X[104X
+    [4X[28X  [   0,   2,   0,  -1,   0,   0,   0,   0 ],[128X[104X
+    [4X[28X  [  -1,   0,   2,  -1,   0,   0,   0,   0 ],[128X[104X
+    [4X[28X  [   0,  -1,  -1,   2,  -1,   0,   0,   0 ],[128X[104X
+    [4X[28X  [   0,   0,   0,  -1,   2,  -1,   0,   0 ],[128X[104X
+    [4X[28X  [   0,   0,   0,   0,  -1,   2,  -1,   0 ],[128X[104X
+    [4X[28X  [   0,   0,   0,   0,   0,  -1,   2,  -1 ],[128X[104X
+    [4X[28X  [   0,   0,   0,   0,   0,   0,  -1,   2 ] ][128X[104X
+  [4X[32X[104X
+  
+  [1X2.2-4 ComplexConjugate[101X
+  
+  [33X[1;0Y[29X[2XComplexConjugate[102X( [3Xx[103X ) [32X method[133X
+  
+  [33X[0;0YReturns  the  octonion conjugate of octonion [3Xx[103X, defined by [10XOne(x)*Trace(x) -
+  x[110X.[133X
+  
+  [1X2.2-5 RealPart[101X
+  
+  [33X[1;0Y[29X[2XRealPart[102X( [3Xx[103X ) [32X method[133X
+  
+  [33X[0;0YReturns the real component of octonion [3Xx[103X, defined by [10X(1/2)*One(x)*Trace(x)[110X.[133X
+  
+  [1X2.2-6 ImaginaryPart[101X
+  
+  [33X[1;0Y[29X[2XImaginaryPart[102X( [3Xx[103X ) [32X method[133X
+  
+  [33X[0;0YReturns the imaginary component of octonion [3Xx[103X, defined by [10Xx - RealPart(x)[110X.[133X
+  
+  
+  [1X2.3 [33X[0;0YOther Octonion Tools[133X[101X
+  
+  [1X2.3-1 OctonionToRealVector[101X
+  
+  [33X[1;0Y[29X[2XOctonionToRealVector[102X( [3XBasis[103X, [3Xx[103X ) [32X function[133X
+  
+  [33X[0;0YLet  [3Xx[103X  be  an octonion vector of the form [23Xx = (x_1, x_2, ..., x_n)[123X, for [23Xx_i[123X
+  octonion  valued coefficients. Let [3XBasis[103X be a basis for the octonion algebra
+  containing  coefficients  [23Xx_i[123X. This function returns a vector [3Xy[103X of length [23X8n[123X
+  containing  the  concatenation  of  the  coefficients of [23Xx_i[123X in the octonion
+  basis given by [3XBasis[103X.[133X
+  
+  [1X2.3-2 RealToOctonionVector[101X
+  
+  [33X[1;0Y[29X[2XRealToOctonionVector[102X( [3XBasis[103X, [3Xy[103X ) [32X function[133X
+  
+  [33X[0;0YThis  function  is  the  is  the  inverse  operation to [2XOctonionToRealVector[102X
+  ([14X2.3-1[114X).[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XA := OctonionArithmetic(Integers);[127X[104X
+    [4X[28X<algebra of dimension 8 over Integers>[128X[104X
+    [4X[25Xgap>[125X [27Xa := Basis(A);; AsList(a);[127X[104X
+    [4X[28X[ a1, a2, a3, a4, a5, a6, a7, a8 ][128X[104X
+    [4X[25Xgap>[125X [27Xx := List([1..3], n -> Random(A));[127X[104X
+    [4X[28X[ (-1)*a1+(-1)*a2+(-1)*a3+a4+(-1)*a5+a6+(-2)*a7+(-1)*a8, (-2)*a1+(-1)*a3+(2)*a4+(-2)*a5+([128X[104X
+    [4X[28X    -1)*a6+(2)*a7+(-3)*a8, (-1)*a1+(3)*a2+(-2)*a4+a5+(-4)*a6+a8 ][128X[104X
+    [4X[25Xgap>[125X [27XOctonionToRealVector(a, x);[127X[104X
+    [4X[28X[ -1, -1, -1, 1, -1, 1, -2, -1, -2, 0, -1, 2, -2, -1, 2, -3, -1, 3, 0, -2, 1, -4, 0, 1 ][128X[104X
+    [4X[25Xgap>[125X [27XRealToOctonionVector(a,last) = last2;[127X[104X
+    [4X[28Xtrue[128X[104X
+  [4X[32X[104X
+  
+  
+  [1X2.4 [33X[0;0YQuaternion and Icosian Tools[133X[101X
+  
+  [1X2.4-1 Norm[101X
+  
+  [33X[1;0Y[29X[2XNorm[102X( [3Xx[103X ) [32X method[133X
+  
+  [33X[0;0YReturns the norm of quaternion [3Xx[103X. Recall that a quaternion algebra satisfies
+  the composition property [23XN(xy) = N(x)N(y)[123X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XH := QuaternionAlgebra(Rationals); AsList(Basis(H));[127X[104X
+    [4X[28X<algebra-with-one of dimension 4 over Rationals>[128X[104X
+    [4X[28X[ e, i, j, k ][128X[104X
+    [4X[25Xgap>[125X [27XList(Basis(H), x -> Norm(x));[127X[104X
+    [4X[28X[ 1, 1, 1, 1 ][128X[104X
+    [4X[25Xgap>[125X [27Xx := Random(H);; y := Random(H);; Norm(x*y) = Norm(x)*Norm(y);[127X[104X
+    [4X[28Xtrue[128X[104X
+  [4X[32X[104X
+  
+  [1X2.4-2 Trace[101X
+  
+  [33X[1;0Y[29X[2XTrace[102X( [3Xx[103X ) [32X method[133X
+  
+  [33X[0;0YReturns the trace of quaternion [3Xx[103X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XH := QuaternionAlgebra(Rationals); AsList(Basis(H));[127X[104X
+    [4X[28X<algebra-with-one of dimension 4 over Rationals>[128X[104X
+    [4X[28X[ e, i, j, k ][128X[104X
+    [4X[25Xgap>[125X [27XList(Basis(H), x -> Trace(x));[127X[104X
+    [4X[28X[ 2, 0, 0, 0 ][128X[104X
+  [4X[32X[104X
+  
+  [1X2.4-3 ComplexConjugate[101X
+  
+  [33X[1;0Y[29X[2XComplexConjugate[102X( [3Xx[103X ) [32X method[133X
+  
+  [33X[0;0YReturns the quaternion conjugate of quaternion [3Xx[103X, defined by [10XOne(x)*Trace(x)
+  - x[110X.[133X
+  
+  [1X2.4-4 RealPart[101X
+  
+  [33X[1;0Y[29X[2XRealPart[102X( [3Xx[103X ) [32X method[133X
+  
+  [33X[0;0YReturns    the    real    component    of    quaternion    [3Xx[103X,   defined   by
+  [10X(1/2)*One(x)*Trace(x)[110X.[133X
+  
+  [1X2.4-5 ImaginaryPart[101X
+  
+  [33X[1;0Y[29X[2XImaginaryPart[102X( [3Xx[103X ) [32X method[133X
+  
+  [33X[0;0YReturns the imaginary component of quaternion [3Xx[103X, defined by [10Xx - RealPart(x)[110X.
+  The  [5XALCO[105X  redefines the built in method [10XImaginaryPart[110X acting on quaternions
+  in  order  to harmonize with the definition given above acting on octonions.
+  The  most important feature is that for a quaternion or an octonion, we have
+  [10Xx = RealPart(x) + ImaginaryPart(x)[110X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XH := QuaternionAlgebra(Rationals); AsList(Basis(H));[127X[104X
+    [4X[28X<algebra-with-one of dimension 4 over Rationals>[128X[104X
+    [4X[28X[ e, i, j, k ][128X[104X
+    [4X[25Xgap>[125X [27XList(Basis(H), x -> ComplexConjugate(x));[127X[104X
+    [4X[28X[ e, (-1)*i, (-1)*j, (-1)*k ][128X[104X
+    [4X[25Xgap>[125X [27XList(Basis(H), x -> RealPart(x));[127X[104X
+    [4X[28X[ e, 0*e, 0*e, 0*e ][128X[104X
+    [4X[25Xgap>[125X [27XList(Basis(H), x -> ImaginaryPart(x));[127X[104X
+    [4X[28X[ 0*e, i, j, k ][128X[104X
+  [4X[32X[104X
+  
+  [1X2.4-6 QuaternionD4basis[101X
+  
+  [33X[1;0Y[29X[2XQuaternionD4basis[102X [32X global variable[133X
+  
+  [33X[0;0YThe  [5XALCO[105X  package  loads  a  basis for a quaternion algebra over ℚ with the
+  geometry of a [23XD_4[123X simpe root system. The ℤ-span of this basis is the Hurwitz
+  ring.  These  basis  vectors  close under pairwise reflection to form a [23X D_4[123X
+  root system.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XB := QuaternionD4basis;;[127X[104X
+    [4X[25Xgap>[125X [27Xfor x in BasisVectors(B) do Display(x); od;[127X[104X
+    [4X[28X(-1/2)*e+(-1/2)*i+(-1/2)*j+(1/2)*k[128X[104X
+    [4X[28X(-1/2)*e+(-1/2)*i+(1/2)*j+(-1/2)*k[128X[104X
+    [4X[28X(-1/2)*e+(1/2)*i+(-1/2)*j+(-1/2)*k[128X[104X
+    [4X[28Xe[128X[104X
+  [4X[32X[104X
+  
+  
+  [1X2.4-7 [33X[0;0YGolden Field Values[133X[101X
+  
+  [33X[1;0Y[29X[2Xsigma[102X [32X global variable[133X
+  [33X[1;0Y[29X[2Xtau[102X [32X global variable[133X
+  
+  [33X[0;0YThe  [5XALCO[105X  package loads the following elements of the golden field, \[10XNF(5,[
+  1, 4 ])[110X:[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XTeachingMode(true);[127X[104X
+    [4X[28X#I  Teaching mode is turned ON[128X[104X
+    [4X[25Xgap>[125X [27Xsigma;[127X[104X
+    [4X[28X(1-Sqrt(5))/2[128X[104X
+    [4X[25Xgap>[125X [27Xtau;[127X[104X
+    [4X[28X(1+Sqrt(5))/2 [128X[104X
+    [4X[25Xgap>[125X [27XField(sigma);[127X[104X
+    [4X[28XNF(5,[ 1, 4 ])[128X[104X
+    [4X[25Xgap>[125X [27XField(tau);[127X[104X
+    [4X[28XNF(5,[ 1, 4 ])[128X[104X
+    [4X[25Xgap>[125X [27XField(Sqrt(5));[127X[104X
+    [4X[28XNF(5,[ 1, 4 ])[128X[104X
+  [4X[32X[104X
+  
+  
+  [1X2.4-8 [33X[0;0YGoldenModSigma[133X[101X
+  
+  [33X[1;0Y[29X[2XGoldenModSigma[102X( [3Xx[103X ) [32X function[133X
+  
+  [33X[0;0YFor [3Xx[103X in the golden field [10XNF(5,[ 1, 4 ])[110X, this function returns the rational
+  coefficient of [10X1[110X in the basis [10XBasis(NF(5,[ 1, 4 ]), [1, sigma])[110X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xx := 5 + 3*sigma;; GoldenModSigma(x);[127X[104X
+    [4X[28X5 [128X[104X
+    [4X[25Xgap>[125X [27XGoldenModSigma(sigma);[127X[104X
+    [4X[28X0[128X[104X
+    [4X[25Xgap>[125X [27XGoldenModSigma(tau);[127X[104X
+    [4X[28X1[128X[104X
+  [4X[32X[104X
+  
+  [1X2.4-9 IcosianH4basis[101X
+  
+  [33X[1;0Y[29X[2XIcosianH4basis[102X [32X global variable[133X
+  
+  [33X[0;0YThe  [5XALCO[105X  package  loads a basis for a quaternion algebra over [10XNF(5,[1,4])[110X.
+  The  ℤ-span  of  this  basis  is the icosian ring. These basis vectors close
+  under pairwise reflection to form a [23XH_4[123X set of vectors.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XB := IcosianH4basis;;[127X[104X
+    [4X[25Xgap>[125X [27Xfor x in BasisVectors(B) do Display(x); od;[127X[104X
+    [4X[28X(-1)*i[128X[104X
+    [4X[28X(-1/2*E(5)^2-1/2*E(5)^3)*i+(1/2)*j+(-1/2*E(5)-1/2*E(5)^4)*k[128X[104X
+    [4X[28X(-1)*j[128X[104X
+    [4X[28X(-1/2*E(5)-1/2*E(5)^4)*e+(1/2)*j+(-1/2*E(5)^2-1/2*E(5)^3)*k[128X[104X
+  [4X[32X[104X
+  

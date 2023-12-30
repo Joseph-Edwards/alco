@@ -1,0 +1,39 @@
+  
+  
+  [1XReferences[101X
+  
+  [[20XAS72[120X]  ([1m[31mAbramowitz,  M.  and  Stegun, I. A.[15X, Eds.), [17XHandbook of Mathematical Functions[117X,
+  Dover, New York (1972).
+  
+  [[20XBBIT21[120X] [16XBannai, E., Bannai, E., Ito, T. and Tanaka, R.[116X, [17XAlgebraic Combinatorics[117X, Walter
+  de  Gruyter GmbH, De {Gruyter}, {Series} in {Discrete} {Mathematics} and {Applications},
+  5, Berlin/Boston (2021), (OCLC: on1243061900).
+  
+  [[20XCVL91[120X]  [16XCameron,  P.  J.  and  Van Lint, J. H.[116X, [17XDesigns, graphs, codes and their links[117X,
+  Cambridge University Press, [19X3[119X, Cambridge (1991).
+  
+  [[20XFK94[120X] [16XFaraut, J. and Koranyi, A.[116X, [17XAnalysis on Symmetric Cones[117X, Clarendon Press (1994).
+  
+  [[20XFKK+00[120X]  [16XFaraut,  J.,  Kaneyuki,  S., Koranyi, A., Lu, Q.-k. and Roos, G.[116X, [17XAnalysis and
+  Geometry  on  Complex  Homogeneous  Domains[117X,  Birkhäuser,  Progress in mathematics, 185,
+  Boston (2000).
+  
+  [[20XHog82[120X]   [16XHoggar,   S.   G.[116X,   [17Xt-Designs  in  projective  spaces[117X,  [18XEuropean  Journal  of
+  Combinatorics[118X, [19X3[119X, 3 (1982), 233--254.
+  
+  [[20XHog92[120X]   [16XHoggar,  S.  G.[116X,  [17Xt-Designs  with  general  angle  set[117X,  [18XEuropean  Journal  of
+  Combinatorics[118X, [19X13[119X, 4 (1992), 257--271.
+  
+  [[20XLM82[120X]  [16XLepowsky, J. and Meurman, A.[116X, [17XAn E8-approach to the Leech lattice and the Conway
+  group[117X, [18XJournal of Algebra[118X, [19X77[119X, 2 (1982), 484--504.
+  
+  [[20XLyu09[120X]  [16XLyubich,  Y.  I.[116X, [17XOn tight projective designs[117X, [18XDesigns, Codes and Cryptography[118X,
+  [19X51[119X, 1 (2009), 21--31.
+  
+  [[20XNas23[120X]  [16XNasmith,  B.[116X,  [17XTight  Projective  5-Designs  and  Exceptional Structures[117X, {PhD}
+  {Thesis},   Royal   Military   College   of   Canada,  Kingston  ON  (2023),  (Accepted:
+  2023-07-27T12:24:01Z).
+  
+  
+  
+  [32X

@@ -1,0 +1,57 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{FKK{\etalchar{+}}00}
+
+\bibitem[AS72]{abramowitz_handbook_1972}
+Milton Abramowitz and Irene~A. Stegun, editors.
+\newblock {\em Handbook of {Mathematical} {Functions}}.
+\newblock Dover, New York, 1972.
+
+\bibitem[BBIT21]{bannai_algebraic_2021}
+Eiichi Bannai, Etsuko Bannai, Tatsuro Ito, and Rie Tanaka.
+\newblock {\em Algebraic {Combinatorics}}.
+\newblock Number~5 in De {Gruyter}, {Series} in {Discrete} {Mathematics} and
+  {Applications}. Walter de Gruyter GmbH, Berlin/Boston, 2021.
+\newblock OCLC: on1243061900.
+
+\bibitem[CVL91]{cameron_designs_1991}
+Peter~Jephson Cameron and Jacobus~Hendricus Van~Lint.
+\newblock {\em Designs, graphs, codes and their links}, volume~3.
+\newblock Cambridge University Press, Cambridge, 1991.
+
+\bibitem[FK94]{faraut_analysis_1994}
+Jacques Faraut and Adam Koranyi.
+\newblock {\em Analysis on {Symmetric} {Cones}}.
+\newblock Clarendon Press, 1994.
+
+\bibitem[FKK{\etalchar{+}}00]{faraut_analysis_2000}
+Jacques Faraut, Soji Kaneyuki, Adam Koranyi, Qi-keng Lu, and Guy Roos.
+\newblock {\em Analysis and {Geometry} on {Complex} {Homogeneous} {Domains}}.
+\newblock Number 185 in Progress in mathematics. Birkhäuser, Boston, 2000.
+
+\bibitem[Hog82]{hoggar_t-designs_1982}
+Stuart~G. Hoggar.
+\newblock t-{Designs} in projective spaces.
+\newblock {\em European Journal of Combinatorics}, 3(3):233--254, 1982.
+
+\bibitem[Hog92]{hoggar_t-designs_1992}
+Stuart~G. Hoggar.
+\newblock t-{Designs} with general angle set.
+\newblock {\em European Journal of Combinatorics}, 13(4):257--271, 1992.
+
+\bibitem[LM82]{lepowsky_e8-approach_1982}
+James Lepowsky and Arne Meurman.
+\newblock An {E8}-approach to the {Leech} lattice and the {Conway} group.
+\newblock {\em Journal of Algebra}, 77(2):484--504, August 1982.
+
+\bibitem[Lyu09]{lyubich_tight_2009}
+Yu.~I. Lyubich.
+\newblock On tight projective designs.
+\newblock {\em Designs, Codes and Cryptography}, 51(1):21--31, April 2009.
+
+\bibitem[Nas23]{nasmith_tight_2023}
+Benjamin Nasmith.
+\newblock {\em Tight {Projective} 5-{Designs} and {Exceptional} {Structures}}.
+\newblock {PhD} {Thesis}, Royal Military College of Canada, Kingston ON, 2023.
+\newblock Accepted: 2023-07-27T12:24:01Z.
+
+\end{thebibliography}

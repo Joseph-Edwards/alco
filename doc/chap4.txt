@@ -1,0 +1,645 @@
+  
+  [1X4 [33X[0;0YJordan Designs and their Association Schemes[133X[101X
+  
+  
+  [1X4.1 [33X[0;0YJacobi Polynomials[133X[101X
+  
+  [1X4.1-1 JacobiPolynomial[101X
+  
+  [33X[1;0Y[29X[2XJacobiPolynomial[102X( [3Xk[103X, [3Xa[103X, [3Xb[103X ) [32X function[133X
+  
+  [33X[0;0YThis  function returns the Jacobi polynomial [23XP(x)[123X of degree [3Xk[103X and type [3X(a,b)[103X
+  as defined in [AS72, chap. 22].[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xa := Indeterminate(Rationals, "a");; [127X[104X
+    [4X[25Xgap>[125X [27Xb := Indeterminate(Rationals, "b");; [127X[104X
+    [4X[25Xgap>[125X [27Xx := Indeterminate(Rationals, "x");;[127X[104X
+    [4X[25Xgap>[125X [27XJacobiPolynomial(0,a,b);[127X[104X
+    [4X[28X[ 1 ][128X[104X
+    [4X[25Xgap>[125X [27XJacobiPolynomial(1,a,b);[127X[104X
+    [4X[28X[ 1/2*a-1/2*b, 1/2*a+1/2*b+1 ][128X[104X
+    [4X[25Xgap>[125X [27XValuePol(last,x);[127X[104X
+    [4X[28X1/2*a*x+1/2*b*x+1/2*a-1/2*b+x [128X[104X
+  [4X[32X[104X
+  
+  
+  [1X4.1-2 [33X[0;0YRenormalized Jacobi Polynomials[133X[101X
+  
+  [33X[1;0Y[29X[2XQ_k_epsilon[102X( [3Xk[103X, [3Xepsilon[103X, [3Xrank[103X, [3Xdegree[103X, [3Xx[103X ) [32X function[133X
+  [33X[1;0Y[29X[2XR_k_epsilon[102X( [3Xk[103X, [3Xepsilon[103X, [3Xrank[103X, [3Xdegree[103X, [3Xx[103X ) [32X function[133X
+  
+  [33X[0;0YThese  functions  return  polynomials  of  degree  [3Xk[103X  in the indeterminate [3Xx[103X
+  corresponding  the the renormalized Jacobi polynomials given in [Hog82]. The
+  value of [3Xepsilon[103X must be 0 or 1. The arguments [3Xrank[103X and [3Xdegree[103X correspond to
+  the rank and degree of the relevant simple Euclidean Jordan algebra.[133X
+  
+  
+  [1X4.2 [33X[0;0YJordan Designs[133X[101X
+  
+  
+  [1X4.2-1 [33X[0;0YJordan Design Filters[133X[101X
+  
+  [33X[1;0Y[29X[2XIsDesign[102X [32X filter[133X
+  [33X[1;0Y[29X[2XIsSphericalDesign[102X [32X filter[133X
+  [33X[1;0Y[29X[2XIsProjectiveDesign[102X [32X filter[133X
+  
+  [33X[0;0YThese filters determine whether an object is a Jordan design and whether the
+  design  is  constructed  in  a  spherical  or  projective manifold of Jordan
+  primitive idempotents.[133X
+  
+  [1X4.2-2 DesignByJordanParameters[101X
+  
+  [33X[1;0Y[29X[2XDesignByJordanParameters[102X( [3Xrank[103X, [3Xdegree[103X ) [32X function[133X
+  
+  [33X[0;0YThis function constructs a Jordan design in the manifold of Jordan primitive
+  idempotents of rank [3Xrank[103X and degree [3Xdegree[103X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XD := DesignByJordanParameters(3,8);[127X[104X
+    [4X[28X<design with rank 3 and degree 8>[128X[104X
+    [4X[25Xgap>[125X [27XIsDesign(D);[127X[104X
+    [4X[28Xtrue[128X[104X
+    [4X[25Xgap>[125X [27XIsSphericalDesign(D);[127X[104X
+    [4X[28Xfalse[128X[104X
+    [4X[25Xgap>[125X [27XIsProjectiveDesign(D);[127X[104X
+    [4X[28Xtrue [128X[104X
+  [4X[32X[104X
+  
+  
+  [1X4.2-3 [33X[0;0YJordan Rank and Degree[133X[101X
+  
+  [33X[1;0Y[29X[2XDesignJordanRank[102X( [3XD[103X ) [32X attribute[133X
+  [33X[1;0Y[29X[2XDesignJordanDegree[102X( [3XD[103X ) [32X attribute[133X
+  
+  [33X[0;0YThe  rank  and  degree of an object satisfying filter [10XIsDesign[110X are stored as
+  attributes.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XD := DesignByJordanParameters(3,8);[127X[104X
+    [4X[28X<design with rank 3 and degree 8>[128X[104X
+    [4X[25Xgap>[125X [27X[DesignJordanRank(D), DesignJordanDegree(D)];[127X[104X
+    [4X[28X[ 3, 8 ] [128X[104X
+  [4X[32X[104X
+  
+  [1X4.2-4 DesignQPolynomial[101X
+  
+  [33X[1;0Y[29X[2XDesignQPolynomial[102X( [3XD[103X ) [32X attribute[133X
+  
+  [33X[0;0YThis  attribute  stores a function on non-negative integers that returns the
+  coefficients of the renormalized Jacobi polynomial in the manifold of Jordan
+  primitive idempotents corresponding to the design [3XD[103X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XD := DesignByJordanParameters(3,8);[127X[104X
+    [4X[28X<design with rank 3 and degree 8>[128X[104X
+    [4X[25Xgap>[125X [27Xr := DesignJordanRank(D);; d := DesignJordanDegree(D);; [127X[104X
+    [4X[25Xgap>[125X [27Xx := Indeterminate(Rationals, "x");;[127X[104X
+    [4X[25Xgap>[125X [27XDesignQPolynomial(D);[127X[104X
+    [4X[28Xfunction( k ) ... end[128X[104X
+    [4X[25Xgap>[125X [27XDesignQPolynomial(D)(2);[127X[104X
+    [4X[28X[ 90, -585, 819 ][128X[104X
+    [4X[25Xgap>[125X [27XCoefficientsOfUnivariatePolynomial(Q_k_epsilon(2,0,r,d,x));[127X[104X
+    [4X[28X[ 90, -585, 819 ][128X[104X
+  [4X[32X[104X
+  
+  [1X4.2-5 DesignConnectionCoefficients[101X
+  
+  [33X[1;0Y[29X[2XDesignConnectionCoefficients[102X( [3XD[103X ) [32X attribute[133X
+  
+  [33X[0;0YThis  attribute  stores  the  connection coefficients, defined in [Hog92, p.
+  261],  which  determine  the  linear  combinations  of  [10XDesignQPolynomial([3XD[103X[10X)[110X
+  polynomials that yield each power of the indeterminate.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XD := DesignByJordanParameters(3,8);[127X[104X
+    [4X[28X<design with rank 3 and degree 8>[128X[104X
+    [4X[25Xgap>[125X [27XDesignConnectionCoefficients(D);[127X[104X
+    [4X[28Xfunction( s ) ... end[128X[104X
+    [4X[25Xgap>[125X [27Xf := DesignConnectionCoefficients(D)(3);[127X[104X
+    [4X[28X[ [ 1, 0, 0, 0 ], [ 1/3, 1/39, 0, 0 ], [ 5/39, 5/273, 1/819, 0 ],[128X[104X
+    [4X[28X  [ 5/91, 1/91, 1/728, 1/12376 ] ][128X[104X
+    [4X[25Xgap>[125X [27Xfor j in [1..4] do Display(Sum(List([1..4], i -> f[j][i]*DesignQPolynomial(D)(i-1))));[127X[104X
+    [4X[28Xod;[128X[104X
+    [4X[28X[ 1, 0, 0, 0 ][128X[104X
+    [4X[28X[ 0, 1, 0, 0 ][128X[104X
+    [4X[28X[ 0, 0, 1, 0 ][128X[104X
+    [4X[28X[ 0, 0, 0, 1 ][128X[104X
+  [4X[32X[104X
+  
+  
+  [1X4.3 [33X[0;0YDesigns with an Angle Set[133X[101X
+  
+  [33X[0;0YWe  can  compute  a  number  of properties of a design once the angle set is
+  known.[133X
+  
+  [1X4.3-1 IsDesignWithAngleSet[101X
+  
+  [33X[1;0Y[29X[2XIsDesignWithAngleSet[102X [32X filter[133X
+  
+  [33X[0;0YThis filter identifies the design as equipped with an angle set.[133X
+  
+  [1X4.3-2 DesignAddAngleSet[101X
+  
+  [33X[1;0Y[29X[2XDesignAddAngleSet[102X( [3XD[103X, [3XA[103X ) [32X operation[133X
+  
+  [33X[0;0YFor a design [3XD[103X without an angle set, records the angle set [3XA[103X as an attribute
+  [10XDesignAngleSet[110X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XD := DesignByJordanParameters(4,4);[127X[104X
+    [4X[28X<design with rank 4 and degree 4>[128X[104X
+    [4X[25Xgap>[125X [27XDesignAddAngleSet(D, [1/3,1/9]);[127X[104X
+    [4X[28X<design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignAngleSet(D);[127X[104X
+    [4X[28X[ 1/9, 1/3 ][128X[104X
+  [4X[32X[104X
+  
+  [1X4.3-3 DesignByAngleSet[101X
+  
+  [33X[1;0Y[29X[2XDesignByAngleSet[102X( [3Xrank[103X, [3Xdegree[103X, [3XA[103X ) [32X function[133X
+  
+  [33X[0;0YConstructs  a  new  design  with  Jordan  rank  and degree given by [3Xrank[103X and
+  [3Xdegree[103X, with angle set [3XA[103X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XD := DesignByAngleSet(4, 4, [1/3, 1/9]);[127X[104X
+    [4X[28X<design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignAngleSet(D);[127X[104X
+    [4X[28X[ 1/9, 1/3 ][128X[104X
+  [4X[32X[104X
+  
+  [1X4.3-4 DesignNormalizedAnnihilatorPolynomial[101X
+  
+  [33X[1;0Y[29X[2XDesignNormalizedAnnihilatorPolynomial[102X( [3XD[103X ) [32X attribute[133X
+  
+  [33X[0;0YThe  normalized  annihilator  polynomial  is  defined  for  an  angle set in
+  [BBIT21, p. 185]. This polynomial is stored as an attribute of a design with
+  an angle set.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XD := DesignByAngleSet(4, 4, [1/3, 1/9]);[127X[104X
+    [4X[28X<design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignNormalizedAnnihilatorPolynomial(D);[127X[104X
+    [4X[28X[ 1/16, -3/4, 27/16 ][128X[104X
+  [4X[32X[104X
+  
+  [1X4.3-5 DesignNormalizedIndicatorCoefficients[101X
+  
+  [33X[1;0Y[29X[2XDesignNormalizedIndicatorCoefficients[102X( [3XD[103X ) [32X attribute[133X
+  
+  [33X[0;0YThe normalized indicator coefficients are the [10XDesignQPolynomial([3XD[103X[10X)[110X-expansion
+  coefficients  of [10XDesignNormalizedAnnihilatorPolynomial([3XD[103X[10X)[110X, discussed for the
+  spherical  case  in  [BBIT21,  p.  185]. These coefficients are stored as an
+  attribute of a design with an angle set.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XD := DesignByAngleSet(4, 4, [1/3, 1/9]);[127X[104X
+    [4X[28X<design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>[128X[104X
+    [4X[25Xgap>[125X [27Xf := DesignNormalizedIndicatorCoefficients(D);[127X[104X
+    [4X[28X[ 1/64, 7/960, 9/3520 ][128X[104X
+    [4X[25Xgap>[125X [27XSum(List([1..3], i -> f[i]*DesignQPolynomial(D)(i-1)));[127X[104X
+    [4X[28X[ 1/16, -3/4, 27/16 ][128X[104X
+    [4X[25Xgap>[125X [27XDesignNormalizedAnnihilatorPolynomial(D);[127X[104X
+    [4X[28X[ 1/16, -3/4, 27/16 ][128X[104X
+  [4X[32X[104X
+  
+  [1X4.3-6 IsDesignWithPositiveIndicatorCoefficients[101X
+  
+  [33X[1;0Y[29X[2XIsDesignWithPositiveIndicatorCoefficients[102X [32X filter[133X
+  
+  [33X[0;0YThis  filter  determins  whether  the normalized indicator coefficients of a
+  design  are  positive,  which  has  significance  for certain theorems about
+  designs.[133X
+  
+  [1X4.3-7 DesignSpecialBound[101X
+  
+  [33X[1;0Y[29X[2XDesignSpecialBound[102X( [3XD[103X ) [32X attribute[133X
+  
+  [33X[0;0YThe       special       bound       of       a       design       satisfying
+  [10XIsDesignWithPositiveIndicatorCoefficients[110X is the upper limit on the possible
+  cardinality for the given angle set.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XD := DesignByAngleSet(4, 4, [1/3,1/9]);[127X[104X
+    [4X[28X<design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>[128X[104X
+    [4X[25Xgap>[125X [27XIsDesignWithPositiveIndicatorCoefficients(D);[127X[104X
+    [4X[28Xtrue[128X[104X
+    [4X[25Xgap>[125X [27XDesignSpecialBound(D);[127X[104X
+    [4X[28X64[128X[104X
+  [4X[32X[104X
+  
+  
+  [1X4.4 [33X[0;0YDesigns with Cardinality and Angle Set[133X[101X
+  
+  
+  [1X4.4-1 [33X[0;0YSome Filters[133X[101X
+  
+  [33X[1;0Y[29X[2XIsDesignWithCardinality[102X [32X filter[133X
+  [33X[1;0Y[29X[2XIsRegularSchemeDesign[102X [32X filter[133X
+  [33X[1;0Y[29X[2XIsSpecialBoundDesign[102X [32X filter[133X
+  [33X[1;0Y[29X[2XIsAssociationSchemeDesign[102X [32X filter[133X
+  [33X[1;0Y[29X[2XIsTightDesign[102X [32X filter[133X
+  
+  [33X[0;0YA  design  with cardinality has a specified number of points. Given a design
+  with [23Xv[123X points and angle set [23XA[123X, it is possible to compute the strength [23Xt[123X of a
+  design  and write [23Xs[123X as the size of set [23XA[123X. When a design satisfies [23Xt >= s - 1
+  [123X it admits a regular scheme. A design at the special bound satisfies [23Xt >= s[123X.
+  When  a  design  satisfies  [23Xt  >=  2s  -  2[123X it admits an association scheme.
+  Finally,  when a design satisfies [23Xt = 2s - 1[123X for [23X0[123X in [23XA[123X or [23Xt = 2s[123X otherwise,
+  it is a tight design.[133X
+  
+  [1X4.4-2 DesignCardinality[101X
+  
+  [33X[1;0Y[29X[2XDesignCardinality[102X( [3XD[103X ) [32X attribute[133X
+  
+  [33X[0;0YReturns   the   cardinality   of   design   [3XD[103X  when  that  design  satisfies
+  [10XIsDesignWithCardinality[110X.[133X
+  
+  [1X4.4-3 DesignAddCardinality[101X
+  
+  [33X[1;0Y[29X[2XDesignAddCardinality[102X( [3XD[103X, [3Xv[103X ) [32X function[133X
+  
+  [33X[0;0YThis   function   stores  the  the  specified  cardinality  [3Xv[103X  as  attribute
+  [10XDesignCardinality[110X   of  design  [3XD[103X.  The  method  requires  the  [3XD[103X  satisfies
+  [10XIsDesignWithAngleSet[110X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XD := DesignByAngleSet(4, 4, [1/3,1/9]);[127X[104X
+    [4X[28X<design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignSpecialBound(D);[127X[104X
+    [4X[28X64[128X[104X
+    [4X[25Xgap>[125X [27XDesignAddCardinality(D, 64);[127X[104X
+    [4X[28X<design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>[128X[104X
+    [4X[25Xgap>[125X [27XIsSpecialBoundDesign(D);[127X[104X
+    [4X[28Xtrue[128X[104X
+    [4X[25Xgap>[125X [27XDesignCardinality(D);[127X[104X
+    [4X[28X64[128X[104X
+  [4X[32X[104X
+  
+  [1X4.4-4 IsDesignWithStrength[101X
+  
+  [33X[1;0Y[29X[2XIsDesignWithStrength[102X [32X filter[133X
+  
+  [33X[0;0YThis  filter  identifies  designs  for which the attribute [10XDesignStrength[110X is
+  known.[133X
+  
+  [1X4.4-5 DesignStrength[101X
+  
+  [33X[1;0Y[29X[2XDesignStrength[102X( [3XD[103X ) [32X attribute[133X
+  
+  [33X[0;0YFor  a  design  [3XD[103X  that satisfies [10XIsDesignWithPositiveIndicatorCoefficients[110X,
+  [10XIsDesignWithCardinality[110X,   and  [10XIsSpecialBoundDesign[110X,  we  can  compute  the
+  strength  [23Xt[123X  of the design using the normalized indicator coefficients. This
+  allows  us  to  immediately  determine  whether  the  design  also satisfies
+  [10XIsTightDesign[110X or [10XIsAssociationSchemeDesign[110X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XD;[127X[104X
+    [4X[28X<design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>[128X[104X
+    [4X[25Xgap>[125X [27XIsAssociationSchemeDesign(D);[127X[104X
+    [4X[28Xfalse[128X[104X
+    [4X[25Xgap>[125X [27XDesignStrength(D);[127X[104X
+    [4X[28X2[128X[104X
+    [4X[25Xgap>[125X [27XD;[127X[104X
+    [4X[28X<2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>[128X[104X
+  [4X[32X[104X
+  
+  [1X4.4-6 DesignAnnihilatorPolynomial[101X
+  
+  [33X[1;0Y[29X[2XDesignAnnihilatorPolynomial[102X( [3XD[103X ) [32X attribute[133X
+  
+  [33X[0;0YThe  annihilator  polynomial  for  design  [3XD[103X  is  defined by multiplying the
+  [10XDesignNormalizedAnnihilatorPolynomial([3XD[103X[10X)[110X by [10X DesignCardinality([3XD[103X[10X)[110X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XD := DesignByAngleSet(4, 4, [1/3, 1/9]);; DesignAddCardinality(D, 64);; D;[127X[104X
+    [4X[28X<design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignAnnihilatorPolynomial(D);[127X[104X
+    [4X[28X[ 4, -48, 108 ][128X[104X
+  [4X[32X[104X
+  
+  [1X4.4-7 DesignIndicatorCoefficients[101X
+  
+  [33X[1;0Y[29X[2XDesignIndicatorCoefficients[102X( [3XD[103X ) [32X attribute[133X
+  
+  [33X[0;0YThe  indicator  coefficients  for  design  [3XD[103X  are  defined  by  multiplying [10X
+  DesignNormalizedIndicatorCoefficients([3XD[103X[10X)[110X  by  [10X  DesignCardinality([3X D[103X[10X)[110X. These
+  indicator  coefficients  are  often  useful  for  directly  determining  the
+  strength of a design at the special bound.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XD := DesignByAngleSet(4, 4, [1/3, 1/9]);; DesignAddCardinality(D, 64);; D;[127X[104X
+    [4X[28X<design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignIndicatorCoefficients(D);[127X[104X
+    [4X[28X[ 1, 7/15, 9/55 ][128X[104X
+  [4X[32X[104X
+  
+  
+  [1X4.5 [33X[0;0YDesigns Admitting a Regular Scheme[133X[101X
+  
+  [1X4.5-1 DesignSubdegrees[101X
+  
+  [33X[1;0Y[29X[2XDesignSubdegrees[102X( [3XD[103X ) [32X attribute[133X
+  
+  [33X[0;0YFor   a   design   [3XD[103X   with   cardinality   and  angle  set  that  satisfies
+  [10XIsRegularSchemeDesign[110X,  namely  [23Xt  >=  s  -  1[123X,  we  can compute the regular
+  subdegrees as described in [Hog92, Theorem 3.2].[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XD := DesignByAngleSet(4, 4, [1/3, 1/9]);; DesignAddCardinality(D, 64);; D;[127X[104X
+    [4X[28X<design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignSubdegrees(D);[127X[104X
+    [4X[28X[ 27, 36 ] [128X[104X
+  [4X[32X[104X
+  
+  
+  [1X4.6 [33X[0;0YDesigns Admitting an Association Scheme[133X[101X
+  
+  [33X[0;0YWhen  a  design  satisfies  [23Xt  > = 2s - 2[123X then it also admits an association
+  scheme.  We  can use results given in [Hog92] to determine the parameters of
+  the corresponding association scheme.[133X
+  
+  [1X4.6-1 DesignBoseMesnerAlgebra[101X
+  
+  [33X[1;0Y[29X[2XDesignBoseMesnerAlgebra[102X( [3XD[103X ) [32X attribute[133X
+  
+  [33X[0;0YFor  a  design  that  satisfies [10XIsAssociationSchemeDesign[110X, we can define the
+  corresponding  Bose-Mesner  algebra [BBIT21, pp. 53-57]. The canonical basis
+  for  this algebra corresponds to the adjacency matrices [23XA_i[123X, with the [10Xs+1[110X-th
+  basis vector corresponding to [23XA_0[123X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XD := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;[127X[104X
+    [4X[28X<2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>[128X[104X
+    [4X[25Xgap>[125X [27XB := DesignBoseMesnerAlgebra(D);[127X[104X
+    [4X[28X<algebra of dimension 3 over Rationals>[128X[104X
+    [4X[25Xgap>[125X [27XBasisVectors(CanonicalBasis(B));[127X[104X
+    [4X[28X[ A1, A2, A3 ][128X[104X
+    [4X[25Xgap>[125X [27XOne(B);[127X[104X
+    [4X[28XA3 [128X[104X
+  [4X[32X[104X
+  
+  [1X4.6-2 DesignBoseMesnerIdempotentBasis[101X
+  
+  [33X[1;0Y[29X[2XDesignBoseMesnerIdempotentBasis[102X( [3XD[103X ) [32X attribute[133X
+  
+  [33X[0;0YFor  a  design  that satisfies [10XIsAssociationSchemeDesign[110X, we can also define
+  the  idempotent  basis of the corresponding Bose-Mesner algebra [BBIT21, pp.
+  53-57].[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XD := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;[127X[104X
+    [4X[28X<2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignBoseMesnerIdempotentBasis(D);[127X[104X
+    [4X[28XBasis( <algebra of dimension 3 over Rationals>, [ (-5/64)*A1+(3/64)*A2+(27/64)*A3,[128X[104X
+    [4X[28X  (1/16)*A1+(-1/16)*A2+(9/16)*A3, (1/64)*A1+(1/64)*A2+(1/64)*A3 ] )[128X[104X
+    [4X[25Xgap>[125X [27XList(last, x -> x^2 = x);[127X[104X
+    [4X[28X[ true, true, true ] [128X[104X
+  [4X[32X[104X
+  
+  [1X4.6-3 DesignIntersectionNumbers[101X
+  
+  [33X[1;0Y[29X[2XDesignIntersectionNumbers[102X( [3XD[103X ) [32X attribute[133X
+  
+  [33X[0;0YThe      intersection      numbers      [23Xp^k_{i,j}[123X      are      given     by
+  [10XDesignIntersectionNumbers([3XD[103X[10X)[k][i][j][110X.  These  intersection numbers serve as
+  the  structure constants for the [10XDesignBoseMesnerAlgebra([3XD[103X[10X)[110X. Namely, [23XA_i A_j
+  = \sum_{k = 1}^{s+1} p^{k}_{i,j} A_k[123X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XD := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;[127X[104X
+    [4X[28X<2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>[128X[104X
+    [4X[25Xgap>[125X [27XA := BasisVectors(Basis(DesignBoseMesnerAlgebra(D)));;[127X[104X
+    [4X[28X[ A1, A2, A3 ][128X[104X
+    [4X[25Xgap>[125X [27Xp := DesignIntersectionNumbers(D);;[127X[104X
+    [4X[25Xgap>[125X [27XA[1]*A[2] = Sum(List([1..3]), k -> p[k][1][2]*A[k]);[127X[104X
+    [4X[28Xtrue[128X[104X
+  [4X[32X[104X
+  
+  [1X4.6-4 DesignKreinNumbers[101X
+  
+  [33X[1;0Y[29X[2XDesignKreinNumbers[102X( [3XD[103X ) [32X attribute[133X
+  
+  [33X[0;0YThe  Krein  numbers  [23Xq^k_{i,j}[123X are given by [10X DesignKreinNumbers([3XD[103X[10X)[k][i][j][110X.
+  The   Krein   numbers   serve   as   the   structure   constants   for   the
+  [10XDesignBoseMesnerAlgebra([3XD[103X[10X)[110X    in    the    idempotent    basis    given   by
+  [10XDesignBoseMesnerIdempotentBasis([3XD[103X[10X)[110X  using the Hadamard matrix product [23X\circ[123X.
+  Namely,  for  idempotent  basis  [23XE_i[123X and Hadamard product [23X\circ[123X, we have [23XE_i
+  \circ E_j = \sum_{k = 1}^{s+1} q^{k}_{i,j} E_k[123X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XD := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;[127X[104X
+    [4X[28X<2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>[128X[104X
+    [4X[25Xgap>[125X [27Xq := DesignKreinNumbers(D);[127X[104X
+    [4X[28X[ [ [ 10, 16, 1 ], [ 16, 20, 0 ], [ 1, 0, 0 ] ],[128X[104X
+    [4X[28X  [ [ 12, 15, 0 ], [ 15, 20, 1 ], [ 0, 1, 0 ] ],[128X[104X
+    [4X[28X  [ [ 27, 0, 0 ], [ 0, 36, 0 ], [ 0, 0, 1 ] ] ][128X[104X
+  [4X[32X[104X
+  
+  [1X4.6-5 DesignFirstEigenmatrix[101X
+  
+  [33X[1;0Y[29X[2XDesignFirstEigenmatrix[102X( [3XD[103X ) [32X attribute[133X
+  
+  [33X[0;0YAs  describe  in  [BBIT21,  p.  58],  the first eigenmatrix of a Bose-Mesner
+  algebra  [23XP_i(j)[123X  defines  the expansion of the adjacency matrix basis [23XA_i[123X in
+  terms  of  the  idempotent  basis  [23XE_j[123X  as follows: [23XA_i = \sum_{j = 1}^{s+1}
+  P_i(j)   E_j   [123X.   This   attribute   returns   the   component   [23XP_i(j)[123X  as
+  [10XDesignFirstEigenmatrix([3XD[103X[10X)[i][j][110X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XD := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;[127X[104X
+    [4X[28X<2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>[128X[104X
+    [4X[25Xgap>[125X [27Xa := Basis(DesignBoseMesnerAlgebra(D));; e := DesignBoseMesnerIdempotentBasis(D);;[127X[104X
+    [4X[25Xgap>[125X [27XList([1..3], i -> a[i] = Sum([1..3], j -> DesignFirstEigenmatrix(D)[i][j]*e[j]));[127X[104X
+    [4X[28X[ true, true, true ] [128X[104X
+  [4X[32X[104X
+  
+  [1X4.6-6 DesignSecondEigenmatrix[101X
+  
+  [33X[1;0Y[29X[2XDesignSecondEigenmatrix[102X( [3XD[103X ) [32X attribute[133X
+  
+  [33X[0;0YAs  describe  in  [BBIT21,  p.  58], the second eigenmatrix of a Bose-Mesner
+  algebra [23XQ_i(j)[123X defines the expansion of the idempotent basis [23XE_i[123X in terms of
+  the  adjacency  matrix  basis  [23XA_j[123X as follows: [23XE_i = (1/v)\sum_{j = 1}^{s+1}
+  Q_i(j)   A_j   [123X.   This   attribute   returns   the   component   [23XQ_i(j)[123X  as
+  [10XDesignSecondEigenmatrix([3XD[103X[10X)[i][j][110X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XD := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;[127X[104X
+    [4X[28X<2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>[128X[104X
+    [4X[25Xgap>[125X [27Xa := Basis(DesignBoseMesnerAlgebra(D));; e := DesignBoseMesnerIdempotentBasis(D);;[127X[104X
+    [4X[25Xgap>[125X [27XList([1..3], i -> e[i]*DesignCardinality(D) = Sum([1..3], j -> DesignSecondEigenmatrix(D)[i][j]*a[j]));[127X[104X
+    [4X[28X[ true, true, true ] [128X[104X
+    [4X[25Xgap>[125X [27XDesignFirstEigenmatrix(D) = Inverse(DesignSecondEigenmatrix(D))*DesignCardinality(D);[127X[104X
+    [4X[28Xtrue[128X[104X
+  [4X[32X[104X
+  
+  [1X4.6-7 DesignMultiplicities[101X
+  
+  [33X[1;0Y[29X[2XDesignMultiplicities[102X( [3XD[103X ) [32X attribute[133X
+  
+  [33X[0;0YAs  describe in [BBIT21, pp. 58-59], the design multiplicy [23Xm_i[123X is defined as
+  the  dimension of the space that idempotent matrix [23XE_i[123X projects onto, or [23Xm_i
+  = trace(E_i)[123X. We also have [23Xm_i = Q_i(s+1)[123X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XD := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;[127X[104X
+    [4X[28X<2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignMultiplicities(D);[127X[104X
+    [4X[28X[ 27, 36, 1 ][128X[104X
+  [4X[32X[104X
+  
+  [1X4.6-8 DesignValencies[101X
+  
+  [33X[1;0Y[29X[2XDesignValencies[102X( [3XD[103X ) [32X attribute[133X
+  
+  [33X[0;0YAs  describe  in  [BBIT21, pp. 55, 59], the design valency [23Xk_i[123X is defined as
+  the  fixed  number  of [23Xi[123X-associates of any element in the association scheme
+  (also known as the subdegree). We also have [23Xk_i = P_i(s+1)[123X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XD := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;[127X[104X
+    [4X[28X<2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignValencies(D);[127X[104X
+    [4X[28X[ 27, 36, 1 ][128X[104X
+  [4X[32X[104X
+  
+  [1X4.6-9 DesignReducedAdjacencyMatrices[101X
+  
+  [33X[1;0Y[29X[2XDesignReducedAdjacencyMatrices[102X( [3XD[103X ) [32X attribute[133X
+  
+  [33X[0;0YAs  defined in [CVL91, p. 201], the reduced adjacency matrices multiply with
+  the  same  structure constants as the adjacency matrices, which allows for a
+  simpler  construction  of  an algebra isomorphic to the Bose-Mesner algebra.
+  The   matrices   [10XDesignReducedAdjacencyMatrices([3XD[103X[10X)[110X  are  used  to  construct
+  [10XDesignBoseMesnerAlgebra([3XD[103X[10X)[110X.[133X
+  
+  
+  [1X4.7 [33X[0;0YExamples[133X[101X
+  
+  [33X[0;0YThe  following tight projective t-designs are identified in [Hog82, Examples
+  1-11].[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(2, 1, [0,1/2]);; DesignAddCardinality(last, DesignSpecialBound(last));[127X[104X
+    [4X[28X<Tight 3-design with rank 2, degree 1, cardinality 4, and angle set [ 0, 1/2 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(2, 2, [0,1/2]);; DesignAddCardinality(last, DesignSpecialBound(last));[127X[104X
+    [4X[28X<Tight 3-design with rank 2, degree 2, cardinality 6, and angle set [ 0, 1/2 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(2, 4, [0,1/2]);; DesignAddCardinality(last, DesignSpecialBound(last));[127X[104X
+    [4X[28X<Tight 3-design with rank 2, degree 4, cardinality 10, and angle set [ 0, 1/2 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(2, 8, [0,1/2]);; DesignAddCardinality(last, DesignSpecialBound(last));[127X[104X
+    [4X[28X<Tight 3-design with rank 2, degree 8, cardinality 18, and angle set [ 0, 1/2 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(3, 2, [1/4]);; DesignAddCardinality(last, DesignSpecialBound(last));[127X[104X
+    [4X[28X<Tight 2-design with rank 3, degree 2, cardinality 9, and angle set [ 1/4 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(4, 2, [0,1/3]);; DesignAddCardinality(last, DesignSpecialBound(last));[127X[104X
+    [4X[28X<Tight 3-design with rank 4, degree 2, cardinality 40, and angle set [ 0, 1/3 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(6, 2, [0,1/4]);; DesignAddCardinality(last, DesignSpecialBound(last));[127X[104X
+    [4X[28X<Tight 3-design with rank 6, degree 2, cardinality 126, and angle set [ 0, 1/4 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(8, 2, [1/9]);; DesignAddCardinality(last, DesignSpecialBound(last));[127X[104X
+    [4X[28X<Tight 2-design with rank 8, degree 2, cardinality 64, and angle set [ 1/9 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(5, 4, [0,1/4]);; DesignAddCardinality(last, DesignSpecialBound(last));[127X[104X
+    [4X[28X<Tight 3-design with rank 5, degree 4, cardinality 165, and angle set [ 0, 1/4 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(3, 8, [0,1/4,1/2]);; DesignAddCardinality(last, DesignSpecialBound(las[127X[104X
+    [4X[28Xt));[128X[104X
+    [4X[28X<Tight 5-design with rank 3, degree 8, cardinality 819, and angle set [ 0, 1/4, 1/2 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(24, 1, [0,1/16,1/4]);; DesignAddCardinality(last, DesignSpecialBound(l[127X[104X
+    [4X[28Xast));[128X[104X
+    [4X[28X<Tight 5-design with rank 24, degree 1, cardinality 98280, and angle set [ 0, 1/16, 1/4 ]>[128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YAn additional icosahedron projective example is identified in [Lyu09].[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(2, 2, [ 0, (5-Sqrt(5))/10, (5+Sqrt(5))/10 ]);; DesignAddCardinality(last, DesignSpecialBound(last));[127X[104X
+    [4X[28X<Tight 5-design with rank 2, degree 2, cardinality 12, and angle set[128X[104X
+    [4X[28X[ 0, -3/5*E(5)-2/5*E(5)^2-2/5*E(5)^3-3/5*E(5)^4,[128X[104X
+    [4X[28X  -2/5*E(5)-3/5*E(5)^2-3/5*E(5)^3-2/5*E(5)^4 ]>[128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YThe  Leech  lattice  short  vector  design and several other tight spherical
+  designs are given below:[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(2, 23, [ 0, 1/4, 3/8, 1/2, 5/8, 3/4 ]);; DesignAddCardinality(last, De[127X[104X
+    [4X[28XsignSpecialBound(last));[128X[104X
+    [4X[28X<Tight 11-design with rank 2, degree 23, cardinality 196560, and angle set[128X[104X
+    [4X[28X[ 0, 1/4, 3/8, 1/2, 5/8, 3/4 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(2, 5, [ 1/4, 5/8 ]);; DesignAddCardinality(last, DesignSpecialBound(la[127X[104X
+    [4X[28Xst));[128X[104X
+    [4X[28X<Tight 4-design with rank 2, degree 5, cardinality 27, and angle set [ 1/4, 5/8 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(2, 6, [0,1/3,2/3]);; DesignAddCardinality(last, DesignSpecialBound(las[127X[104X
+    [4X[28Xt));[128X[104X
+    [4X[28X<Tight 5-design with rank 2, degree 6, cardinality 56, and angle set [ 0, 1/3, 2/3 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(2, 21, [3/8, 7/12]);; DesignAddCardinality(last, DesignSpecialBound(la[127X[104X
+    [4X[28Xst));[128X[104X
+    [4X[28X<Tight 4-design with rank 2, degree 21, cardinality 275, and angle set [ 3/8, 7/12 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(2, 22, [0,2/5,3/5]);; DesignAddCardinality(last, DesignSpecialBound(la[127X[104X
+    [4X[28Xst));[128X[104X
+    [4X[28X<Tight 5-design with rank 2, degree 22, cardinality 552, and angle set [ 0, 2/5, 3/5 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(2, 7, [0,1/4,1/2,3/4]);; DesignAddCardinality(last, DesignSpecialBound[127X[104X
+    [4X[28X(last));[128X[104X
+    [4X[28X<Tight 7-design with rank 2, degree 7, cardinality 240, and angle set [ 0, 1/4, 1/2, 3/4[128X[104X
+    [4X[28X ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(2, 22, [0,1/3,1/2,2/3]);; DesignAddCardinality(last, DesignSpecialBoun[127X[104X
+    [4X[28Xd(last));[128X[104X
+    [4X[28X<Tight 7-design with rank 2, degree 22, cardinality 4600, and angle set[128X[104X
+    [4X[28X[ 0, 1/3, 1/2, 2/3 ]>[128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YSome  projective  designs  meeting  the  special  bound are given in [Hog82,
+  Examples 1-11]:[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(4, 4, [0,1/4,1/2]);; DesignAddCardinality(last, DesignSpecialBound(las[127X[104X
+    [4X[28Xt));[128X[104X
+    [4X[28X<3-design with rank 4, degree 4, cardinality 180, and angle set [ 0, 1/4, 1/2 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(3, 2, [0,1/3]);; DesignAddCardinality(last, DesignSpecialBound(last));[127X[104X
+    [4X[28X<2-design with rank 3, degree 2, cardinality 12, and angle set [ 0, 1/3 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(5, 2, [0,1/4]);; DesignAddCardinality(last, DesignSpecialBound(last));[127X[104X
+    [4X[28X<2-design with rank 5, degree 2, cardinality 45, and angle set [ 0, 1/4 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(9, 2, [0,1/9]);; DesignAddCardinality(last, DesignSpecialBound(last));[127X[104X
+    [4X[28X<2-design with rank 9, degree 2, cardinality 90, and angle set [ 0, 1/9 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(28, 2, [0,1/16]);; DesignAddCardinality(last, DesignSpecialBound(last)[127X[104X
+    [4X[28X);[128X[104X
+    [4X[28X<2-design with rank 28, degree 2, cardinality 4060, and angle set [ 0, 1/16 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(4, 4, [0,1/4]);; DesignAddCardinality(last, DesignSpecialBound(last));[127X[104X
+    [4X[28X<2-design with rank 4, degree 4, cardinality 36, and angle set [ 0, 1/4 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(4, 4, [1/9,1/3]);; DesignAddCardinality(last, DesignSpecialBound(last)[127X[104X
+    [4X[28X);[128X[104X
+    [4X[28X<2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(16, 1, [0,1/9]);; DesignAddCardinality(last, DesignSpecialBound(last))[127X[104X
+    [4X[28X;[128X[104X
+    [4X[28X<2-design with rank 16, degree 1, cardinality 256, and angle set [ 0, 1/9 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(4, 2, [0,1/4,1/2]);; DesignAddCardinality(last, DesignSpecialBound(las[127X[104X
+    [4X[28Xt));[128X[104X
+    [4X[28X<3-design with rank 4, degree 2, cardinality 60, and angle set [ 0, 1/4, 1/2 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(16, 1, [0,1/16,1/4]);; DesignAddCardinality(last, DesignSpecialBound(l[127X[104X
+    [4X[28Xast));[128X[104X
+    [4X[28X<3-design with rank 16, degree 1, cardinality 2160, and angle set [ 0, 1/16, 1/4 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(3, 4, [0,1/4,1/2]);; DesignAddCardinality(last, DesignSpecialBound(las[127X[104X
+    [4X[28Xt));[128X[104X
+    [4X[28X<3-design with rank 3, degree 4, cardinality 63, and angle set [ 0, 1/4, 1/2 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(3, 4, [0,1/4,1/2,(3+Sqrt(5))/8, (3-Sqrt(5))/8]);; DesignAddCardinality[127X[104X
+    [4X[28X(last, DesignSpecialBound(last));[128X[104X
+    [4X[28X<5-design with rank 3, degree 4, cardinality 315, and angle set[128X[104X
+    [4X[28X[ 0, 1/4, 1/2, -1/2*E(5)-1/4*E(5)^2-1/4*E(5)^3-1/2*E(5)^4,[128X[104X
+    [4X[28X  -1/4*E(5)-1/2*E(5)^2-1/2*E(5)^3-1/4*E(5)^4 ]>[128X[104X
+    [4X[25Xgap>[125X [27XDesignByAngleSet(12, 2, [0,1/3,1/4,1/12]);; DesignAddCardinality(last, DesignSpecialBou[127X[104X
+    [4X[28Xnd(last));[128X[104X
+    [4X[28X<5-design with rank 12, degree 2, cardinality 32760, and angle set [ 0, 1/12, 1/4, 1/3 ]>[128X[104X
+  [4X[32X[104X
+  
+  [33X[0;0YTwo important designs related to the [23XH_4[123X Weyl group are as follows:[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XA := [ 0, 1/4, 1/2, 3/4, (5-Sqrt(5))/8, (5+Sqrt(5))/8, (3-Sqrt(5))/8, (3+Sqrt(5))/8 ];;[127X[104X
+    [4X[25Xgap>[125X [27XD := DesignByAngleSet(2, 3, A);; DesignAddCardinality(D, DesignSpecialBound(D));[127X[104X
+    [4X[28X<11-design with rank 2, degree 3, cardinality 120, and angle set [ 0, 1/4, 1/2, 3/4, -3/4*E(5)-1/2*E(5)^2-1/2*E(5)^3-3/4*E(5)^4, -1/2*E(5)-3/4*E(5)^2-3/4*E(5)^3-1/2*E(5)^4, -1/2*E(5)-1/4*E(5)^2-1/4*E(5)^3-1/2*E(5)^4, -1/4*E(5)-1/2*E(5)^2-1/2*E(5)^3-1/4*E(5)^4 ]>[128X[104X
+    [4X[25Xgap>[125X [27XA := [ 0, 1/4, (3-Sqrt(5))/8, (3+Sqrt(5))/8 ];;[127X[104X
+    [4X[25Xgap>[125X [27XD := DesignByAngleSet(4, 1, A);; DesignAddCardinality(D, DesignSpecialBound(D));[127X[104X
+    [4X[28X<5-design with rank 4, degree 1, cardinality 60, and angle set[128X[104X
+    [4X[28X[ 0, 1/4, -1/2*E(5)-1/4*E(5)^2-1/4*E(5)^3-1/2*E(5)^4,[128X[104X
+    [4X[28X  -1/4*E(5)-1/2*E(5)^2-1/2*E(5)^3-1/4*E(5)^4 ]> [128X[104X
+  [4X[32X[104X
+  
