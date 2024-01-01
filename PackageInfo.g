@@ -1,25 +1,3 @@
-# SetPackageInfo( rec(
-#   PackageName := "TSALGEBRA",
-#   LongTitle := "Triple Systems Algebra",
-#   Subtitle := "Computations with Triple System Algebras",
-#   Date := "14/09/2018",
-#   Version := "0.1",
-#   ArchiveURL := "https://github.com/BNasmith/TSALGEBRA",
-#   ArchiveFormats := "Github",
-#   Status := "dev",
-#   README_URL := "https://github.com/BNasmith/TSALGEBRA",
-#   PackageInfoULR := "https://github.com/BNasmith/TSALGEBRA",
-#   PackageDoc := rec(
-#       BookName  := "TSALGEBRA",
-#       SixFile   := "doc/manual.six",
-#       Autoload  := true ),
-#   Dependencies := rec(
-#       GAP       := "4.9",
-#       NeededOtherPackages := [ ["GAPDoc", "1.6"] ],
-#       SuggestedOtherPackages := [ ] ),
-#   AvailabilityTest := ReturnTrue ) );
-
-
   #############################################################################
   ##
   ##  PackageInfo.g for the package `Example'                     Werner Nickel
@@ -55,7 +33,8 @@
 
   ##  This may be used by a default banner or on a Web page, should fit on
   ##  one line.
-  Subtitle := "ALCO/Tools for algebraic combinatorics",
+  # LongTitle := Algebraic Combinatorics
+  Subtitle := "Tools for algebraic combinatorics",
 
   ##  See '?Extending: Version Numbers' in GAP help for an explanation
   ##  of valid version numbers. For an automatic package distribution update
@@ -63,7 +42,7 @@
   Version := "0.1",
   ##  Release date of the current version in dd/mm/yyyy format.
   ##
-  Date := "20/08/2023",
+  Date := "01/01/2024",
   ##  Optional: if the package manual uses GAPDoc, you may duplicate the
   ##  version and the release date as shown below to read them while building
   ##  the manual using GAPDoc facilities to distibute documents across files.
@@ -251,7 +230,7 @@
   # computing the Smith normal form of integer matrices and some related \
   # utilities.",
   AbstractHTML :=
-    "The <span class=\"pkgname\">ALCO</span> package provides some tools for algebraic combinatorics.",
+    "The <span class=\"pkgname\">ALCO</span> package provides tools for algebraic combinatorics including implementations of octonion and Jordan algebras.",
 
   ##  Here is the information on the help books of the package, used for
   ##  loading into GAP's online help and maybe for an online copy of the
@@ -303,7 +282,7 @@
     # insensitive, exact version denoted with '=' prepended to version string.
     # without these, the package will not load
     # NeededOtherPackages := [["GAPDoc", "1.5"]],
-    NeededOtherPackages := [["DESIGN", "1.6"],["GRAPE","4.7"]],
+    # NeededOtherPackages := [["DESIGN", "1.6"],["GRAPE","4.7"]],
 
     # list of pairs [package name, version] as above,
     # these package are will be loaded if they are available,
@@ -374,7 +353,8 @@
       JoinStringsWithSeparator( List( Filtered( ~.Persons, r -> r.IsAuthor ),
                                       r -> Concatenation(
           r.FirstNames, " ", r.LastName, " (", r.WWWHome, ")\n" ) ), "   " ),
-      # "For help, type: ?TSALGEBRA package \n",
+      "This program is distributed under a GNU General Public License", "\n",
+      # "For help, type: ?ALCO package \n",
       "----------------------------------------------------------------\n" ),
 
   ##  *Optional*, but recommended: path relative to package root to a file which
@@ -389,6 +369,6 @@
   ##  *Optional*: Here you can list some keyword related to the topic
   ##  of the package.
   # Keywords := ["Smith normal form", "p-adic", "rational matrix inversion"]
-  Keywords := ["t-Designs", "Jordan algebras", "Octonions"]
+  Keywords := ["Octonions", "Jordan algebras", "t-Designs"]
 
   ));
