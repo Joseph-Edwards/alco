@@ -63,7 +63,7 @@
 
 <h3>5 <span class="Heading">Octonion Lattice Constructions</span></h3>
 
-<p>In what follows let <var class="Arg">L</var> be a free left Z-module that satisfies <code class="code">IsOctonionLattice</code>.</p>
+<p>In what follows let <var class="Arg">L</var> be a free left ℤ-module that satisfies <code class="code">IsOctonionLattice</code>.</p>
 
 <p><a id="X87267018841AF980" name="X87267018841AF980"></a></p>
 
@@ -99,7 +99,7 @@
 <h5>5.2-1 OctonionLatticeByGenerators</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; OctonionLatticeByGenerators</code>( <var class="Arg">gens</var>[, <var class="Arg">g</var>] )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>For <var class="Arg">gens</var> a list of octonion vectors, so that <var class="Arg">gens</var> satisfies <code class="code">IsOctonionCollColl</code>, this function constructs a free left Z-module that satisfies <code class="code">IsOctonionLattice</code>. The attribute <code class="code">LeftActingDomain</code> is set to <code class="code">Integers</code> and the input <var class="Arg">gens</var> is stored as the attribute <code class="code">GeneratorsOfLeftOperatorAdditiveGroup</code>. The inner product on the lattice is defined by optional argument <var class="Arg">g</var>, which is an octonion square matrix that defaults to the identity matrix. For <var class="Arg">x,y</var> octonion vectors in the lattice, the inner product is computed as <code class="code"> ScalarProduct(<var class="Arg">L</var>, <var class="Arg">x</var>, <var class="Arg">y</var>) = Trace(<var class="Arg">x</var>*<var class="Arg">g</var>*ComplexConjugate(<var class="Arg">y</var>))</code>.</p>
+<p>For <var class="Arg">gens</var> a list of octonion vectors, so that <var class="Arg">gens</var> satisfies <code class="code">IsOctonionCollColl</code>, this function constructs a free left ℤ-module that satisfies <code class="code">IsOctonionLattice</code>. The attribute <code class="code">LeftActingDomain</code> is set to <code class="code">Integers</code> and the input <var class="Arg">gens</var> is stored as the attribute <code class="code">GeneratorsOfLeftOperatorAdditiveGroup</code>. The inner product on the lattice is defined by optional argument <var class="Arg">g</var>, which is an octonion square matrix that defaults to the identity matrix. For <var class="Arg">x,y</var> octonion vectors in the lattice, the inner product is computed as <code class="code"> ScalarProduct(<var class="Arg">L</var>, <var class="Arg">x</var>, <var class="Arg">y</var>) = Trace(<var class="Arg">x</var>*<var class="Arg">g</var>*ComplexConjugate(<var class="Arg">y</var>))</code>.</p>
 
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">O := OctonionArithmetic(Integers);; gens := Concatenation(List(Basis(O), x -&gt; x*IdentityMat(3)));;</span>
@@ -115,7 +115,7 @@
 <h5>5.3-1 UnderlyingOctonionRing</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; UnderlyingOctonionRing</code>( <var class="Arg">L</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
-<p>This attribute stores the octonion algebra containing the octonion coefficients of the generating bvectors, stored as <code class="code">GeneratorsOfLeftOperatorAdditiveGroup(<var class="Arg">L</var>)</code>.</p>
+<p>This attribute stores the octonion algebra containing the octonion coefficients of the generating vectors, stored as <code class="code">GeneratorsOfLeftOperatorAdditiveGroup(<var class="Arg">L</var>)</code>.</p>
 
 <p><a id="X8120692484549A5B" name="X8120692484549A5B"></a></p>
 
@@ -143,7 +143,7 @@
 <h5>5.3-5 LLLReducedBasisCoefficients</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LLLReducedBasisCoefficients</code>( <var class="Arg">L</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
-<p>This attribute stores the result of <code class="code">LLLReducedBasis(<var class="Arg">L</var>, GeneratorsAsCoefficients(<var class="Arg">L</var>)).basis</code>. This provides a set of basis vectors as coefficients for <var class="Arg">L</var>, since there is no test to ensure that <code class="code">GeneratorsOfLeftOperatorAdditiveGroup</code> form a Z-module basis. The <code class="code">LLLReducedBasis</code> operation is conducted with reference to <code class="code">ScalarProduct(<var class="Arg">L</var>, <var class="Arg">x</var>, <var class="Arg">y</var>)</code>, which is defined</p>
+<p>This attribute stores the result of <code class="code">LLLReducedBasis(<var class="Arg">L</var>, GeneratorsAsCoefficients(<var class="Arg">L</var>)).basis</code>. This provides a set of basis vectors as coefficients for <var class="Arg">L</var>, since there is no test to ensure that <code class="code">GeneratorsOfLeftOperatorAdditiveGroup</code> form a ℤ-module basis. The <code class="code">LLLReducedBasis</code> operation is conducted with reference to <code class="code">ScalarProduct(<var class="Arg">L</var>, <var class="Arg">x</var>, <var class="Arg">y</var>)</code>, which is defined</p>
 
 <p><a id="X8728E0997EFD3E63" name="X8728E0997EFD3E63"></a></p>
 

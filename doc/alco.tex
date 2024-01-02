@@ -1804,7 +1804,7 @@ designs are given below:
 \chapter{\textcolor{Chapter }{Octonion Lattice Constructions}}\logpage{[ 5, 0, 0 ]}
 \hyperdef{L}{X7F6AA3C97E706F4F}{}
 {
-  In what follows let \mbox{\texttt{\mdseries\slshape L}} be a free left Z-module that satisfies \texttt{IsOctonionLattice}. 
+  In what follows let \mbox{\texttt{\mdseries\slshape L}} be a free left {\ensuremath{\mathbb Z}}-module that satisfies \texttt{IsOctonionLattice}. 
 \section{\textcolor{Chapter }{Gram Matrix Filters}}\logpage{[ 5, 1, 0 ]}
 \hyperdef{L}{X87267018841AF980}{}
 {
@@ -1861,7 +1861,8 @@ octonion gram matrix.}
 }\hfill{\scriptsize (function)}}\\
 
 
- For \mbox{\texttt{\mdseries\slshape gens}} a list of octonion vectors, so that \mbox{\texttt{\mdseries\slshape gens}} satisfies \texttt{IsOctonionCollColl}, this function constructs a free left Z-module that satisfies \texttt{IsOctonionLattice}. The attribute \texttt{LeftActingDomain} is set to \texttt{Integers} and the input \mbox{\texttt{\mdseries\slshape gens}} is stored as the attribute \texttt{GeneratorsOfLeftOperatorAdditiveGroup}. The inner product on the lattice is defined by optional argument \mbox{\texttt{\mdseries\slshape g}}, which is an octonion square matrix that defaults to the identity matrix. For \mbox{\texttt{\mdseries\slshape x,y}} octonion vectors in the lattice, the inner product is computed as \texttt{ ScalarProduct(\mbox{\texttt{\mdseries\slshape L}}, \mbox{\texttt{\mdseries\slshape x}}, \mbox{\texttt{\mdseries\slshape y}}) = Trace(\mbox{\texttt{\mdseries\slshape x}}*\mbox{\texttt{\mdseries\slshape g}}*ComplexConjugate(\mbox{\texttt{\mdseries\slshape y}}))}. 
+ For \mbox{\texttt{\mdseries\slshape gens}} a list of octonion vectors, so that \mbox{\texttt{\mdseries\slshape gens}} satisfies \texttt{IsOctonionCollColl}, this function constructs a free left {\ensuremath{\mathbb Z}}-module that
+satisfies \texttt{IsOctonionLattice}. The attribute \texttt{LeftActingDomain} is set to \texttt{Integers} and the input \mbox{\texttt{\mdseries\slshape gens}} is stored as the attribute \texttt{GeneratorsOfLeftOperatorAdditiveGroup}. The inner product on the lattice is defined by optional argument \mbox{\texttt{\mdseries\slshape g}}, which is an octonion square matrix that defaults to the identity matrix. For \mbox{\texttt{\mdseries\slshape x,y}} octonion vectors in the lattice, the inner product is computed as \texttt{ ScalarProduct(\mbox{\texttt{\mdseries\slshape L}}, \mbox{\texttt{\mdseries\slshape x}}, \mbox{\texttt{\mdseries\slshape y}}) = Trace(\mbox{\texttt{\mdseries\slshape x}}*\mbox{\texttt{\mdseries\slshape g}}*ComplexConjugate(\mbox{\texttt{\mdseries\slshape y}}))}. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@O := OctonionArithmetic(Integers);; gens := Concatenation(List(Basis(O), x -> x*IdentityMat(3)));;|
   !gapprompt@gap>| !gapinput@O3 := OctonionLatticeByGenerators(gens);|
@@ -1886,7 +1887,7 @@ octonion gram matrix.}
 
 
  This attribute stores the octonion algebra containing the octonion
-coefficients of the generating bvectors, stored as \texttt{GeneratorsOfLeftOperatorAdditiveGroup(\mbox{\texttt{\mdseries\slshape L}})}. }
+coefficients of the generating vectors, stored as \texttt{GeneratorsOfLeftOperatorAdditiveGroup(\mbox{\texttt{\mdseries\slshape L}})}. }
 
  
 
@@ -1936,7 +1937,7 @@ lattice dimension. The value is computed by determining \texttt{Rank(GeneratorsA
 }\hfill{\scriptsize (attribute)}}\\
 
 
- This attribute stores the result of \texttt{LLLReducedBasis(\mbox{\texttt{\mdseries\slshape L}}, GeneratorsAsCoefficients(\mbox{\texttt{\mdseries\slshape L}})).basis}. This provides a set of basis vectors as coefficients for \mbox{\texttt{\mdseries\slshape L}}, since there is no test to ensure that \texttt{GeneratorsOfLeftOperatorAdditiveGroup} form a Z-module basis. The \texttt{LLLReducedBasis} operation is conducted with reference to \texttt{ScalarProduct(\mbox{\texttt{\mdseries\slshape L}}, \mbox{\texttt{\mdseries\slshape x}}, \mbox{\texttt{\mdseries\slshape y}})}, which is defined }
+ This attribute stores the result of \texttt{LLLReducedBasis(\mbox{\texttt{\mdseries\slshape L}}, GeneratorsAsCoefficients(\mbox{\texttt{\mdseries\slshape L}})).basis}. This provides a set of basis vectors as coefficients for \mbox{\texttt{\mdseries\slshape L}}, since there is no test to ensure that \texttt{GeneratorsOfLeftOperatorAdditiveGroup} form a {\ensuremath{\mathbb Z}}-module basis. The \texttt{LLLReducedBasis} operation is conducted with reference to \texttt{ScalarProduct(\mbox{\texttt{\mdseries\slshape L}}, \mbox{\texttt{\mdseries\slshape x}}, \mbox{\texttt{\mdseries\slshape y}})}, which is defined }
 
  
 

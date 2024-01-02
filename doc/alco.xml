@@ -23,7 +23,7 @@
     <Heading>Introduction</Heading>
     The <Package>ALCO</Package> package provides tools for algebraic combinatorics, most of which was written for &GAP; during the author's Ph.D. program <Cite
         Key="nasmith_tight_2023" />. 
-    This package provides convenient constructions in &GAP; of octonion algebras, Jordan algebras, and certain important integer subrings of those algebras.
+    This package provides implementations in &GAP; of octonion algebras, Jordan algebras, and certain important integer subrings of those algebras.
     It also provides tools to compute the parameters of t-designs in spherical and projective spaces (modeled as manifolds of primitive idempotent elements in a simple Euclidean Jordan algebra). 
     Finally, this package provides tools to explore octonion lattice constructions, including octonion Leech lattices.
     
@@ -1178,7 +1178,7 @@ gap> D := DesignByAngleSet(4, 1, A);; DesignAddCardinality(D, DesignSpecialBound
   <Chapter>
     <Heading>Octonion Lattice Constructions</Heading>
 
-    In what follows let <Arg>L</Arg> be a free left Z-module that satisfies <Code>IsOctonionLattice</Code>.
+    In what follows let <Arg>L</Arg> be a free left &ZZ;-module that satisfies <Code>IsOctonionLattice</Code>.
 
     <Section>
         <Heading>Gram Matrix Filters</Heading>
@@ -1211,7 +1211,8 @@ gap> D := DesignByAngleSet(4, 1, A);; DesignAddCardinality(D, DesignSpecialBound
 
         <ManSection>
           <Func Name="OctonionLatticeByGenerators" Arg="gens [, g]" />
-          <Description> For <Arg>gens</Arg> a list of octonion vectors, so that <Arg>gens</Arg> satisfies <Code>IsOctonionCollColl</Code>, this function constructs a free left Z-module that satisfies <Code>IsOctonionLattice</Code>.
+          <Description> For <Arg>gens</Arg> a list of octonion vectors, so that <Arg>gens</Arg> satisfies <Code>IsOctonionCollColl</Code>,
+            this function constructs a free left &ZZ;-module that satisfies <Code>IsOctonionLattice</Code>.
           The attribute <Code>LeftActingDomain</Code> is set to <Code>Integers</Code> and the input <Arg>gens</Arg> is stored as the attribute <Code>GeneratorsOfLeftOperatorAdditiveGroup</Code>.  
           The inner product on the lattice is defined by optional argument <Arg>g</Arg>, which is an octonion square matrix that defaults to the identity matrix. 
           For <Arg>x,y</Arg> octonion vectors in the lattice, the inner product is computed as <Code>
@@ -1229,7 +1230,7 @@ gap> O3 := OctonionLatticeByGenerators(gens);
       <ManSection>
           <Attr Name="UnderlyingOctonionRing" Arg="L" />
         <Description>
-          This attribute stores the octonion algebra containing the octonion coefficients of the generating bvectors, stored as <Code>GeneratorsOfLeftOperatorAdditiveGroup(<Arg>L</Arg>)</Code>.
+          This attribute stores the octonion algebra containing the octonion coefficients of the generating vectors, stored as <Code>GeneratorsOfLeftOperatorAdditiveGroup(<Arg>L</Arg>)</Code>.
         </Description>
       </ManSection>
 
@@ -1263,8 +1264,9 @@ gap> O3 := OctonionLatticeByGenerators(gens);
           <Attr Name="LLLReducedBasisCoefficients" Arg="L" />
         <Description>
           This attribute stores the result of <Code>LLLReducedBasis(<Arg>L</Arg>, GeneratorsAsCoefficients(<Arg>L</Arg>)).basis</Code>. 
-          This provides a set of basis vectors as coefficients for <Arg>L</Arg>, since there is no test to ensure that <Code>GeneratorsOfLeftOperatorAdditiveGroup</Code> form a Z-module basis.
-          The <Code>LLLReducedBasis</Code> operation is conducted with reference to <Code>ScalarProduct(<Arg>L</Arg>, <Arg>x</Arg>, <Arg>y</Arg>)</Code>, which is defined 
+          This provides a set of basis vectors as coefficients for <Arg>L</Arg>, since there is no test to ensure that <Code>GeneratorsOfLeftOperatorAdditiveGroup</Code>
+            form a &ZZ;-module basis.
+            The <Code>LLLReducedBasis</Code> operation is conducted with reference to <Code>ScalarProduct(<Arg>L</Arg>, <Arg>x</Arg>, <Arg>y</Arg>)</Code>, which is defined 
         </Description>
       </ManSection>
 

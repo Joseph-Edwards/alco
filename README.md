@@ -1,49 +1,90 @@
-# TSALGEBRA
+# The ALCO Package for GAP
+
+The ALCO package provides tools for algebraic combinatorics in GAP, 
+focusing on implementations of octonion and Jordan algebras. Some tools
+are also provided to calculate the parameters of t-designs in spheres 
+and projective spaces. The package also implements Octonion lattice 
+constructions.  
+
+The ALCO package is Copyright (C) Benjamin Nasmith 2024 under a GNU 
+General Public License version 3.   
 
 ## Setup
 
-1. Install GAP, for Windows or Linux, as you prefer. 
-I recommend version 4.9.2 since the latest version seems to have a bug in the installation -  https://www.gap-system.org/Releases/4.9.2.html
+1. Install GAP. The ALCO package was prepared using version 4.12. 
  
-2. Paste my `tsalgebra` folder (which you’ve downloaded from this private Github project) in your GAP installation as `c:/gap-4.9.2/pkg/tsalgebra`.
+2. Clone this repository in your GAP installation as `c:/gap-4.XX.Y/pkg/alco`.
 
-3. Open a GAP session and use the command `LoadPackage(“tsalgebra”);`  to import all the commands from this package.
-
-## Instructions
-
-The current version of the package instruction manual is linked here: https://github.com/BNasmith/tsalgebra/blob/master/doc/manual.pdf
+3. Open a GAP session and use the command `LoadPackage(“alco”);`  to import all the commands from this package.
 
 ## Example Session
 
+The ALCO package allows users to construct the octonion arithmetic (integer ring). 
+In the example below, we construct the octonion arithmetic and verify that the 
+basis vectors define an E8 lattice relative to the inner product shown:
+
 ```
-gap> LoadPackage("tsalgebra");
+gap> LoadPackage("alco");
 true
-gap> S := SteinerTripleSystem(7,1);;
-gap> G := S.autGroup;;
-gap> oddSubgroups:=Filtered(ConjugacyClassesSubgroups(G),x->Order(Representative(x)) mod 2 = 1);;
-gap> H := Representative(oddSubgroups[Length(oddSubgroups)]);;
-gap> IsSubgroup(G,H);
+gap> A := OctonionArithmetic(Integers);
+<algebra of dimension 8 over Integers>
+gap> g := List(Basis(A), x -> List(Basis(A), y -> Norm(x+y) - Norm(x) - Norm(y)));;
+gap> Display(g);
+[ [   2,   0,  -1,   0,   0,   0,   0,   0 ],
+  [   0,   2,   0,  -1,   0,   0,   0,   0 ],
+  [  -1,   0,   2,  -1,   0,   0,   0,   0 ],
+  [   0,  -1,  -1,   2,  -1,   0,   0,   0 ],
+  [   0,   0,   0,  -1,   2,  -1,   0,   0 ],
+  [   0,   0,   0,   0,  -1,   2,  -1,   0 ],
+  [   0,   0,   0,   0,   0,  -1,   2,  -1 ],
+  [   0,   0,   0,   0,   0,   0,  -1,   2 ] ]
+gap> Determinant(g);
+1
+gap> IsGossetLatticeGramMatrix(g);
 true
-gap> STSStarterArcs(S,H);
-[ [ 1, 2 ] ]
-gap> T := TournamentFromStarterArcs(STSStarterArcs(S,H),H);;
-gap> OrientSTS(S,T);
-gap> AutGroupOrientedSTS(S);;
-gap> Display(S);
-rec(
-  arcs := [ [ 1, 2 ], [ 1, 5 ], [ 1, 7 ], [ 2, 3 ], [ 2, 4 ], [ 2, 7 ], [ 3, 1 ], [ 3, 4 ],
-      [ 3, 5 ], [ 4, 1 ], [ 4, 6 ], [ 4, 7 ], [ 5, 2 ], [ 5, 4 ], [ 5, 6 ], [ 6, 1 ], [ 6, 2 ],
-      [ 6, 3 ], [ 7, 3 ], [ 7, 5 ], [ 7, 6 ] ],
-  autGroup := Group( [ (1,2,3)(4,5,7), (2,5,7)(3,4,6) ] ),
-  blocks := [ [ 1, 2, 3 ], [ 1, 4, 5 ], [ 1, 6, 7 ], [ 2, 4, 6 ], [ 2, 5, 7 ], [ 3, 4, 7 ],
-      [ 3, 5, 6 ] ],
-  isBinary := true,
-  isBlockDesign := true,
-  isOrientedSTS := true,
-  isSTS := true,
-  isSimple := true,
-  paschConfigCount := 7,
-  points := [ 1 .. 7 ],
-  v := 7 )
 ```
       
+We can also construct simple Euclidean Jordan algebras, including the Albert
+algebra:
+
+```
+gap> J := AlbertAlgebra(Rationals);
+<algebra of dimension 27 over Rationals>
+gap> SemiSimpleType(Derivations(Basis(J)));
+"F4"
+gap> AsList(Basis(J));
+[ i1, i2, i3, i4, i5, i6, i7, i8, j1, j2, j3, j4, j5, j6, j7, j8, k1, k2, k3, k4, k5, k6,
+  k7, k8, ei, ej, ek ]
+gap> List(Basis(J), x -> Trace(x));
+[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1 ]
+gap> List(Basis(J), x -> Norm(x));
+[ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1/2, 1/2, 1/2 ]
+gap> List(Basis(J), x -> Determinant(x));
+[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+gap> One(J);
+ei+ej+ek
+gap> Determinant(One(J));
+1  
+```
+
+The ALCO package also provides tools to construct octonion lattices, including 
+octonion Leech lattices.
+
+```
+gap> short_vectors := Set(ShortestVectors(GramMatrix(A),4).vectors, y -> LinearCombination(B
+asis(A), y));;
+gap> filt := Filtered(short_vectors, x -> x^2 + x + 2*One(x) = Zero(x));; 
+gap> Length(filt);
+576
+gap> s := Random(filt);
+a3+a4+a5+a7+a8
+gap> gens := List(Basis(A), x -> x*[[s,s,0],[0,s,s],ComplexConjugate([s,s,s])]);; 
+gap> gens := Concatenation(gens);;
+gap> Length(gens);
+24
+gap> L := OctonionLatticeByGenerators(gens, One(A)*IdentityMat(3)/2);
+<free left module over Integers, with 24 generators>
+Time of last command: 433 ms
+gap> IsLeechLatticeGramMatrix(GramMatrix(L));
+true
+```
