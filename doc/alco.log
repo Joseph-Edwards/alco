@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2023.8.19)  1 JAN 2024 17:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2023.8.19)  1 JAN 2024 20:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -462,140 +462,123 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
 
 ]
 Chapter 1.
+LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 142.
 [4
 
-]
+] [5]
 Chapter 2.
 
-Underfull \hbox (badness 10000) in paragraph at lines 152--164
+Underfull \hbox (badness 10000) in paragraph at lines 213--225
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 174--177
+Underfull \hbox (badness 10000) in paragraph at lines 235--238
 
  []
 
-LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 181.
-[5
+[6
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 204--207
+Underfull \hbox (badness 10000) in paragraph at lines 265--268
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 234--237
+Underfull \hbox (badness 10000) in paragraph at lines 295--298
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 251--254
+Underfull \hbox (badness 10000) in paragraph at lines 312--315
 
  []
 
 LaTeX Font Info:    Font shape `T1/cmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 268.
+(Font)              Font shape `T1/cmtt/m/n' tried instead on input line 329.
 
-Underfull \hbox (badness 10000) in paragraph at lines 271--274
-
- []
-
-[6]
-Underfull \hbox (badness 10000) in paragraph at lines 302--305
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 322--325
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 339--342
+Underfull \hbox (badness 10000) in paragraph at lines 332--335
 
  []
 
 [7]
-Underfull \hbox (badness 10000) in paragraph at lines 374--377
+Underfull \hbox (badness 10000) in paragraph at lines 363--366
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 386--389
+Underfull \hbox (badness 10000) in paragraph at lines 383--386
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 398--401
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 416--419
+Underfull \hbox (badness 10000) in paragraph at lines 400--403
 
  []
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 428--431
+Underfull \hbox (badness 10000) in paragraph at lines 435--438
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 460--463
+Underfull \hbox (badness 10000) in paragraph at lines 447--450
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 482--485
+Underfull \hbox (badness 10000) in paragraph at lines 459--462
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 502--505
+Underfull \hbox (badness 10000) in paragraph at lines 477--480
 
  []
 
 [9]
-Underfull \hbox (badness 10000) in paragraph at lines 514--517
+Underfull \hbox (badness 10000) in paragraph at lines 489--492
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 526--529
+Underfull \hbox (badness 10000) in paragraph at lines 521--524
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 552--555
+Underfull \hbox (badness 10000) in paragraph at lines 543--546
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 574--580
+Underfull \hbox (badness 10000) in paragraph at lines 563--566
 
  []
 
 [10]
-Underfull \hbox (badness 10000) in paragraph at lines 603--606
+Underfull \hbox (badness 10000) in paragraph at lines 575--578
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 624--627
+Underfull \hbox (badness 10000) in paragraph at lines 587--590
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 613--616
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 635--641
 
  []
 
 [11]
-Chapter 3.
-
-Underfull \hbox (badness 10000) in paragraph at lines 657--663
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 673--676
+Underfull \hbox (badness 10000) in paragraph at lines 664--667
 
  []
 
@@ -604,136 +587,143 @@ Underfull \hbox (badness 10000) in paragraph at lines 685--688
 
  []
 
+[12]
+Chapter 3.
 
-Underfull \hbox (badness 10000) in paragraph at lines 697--700
+Underfull \hbox (badness 10000) in paragraph at lines 718--724
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 734--737
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 709--712
+Underfull \hbox (badness 10000) in paragraph at lines 746--749
 
  []
 
-[12
+
+Underfull \hbox (badness 10000) in paragraph at lines 758--761
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 770--773
+
+ []
+
+[13
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 721--724
+Underfull \hbox (badness 10000) in paragraph at lines 782--785
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 733--736
+Underfull \hbox (badness 10000) in paragraph at lines 794--797
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 751--754
+Underfull \hbox (badness 10000) in paragraph at lines 812--815
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 771--774
-
- []
-
-[13]
-Underfull \hbox (badness 10000) in paragraph at lines 804--807
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 829--832
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 857--860
+Underfull \hbox (badness 10000) in paragraph at lines 832--835
 
  []
 
 [14]
-Underfull \hbox (badness 10000) in paragraph at lines 870--873
+Underfull \hbox (badness 10000) in paragraph at lines 865--868
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 893--896
+Underfull \hbox (badness 10000) in paragraph at lines 890--893
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 924--927
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 937--940
+Underfull \hbox (badness 10000) in paragraph at lines 918--921
 
  []
 
 [15]
-Underfull \hbox (badness 10000) in paragraph at lines 965--968
+Underfull \hbox (badness 10000) in paragraph at lines 931--934
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 993--996
+Underfull \hbox (badness 10000) in paragraph at lines 954--957
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 998--999
+Underfull \hbox (badness 10000) in paragraph at lines 985--988
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 998--1001
+
+ []
+
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 1026--1029
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1054--1057
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1059--1060
 []\T1/ptm/m/n/10.95 For \T1/cmtt/m/n/10.95 IsJordanAlgebraObj( [] )\T1/ptm/m/n/
 10.95 , re-turns the ad-ju-gate of [], which sat-is-fies
  []
 
 
-Underfull \hbox (badness 3375) in paragraph at lines 998--999
+Underfull \hbox (badness 3375) in paragraph at lines 1059--1060
 \T1/cmtt/m/n/10.95 x*JordanAdjugate(x) = One(x)*Determinant(x)\T1/ptm/m/n/10.95
  . When \T1/cmtt/m/n/10.95 Determinant(x) \T1/ptm/m/n/10.95 is non-zero,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1005--1008
+Underfull \hbox (badness 10000) in paragraph at lines 1066--1069
 
  []
 
-[16] [17]
+[17] [18]
 Chapter 4.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1029--1032
+Underfull \hbox (badness 10000) in paragraph at lines 1090--1093
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1052--1058
+Underfull \hbox (badness 10000) in paragraph at lines 1113--1119
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1073--1082
+Underfull \hbox (badness 10000) in paragraph at lines 1134--1143
 
  []
 
-[18
+[19
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 1093--1096
+Underfull \hbox (badness 10000) in paragraph at lines 1154--1157
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1116--1122
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1138--1141
-
- []
-
-[19]
-Underfull \hbox (badness 10000) in paragraph at lines 1165--1168
+Underfull \hbox (badness 10000) in paragraph at lines 1177--1183
 
  []
 
@@ -742,65 +732,54 @@ Underfull \hbox (badness 10000) in paragraph at lines 1199--1202
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 1211--1214
-
- []
-
 [20]
-Underfull \hbox (badness 10000) in paragraph at lines 1232--1235
+Underfull \hbox (badness 10000) in paragraph at lines 1226--1229
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1251--1254
+Underfull \hbox (badness 10000) in paragraph at lines 1260--1263
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1270--1273
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1293--1296
+Underfull \hbox (badness 10000) in paragraph at lines 1272--1275
 
  []
 
 [21]
-Underfull \hbox (badness 10000) in paragraph at lines 1307--1310
+Underfull \hbox (badness 10000) in paragraph at lines 1293--1296
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1333--1348
+Underfull \hbox (badness 10000) in paragraph at lines 1312--1315
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1358--1361
+Underfull \hbox (badness 10000) in paragraph at lines 1331--1334
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1370--1373
+Underfull \hbox (badness 10000) in paragraph at lines 1354--1357
 
  []
 
 [22]
-Underfull \hbox (badness 10000) in paragraph at lines 1395--1398
+Underfull \hbox (badness 10000) in paragraph at lines 1368--1371
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1407--1410
+Underfull \hbox (badness 10000) in paragraph at lines 1394--1409
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1412--1414
-[]\T1/ptm/m/n/10.95 For a de-sign [] that sat-is-fies \T1/cmtt/m/n/10.95 IsDesi
-gnWithPositiveIndicatorCoefficients\T1/ptm/m/n/10.95 ,
+Underfull \hbox (badness 10000) in paragraph at lines 1419--1422
+
  []
 
 
@@ -808,83 +787,72 @@ Underfull \hbox (badness 10000) in paragraph at lines 1431--1434
 
  []
 
+[23]
+Underfull \hbox (badness 10000) in paragraph at lines 1456--1459
 
-Underfull \hbox (badness 10000) in paragraph at lines 1436--1437
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1468--1471
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1473--1475
+[]\T1/ptm/m/n/10.95 For a de-sign [] that sat-is-fies \T1/cmtt/m/n/10.95 IsDesi
+gnWithPositiveIndicatorCoefficients\T1/ptm/m/n/10.95 ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1492--1495
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1497--1498
 []\T1/ptm/m/n/10.95 The an-ni-hi-la-tor poly-no-mial for de-sign [] is de-fined
  by mul-ti-ply-ing the
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1450--1453
+Underfull \hbox (badness 10000) in paragraph at lines 1511--1514
 
  []
 
-[23]
-Underfull \hbox (badness 10000) in paragraph at lines 1455--1457
+[24]
+Underfull \hbox (badness 10000) in paragraph at lines 1516--1518
 []\T1/ptm/m/n/10.95 The in-di-ca-tor co-ef-fi-cients for de-sign [] are de-fine
 d by mul-ti-ply-ing
  []
 
 
-Underfull \hbox (badness 1448) in paragraph at lines 1455--1457
+Underfull \hbox (badness 1448) in paragraph at lines 1516--1518
 \T1/cmtt/m/n/10.95 DesignNormalizedIndicatorCoefficients([]) \T1/ptm/m/n/10.95 
 by  \T1/cmtt/m/n/10.95 DesignCardinality([])\T1/ptm/m/n/10.95 . These in-di-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1476--1479
+Underfull \hbox (badness 10000) in paragraph at lines 1537--1540
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1501--1504
+Underfull \hbox (badness 10000) in paragraph at lines 1562--1565
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1524--1527
-
- []
-
-[24]
-Underfull \hbox (badness 10000) in paragraph at lines 1547--1550
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1569--1572
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1590--1593
+Underfull \hbox (badness 10000) in paragraph at lines 1585--1588
 
  []
 
 [25]
-Underfull \hbox (badness 10000) in paragraph at lines 1610--1613
+Underfull \hbox (badness 10000) in paragraph at lines 1608--1611
 
  []
 
 
-Underfull \hbox (badness 2285) in paragraph at lines 1615--1616
-[]\T1/ptm/m/n/10.95 As de-scribe in [[], p. 58][], the sec-ond eigen-ma-trix of
- a Bose-Mesner al-ge-bra
- []
-
-
-Underfull \hbox (badness 1062) in paragraph at lines 1615--1616
-\T1/ptm/m/n/10.95 sis $\OML/ztmcm/m/it/10.95 A[]$ \T1/ptm/m/n/10.95 as fol-lows
-: $\OML/ztmcm/m/it/10.95 E[] \OT1/ztmcm/m/n/10.95 = (1\OML/ztmcm/m/it/10.95 =v\
-OT1/ztmcm/m/n/10.95 ) [][] \OML/ztmcm/m/it/10.95 Q[]\OT1/ztmcm/m/n/10.95 (\OML/
-ztmcm/m/it/10.95 j\OT1/ztmcm/m/n/10.95 )\OML/ztmcm/m/it/10.95 A[]$\T1/ptm/m/n/1
-0.95 . This at-tribute re-turns the com-po-nent $\OML/ztmcm/m/it/10.95 Q[]\OT1/
-ztmcm/m/n/10.95 (\OML/ztmcm/m/it/10.95 j\OT1/ztmcm/m/n/10.95 )$ \T1/ptm/m/n/10.
-95 as
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1632--1635
+Underfull \hbox (badness 10000) in paragraph at lines 1630--1633
 
  []
 
@@ -898,190 +866,222 @@ Underfull \hbox (badness 10000) in paragraph at lines 1671--1674
 
  []
 
-[27] [28] [29]
+
+Underfull \hbox (badness 2285) in paragraph at lines 1676--1677
+[]\T1/ptm/m/n/10.95 As de-scribe in [[], p. 58][], the sec-ond eigen-ma-trix of
+ a Bose-Mesner al-ge-bra
+ []
+
+
+Underfull \hbox (badness 1062) in paragraph at lines 1676--1677
+\T1/ptm/m/n/10.95 sis $\OML/ztmcm/m/it/10.95 A[]$ \T1/ptm/m/n/10.95 as fol-lows
+: $\OML/ztmcm/m/it/10.95 E[] \OT1/ztmcm/m/n/10.95 = (1\OML/ztmcm/m/it/10.95 =v\
+OT1/ztmcm/m/n/10.95 ) [][] \OML/ztmcm/m/it/10.95 Q[]\OT1/ztmcm/m/n/10.95 (\OML/
+ztmcm/m/it/10.95 j\OT1/ztmcm/m/n/10.95 )\OML/ztmcm/m/it/10.95 A[]$\T1/ptm/m/n/1
+0.95 . This at-tribute re-turns the com-po-nent $\OML/ztmcm/m/it/10.95 Q[]\OT1/
+ztmcm/m/n/10.95 (\OML/ztmcm/m/it/10.95 j\OT1/ztmcm/m/n/10.95 )$ \T1/ptm/m/n/10.
+95 as
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1693--1696
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1712--1715
+
+ []
+
+[27]
+Underfull \hbox (badness 10000) in paragraph at lines 1732--1735
+
+ []
+
+[28] [29] [30]
 Chapter 5.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1816--1819
+Underfull \hbox (badness 10000) in paragraph at lines 1877--1880
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1828--1831
+Underfull \hbox (badness 10000) in paragraph at lines 1889--1892
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1840--1843
+Underfull \hbox (badness 10000) in paragraph at lines 1901--1904
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1859--1862
+Underfull \hbox (badness 10000) in paragraph at lines 1920--1923
 
  []
 
 
-Underfull \hbox (badness 1442) in paragraph at lines 1864--1866
+Underfull \hbox (badness 1442) in paragraph at lines 1925--1927
 []\T1/ptm/m/n/10.95 For [] a list of oc-to-nion vec-tors, so that [] sat-is-fie
 s \T1/cmtt/m/n/10.95 IsOctonionCollColl\T1/ptm/m/n/10.95 , this
  []
 
 
-Underfull \hbox (badness 1762) in paragraph at lines 1864--1866
+Underfull \hbox (badness 1762) in paragraph at lines 1925--1927
 \T1/ptm/m/n/10.95 func-tion con-structs a free left $\U/msb/m/n/10.95 Z$\T1/ptm
 /m/n/10.95 -module that sat-is-fies \T1/cmtt/m/n/10.95 IsOctonionLattice\T1/ptm
 /m/n/10.95 . The at-tribute
  []
 
 
-Underfull \hbox (badness 4505) in paragraph at lines 1864--1866
+Underfull \hbox (badness 4505) in paragraph at lines 1925--1927
 \T1/cmtt/m/n/10.95 LeftActingDomain \T1/ptm/m/n/10.95 is set to \T1/cmtt/m/n/10
 .95 Integers \T1/ptm/m/n/10.95 and the in-put [] is stored as the at-tribute
  []
 
-[30
+[31
 
 pdfTeX warning (ext4): destination with the same identifier (name{L.X7F6AA3C97E
 706F4F}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1866 ...tsize=\small,frame=single,label=Example]
+l.1927 ...tsize=\small,frame=single,label=Example]
                                                   ]
-Underfull \hbox (badness 10000) in paragraph at lines 1884--1887
+Underfull \hbox (badness 10000) in paragraph at lines 1945--1948
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1897--1900
+Underfull \hbox (badness 10000) in paragraph at lines 1958--1961
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1910--1913
+Underfull \hbox (badness 10000) in paragraph at lines 1971--1974
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1915--1917
+Underfull \hbox (badness 10000) in paragraph at lines 1976--1978
 []\T1/ptm/m/n/10.95 For [] sat-is-fy-ing \T1/cmtt/m/n/10.95 IsOctonionLattice \
 T1/ptm/m/n/10.95 these at-tributes de-ter-mine the lat-tice rank,
  []
 
 
-Underfull \hbox (badness 4108) in paragraph at lines 1915--1917
+Underfull \hbox (badness 4108) in paragraph at lines 1976--1978
 \T1/ptm/m/n/10.95 which is equiv-a-lent to the lat-tice di-men-sion. The value 
 is com-puted by de-ter-min-ing
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1923--1926
+Underfull \hbox (badness 10000) in paragraph at lines 1984--1987
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1928--1929
+Underfull \hbox (badness 10000) in paragraph at lines 1989--1990
 []\T1/ptm/m/n/10.95 This at-tributes con-verts the lat-tice gen-er-a-tors, stor
 ed as
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1928--1929
+Underfull \hbox (badness 10000) in paragraph at lines 1989--1990
 \T1/cmtt/m/n/10.95 GeneratorsOfLeftOperatorAdditiveGroup([])\T1/ptm/m/n/10.95 ,
  into a list of co-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1928--1929
+Underfull \hbox (badness 10000) in paragraph at lines 1989--1990
 \T1/ptm/m/n/10.95 ef-fi-cients. For each gen-er-at-ing vec-tor [], the co-ef-fi
 -cient list
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1928--1929
+Underfull \hbox (badness 10000) in paragraph at lines 1989--1990
 \T1/cmtt/m/n/10.95 OctonionToRealVector(CanonicalBasis(UnderlyingOctonionRing([
 ])), []) \T1/ptm/m/n/10.95 is added
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1935--1938
+Underfull \hbox (badness 10000) in paragraph at lines 1996--1999
 
  []
 
-[31]
-Underfull \hbox (badness 10000) in paragraph at lines 1940--1941
+[32]
+Underfull \hbox (badness 10000) in paragraph at lines 2001--2002
 []\T1/ptm/m/n/10.95 This at-tribute stores the re-sult of \T1/cmtt/m/n/10.95 LL
 LReducedBasis([],
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1947--1950
+Underfull \hbox (badness 10000) in paragraph at lines 2008--2011
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1959--1962
+Underfull \hbox (badness 10000) in paragraph at lines 2020--2023
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1964--1965
+Underfull \hbox (badness 10000) in paragraph at lines 2025--2026
 []\T1/ptm/m/n/10.95 This at-tribute stores the vec-torspace over \T1/cmtt/m/n/1
 0.95 GF(2) \T1/ptm/m/n/10.95 gen-er-ated by the vec-tors
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1970--1982
+Underfull \hbox (badness 10000) in paragraph at lines 2031--2043
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1997--2000
+Underfull \hbox (badness 10000) in paragraph at lines 2058--2061
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2002--2004
+Underfull \hbox (badness 10000) in paragraph at lines 2063--2065
 []\T1/ptm/m/n/10.95 For [] sat-is-fy-ing \T1/cmtt/m/n/10.95 IsOctonionLattice \
 T1/ptm/m/n/10.95 these at-tributes de-ter-mine the lat-tice rank,
  []
 
 
-Underfull \hbox (badness 4108) in paragraph at lines 2002--2004
+Underfull \hbox (badness 4108) in paragraph at lines 2063--2065
 \T1/ptm/m/n/10.95 which is equiv-a-lent to the lat-tice di-men-sion. The value 
 is com-puted by de-ter-min-ing
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2010--2013
+Underfull \hbox (badness 10000) in paragraph at lines 2071--2074
 
  []
 
-[32]
-Underfull \hbox (badness 10000) in paragraph at lines 2022--2025
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 2033--2039
+[33]
+Underfull \hbox (badness 10000) in paragraph at lines 2083--2086
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2048--2051
+Underfull \hbox (badness 10000) in paragraph at lines 2094--2100
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 2059--2065
+Underfull \hbox (badness 10000) in paragraph at lines 2109--2112
 
  []
 
-[33] (./alco.bbl (./alco.brf)
+
+Underfull \hbox (badness 10000) in paragraph at lines 2120--2126
+
+ []
+
+[34] (./alco.bbl (./alco.brf)
 \tf@brf=\write8
 \openout8 = `alco.brf'.
 
- [34]) [35
+ [35]) [36
 
 ] (./alco.ind
 Underfull \hbox (badness 10000) in paragraph at lines 42--44
@@ -1104,26 +1104,26 @@ m/n/10.95 -\T1/cmtt/m/n/10.95 Positive\T1/ptm/m/n/10.95 -\T1/cmtt/m/n/10.95 Ind
 icator\T1/ptm/m/n/10.95 -
  []
 
-[36
+[37
 
 
-] [37])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2118.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 2118.
+] [38])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 2179.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 2179.
  (./alco.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2118.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2118.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 2179.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 2179.
 
 Package rerunfilecheck Info: File `alco.out' has not changed.
 (rerunfilecheck)             Checksum: 0CD5F610B079FCB4916823796936F451;1687.
 Package rerunfilecheck Info: File `alco.brf' has not changed.
-(rerunfilecheck)             Checksum: 4E44EFA94809130D604EB401E2DA4E06;1312.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2118.
+(rerunfilecheck)             Checksum: 619DE562059C26615A23F7A43860D4D0;1312.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 2179.
  ) 
 Here is how much of TeX's memory you used:
- 7787 strings out of 483183
- 117757 string characters out of 5966292
- 376787 words of memory out of 5000000
+ 7788 strings out of 483183
+ 117764 string characters out of 5966292
+ 376790 words of memory out of 5000000
  22344 multiletter control sequences out of 15000+600000
  601658 words of font info for 105 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -1144,10 +1144,10 @@ r.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/sha
 re/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/urw/times/utmri8a.pfb>
-Output written on alco.pdf (37 pages, 230865 bytes).
+Output written on alco.pdf (38 pages, 234106 bytes).
 PDF statistics:
- 979 PDF objects out of 1000 (max. 8388607)
- 733 compressed objects within 8 object streams
- 281 named destinations out of 1000 (max. 500000)
+ 984 PDF objects out of 1000 (max. 8388607)
+ 736 compressed objects within 8 object streams
+ 282 named destinations out of 1000 (max. 500000)
  201 words of extra memory for PDF output out of 10000 (max. 10000000)
 

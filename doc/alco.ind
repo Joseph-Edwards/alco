@@ -1,173 +1,173 @@
 \begin{theindex}
 
-  \item \texttt  {\texttt  {\symbol  {92}}=}, \hyperpage{33}
-  \item \texttt  {\texttt  {\symbol  {92}}in}, \hyperpage{33}
-  \item \texttt  {\texttt  {\symbol  {92}}mod}, \hyperpage{7}
+  \item \texttt  {\texttt  {\symbol  {92}}=}, \hyperpage{34}
+  \item \texttt  {\texttt  {\symbol  {92}}in}, \hyperpage{34}
+  \item \texttt  {\texttt  {\symbol  {92}}mod}, \hyperpage{8}
 
   \indexspace
 
-  \item \texttt  {Alb}, \hyperpage{15}
-  \item \texttt  {AlbertAlgebra}, \hyperpage{15}
+  \item \texttt  {Alb}, \hyperpage{16}
+  \item \texttt  {AlbertAlgebra}, \hyperpage{16}
 
   \indexspace
 
-  \item \texttt  {Basis}, \hyperpage{32}
-  \item \texttt  {BasisVectors}, \hyperpage{32}
+  \item \texttt  {Basis}, \hyperpage{33}
+  \item \texttt  {BasisVectors}, \hyperpage{33}
 
   \indexspace
 
-  \item \texttt  {CanonicalBasis}, \hyperpage{32}
+  \item \texttt  {CanonicalBasis}, \hyperpage{33}
   \item \texttt  {ComplexConjugate}
-    \subitem Octonions, \hyperpage{8}
-    \subitem Quaternions, \hyperpage{10}
+    \subitem Octonions, \hyperpage{9}
+    \subitem Quaternions, \hyperpage{11}
 
   \indexspace
 
-  \item \texttt  {DesignAddAngleSet}, \hyperpage{20}
-  \item \texttt  {DesignAddCardinality}, \hyperpage{22}
-  \item \texttt  {DesignAnnihilatorPolynomial}, \hyperpage{23}
-  \item \texttt  {DesignBoseMesnerAlgebra}, \hyperpage{24}
-  \item \texttt  {DesignBoseMesnerIdempotentBasis}, \hyperpage{25}
-  \item \texttt  {DesignByAngleSet}, \hyperpage{21}
-  \item \texttt  {DesignByJordanParameters}, \hyperpage{19}
-  \item \texttt  {DesignCardinality}, \hyperpage{22}
-  \item \texttt  {DesignConnectionCoefficients}, \hyperpage{20}
-  \item \texttt  {DesignFirstEigenmatrix}, \hyperpage{26}
-  \item \texttt  {DesignIndicatorCoefficients}, \hyperpage{24}
-  \item \texttt  {DesignIntersectionNumbers}, \hyperpage{25}
-  \item \texttt  {DesignJordanDegree}, \hyperpage{19}
-  \item \texttt  {DesignJordanRank}, \hyperpage{19}
-  \item \texttt  {DesignKreinNumbers}, \hyperpage{25}
-  \item \texttt  {DesignMultiplicities}, \hyperpage{26}
+  \item \texttt  {DesignAddAngleSet}, \hyperpage{21}
+  \item \texttt  {DesignAddCardinality}, \hyperpage{23}
+  \item \texttt  {DesignAnnihilatorPolynomial}, \hyperpage{24}
+  \item \texttt  {DesignBoseMesnerAlgebra}, \hyperpage{25}
+  \item \texttt  {DesignBoseMesnerIdempotentBasis}, \hyperpage{26}
+  \item \texttt  {DesignByAngleSet}, \hyperpage{22}
+  \item \texttt  {DesignByJordanParameters}, \hyperpage{20}
+  \item \texttt  {DesignCardinality}, \hyperpage{23}
+  \item \texttt  {DesignConnectionCoefficients}, \hyperpage{21}
+  \item \texttt  {DesignFirstEigenmatrix}, \hyperpage{27}
+  \item \texttt  {DesignIndicatorCoefficients}, \hyperpage{25}
+  \item \texttt  {DesignIntersectionNumbers}, \hyperpage{26}
+  \item \texttt  {DesignJordanDegree}, \hyperpage{20}
+  \item \texttt  {DesignJordanRank}, \hyperpage{20}
+  \item \texttt  {DesignKreinNumbers}, \hyperpage{26}
+  \item \texttt  {DesignMultiplicities}, \hyperpage{27}
   \item \texttt  {Design}\-\texttt  {Normalized}\-\texttt  {Annihilator}\-\texttt  {Polynomial}, 
-		\hyperpage{21}
-  \item \texttt  {Design}\-\texttt  {Normalized}\-\texttt  {Indicator}\-\texttt  {Coefficients}, 
-		\hyperpage{21}
-  \item \texttt  {DesignQPolynomial}, \hyperpage{19}
-  \item \texttt  {DesignReducedAdjacencyMatrices}, \hyperpage{27}
-  \item \texttt  {DesignSecondEigenmatrix}, \hyperpage{26}
-  \item \texttt  {DesignSpecialBound}, \hyperpage{22}
-  \item \texttt  {DesignStrength}, \hyperpage{23}
-  \item \texttt  {DesignSubdegrees}, \hyperpage{24}
-  \item \texttt  {DesignValencies}, \hyperpage{26}
-  \item \texttt  {Determinant}
-    \subitem Jordan Algebras, \hyperpage{13}
-  \item \texttt  {Dimension}, \hyperpage{31}
-
-  \indexspace
-
-  \item \texttt  {GeneratorsAsCoefficients}, \hyperpage{31}
-  \item \texttt  {GenericMinimalPolynomial}, \hyperpage{13}
-  \item \texttt  {GoldenModSigma}, \hyperpage{11}
-  \item \texttt  {GramMatrix}
-    \subitem GramMatrixLattice, \hyperpage{32}
-    \subitem GramMatrixOctonion, \hyperpage{7}
-
-  \indexspace
-
-  \item \texttt  {HermitianJordanAlgebraBasis}, \hyperpage{15}
-  \item \texttt  {HermitianMatrixToJordanCoefficients}, \hyperpage{16}
-  \item \texttt  {HermitianSimpleJordanAlgebra}, \hyperpage{14}
-
-  \indexspace
-
-  \item \texttt  {IcosianH4basis}, \hyperpage{11}
-  \item \texttt  {ImaginaryPart}
-    \subitem Octonions, \hyperpage{8}
-    \subitem Quaternions, \hyperpage{10}
-  \item \texttt  {IsAssociationSchemeDesign}, \hyperpage{22}
-  \item \texttt  {IsDesign}, \hyperpage{19}
-  \item \texttt  {IsDesignWithAngleSet}, \hyperpage{20}
-  \item \texttt  {IsDesignWithCardinality}, \hyperpage{22}
-  \item \texttt  {IsDesign}\-\texttt  {With}\-\texttt  {Positive}\-\texttt  {Indicator}\-\texttt  {Coefficients}, 
 		\hyperpage{22}
-  \item \texttt  {IsDesignWithStrength}, \hyperpage{23}
-  \item \texttt  {IsGossetLatticeGramMatrix}, \hyperpage{30}
-  \item \texttt  {IsJordanAlgebra}, \hyperpage{12}
-  \item \texttt  {IsJordanAlgebraObj}, \hyperpage{12}
-  \item \texttt  {IsLeechLatticeGramMatrix}, \hyperpage{30}
-  \item \texttt  {IsOctonion}, \hyperpage{5}
-  \item \texttt  {IsOctonionAlgebra}, \hyperpage{5}
-  \item \texttt  {IsOctonionArithmeticElement}, \hyperpage{5}
-  \item \texttt  {IsOctonionCollection}, \hyperpage{5}
-  \item \texttt  {IsOctonionLattice}, \hyperpage{30}
-  \item \texttt  {IsOctonionLatticeBasis}, \hyperpage{32}
-  \item \texttt  {IsPositiveDefinite}, \hyperpage{17}
-  \item \texttt  {IsProjectiveDesign}, \hyperpage{19}
-  \item \texttt  {IsRegularSchemeDesign}, \hyperpage{22}
-  \item \texttt  {IsSpecialBoundDesign}, \hyperpage{22}
-  \item \texttt  {IsSphericalDesign}, \hyperpage{19}
-  \item \texttt  {IsSublattice}, \hyperpage{33}
-  \item \texttt  {IsSubset}, \hyperpage{33}
-  \item \texttt  {IsTightDesign}, \hyperpage{22}
+  \item \texttt  {Design}\-\texttt  {Normalized}\-\texttt  {Indicator}\-\texttt  {Coefficients}, 
+		\hyperpage{22}
+  \item \texttt  {DesignQPolynomial}, \hyperpage{20}
+  \item \texttt  {DesignReducedAdjacencyMatrices}, \hyperpage{28}
+  \item \texttt  {DesignSecondEigenmatrix}, \hyperpage{27}
+  \item \texttt  {DesignSpecialBound}, \hyperpage{23}
+  \item \texttt  {DesignStrength}, \hyperpage{24}
+  \item \texttt  {DesignSubdegrees}, \hyperpage{25}
+  \item \texttt  {DesignValencies}, \hyperpage{27}
+  \item \texttt  {Determinant}
+    \subitem Jordan Algebras, \hyperpage{14}
+  \item \texttt  {Dimension}, \hyperpage{32}
 
   \indexspace
 
-  \item \texttt  {JacobiPolynomial}, \hyperpage{18}
-  \item \texttt  {JordanAdjugate}, \hyperpage{16}
-  \item \texttt  {JordanAlgebraGramMatrix}, \hyperpage{16}
-  \item \texttt  {JordanDegree}, \hyperpage{12}
-  \item \texttt  {JordanHomotope}, \hyperpage{14}
-  \item \texttt  {JordanMatrixBasis}, \hyperpage{15}
-  \item \texttt  {JordanRank}, \hyperpage{12}
-  \item \texttt  {JordanSpinFactor}, \hyperpage{13}
+  \item \texttt  {GeneratorsAsCoefficients}, \hyperpage{32}
+  \item \texttt  {GenericMinimalPolynomial}, \hyperpage{14}
+  \item \texttt  {GoldenModSigma}, \hyperpage{12}
+  \item \texttt  {GramMatrix}
+    \subitem GramMatrixLattice, \hyperpage{33}
+    \subitem GramMatrixOctonion, \hyperpage{8}
 
   \indexspace
 
-  \item \texttt  {LLLReducedBasisCoefficients}, \hyperpage{32}
+  \item \texttt  {HermitianJordanAlgebraBasis}, \hyperpage{16}
+  \item \texttt  {HermitianMatrixToJordanCoefficients}, \hyperpage{17}
+  \item \texttt  {HermitianSimpleJordanAlgebra}, \hyperpage{15}
+
+  \indexspace
+
+  \item \texttt  {IcosianH4basis}, \hyperpage{12}
+  \item \texttt  {ImaginaryPart}
+    \subitem Octonions, \hyperpage{9}
+    \subitem Quaternions, \hyperpage{11}
+  \item \texttt  {IsAssociationSchemeDesign}, \hyperpage{23}
+  \item \texttt  {IsDesign}, \hyperpage{20}
+  \item \texttt  {IsDesignWithAngleSet}, \hyperpage{21}
+  \item \texttt  {IsDesignWithCardinality}, \hyperpage{23}
+  \item \texttt  {IsDesign}\-\texttt  {With}\-\texttt  {Positive}\-\texttt  {Indicator}\-\texttt  {Coefficients}, 
+		\hyperpage{23}
+  \item \texttt  {IsDesignWithStrength}, \hyperpage{24}
+  \item \texttt  {IsGossetLatticeGramMatrix}, \hyperpage{31}
+  \item \texttt  {IsJordanAlgebra}, \hyperpage{13}
+  \item \texttt  {IsJordanAlgebraObj}, \hyperpage{13}
+  \item \texttt  {IsLeechLatticeGramMatrix}, \hyperpage{31}
+  \item \texttt  {IsOctonion}, \hyperpage{6}
+  \item \texttt  {IsOctonionAlgebra}, \hyperpage{6}
+  \item \texttt  {IsOctonionArithmeticElement}, \hyperpage{6}
+  \item \texttt  {IsOctonionCollection}, \hyperpage{6}
+  \item \texttt  {IsOctonionLattice}, \hyperpage{31}
+  \item \texttt  {IsOctonionLatticeBasis}, \hyperpage{33}
+  \item \texttt  {IsPositiveDefinite}, \hyperpage{18}
+  \item \texttt  {IsProjectiveDesign}, \hyperpage{20}
+  \item \texttt  {IsRegularSchemeDesign}, \hyperpage{23}
+  \item \texttt  {IsSpecialBoundDesign}, \hyperpage{23}
+  \item \texttt  {IsSphericalDesign}, \hyperpage{20}
+  \item \texttt  {IsSublattice}, \hyperpage{34}
+  \item \texttt  {IsSubset}, \hyperpage{34}
+  \item \texttt  {IsTightDesign}, \hyperpage{23}
+
+  \indexspace
+
+  \item \texttt  {JacobiPolynomial}, \hyperpage{19}
+  \item \texttt  {JordanAdjugate}, \hyperpage{17}
+  \item \texttt  {JordanAlgebraGramMatrix}, \hyperpage{17}
+  \item \texttt  {JordanDegree}, \hyperpage{13}
+  \item \texttt  {JordanHomotope}, \hyperpage{15}
+  \item \texttt  {JordanMatrixBasis}, \hyperpage{16}
+  \item \texttt  {JordanRank}, \hyperpage{13}
+  \item \texttt  {JordanSpinFactor}, \hyperpage{14}
+
+  \indexspace
+
+  \item \texttt  {LLLReducedBasisCoefficients}, \hyperpage{33}
 
   \indexspace
 
   \item \texttt  {Norm}
-    \subitem Jordan Algebras, \hyperpage{13}
-    \subitem Octonions, \hyperpage{7}
-    \subitem Quaternions, \hyperpage{9}
-
-  \indexspace
-
-  \item \texttt  {Oct}, \hyperpage{6}
-  \item \texttt  {OctonionAlgebra}, \hyperpage{5}
-  \item \texttt  {OctonionArithmetic}, \hyperpage{6}
-  \item \texttt  {OctonionE8basis}, \hyperpage{6}
-  \item \texttt  {OctonionGramMatrix}, \hyperpage{31}
-  \item \texttt  {OctonionLatticeByGenerators}, \hyperpage{30}
-  \item \texttt  {OctonionToRealVector}, \hyperpage{8}
-    \subitem OctToRealLattices, \hyperpage{33}
-
-  \indexspace
-
-  \item \texttt  {QuaternionD4basis}, \hyperpage{10}
-  \item \texttt  {Q{\textunderscore }k{\textunderscore }epsilon}, 
-		\hyperpage{18}
-
-  \indexspace
-
-  \item \texttt  {Rank}, \hyperpage{32}
-  \item \texttt  {RealPart}
+    \subitem Jordan Algebras, \hyperpage{14}
     \subitem Octonions, \hyperpage{8}
     \subitem Quaternions, \hyperpage{10}
-  \item \texttt  {RealToOctonionVector}, \hyperpage{9}
-    \subitem RealToOctLattices, \hyperpage{33}
+
+  \indexspace
+
+  \item \texttt  {Oct}, \hyperpage{7}
+  \item \texttt  {OctonionAlgebra}, \hyperpage{6}
+  \item \texttt  {OctonionArithmetic}, \hyperpage{7}
+  \item \texttt  {OctonionE8basis}, \hyperpage{7}
+  \item \texttt  {OctonionGramMatrix}, \hyperpage{32}
+  \item \texttt  {OctonionLatticeByGenerators}, \hyperpage{31}
+  \item \texttt  {OctonionToRealVector}, \hyperpage{9}
+    \subitem OctToRealLattices, \hyperpage{34}
+
+  \indexspace
+
+  \item \texttt  {QuaternionD4basis}, \hyperpage{11}
+  \item \texttt  {Q{\textunderscore }k{\textunderscore }epsilon}, 
+		\hyperpage{19}
+
+  \indexspace
+
+  \item \texttt  {Rank}, \hyperpage{33}
+  \item \texttt  {RealPart}
+    \subitem Octonions, \hyperpage{9}
+    \subitem Quaternions, \hyperpage{11}
+  \item \texttt  {RealToOctonionVector}, \hyperpage{10}
+    \subitem RealToOctLattices, \hyperpage{34}
   \item \texttt  {R{\textunderscore }k{\textunderscore }epsilon}, 
-		\hyperpage{18}
+		\hyperpage{19}
 
   \indexspace
 
-  \item \texttt  {ScalarProduct}, \hyperpage{33}
-  \item \texttt  {sigma}, \hyperpage{11}
-  \item \texttt  {SimpleEuclideanJordanAlgebra}, \hyperpage{13}
+  \item \texttt  {ScalarProduct}, \hyperpage{34}
+  \item \texttt  {sigma}, \hyperpage{12}
+  \item \texttt  {SimpleEuclideanJordanAlgebra}, \hyperpage{14}
 
   \indexspace
 
-  \item \texttt  {tau}, \hyperpage{11}
-  \item \texttt  {TotallyIsotropicCode}, \hyperpage{32}
+  \item \texttt  {tau}, \hyperpage{12}
+  \item \texttt  {TotallyIsotropicCode}, \hyperpage{33}
   \item \texttt  {Trace}
-    \subitem Jordan Algebras, \hyperpage{12}
-    \subitem Octonions, \hyperpage{7}
-    \subitem Quaternions, \hyperpage{9}
+    \subitem Jordan Algebras, \hyperpage{13}
+    \subitem Octonions, \hyperpage{8}
+    \subitem Quaternions, \hyperpage{10}
 
   \indexspace
 
-  \item \texttt  {UnderlyingOctonionRing}, \hyperpage{31}
+  \item \texttt  {UnderlyingOctonionRing}, \hyperpage{32}
 
 \end{theindex}

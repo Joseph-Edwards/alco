@@ -1,17 +1,12 @@
 # The ALCO Package for GAP
 
-The ALCO package provides tools for algebraic combinatorics in GAP, 
-focusing on implementations of octonion and Jordan algebras. Some tools
-are also provided to calculate the parameters of t-designs in spheres 
-and projective spaces. The package also implements Octonion lattice 
-constructions.  
+The **ALCO** package provides tools for algebraic combinatorics, most of which was written for **GAP** during the author's Ph.D. program. This package provides implementations in **GAP** of octonion algebras, Jordan algebras, and certain important integer subrings of those algebras. It also provides tools to compute the parameters of t-designs in spherical and projective spaces (modeled as manifolds of primitive idempotent elements in a simple Euclidean Jordan algebra). Finally, this package provides tools to explore octonion lattice constructions, including octonion Leech lattices. 
 
-The ALCO package is Copyright (C) Benjamin Nasmith 2024 under a GNU 
-General Public License version 3.   
+The ALCO package is Copyright (C) Benjamin Nasmith 2024 under a GNU General Public License version 3.   
 
 ## Setup
 
-1. Install GAP. The ALCO package was prepared using version 4.12. 
+1. Install [GAP](https://www.gap-system.org/Download/). The ALCO package was prepared using version 4.12. 
  
 2. Clone this repository in your GAP installation as `c:/gap-4.XX.Y/pkg/alco`.
 
