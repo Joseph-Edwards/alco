@@ -15,7 +15,7 @@
 <body class="chap3"  onload="jscontent()">
 
 
-<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chap5.html">5</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chap5.html">5</a>  <a href="chap6.html">6</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
 
 <div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap2.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap4.html">[Next Chapter]</a>&nbsp;  </div>
 
@@ -58,7 +58,7 @@
 
 <h3>3 <span class="Heading">Simple Euclidean Jordan Algebras</span></h3>
 
-<p>Simple Euclidean Jordan algebras are described well in <a href="chapBib.html#biBfaraut_analysis_1994">[FK94]</a>.</p>
+<p>The <strong class="pkg">ALCO</strong> package provides a number of tools to construct and manipulate simple Euclidean Jordan algebras (described well in <a href="chapBib.html#biBfaraut_analysis_1994">[FK94]</a>), including their homotope and isotopes algebras (defined in <a href="chapBib.html#biBmccrimmon_taste_2004">[McC04, p. 86]</a>). Among other applications, these tools can reproduce many of the examples found in <a href="chapBib.html#biBelkies_exceptional_1996">[EG96]</a> and <a href="chapBib.html#biBelkies_cubic_2001">[EG01]</a>.</p>
 
 <p><a id="X802D4E3380BC3177" name="X802D4E3380BC3177"></a></p>
 
@@ -172,7 +172,7 @@ v.2+(-1)*v.3+(-1)*v.4+(1/2)*v.5+(-2)*v.7+(1/2)*v.8+(-3/2)*v.9
 
 
 <div class="example"><pre>
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">B := OctonionE8basis;;</span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">B := OctonionE8Basis;;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">J := HermitianSimpleJordanAlgebra(3,B);</span>
 &lt;algebra of dimension 27 over Rationals&gt;
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">[JordanRank(J), JordanDegree(J)];</span>
@@ -208,7 +208,13 @@ v.2+(-1)*v.3+(-1)*v.4+(1/2)*v.5+(-2)*v.7+(1/2)*v.8+(-3/2)*v.9
 <h5>3.2-5 AlbertAlgebra</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; AlbertAlgebra</code>( <var class="Arg">F</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>For <var class="Arg">F</var> a field, this function returns an Albert algebra over <var class="Arg">F</var>. This algebra is isomorphic to <code class="code">HermitianSimpleJordanAlgebra(3,8,Basis(Oct))</code> but in a basis that is more convenient for reproducing certain calculations in the literature.</p>
+<p>For <var class="Arg">F</var> a field, this function returns an Albert algebra over <var class="Arg">F</var>. For <code class="code"><var class="Arg">F</var> = Rationals</code>, this algebra is isomorphic to <code class="code">HermitianSimpleJordanAlgebra(3,8,Basis(Oct))</code> but in a basis that is more convenient for reproducing certain calculations in the literature. Specifically, while <code class="code">HermitianSimpleJordanAlgebra(3,8,Basis(Oct))</code> uses the upper-triangular elements of a Hermitian matrix as representative, <code class="code">AlbertAlgebra(<var class="Arg">F</var>)</code> uses the <code class="code">[1][2], [2][3], [3][1]</code> entries as representative. These are respectively labeled using <code class="code">k,i,j</code>.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">A := AlbertAlgebra(Rationals);</span>
+&lt;algebra of dimension 27 over Rationals&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">AsList(Basis(A));</span>
+[ i1, i2, i3, i4, i5, i6, i7, i8, j1, j2, j3, j4, j5, j6, j7, j8, k1, k2, k3, k4, k5, k6, k7, k8, ei, ej, ek ]</pre></div>
 
 <p><a id="X7B456B2582F195DB" name="X7B456B2582F195DB"></a></p>
 
@@ -288,8 +294,7 @@ v.2+(-1)*v.3+(-1)*v.4+(1/2)*v.5+(-2)*v.7+(1/2)*v.8+(-3/2)*v.9
 <p>For <code class="code">IsJordanAlgebra( <var class="Arg">J</var> )</code>, returns the Gram matrix on <code class="code">CanonicalBasis( <var class="Arg">J</var> )</code> using inner product <code class="code">Trace(x*y)</code>.</p>
 
 
-<div class="example"><pre> 
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">J := HermitianSimpleJordanAlgebra(2,OctonionE8basis);</span>
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">J := HermitianSimpleJordanAlgebra(2,OctonionE8Basis);</span>
 &lt;algebra of dimension 10 over Rationals&gt;
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Display(JordanAlgebraGramMatrix(J));</span>
 [ [   1,   0,   0,   0,   0,   0,   0,   0,   0,   0 ],
@@ -321,7 +326,7 @@ v.2+(-1)*v.3+(-1)*v.4+(1/2)*v.5+(-2)*v.7+(1/2)*v.8+(-3/2)*v.9
 <div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap2.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap4.html">[Next Chapter]</a>&nbsp;  </div>
 
 
-<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chap5.html">5</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chap5.html">5</a>  <a href="chap6.html">6</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
 
 <hr />
 <p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>

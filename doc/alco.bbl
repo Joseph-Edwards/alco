@@ -18,6 +18,18 @@ Peter~Jephson Cameron and Jacobus~Hendricus Van~Lint.
 \newblock {\em Designs, graphs, codes and their links}, volume~3.
 \newblock Cambridge University Press, Cambridge, 1991.
 
+\bibitem[EG96]{elkies_exceptional_1996}
+Noam~D. Elkies and Benedict~H. Gross.
+\newblock The exceptional cone and the {Leech} lattice.
+\newblock {\em International Mathematics Research Notices}, 1996(14):665--698,
+  1996.
+\newblock Publisher: Citeseer.
+
+\bibitem[EG01]{elkies_cubic_2001}
+Noam~D Elkies and Benedict~H Gross.
+\newblock Cubic {Rings} and the {Exceptional} {Jordan} {Algebra}.
+\newblock {\em Duke Mathematical Journal}, 109(2):383--410, 2001.
+
 \bibitem[FK94]{faraut_analysis_1994}
 Jacques Faraut and Adam Koranyi.
 \newblock {\em Analysis on {Symmetric} {Cones}}.
@@ -48,10 +60,30 @@ Yu.~I. Lyubich.
 \newblock On tight projective designs.
 \newblock {\em Designs, Codes and Cryptography}, 51(1):21--31, April 2009.
 
+\bibitem[McC04]{mccrimmon_taste_2004}
+Kevin McCrimmon.
+\newblock {\em A {Taste} of {Jordan} {Algebras}}.
+\newblock Universitext. Springer-Verlag, New York, 2004.
+
+\bibitem[Nas22]{nasmith_octonions_2022}
+Benjamin Nasmith.
+\newblock Octonions and the two strictly projective tight 5-designs.
+\newblock {\em Algebraic Combinatorics}, 5(3):401--411, 2022.
+
 \bibitem[Nas23]{nasmith_tight_2023}
 Benjamin Nasmith.
 \newblock {\em Tight {Projective} 5-{Designs} and {Exceptional} {Structures}}.
 \newblock {PhD} {Thesis}, Royal Military College of Canada, Kingston ON, 2023.
 \newblock Accepted: 2023-07-27T12:24:01Z.
+
+\bibitem[Wil09]{wilson_octonions_2009}
+Robert~A. Wilson.
+\newblock Octonions and the {Leech} lattice.
+\newblock {\em Journal of Algebra}, 322(6):2186--2190, September 2009.
+
+\bibitem[Wil11]{wilson_conways_2011}
+Robert~A. Wilson.
+\newblock Conway's group and octonions.
+\newblock {\em Journal of Group Theory}, 14(1):1--8, January 2011.
 
 \end{thebibliography}

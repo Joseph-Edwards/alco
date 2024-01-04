@@ -1,7 +1,11 @@
   
   [1X3 [33X[0;0YSimple Euclidean Jordan Algebras[133X[101X
   
-  [33X[0;0YSimple Euclidean Jordan algebras are described well in [FK94].[133X
+  [33X[0;0YThe  [5XALCO[105X  package  provides  a  number of tools to construct and manipulate
+  simple Euclidean Jordan algebras (described well in [FK94]), including their
+  homotope  and  isotopes  algebras  (defined  in [McC04, p. 86]). Among other
+  applications, these tools can reproduce many of the examples found in [EG96]
+  and [EG01].[133X
   
   
   [1X3.1 [33X[0;0YFilters and Basic Attributes[133X[101X
@@ -112,7 +116,7 @@
   off-diagonal components defined using composition algebra basis [3XB[103X.[133X
   
   [4X[32X  Example  [32X[104X
-    [4X[25Xgap>[125X [27XB := OctonionE8basis;;[127X[104X
+    [4X[25Xgap>[125X [27XB := OctonionE8Basis;;[127X[104X
     [4X[25Xgap>[125X [27XJ := HermitianSimpleJordanAlgebra(3,B);[127X[104X
     [4X[28X<algebra of dimension 27 over Rationals>[128X[104X
     [4X[25Xgap>[125X [27X[JordanRank(J), JordanDegree(J)];[127X[104X
@@ -154,10 +158,21 @@
   
   [33X[1;0Y[29X[2XAlbertAlgebra[102X( [3XF[103X ) [32X function[133X
   
-  [33X[0;0YFor  [3XF[103X a field, this function returns an Albert algebra over [3XF[103X. This algebra
-  is isomorphic to [10XHermitianSimpleJordanAlgebra(3,8,Basis(Oct))[110X but in a basis
-  that  is  more  convenient  for  reproducing  certain  calculations  in  the
-  literature.[133X
+  [33X[0;0YFor  [3XF[103X  a  field,  this  function  returns an Albert algebra over [3XF[103X. For [10X[3XF[103X[10X =
+  Rationals[110X,         this        algebra        is        isomorphic        to
+  [10XHermitianSimpleJordanAlgebra(3,8,Basis(Oct))[110X  but  in  a  basis that is more
+  convenient   for   reproducing   certain  calculations  in  the  literature.
+  Specifically,  while  [10XHermitianSimpleJordanAlgebra(3,8,Basis(Oct))[110X  uses the
+  upper-triangular   elements   of   a  Hermitian  matrix  as  representative,
+  [10XAlbertAlgebra([3XF[103X[10X)[110X  uses the [10X[1][2], [2][3], [3][1][110X entries as representative.
+  These are respectively labeled using [10Xk,i,j[110X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XA := AlbertAlgebra(Rationals);[127X[104X
+    [4X[28X<algebra of dimension 27 over Rationals>[128X[104X
+    [4X[25Xgap>[125X [27XAsList(Basis(A));[127X[104X
+    [4X[28X[ i1, i2, i3, i4, i5, i6, i7, i8, j1, j2, j3, j4, j5, j6, j7, j8, k1, k2, k3, k4, k5, k6, k7, k8, ei, ej, ek ][128X[104X
+  [4X[32X[104X
   
   [1X3.2-6 Alb[101X
   
@@ -239,7 +254,7 @@
   using inner product [10XTrace(x*y)[110X.[133X
   
   [4X[32X  Example  [32X[104X
-    [4X[25Xgap>[125X [27XJ := HermitianSimpleJordanAlgebra(2,OctonionE8basis);[127X[104X
+    [4X[25Xgap>[125X [27XJ := HermitianSimpleJordanAlgebra(2,OctonionE8Basis);[127X[104X
     [4X[28X<algebra of dimension 10 over Rationals>[128X[104X
     [4X[25Xgap>[125X [27XDisplay(JordanAlgebraGramMatrix(J));[127X[104X
     [4X[28X[ [   1,   0,   0,   0,   0,   0,   0,   0,   0,   0 ],[128X[104X

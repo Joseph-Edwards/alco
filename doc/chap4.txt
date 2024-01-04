@@ -1,6 +1,17 @@
   
   [1X4 [33X[0;0YJordan Designs and their Association Schemes[133X[101X
   
+  [33X[0;0YA  spherical  or  projective design is simply a finite subset of a sphere or
+  projective  space. The [5XALCO[105X examines both types of designs as finite subsets
+  of  the  manifolds  of  primitive  idempotents  in a simple Euclidean Jordan
+  algebra. This requires converting the angle [23X\cos(x)[123X between two unit vectors
+  in  a  sphere  into  the  corresponding angle on a rank 2 Jordan manifold of
+  primitive idempotents [Nas23, p. 72]: [23X(1 + \cos(x))/2[123X. The tools below allow
+  one  to  construct  a  [5XGAP[105X  object to represent a design and collect various
+  computed  attributes.  Constructing  a design and its parameters using these
+  tools  does  not  guarantee  the  existence of such a design, although known
+  examples a possible instances may be studied using these tools.[133X
+  
   
   [1X4.1 [33X[0;0YJacobi Polynomials[133X[101X
   
@@ -131,7 +142,7 @@
   [1X4.3 [33X[0;0YDesigns with an Angle Set[133X[101X
   
   [33X[0;0YWe  can  compute  a  number  of properties of a design once the angle set is
-  known.[133X
+  given.[133X
   
   [1X4.3-1 IsDesignWithAngleSet[101X
   
@@ -232,6 +243,9 @@
   
   [1X4.4 [33X[0;0YDesigns with Cardinality and Angle Set[133X[101X
   
+  [33X[0;0YMore  properties  of  a  design  with  an angle set can be computed once the
+  cardinality is also given.[133X
+  
   
   [1X4.4-1 [33X[0;0YSome Filters[133X[101X
   
@@ -247,7 +261,7 @@
   [123X it admits a regular scheme. A design at the special bound satisfies [23Xt >= s[123X.
   When  a  design  satisfies  [23Xt  >=  2s  -  2[123X it admits an association scheme.
   Finally,  when a design satisfies [23Xt = 2s - 1[123X for [23X0[123X in [23XA[123X or [23Xt = 2s[123X otherwise,
-  it is a tight design.[133X
+  it is a tight design (these properties are discussed in [Hog92]).[133X
   
   [1X4.4-2 DesignCardinality[101X
   
@@ -405,7 +419,7 @@
   [33X[0;0YThe      intersection      numbers      [23Xp^k_{i,j}[123X      are      given     by
   [10XDesignIntersectionNumbers([3XD[103X[10X)[k][i][j][110X.  These  intersection numbers serve as
   the  structure constants for the [10XDesignBoseMesnerAlgebra([3XD[103X[10X)[110X. Namely, [23XA_i A_j
-  = \sum_{k = 1}^{s+1} p^{k}_{i,j} A_k[123X.[133X
+  = \sum_{k = 1}^{s+1} p^{k}_{i,j} A_k[123X (see [BBIT21, pp. 53-57]).[133X
   
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27XD := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;[127X[104X
@@ -426,7 +440,7 @@
   [10XDesignBoseMesnerAlgebra([3XD[103X[10X)[110X    in    the    idempotent    basis    given   by
   [10XDesignBoseMesnerIdempotentBasis([3XD[103X[10X)[110X  using the Hadamard matrix product [23X\circ[123X.
   Namely,  for  idempotent  basis  [23XE_i[123X and Hadamard product [23X\circ[123X, we have [23XE_i
-  \circ E_j = \sum_{k = 1}^{s+1} q^{k}_{i,j} E_k[123X.[133X
+  \circ E_j = \sum_{k = 1}^{s+1} q^{k}_{i,j} E_k[123X (see [BBIT21, pp. 53-57]).[133X
   
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27XD := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;[127X[104X
@@ -518,8 +532,9 @@
   
   [1X4.7 [33X[0;0YExamples[133X[101X
   
-  [33X[0;0YThe  following tight projective t-designs are identified in [Hog82, Examples
-  1-11].[133X
+  [33X[0;0YThis  section  provides a number of known examples that can be studied using
+  the [5XALCO[105X package. The following tight projective t-designs are identified in
+  [Hog82, Examples 1-11].[133X
   
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27XDesignByAngleSet(2, 1, [0,1/2]);; DesignAddCardinality(last, DesignSpecialBound(last));[127X[104X

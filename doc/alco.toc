@@ -5,112 +5,118 @@
 \contentsline {subsection}{\numberline {2.1.2}\textcolor {Chapter }{OctonionAlgebra}}{6}{subsection.2.1.2}%
 \contentsline {subsection}{\numberline {2.1.3}\textcolor {Chapter }{OctonionArithmetic}}{7}{subsection.2.1.3}%
 \contentsline {subsection}{\numberline {2.1.4}\textcolor {Chapter }{Oct}}{7}{subsection.2.1.4}%
-\contentsline {subsection}{\numberline {2.1.5}\textcolor {Chapter }{OctonionE8basis}}{7}{subsection.2.1.5}%
+\contentsline {subsection}{\numberline {2.1.5}\textcolor {Chapter }{OctonionE8Basis}}{8}{subsection.2.1.5}%
 \contentsline {subsection}{\numberline {2.1.6}\textcolor {Chapter }{\texttt {\symbol {92}}mod}}{8}{subsection.2.1.6}%
 \contentsline {section}{\numberline {2.2}\textcolor {Chapter }{Properties of Octonions}}{8}{section.2.2}%
 \contentsline {subsection}{\numberline {2.2.1}\textcolor {Chapter }{Norm (Octonions)}}{8}{subsection.2.2.1}%
 \contentsline {subsection}{\numberline {2.2.2}\textcolor {Chapter }{Trace (Octonions)}}{8}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}\textcolor {Chapter }{GramMatrix (GramMatrixOctonion)}}{8}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.3}\textcolor {Chapter }{GramMatrix (GramMatrixOctonion)}}{9}{subsection.2.2.3}%
 \contentsline {subsection}{\numberline {2.2.4}\textcolor {Chapter }{ComplexConjugate (Octonions)}}{9}{subsection.2.2.4}%
 \contentsline {subsection}{\numberline {2.2.5}\textcolor {Chapter }{RealPart (Octonions)}}{9}{subsection.2.2.5}%
-\contentsline {subsection}{\numberline {2.2.6}\textcolor {Chapter }{ImaginaryPart (Octonions)}}{9}{subsection.2.2.6}%
-\contentsline {section}{\numberline {2.3}\textcolor {Chapter }{Other Octonion Tools}}{9}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}\textcolor {Chapter }{OctonionToRealVector}}{9}{subsection.2.3.1}%
+\contentsline {section}{\numberline {2.3}\textcolor {Chapter }{Other Octonion Tools}}{10}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}\textcolor {Chapter }{OctonionToRealVector}}{10}{subsection.2.3.1}%
 \contentsline {subsection}{\numberline {2.3.2}\textcolor {Chapter }{RealToOctonionVector}}{10}{subsection.2.3.2}%
-\contentsline {section}{\numberline {2.4}\textcolor {Chapter }{Quaternion and Icosian Tools}}{10}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}\textcolor {Chapter }{Norm (Quaternions)}}{10}{subsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.4.2}\textcolor {Chapter }{Trace (Quaternions)}}{10}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.3.3}\textcolor {Chapter }{VectorToIdempotentMatrix}}{10}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}\textcolor {Chapter }{WeylReflection}}{11}{subsection.2.3.4}%
+\contentsline {section}{\numberline {2.4}\textcolor {Chapter }{Quaternion and Icosian Tools}}{11}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}\textcolor {Chapter }{Norm (Quaternions)}}{11}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}\textcolor {Chapter }{Trace (Quaternions)}}{11}{subsection.2.4.2}%
 \contentsline {subsection}{\numberline {2.4.3}\textcolor {Chapter }{ComplexConjugate (Quaternions)}}{11}{subsection.2.4.3}%
-\contentsline {subsection}{\numberline {2.4.4}\textcolor {Chapter }{RealPart (Quaternions)}}{11}{subsection.2.4.4}%
-\contentsline {subsection}{\numberline {2.4.5}\textcolor {Chapter }{ImaginaryPart (Quaternions)}}{11}{subsection.2.4.5}%
-\contentsline {subsection}{\numberline {2.4.6}\textcolor {Chapter }{QuaternionD4basis}}{11}{subsection.2.4.6}%
-\contentsline {subsection}{\numberline {2.4.7}\textcolor {Chapter }{Golden Field Values}}{12}{subsection.2.4.7}%
-\contentsline {subsection}{\numberline {2.4.8}\textcolor {Chapter }{GoldenModSigma}}{12}{subsection.2.4.8}%
-\contentsline {subsection}{\numberline {2.4.9}\textcolor {Chapter }{IcosianH4basis}}{12}{subsection.2.4.9}%
-\contentsline {chapter}{\numberline {3}\textcolor {Chapter }{Simple Euclidean Jordan Algebras}}{13}{chapter.3}%
-\contentsline {section}{\numberline {3.1}\textcolor {Chapter }{Filters and Basic Attributes}}{13}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}\textcolor {Chapter }{Jordan Filters}}{13}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}\textcolor {Chapter }{JordanRank}}{13}{subsection.3.1.2}%
-\contentsline {subsection}{\numberline {3.1.3}\textcolor {Chapter }{JordanDegree}}{13}{subsection.3.1.3}%
-\contentsline {subsection}{\numberline {3.1.4}\textcolor {Chapter }{Trace (Jordan Algebras)}}{13}{subsection.3.1.4}%
-\contentsline {subsection}{\numberline {3.1.5}\textcolor {Chapter }{Norm (Jordan Algebras)}}{14}{subsection.3.1.5}%
-\contentsline {subsection}{\numberline {3.1.6}\textcolor {Chapter }{GenericMinimalPolynomial}}{14}{subsection.3.1.6}%
-\contentsline {subsection}{\numberline {3.1.7}\textcolor {Chapter }{Determinant (Jordan Algebras)}}{14}{subsection.3.1.7}%
-\contentsline {section}{\numberline {3.2}\textcolor {Chapter }{Jordan Algebra Constructions}}{14}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}\textcolor {Chapter }{SimpleEuclideanJordanAlgebra}}{14}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}\textcolor {Chapter }{JordanSpinFactor}}{14}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}\textcolor {Chapter }{HermitianSimpleJordanAlgebra}}{15}{subsection.3.2.3}%
-\contentsline {subsection}{\numberline {3.2.4}\textcolor {Chapter }{JordanHomotope}}{15}{subsection.3.2.4}%
-\contentsline {subsection}{\numberline {3.2.5}\textcolor {Chapter }{AlbertAlgebra}}{16}{subsection.3.2.5}%
-\contentsline {subsection}{\numberline {3.2.6}\textcolor {Chapter }{Alb}}{16}{subsection.3.2.6}%
-\contentsline {section}{\numberline {3.3}\textcolor {Chapter }{Additional Tools and Properties}}{16}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}\textcolor {Chapter }{HermitianJordanAlgebraBasis}}{16}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}\textcolor {Chapter }{JordanMatrixBasis}}{16}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}\textcolor {Chapter }{HermitianMatrixToJordanCoefficients}}{17}{subsection.3.3.3}%
-\contentsline {subsection}{\numberline {3.3.4}\textcolor {Chapter }{JordanAlgebraGramMatrix}}{17}{subsection.3.3.4}%
-\contentsline {subsection}{\numberline {3.3.5}\textcolor {Chapter }{JordanAdjugate}}{17}{subsection.3.3.5}%
-\contentsline {subsection}{\numberline {3.3.6}\textcolor {Chapter }{IsPositiveDefinite}}{18}{subsection.3.3.6}%
-\contentsline {chapter}{\numberline {4}\textcolor {Chapter }{Jordan Designs and their Association Schemes}}{19}{chapter.4}%
-\contentsline {section}{\numberline {4.1}\textcolor {Chapter }{Jacobi Polynomials}}{19}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}\textcolor {Chapter }{JacobiPolynomial}}{19}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}\textcolor {Chapter }{Renormalized Jacobi Polynomials}}{19}{subsection.4.1.2}%
-\contentsline {section}{\numberline {4.2}\textcolor {Chapter }{Jordan Designs}}{20}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}\textcolor {Chapter }{Jordan Design Filters}}{20}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}\textcolor {Chapter }{DesignByJordanParameters}}{20}{subsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3}\textcolor {Chapter }{Jordan Rank and Degree}}{20}{subsection.4.2.3}%
-\contentsline {subsection}{\numberline {4.2.4}\textcolor {Chapter }{DesignQPolynomial}}{20}{subsection.4.2.4}%
-\contentsline {subsection}{\numberline {4.2.5}\textcolor {Chapter }{DesignConnectionCoefficients}}{21}{subsection.4.2.5}%
-\contentsline {section}{\numberline {4.3}\textcolor {Chapter }{Designs with an Angle Set}}{21}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}\textcolor {Chapter }{IsDesignWithAngleSet}}{21}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}\textcolor {Chapter }{DesignAddAngleSet}}{21}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}\textcolor {Chapter }{DesignByAngleSet}}{22}{subsection.4.3.3}%
-\contentsline {subsection}{\numberline {4.3.4}\textcolor {Chapter }{DesignNormalizedAnnihilatorPolynomial}}{22}{subsection.4.3.4}%
-\contentsline {subsection}{\numberline {4.3.5}\textcolor {Chapter }{DesignNormalizedIndicatorCoefficients}}{22}{subsection.4.3.5}%
-\contentsline {subsection}{\numberline {4.3.6}\textcolor {Chapter }{IsDesignWithPositiveIndicatorCoefficients}}{23}{subsection.4.3.6}%
-\contentsline {subsection}{\numberline {4.3.7}\textcolor {Chapter }{DesignSpecialBound}}{23}{subsection.4.3.7}%
-\contentsline {section}{\numberline {4.4}\textcolor {Chapter }{Designs with Cardinality and Angle Set}}{23}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}\textcolor {Chapter }{Some Filters}}{23}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}\textcolor {Chapter }{DesignCardinality}}{23}{subsection.4.4.2}%
-\contentsline {subsection}{\numberline {4.4.3}\textcolor {Chapter }{DesignAddCardinality}}{23}{subsection.4.4.3}%
-\contentsline {subsection}{\numberline {4.4.4}\textcolor {Chapter }{IsDesignWithStrength}}{24}{subsection.4.4.4}%
-\contentsline {subsection}{\numberline {4.4.5}\textcolor {Chapter }{DesignStrength}}{24}{subsection.4.4.5}%
-\contentsline {subsection}{\numberline {4.4.6}\textcolor {Chapter }{DesignAnnihilatorPolynomial}}{24}{subsection.4.4.6}%
-\contentsline {subsection}{\numberline {4.4.7}\textcolor {Chapter }{DesignIndicatorCoefficients}}{25}{subsection.4.4.7}%
-\contentsline {section}{\numberline {4.5}\textcolor {Chapter }{Designs Admitting a Regular Scheme}}{25}{section.4.5}%
-\contentsline {subsection}{\numberline {4.5.1}\textcolor {Chapter }{DesignSubdegrees}}{25}{subsection.4.5.1}%
-\contentsline {section}{\numberline {4.6}\textcolor {Chapter }{Designs Admitting an Association Scheme}}{25}{section.4.6}%
-\contentsline {subsection}{\numberline {4.6.1}\textcolor {Chapter }{DesignBoseMesnerAlgebra}}{25}{subsection.4.6.1}%
-\contentsline {subsection}{\numberline {4.6.2}\textcolor {Chapter }{DesignBoseMesnerIdempotentBasis}}{26}{subsection.4.6.2}%
-\contentsline {subsection}{\numberline {4.6.3}\textcolor {Chapter }{DesignIntersectionNumbers}}{26}{subsection.4.6.3}%
-\contentsline {subsection}{\numberline {4.6.4}\textcolor {Chapter }{DesignKreinNumbers}}{26}{subsection.4.6.4}%
-\contentsline {subsection}{\numberline {4.6.5}\textcolor {Chapter }{DesignFirstEigenmatrix}}{27}{subsection.4.6.5}%
-\contentsline {subsection}{\numberline {4.6.6}\textcolor {Chapter }{DesignSecondEigenmatrix}}{27}{subsection.4.6.6}%
-\contentsline {subsection}{\numberline {4.6.7}\textcolor {Chapter }{DesignMultiplicities}}{27}{subsection.4.6.7}%
-\contentsline {subsection}{\numberline {4.6.8}\textcolor {Chapter }{DesignValencies}}{27}{subsection.4.6.8}%
-\contentsline {subsection}{\numberline {4.6.9}\textcolor {Chapter }{DesignReducedAdjacencyMatrices}}{28}{subsection.4.6.9}%
-\contentsline {section}{\numberline {4.7}\textcolor {Chapter }{Examples}}{28}{section.4.7}%
-\contentsline {chapter}{\numberline {5}\textcolor {Chapter }{Octonion Lattice Constructions}}{31}{chapter.5}%
-\contentsline {section}{\numberline {5.1}\textcolor {Chapter }{Gram Matrix Filters}}{31}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}\textcolor {Chapter }{IsLeechLatticeGramMatrix}}{31}{subsection.5.1.1}%
-\contentsline {subsection}{\numberline {5.1.2}\textcolor {Chapter }{IsGossetLatticeGramMatrix}}{31}{subsection.5.1.2}%
-\contentsline {subsection}{\numberline {5.1.3}\textcolor {Chapter }{IsOctonionLattice}}{31}{subsection.5.1.3}%
-\contentsline {section}{\numberline {5.2}\textcolor {Chapter }{Octonion Lattice Constructions}}{31}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}\textcolor {Chapter }{OctonionLatticeByGenerators}}{31}{subsection.5.2.1}%
-\contentsline {section}{\numberline {5.3}\textcolor {Chapter }{Octonion Lattice Attributes}}{32}{section.5.3}%
-\contentsline {subsection}{\numberline {5.3.1}\textcolor {Chapter }{UnderlyingOctonionRing}}{32}{subsection.5.3.1}%
-\contentsline {subsection}{\numberline {5.3.2}\textcolor {Chapter }{OctonionGramMatrix}}{32}{subsection.5.3.2}%
-\contentsline {subsection}{\numberline {5.3.3}\textcolor {Chapter }{Dimension}}{32}{subsection.5.3.3}%
-\contentsline {subsection}{\numberline {5.3.4}\textcolor {Chapter }{GeneratorsAsCoefficients}}{32}{subsection.5.3.4}%
-\contentsline {subsection}{\numberline {5.3.5}\textcolor {Chapter }{LLLReducedBasisCoefficients}}{33}{subsection.5.3.5}%
-\contentsline {subsection}{\numberline {5.3.6}\textcolor {Chapter }{GramMatrix (GramMatrixLattice)}}{33}{subsection.5.3.6}%
-\contentsline {subsection}{\numberline {5.3.7}\textcolor {Chapter }{TotallyIsotropicCode}}{33}{subsection.5.3.7}%
-\contentsline {subsection}{\numberline {5.3.8}\textcolor {Chapter }{Lattice Basis}}{33}{subsection.5.3.8}%
-\contentsline {section}{\numberline {5.4}\textcolor {Chapter }{Octonion Lattice Operations}}{33}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}\textcolor {Chapter }{Rank}}{33}{subsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.4.2}\textcolor {Chapter }{ScalarProduct}}{34}{subsection.5.4.2}%
-\contentsline {subsection}{\numberline {5.4.3}\textcolor {Chapter }{\texttt {\symbol {92}}in}}{34}{subsection.5.4.3}%
-\contentsline {subsection}{\numberline {5.4.4}\textcolor {Chapter }{Sublattice Identification}}{34}{subsection.5.4.4}%
-\contentsline {subsection}{\numberline {5.4.5}\textcolor {Chapter }{\texttt {\symbol {92}}=}}{34}{subsection.5.4.5}%
-\contentsline {subsection}{\numberline {5.4.6}\textcolor {Chapter }{Converting Between Real and Octonion Vectors}}{34}{subsection.5.4.6}%
-\contentsline {chapter}{References}{36}{chapter*.3}%
-\contentsline {chapter}{Index}{37}{section*.4}%
+\contentsline {subsection}{\numberline {2.4.4}\textcolor {Chapter }{RealPart (Quaternions)}}{12}{subsection.2.4.4}%
+\contentsline {subsection}{\numberline {2.4.5}\textcolor {Chapter }{QuaternionD4basis}}{12}{subsection.2.4.5}%
+\contentsline {subsection}{\numberline {2.4.6}\textcolor {Chapter }{Golden Field Values}}{12}{subsection.2.4.6}%
+\contentsline {subsection}{\numberline {2.4.7}\textcolor {Chapter }{GoldenModSigma}}{13}{subsection.2.4.7}%
+\contentsline {subsection}{\numberline {2.4.8}\textcolor {Chapter }{IcosianH4basis}}{13}{subsection.2.4.8}%
+\contentsline {chapter}{\numberline {3}\textcolor {Chapter }{Simple Euclidean Jordan Algebras}}{14}{chapter.3}%
+\contentsline {section}{\numberline {3.1}\textcolor {Chapter }{Filters and Basic Attributes}}{14}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}\textcolor {Chapter }{Jordan Filters}}{14}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}\textcolor {Chapter }{JordanRank}}{14}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}\textcolor {Chapter }{JordanDegree}}{14}{subsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.1.4}\textcolor {Chapter }{Trace (Jordan Algebras)}}{15}{subsection.3.1.4}%
+\contentsline {subsection}{\numberline {3.1.5}\textcolor {Chapter }{Norm (Jordan Algebras)}}{15}{subsection.3.1.5}%
+\contentsline {subsection}{\numberline {3.1.6}\textcolor {Chapter }{GenericMinimalPolynomial}}{15}{subsection.3.1.6}%
+\contentsline {subsection}{\numberline {3.1.7}\textcolor {Chapter }{Determinant (Jordan Algebras)}}{15}{subsection.3.1.7}%
+\contentsline {section}{\numberline {3.2}\textcolor {Chapter }{Jordan Algebra Constructions}}{15}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}\textcolor {Chapter }{SimpleEuclideanJordanAlgebra}}{15}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}\textcolor {Chapter }{JordanSpinFactor}}{15}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}\textcolor {Chapter }{HermitianSimpleJordanAlgebra}}{16}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}\textcolor {Chapter }{JordanHomotope}}{16}{subsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.2.5}\textcolor {Chapter }{AlbertAlgebra}}{17}{subsection.3.2.5}%
+\contentsline {subsection}{\numberline {3.2.6}\textcolor {Chapter }{Alb}}{17}{subsection.3.2.6}%
+\contentsline {section}{\numberline {3.3}\textcolor {Chapter }{Additional Tools and Properties}}{17}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}\textcolor {Chapter }{HermitianJordanAlgebraBasis}}{17}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}\textcolor {Chapter }{JordanMatrixBasis}}{18}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}\textcolor {Chapter }{HermitianMatrixToJordanCoefficients}}{18}{subsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.3.4}\textcolor {Chapter }{JordanAlgebraGramMatrix}}{18}{subsection.3.3.4}%
+\contentsline {subsection}{\numberline {3.3.5}\textcolor {Chapter }{JordanAdjugate}}{19}{subsection.3.3.5}%
+\contentsline {subsection}{\numberline {3.3.6}\textcolor {Chapter }{IsPositiveDefinite}}{19}{subsection.3.3.6}%
+\contentsline {chapter}{\numberline {4}\textcolor {Chapter }{Jordan Designs and their Association Schemes}}{20}{chapter.4}%
+\contentsline {section}{\numberline {4.1}\textcolor {Chapter }{Jacobi Polynomials}}{20}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}\textcolor {Chapter }{JacobiPolynomial}}{20}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}\textcolor {Chapter }{Renormalized Jacobi Polynomials}}{20}{subsection.4.1.2}%
+\contentsline {section}{\numberline {4.2}\textcolor {Chapter }{Jordan Designs}}{21}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}\textcolor {Chapter }{Jordan Design Filters}}{21}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}\textcolor {Chapter }{DesignByJordanParameters}}{21}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}\textcolor {Chapter }{Jordan Rank and Degree}}{21}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}\textcolor {Chapter }{DesignQPolynomial}}{22}{subsection.4.2.4}%
+\contentsline {subsection}{\numberline {4.2.5}\textcolor {Chapter }{DesignConnectionCoefficients}}{22}{subsection.4.2.5}%
+\contentsline {section}{\numberline {4.3}\textcolor {Chapter }{Designs with an Angle Set}}{22}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}\textcolor {Chapter }{IsDesignWithAngleSet}}{22}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}\textcolor {Chapter }{DesignAddAngleSet}}{23}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}\textcolor {Chapter }{DesignByAngleSet}}{23}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}\textcolor {Chapter }{DesignNormalizedAnnihilatorPolynomial}}{23}{subsection.4.3.4}%
+\contentsline {subsection}{\numberline {4.3.5}\textcolor {Chapter }{DesignNormalizedIndicatorCoefficients}}{23}{subsection.4.3.5}%
+\contentsline {subsection}{\numberline {4.3.6}\textcolor {Chapter }{IsDesignWithPositiveIndicatorCoefficients}}{24}{subsection.4.3.6}%
+\contentsline {subsection}{\numberline {4.3.7}\textcolor {Chapter }{DesignSpecialBound}}{24}{subsection.4.3.7}%
+\contentsline {section}{\numberline {4.4}\textcolor {Chapter }{Designs with Cardinality and Angle Set}}{24}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}\textcolor {Chapter }{Some Filters}}{24}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}\textcolor {Chapter }{DesignCardinality}}{24}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}\textcolor {Chapter }{DesignAddCardinality}}{25}{subsection.4.4.3}%
+\contentsline {subsection}{\numberline {4.4.4}\textcolor {Chapter }{IsDesignWithStrength}}{25}{subsection.4.4.4}%
+\contentsline {subsection}{\numberline {4.4.5}\textcolor {Chapter }{DesignStrength}}{25}{subsection.4.4.5}%
+\contentsline {subsection}{\numberline {4.4.6}\textcolor {Chapter }{DesignAnnihilatorPolynomial}}{25}{subsection.4.4.6}%
+\contentsline {subsection}{\numberline {4.4.7}\textcolor {Chapter }{DesignIndicatorCoefficients}}{26}{subsection.4.4.7}%
+\contentsline {section}{\numberline {4.5}\textcolor {Chapter }{Designs Admitting a Regular Scheme}}{26}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}\textcolor {Chapter }{DesignSubdegrees}}{26}{subsection.4.5.1}%
+\contentsline {section}{\numberline {4.6}\textcolor {Chapter }{Designs Admitting an Association Scheme}}{26}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}\textcolor {Chapter }{DesignBoseMesnerAlgebra}}{26}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}\textcolor {Chapter }{DesignBoseMesnerIdempotentBasis}}{27}{subsection.4.6.2}%
+\contentsline {subsection}{\numberline {4.6.3}\textcolor {Chapter }{DesignIntersectionNumbers}}{27}{subsection.4.6.3}%
+\contentsline {subsection}{\numberline {4.6.4}\textcolor {Chapter }{DesignKreinNumbers}}{27}{subsection.4.6.4}%
+\contentsline {subsection}{\numberline {4.6.5}\textcolor {Chapter }{DesignFirstEigenmatrix}}{28}{subsection.4.6.5}%
+\contentsline {subsection}{\numberline {4.6.6}\textcolor {Chapter }{DesignSecondEigenmatrix}}{28}{subsection.4.6.6}%
+\contentsline {subsection}{\numberline {4.6.7}\textcolor {Chapter }{DesignMultiplicities}}{28}{subsection.4.6.7}%
+\contentsline {subsection}{\numberline {4.6.8}\textcolor {Chapter }{DesignValencies}}{29}{subsection.4.6.8}%
+\contentsline {subsection}{\numberline {4.6.9}\textcolor {Chapter }{DesignReducedAdjacencyMatrices}}{29}{subsection.4.6.9}%
+\contentsline {section}{\numberline {4.7}\textcolor {Chapter }{Examples}}{29}{section.4.7}%
+\contentsline {chapter}{\numberline {5}\textcolor {Chapter }{Octonion Lattice Constructions}}{32}{chapter.5}%
+\contentsline {section}{\numberline {5.1}\textcolor {Chapter }{Gram Matrix Filters}}{32}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}\textcolor {Chapter }{IsLeechLatticeGramMatrix}}{32}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}\textcolor {Chapter }{IsGossetLatticeGramMatrix}}{32}{subsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.1.3}\textcolor {Chapter }{IsOctonionLattice}}{32}{subsection.5.1.3}%
+\contentsline {section}{\numberline {5.2}\textcolor {Chapter }{Octonion Lattice Constructions}}{33}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}\textcolor {Chapter }{OctonionLatticeByGenerators}}{33}{subsection.5.2.1}%
+\contentsline {section}{\numberline {5.3}\textcolor {Chapter }{Octonion Lattice Attributes}}{33}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}\textcolor {Chapter }{UnderlyingOctonionRing}}{33}{subsection.5.3.1}%
+\contentsline {subsection}{\numberline {5.3.2}\textcolor {Chapter }{OctonionGramMatrix}}{33}{subsection.5.3.2}%
+\contentsline {subsection}{\numberline {5.3.3}\textcolor {Chapter }{Dimension}}{33}{subsection.5.3.3}%
+\contentsline {subsection}{\numberline {5.3.4}\textcolor {Chapter }{GeneratorsAsCoefficients}}{33}{subsection.5.3.4}%
+\contentsline {subsection}{\numberline {5.3.5}\textcolor {Chapter }{LLLReducedBasisCoefficients}}{34}{subsection.5.3.5}%
+\contentsline {subsection}{\numberline {5.3.6}\textcolor {Chapter }{GramMatrix (GramMatrixLattice)}}{34}{subsection.5.3.6}%
+\contentsline {subsection}{\numberline {5.3.7}\textcolor {Chapter }{TotallyIsotropicCode}}{34}{subsection.5.3.7}%
+\contentsline {subsection}{\numberline {5.3.8}\textcolor {Chapter }{Lattice Basis}}{34}{subsection.5.3.8}%
+\contentsline {section}{\numberline {5.4}\textcolor {Chapter }{Octonion Lattice Operations}}{34}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}\textcolor {Chapter }{Rank}}{34}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}\textcolor {Chapter }{ScalarProduct}}{35}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.3}\textcolor {Chapter }{\texttt {\symbol {92}}in}}{35}{subsection.5.4.3}%
+\contentsline {subsection}{\numberline {5.4.4}\textcolor {Chapter }{Sublattice Identification}}{35}{subsection.5.4.4}%
+\contentsline {subsection}{\numberline {5.4.5}\textcolor {Chapter }{\texttt {\symbol {92}}=}}{35}{subsection.5.4.5}%
+\contentsline {subsection}{\numberline {5.4.6}\textcolor {Chapter }{Converting Between Real and Octonion Vectors}}{35}{subsection.5.4.6}%
+\contentsline {chapter}{\numberline {6}\textcolor {Chapter }{Closure Tools}}{37}{chapter.6}%
+\contentsline {section}{\numberline {6.1}\textcolor {Chapter }{Brute Force Method}}{37}{section.6.1}%
+\contentsline {subsection}{\numberline {6.1.1}\textcolor {Chapter }{Closure}}{37}{subsection.6.1.1}%
+\contentsline {section}{\numberline {6.2}\textcolor {Chapter }{Random Choice Methods}}{38}{section.6.2}%
+\contentsline {subsection}{\numberline {6.2.1}\textcolor {Chapter }{RandomClosure}}{38}{subsection.6.2.1}%
+\contentsline {subsection}{\numberline {6.2.2}\textcolor {Chapter }{RandomOrbitOnSets}}{38}{subsection.6.2.2}%
+\contentsline {chapter}{References}{41}{chapter*.3}%
+\contentsline {chapter}{Index}{42}{section*.4}%

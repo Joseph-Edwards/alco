@@ -1,6 +1,10 @@
   
   [1X5 [33X[0;0YOctonion Lattice Constructions[133X[101X
   
+  [33X[0;0YThe [5XALCO[105X package provides tools to construct lattices from octonion vectors.
+  This permits one to reproduce the results found in [EG96], [Wil09], [Wil11],
+  [Nas22], [Nas23].[133X
+  
   [33X[0;0YIn   what   follows   let   [3XL[103X   be  a  free  left  ℤ-module  that  satisfies
   [10XIsOctonionLattice[110X.[133X
   
@@ -48,7 +52,8 @@
   Trace([3Xx[103X[10X*[3Xg[103X[10X*ComplexConjugate([3Xy[103X[10X))[110X.[133X
   
   [4X[32X  Example  [32X[104X
-    [4X[25Xgap>[125X [27XO := OctonionArithmetic(Integers);; gens := Concatenation(List(Basis(O), x -> x*IdentityMat(3)));;[127X[104X
+    [4X[25Xgap>[125X [27XO := OctonionArithmetic(Integers);; [127X[104X
+    [4X[25Xgap>[125X [27Xgens := Concatenation(List(Basis(O), x -> x*IdentityMat(3)));;[127X[104X
     [4X[25Xgap>[125X [27XO3 := OctonionLatticeByGenerators(gens);[127X[104X
     [4X[28X<free left module over Integers, with 24 generators>[128X[104X
   [4X[32X[104X
@@ -99,9 +104,7 @@
   [33X[0;0YThis     attribute     stores     the     result    of    [10XLLLReducedBasis([3XL[103X[10X,
   GeneratorsAsCoefficients([3XL[103X[10X)).basis[110X.  This provides a set of basis vectors as
   coefficients   for   [3XL[103X,   since   there   is   no   test   to   ensure  that
-  [10XGeneratorsOfLeftOperatorAdditiveGroup[110X    form    a   ℤ-module   basis.   The
-  [10XLLLReducedBasis[110X operation is conducted with reference to [10XScalarProduct([3XL[103X[10X, [3Xx[103X[10X,
-  [3Xy[103X[10X)[110X, which is defined[133X
+  [10XGeneratorsOfLeftOperatorAdditiveGroup[110X form a ℤ-module basis.[133X
   
   [1X5.3-6 GramMatrix[101X
   
@@ -148,7 +151,8 @@
   [33X[1;0Y[29X[2XScalarProduct[102X( [3XL[103X, [3Xx[103X, [3Xy[103X ) [32X operation[133X
   
   [33X[0;0YFor  [3XL[103X  that satisfies [10XIsOctonionLattice[110X and [3Xx[103X, [3Xy[103X either octonion vectors or
-  coefficient vectors, this operation computes [10XTrace([3Xx[103X[10X*[3Xg[103X[10X*ComplexConjugate([3Xy[103X[10X))[110X.[133X
+  coefficient  vectors, this operation computes [10XTrace([3Xx[103X[10X*[3Xg[103X[10X*ComplexConjugate([3Xy[103X[10X))[110X
+  where [3Xg[103X is equal to [10XOctonionGramMatrix([3XL[103X[10X)[110X.[133X
   
   [1X5.4-3 \in[101X
   
@@ -172,8 +176,7 @@
   [33X[1;0Y[29X[2X\=[102X( [3XL[103X, [3XM[103X ) [32X operation[133X
   
   [33X[0;0YFor  both  [3XL[103X  and  [3XM[103X  octonion  lattices  (satisfies  [10XIsOctonionLattice[110X) the
-  expression  [10X[3XL[103X[10X = [3XM[103X[10X[110X return true when [10XIsSublattice([3XL[103X[10X, [3XM[103X[10X) and IsSublattice([3XL[103X[10X, [3XM[103X[10X)
-  [110X.[133X
+  expression [10X[3XL[103X[10X = [3XM[103X[10X[110X return true when [10XIsSublattice([3XL[103X[10X, [3XM[103X[10X) and IsSublattice([3XL[103X[10X, [3XM[103X[10X)[110X.[133X
   
   
   [1X5.4-6 [33X[0;0YConverting Between Real and Octonion Vectors[133X[101X

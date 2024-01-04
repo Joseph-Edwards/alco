@@ -15,9 +15,9 @@
 <body class="chap5"  onload="jscontent()">
 
 
-<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chap5.html">5</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+<div class="chlinktop"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chap5.html">5</a>  <a href="chap6.html">6</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
 
-<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap4.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chapBib.html">[Next Chapter]</a>&nbsp;  </div>
+<div class="chlinkprevnexttop">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap4.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap6.html">[Next Chapter]</a>&nbsp;  </div>
 
 <p id="mathjaxlink" class="pcenter"></p>
 <p><a id="X7F6AA3C97E706F4F" name="X7F6AA3C97E706F4F"></a></p>
@@ -63,6 +63,8 @@
 
 <h3>5 <span class="Heading">Octonion Lattice Constructions</span></h3>
 
+<p>The <strong class="pkg">ALCO</strong> package provides tools to construct lattices from octonion vectors. This permits one to reproduce the results found in <a href="chapBib.html#biBelkies_exceptional_1996">[EG96]</a>, <a href="chapBib.html#biBwilson_octonions_2009">[Wil09]</a>, <a href="chapBib.html#biBwilson_conways_2011">[Wil11]</a>, <a href="chapBib.html#biBnasmith_octonions_2022">[Nas22]</a>, <a href="chapBib.html#biBnasmith_tight_2023">[Nas23]</a>.</p>
+
 <p>In what follows let <var class="Arg">L</var> be a free left ℤ-module that satisfies <code class="code">IsOctonionLattice</code>.</p>
 
 <p><a id="X87267018841AF980" name="X87267018841AF980"></a></p>
@@ -102,7 +104,8 @@
 <p>For <var class="Arg">gens</var> a list of octonion vectors, so that <var class="Arg">gens</var> satisfies <code class="code">IsOctonionCollColl</code>, this function constructs a free left ℤ-module that satisfies <code class="code">IsOctonionLattice</code>. The attribute <code class="code">LeftActingDomain</code> is set to <code class="code">Integers</code> and the input <var class="Arg">gens</var> is stored as the attribute <code class="code">GeneratorsOfLeftOperatorAdditiveGroup</code>. The inner product on the lattice is defined by optional argument <var class="Arg">g</var>, which is an octonion square matrix that defaults to the identity matrix. For <var class="Arg">x,y</var> octonion vectors in the lattice, the inner product is computed as <code class="code"> ScalarProduct(<var class="Arg">L</var>, <var class="Arg">x</var>, <var class="Arg">y</var>) = Trace(<var class="Arg">x</var>*<var class="Arg">g</var>*ComplexConjugate(<var class="Arg">y</var>))</code>.</p>
 
 
-<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">O := OctonionArithmetic(Integers);; gens := Concatenation(List(Basis(O), x -&gt; x*IdentityMat(3)));;</span>
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">O := OctonionArithmetic(Integers);; </span>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">gens := Concatenation(List(Basis(O), x -&gt; x*IdentityMat(3)));;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">O3 := OctonionLatticeByGenerators(gens);</span>
 &lt;free left module over Integers, with 24 generators&gt;</pre></div>
 
@@ -143,7 +146,7 @@
 <h5>5.3-5 LLLReducedBasisCoefficients</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; LLLReducedBasisCoefficients</code>( <var class="Arg">L</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
-<p>This attribute stores the result of <code class="code">LLLReducedBasis(<var class="Arg">L</var>, GeneratorsAsCoefficients(<var class="Arg">L</var>)).basis</code>. This provides a set of basis vectors as coefficients for <var class="Arg">L</var>, since there is no test to ensure that <code class="code">GeneratorsOfLeftOperatorAdditiveGroup</code> form a ℤ-module basis. The <code class="code">LLLReducedBasis</code> operation is conducted with reference to <code class="code">ScalarProduct(<var class="Arg">L</var>, <var class="Arg">x</var>, <var class="Arg">y</var>)</code>, which is defined</p>
+<p>This attribute stores the result of <code class="code">LLLReducedBasis(<var class="Arg">L</var>, GeneratorsAsCoefficients(<var class="Arg">L</var>)).basis</code>. This provides a set of basis vectors as coefficients for <var class="Arg">L</var>, since there is no test to ensure that <code class="code">GeneratorsOfLeftOperatorAdditiveGroup</code> form a ℤ-module basis.</p>
 
 <p><a id="X8728E0997EFD3E63" name="X8728E0997EFD3E63"></a></p>
 
@@ -185,7 +188,7 @@
 <h5>5.4-2 ScalarProduct</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; ScalarProduct</code>( <var class="Arg">L</var>, <var class="Arg">x</var>, <var class="Arg">y</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>For <var class="Arg">L</var> that satisfies <code class="code">IsOctonionLattice</code> and <var class="Arg">x</var>, <var class="Arg">y</var> either octonion vectors or coefficient vectors, this operation computes <code class="code">Trace(<var class="Arg">x</var>*<var class="Arg">g</var>*ComplexConjugate(<var class="Arg">y</var>))</code>.</p>
+<p>For <var class="Arg">L</var> that satisfies <code class="code">IsOctonionLattice</code> and <var class="Arg">x</var>, <var class="Arg">y</var> either octonion vectors or coefficient vectors, this operation computes <code class="code">Trace(<var class="Arg">x</var>*<var class="Arg">g</var>*ComplexConjugate(<var class="Arg">y</var>))</code> where <var class="Arg">g</var> is equal to <code class="code">OctonionGramMatrix(<var class="Arg">L</var>)</code>.</p>
 
 <p><a id="X87BDB89B7AAFE8AD" name="X87BDB89B7AAFE8AD"></a></p>
 
@@ -207,7 +210,7 @@
 <h5><code>5.4-5 \=</code></h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; \=</code>( <var class="Arg">L</var>, <var class="Arg">M</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
-<p>For both <var class="Arg">L</var> and <var class="Arg">M</var> octonion lattices (satisfies <code class="code">IsOctonionLattice</code>) the expression <code class="code"><var class="Arg">L</var> = <var class="Arg">M</var></code> return true when <code class="code">IsSublattice(<var class="Arg">L</var>, <var class="Arg">M</var>) and IsSublattice(<var class="Arg">L</var>, <var class="Arg">M</var>) </code>.</p>
+<p>For both <var class="Arg">L</var> and <var class="Arg">M</var> octonion lattices (satisfies <code class="code">IsOctonionLattice</code>) the expression <code class="code"><var class="Arg">L</var> = <var class="Arg">M</var></code> return true when <code class="code">IsSublattice(<var class="Arg">L</var>, <var class="Arg">M</var>) and IsSublattice(<var class="Arg">L</var>, <var class="Arg">M</var>)</code>.</p>
 
 <p><a id="X8677AEDB8631EF5E" name="X8677AEDB8631EF5E"></a></p>
 
@@ -237,10 +240,10 @@ true
 true</pre></div>
 
 
-<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap4.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chapBib.html">[Next Chapter]</a>&nbsp;  </div>
+<div class="chlinkprevnextbot">&nbsp;<a href="chap0.html">[Top of Book]</a>&nbsp;  <a href="chap0.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap4.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap6.html">[Next Chapter]</a>&nbsp;  </div>
 
 
-<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chap5.html">5</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
+<div class="chlinkbot"><span class="chlink1">Goto Chapter: </span><a href="chap0.html">Top</a>  <a href="chap1.html">1</a>  <a href="chap2.html">2</a>  <a href="chap3.html">3</a>  <a href="chap4.html">4</a>  <a href="chap5.html">5</a>  <a href="chap6.html">6</a>  <a href="chapBib.html">Bib</a>  <a href="chapInd.html">Ind</a>  </div>
 
 <hr />
 <p class="foot">generated by <a href="http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc">GAPDoc2HTML</a></p>
