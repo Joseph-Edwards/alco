@@ -16,104 +16,108 @@
 
 # Quaternion Tools
 
-DeclareGlobalVariable("QuaternionD4basis");
+DeclareGlobalVariable( "QuaternionD4Basis" );
 
 # Icosian and Golden Field Tools
 
-DeclareGlobalVariable("sigma");
+DeclareGlobalVariable( "sigma" );
 
-DeclareGlobalVariable("tau");
+DeclareGlobalVariable( "tau" );
 
-DeclareGlobalFunction("GoldenRationalComponent");
+DeclareGlobalFunction( "GoldenRationalComponent" );
 
-DeclareGlobalFunction("GoldenIrrationalComponent");
+DeclareGlobalFunction( "GoldenIrrationalComponent" );
 
-DeclareGlobalFunction("GoldenModSigma");
+DeclareGlobalFunction( "GoldenModSigma" );
 
-DeclareGlobalVariable("IcosianH4basis");
+DeclareGlobalVariable( "IcosianH4Basis" );
 
 
 # Octonion Algebra and Arithmetic Tools
 
 DeclareCategory( "IsOctonion", IsScalar );
 
-DeclareCategory( "IsOctonionArithmeticElement", IsOctonion);
+DeclareCategory( "IsOctonionArithmeticElement", IsOctonion );
 
 DeclareCategoryCollections( "IsOctonion" );
 
 DeclareCategoryCollections( "IsOctonionCollection" );
 
-DeclareAttribute("Norm", IsOctonionCollection);
+DeclareAttribute( "Norm", IsOctonionCollection );
 
-DeclareCategory("IsOctonionAlgebra", IsAlgebra);
+DeclareCategory( "IsOctonionAlgebra", IsAlgebra );
 
-    DeclareAttribute("GramMatrix", IsOctonionAlgebra);
+    DeclareAttribute( "GramMatrix", IsOctonionAlgebra );
 
-DeclareGlobalFunction("OctonionArithmetic");
+DeclareGlobalFunction( "OctonionArithmetic" );
 
-DeclareGlobalFunction("OctonionAlgebra");
+DeclareGlobalFunction( "OctonionAlgebra" );
 
-DeclareGlobalVariable("Oct");
+DeclareGlobalVariable( "Oct" );
 
-DeclareGlobalVariable("OctonionE8basis");
+DeclareGlobalVariable( "OctonionE8Basis" );
 
-DeclareGlobalFunction("OctonionToRealVector");
+DeclareGlobalFunction( "OctonionToRealVector" );
 
-DeclareGlobalFunction("RealToOctonionVector");
+DeclareGlobalFunction( "RealToOctonionVector" );
+
+DeclareGlobalFunction( "VectorToIdempotentMatrix" );
+
+DeclareGlobalFunction( "WeylReflection" );
 
 # Jordan Algebra Tools
 
-DeclareCategory("IsJordanAlgebra", IsAlgebra);
+DeclareCategory( "IsJordanAlgebra", IsAlgebra );
 
-    DeclareAttribute("JordanRank", IsJordanAlgebra);
+    DeclareAttribute( "JordanRank", IsJordanAlgebra );
 
-    DeclareAttribute("JordanDegree", IsJordanAlgebra);
+    DeclareAttribute( "JordanDegree", IsJordanAlgebra );
 
-    DeclareAttribute("JordanMatrixBasis", IsJordanAlgebra);
+    DeclareAttribute( "JordanMatrixBasis", IsJordanAlgebra );
 
-    DeclareAttribute("JordanOffDiagonalBasis", IsJordanAlgebra);
+    DeclareAttribute( "JordanOffDiagonalBasis", IsJordanAlgebra );
 
-    DeclareAttribute("JordanHomotopeVector", IsJordanAlgebra);
+    DeclareAttribute( "JordanHomotopeVector", IsJordanAlgebra );
 
-    DeclareAttribute("JordanBasisTraces", IsJordanAlgebra);
+    DeclareAttribute( "JordanBasisTraces", IsJordanAlgebra );
 
-DeclareCategory("IsJordanAlgebraObj", IsSCAlgebraObj);
+DeclareCategory( "IsJordanAlgebraObj", IsSCAlgebraObj );
 
-    DeclareGlobalFunction("GenericMinimalPolynomial");
+    DeclareGlobalFunction( "GenericMinimalPolynomial" );
 
-    DeclareAttribute("JordanAdjugate", IsJordanAlgebraObj);
+    DeclareAttribute( "JordanAdjugate", IsJordanAlgebraObj );
 
-    DeclareAttribute("IsPositiveDefinite", IsJordanAlgebraObj);
+    DeclareAttribute( "IsPositiveDefinite", IsJordanAlgebraObj );
 
-DeclareGlobalFunction("HermitianJordanAlgebraBasis");
+DeclareGlobalFunction( "HermitianJordanAlgebraBasis" );
 
-DeclareGlobalFunction("HermitianMatrixToJordanCoefficients");
+DeclareGlobalFunction( "HermitianMatrixToJordanCoefficients" );
 
-DeclareGlobalFunction("HermitianMatrixToJordanVector");
+DeclareGlobalFunction( "HermitianMatrixToJordanVector" );
 
-DeclareGlobalFunction("JordanSpinFactor");
+DeclareGlobalFunction( "JordanSpinFactor" );
 
-DeclareGlobalFunction("HermitianSimpleJordanAlgebra");
+DeclareGlobalFunction( "HermitianSimpleJordanAlgebra" );
 
-DeclareAttribute("JordanAlgebraGramMatrix", IsJordanAlgebra);
+DeclareAttribute( "JordanAlgebraGramMatrix", IsJordanAlgebra );
 
-DeclareGlobalFunction("JordanHomotope");
+DeclareGlobalFunction( "JordanHomotope" );
 
-DeclareGlobalFunction("SimpleEuclideanJordanAlgebra");
+DeclareGlobalFunction( "SimpleEuclideanJordanAlgebra" );
 
 # Albert Algebra Tools
 
-DeclareGlobalFunction("AlbertAlgebra");
+DeclareGlobalFunction( "AlbertAlgebra" );
 
-DeclareGlobalVariable("Alb");
+DeclareGlobalVariable( "Alb" );
 
 # T-Design Tools
 
-DeclareGlobalFunction("JacobiPolynomial");
+DeclareGlobalFunction( "JacobiPolynomial" );
 
-DeclareGlobalFunction("Q_k_epsilon");
+DeclareGlobalFunction( "Q_k_epsilon" );
 
-DeclareGlobalFunction("R_k_epsilon");
+DeclareGlobalFunction( "R_k_epsilon" );
 
 # Designs
 
@@ -123,13 +127,13 @@ DeclareCategory( "IsSphericalDesign", IsDesign );
 
 DeclareCategory( "IsProjectiveDesign", IsDesign );
 
-DeclareGlobalFunction("DesignByJordanParameters");
+DeclareGlobalFunction( "DesignByJordanParameters" );
 
 DeclareAttribute( "DesignJordanRank", IsDesign );
 
 DeclareAttribute( "DesignJordanDegree", IsDesign );
 
-DeclareAttribute( "DesignQPolynomial", IsDesign);
+DeclareAttribute( "DesignQPolynomial", IsDesign );
 
 DeclareAttribute( "DesignConnectionCoefficients", IsDesign );
 
@@ -137,9 +141,9 @@ DeclareCategory( "IsDesignWithAngleSet", IsDesign );
 
 DeclareAttribute( "DesignAngleSet", IsDesignWithAngleSet );
 
-DeclareOperation("DesignAddAngleSet", [ IsDesign, IsList ]);
+DeclareOperation( "DesignAddAngleSet", [ IsDesign, IsList ] );
 
-DeclareGlobalFunction("DesignByAngleSet");
+DeclareGlobalFunction( "DesignByAngleSet" );
 
 DeclareAttribute( "DesignNormalizedAnnihilatorPolynomial", IsDesignWithAngleSet );
 
@@ -161,61 +165,71 @@ DeclareCategory( "IsTightDesign", IsAssociationSchemeDesign );
 
 DeclareAttribute( "DesignCardinality", IsDesignWithAngleSet );
 
-DeclareOperation("DesignAddCardinality", [ IsDesignWithAngleSet, IsInt ]);
+DeclareOperation( "DesignAddCardinality", [ IsDesignWithAngleSet, IsInt ] );
 
 DeclareCategory( "IsDesignWithStrength", IsDesign );
 
+DeclareAttribute( "DesignAnnihilatorPolynomial", IsDesignWithAngleSet and IsDesignWithCardinality );
 
-DeclareAttribute("DesignAnnihilatorPolynomial", IsDesignWithAngleSet and IsDesignWithCardinality);
+DeclareAttribute( "DesignIndicatorCoefficients", IsDesignWithAngleSet and IsDesignWithCardinality );
 
-DeclareAttribute("DesignIndicatorCoefficients", IsDesignWithAngleSet and IsDesignWithCardinality);
+DeclareAttribute( "DesignStrength", IsDesignWithAngleSet and IsDesignWithCardinality );
 
-DeclareAttribute("DesignStrength", IsDesignWithAngleSet and IsDesignWithCardinality);
+DeclareAttribute( "DesignSubdegrees", IsRegularSchemeDesign );
 
-DeclareAttribute("DesignSubdegrees", IsRegularSchemeDesign);
+DeclareAttribute( "DesignIntersectionNumbers", IsAssociationSchemeDesign );
 
-DeclareAttribute("DesignIntersectionNumbers", IsAssociationSchemeDesign);
+DeclareAttribute( "DesignReducedAdjacencyMatrices", IsAssociationSchemeDesign );
 
-DeclareAttribute("DesignReducedAdjacencyMatrices", IsAssociationSchemeDesign);
+DeclareAttribute( "DesignBoseMesnerAlgebra", IsAssociationSchemeDesign );
 
-DeclareAttribute("DesignBoseMesnerAlgebra", IsAssociationSchemeDesign);
+DeclareAttribute( "DesignBoseMesnerIdempotentBasis", IsAssociationSchemeDesign );
 
-DeclareAttribute("DesignBoseMesnerIdempotentBasis", IsAssociationSchemeDesign);
+DeclareAttribute( "DesignFirstEigenmatrix", IsAssociationSchemeDesign );
 
-DeclareAttribute("DesignFirstEigenmatrix", IsAssociationSchemeDesign);
+DeclareAttribute( "DesignSecondEigenmatrix", IsAssociationSchemeDesign );
 
-DeclareAttribute("DesignSecondEigenmatrix", IsAssociationSchemeDesign);
+DeclareAttribute( "DesignMultiplicities", IsAssociationSchemeDesign );
 
-DeclareAttribute("DesignMultiplicities", IsAssociationSchemeDesign);
+DeclareAttribute( "DesignValencies", IsAssociationSchemeDesign );
 
-DeclareAttribute("DesignValencies", IsAssociationSchemeDesign);
+DeclareAttribute( "DesignKreinNumbers", IsAssociationSchemeDesign );
 
-DeclareAttribute("DesignKreinNumbers", IsAssociationSchemeDesign);
+# Octonion Lattice Tools
 
-# Leech Lattice Tools
+DeclareGlobalFunction( "IsLeechLatticeGramMatrix" );
 
-DeclareGlobalFunction("IsLeechLatticeGramMatrix");
+DeclareGlobalFunction( "IsGossetLatticeGramMatrix" );
 
-DeclareGlobalFunction("IsGossetLatticeGramMatrix");
+DeclareCategory( "IsOctonionLattice", IsFreeLeftModule );
 
-DeclareCategory("IsOctonionLattice", IsFreeLeftModule);
-
-    DeclareAttribute("UnderlyingOctonionRing", IsOctonionLattice);
+    DeclareAttribute( "UnderlyingOctonionRing", IsOctonionLattice );
     
-    DeclareAttribute("OctonionGramMatrix", IsOctonionLattice);
+    DeclareAttribute( "OctonionGramMatrix", IsOctonionLattice );
 
-    DeclareAttribute("GeneratorsAsCoefficients", IsOctonionLattice);
+    DeclareAttribute( "GeneratorsAsCoefficients", IsOctonionLattice );
 
-    DeclareAttribute("LLLReducedBasisCoefficients", IsOctonionLattice);
+    DeclareAttribute( "LLLReducedBasisCoefficients", IsOctonionLattice );
 
-    DeclareAttribute("GramMatrix", IsOctonionLattice);
+    DeclareAttribute( "GramMatrix", IsOctonionLattice );
 
-    DeclareAttribute("TotallyIsotropicCode", IsOctonionLattice);
+    DeclareAttribute( "TotallyIsotropicCode", IsOctonionLattice );
 
-DeclareGlobalFunction("OctonionLatticeByGenerators");
+DeclareGlobalFunction( "OctonionLatticeByGenerators" );
 
-DeclareCategory("IsOctonionLatticeBasis", IsCanonicalBasis);
+DeclareCategory( "IsOctonionLatticeBasis", IsCanonicalBasis );
 
-    DeclareAttribute("UnderlyingOctonionRing", IsOctonionLatticeBasis);
+    DeclareAttribute( "UnderlyingOctonionRing", IsOctonionLatticeBasis );
 
 DeclareOperation( "IsSublattice", [ IsOctonionLattice, IsOctonionLattice ] );
+
+# Other Tools
+
+DeclareGlobalFunction( "closure_step" );
+
+DeclareGlobalFunction( "Closure" );
+
+DeclareGlobalFunction( "RandomClosure" );
+
+DeclareGlobalFunction( "RandomOrbitOnSets" );
+
