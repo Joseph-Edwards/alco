@@ -597,7 +597,7 @@ end );
 
 # Albert algebra by structure constants, computed elsewhere. 
 InstallGlobalFunction(AlbertAlgebra, function(F)
-    local T, alg;
+    local T, alg, jordan_basis, i, j, k, e, temp;
     T := [ [ [ [ 26, 27 ], [ 1, 1 ] ], [ [  ], [  ] ], [ [  ], [  ] ], [ [  ], [  ] ], [ [  ], [  ] ], 
       [ [  ], [  ] ], [ [  ], [  ] ], [ [  ], [  ] ], [ [ 24 ], [ -1/2 ] ], [ [ 20 ], [ -1/2 ] ], 
       [ [ 23 ], [ -1/2 ] ], [ [ 18 ], [ 1/2 ] ], [ [ 22 ], [ -1/2 ] ], [ [ 21 ], [ 1/2 ] ], 
@@ -791,10 +791,22 @@ InstallGlobalFunction(AlbertAlgebra, function(F)
     SetJordanBasisTraces( alg, List(Basis(alg), 
         j -> (Rank(j)/Dimension(FamilyObj(j)!.fullSCAlgebra))*Trace(AdjointMatrix(Basis(FamilyObj(j)!.fullSCAlgebra), j)))
         );
+    jordan_basis := HermitianJordanAlgebraBasis(3, CanonicalBasis(Oct) );
+    e := jordan_basis{[1..3]};
+    i := jordan_basis{[20..27]};
+    j := ComplexConjugate(jordan_basis{[12..19]});
+    k := jordan_basis{[4..11]};
+    jordan_basis := Concatenation([i,j,k,e]);
+    SetJordanMatrixBasis( alg, jordan_basis );
     return alg;
 end );
 
 InstallValue( Alb, AlbertAlgebra(Rationals) );
+
+# V := SimpleEuclideanJordanAlgebra(3,8,Basis(Oct));
+# B := Basis(V, Concatenation([Basis(V){[20..27]}, -Basis(V){[12..18]}, Basis(V){[19]}, B
+# asis(V){[4..11]}, Basis(V){[1..3]}]));
+# StructureConstantsTable(B){[1..27]} = StructureConstantsTable(Basis(Alb)){[1..27]};
 
 # T-Design Tools
 
