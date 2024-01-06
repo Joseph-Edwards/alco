@@ -190,6 +190,8 @@ InstallGlobalFunction( OctonionArithmetic, function(F, option...)
     return alg;
 end );
 
+
+
 InstallMethod( \mod, 
     "For an octonion integer", 
     [IsOctonionArithmeticElement, IsPosInt], 0,
@@ -339,33 +341,46 @@ InstallMethod( IsPositiveDefinite,
         return false;
     end );
 
-# Function to construct a Hermitian simple Euclidean Jordan algebra basis.
+# Function to construct basis matrices for a Hermitian simple Euclidean Jordan algebra.
 InstallGlobalFunction( HermitianJordanAlgebraBasis, function(rho, comp_alg_basis)
-    local peirce, d, F, conj, mat, frame, realbasis;
+    local d, C, F, peirce, conj, mat, frame, realbasis;
     # Ensure that the rank and degree are correct.
-    if not (IsInt(rho) and rho > 1 and IsBasis(comp_alg_basis)) then return fail; fi;
-    # Ensure that the second argument is the basis for a composition algebra. 
-    d := Dimension(UnderlyingLeftModule(comp_alg_basis) );
-    if not IsBasis(comp_alg_basis) and d in [1,2,4,8] then return fail; fi;
-    # Ensure that for d = 8 the rank is appropriate.
-    if d = 8 and rho > 3 then return fail; fi;
-    # If not a quaternion or octonion collection, then it must belong to a field extensions or the rationals.
-    if not IsOctonionCollection(comp_alg_basis) and not IsQuaternionCollection(comp_alg_basis) then 
-        if LeftActingDomain(UnderlyingLeftModule(comp_alg_basis)) <> Rationals then return fail; fi;
-        # Ensure the quadratic extension case is imaginary.
-        if d = 2 and Set(comp_alg_basis, x -> RealPart(x) = x ) = [true] then return fail; fi;
+    if not (IsInt(rho) and rho > 1 and IsBasis(comp_alg_basis)) then 
+        return fail; 
+    fi;
+    d := Length(comp_alg_basis);
+    if (not d in [1,2,4,8]) or (d = 8 and rho > 3) then 
+        return fail; 
+    fi;
+    # Record the composition algebra over F.
+    C := UnderlyingLeftModule(comp_alg_basis);
+    F := LeftActingDomain(C);
+    # Require that F is either integers or a field of characteristic zero.
+    if not (IsIntegers(F) or (IsField(F) and Characteristic(F) = 0)) then 
+        return fail;
+    fi;
+    # It is possible that the d = 1 or 2 cases do not involve quaternions or octonion SCAlgebra objects. 
+    if not (IsOctonionCollection(C) or IsQuaternionCollection(C)) then 
+        # Only real and complex cases remain, which must be quadratic extensions of some number field. 
+        if d > 2 then 
+            return fail; 
+        fi;
+        # Rule out subfields of the rationals for d = 2:
+        if d = 2 and Set(comp_alg_basis, x -> RealPart(x) = x ) = [true]
+            then return fail;
+        fi;
     fi;
     # Define a function to construct a single entry Hermitian matrix.
     mat := function(n,x)
         local temp; 
         if Length(n) <> 2 then return fail; fi;
-        temp := Zero(x)*IdentityMat(rho );
+        temp := Zero(x)*IdentityMat( rho );
         temp[n[1]][n[2]] := x;
-        temp[n[2]][n[1]] := ComplexConjugate(x );
+        temp[n[2]][n[1]] := ComplexConjugate( x );
         return temp;
     end;
     # Construct the diagonal matrices. 
-    frame := Concatenation(List(IdentityMat(rho), x -> List([One(UnderlyingLeftModule(comp_alg_basis))], r -> DiagonalMat(x)*r)) );
+    frame := Concatenation(List(IdentityMat(rho), x -> List([One(C)], r -> DiagonalMat(x)*r)) );
     # Construct the off-diagonal matrices.
     peirce := List(Combinations([1..rho],2), n -> List(comp_alg_basis, x -> mat(n,x)) );
     # Return the matrices. 
@@ -387,17 +402,21 @@ InstallGlobalFunction( HermitianMatrixToJordanCoefficients, function(mat, comp_a
     temp := []; 
     # Determine the coefficients due to the diagonal components of the matrix.
     for i in [1..rho] do 
-        if d in [1,2] then 
-            Append(temp, [RealPart(mat[i][i])]);
-        elif d in [4,8] then  
+        if IsQuaternionCollection(comp_alg_basis) or IsOctonionCollection(comp_alg_basis) then  
             Append(temp, [Trace(mat[i][i])/2] );
+        elif IsCyclotomicCollection(comp_alg_basis) then 
+            Append(temp, [RealPart(mat[i][i])]);
         else 
             return fail;
         fi;
     od;
     # Find the off-diagonal coefficients next.
-    for i in Combinations([1..rho],2) do 
-        Append(temp, Coefficients(basis, mat[i[1]][i[2]]) );
+    for i in Combinations([1..rho],2) do
+        if not (IsQuaternionCollection(comp_alg_basis) or             IsOctonionCollection(comp_alg_basis) ) and LeftActingDomain(UnderlyingLeftModule(comp_alg_basis)) = Integers then     
+            Append(temp, Coefficients(Basis(Rationals,[1]), mat[i[1]][i[2]]) );
+        else 
+            Append(temp, Coefficients(basis, mat[i[1]][i[2]]) );
+        fi;
     od;
     # Return the coefficients.
     return temp;
@@ -419,24 +438,30 @@ end );
 
 # Function to construct Jordan algebra of Hermitian type.
 InstallGlobalFunction( HermitianSimpleJordanAlgebra, function(rho, comp_alg_basis, F...)
-    local jordan_basis, T, temp, coeffs, K, algebra, filter, n, m, z, l;
-    # Ensure inputs are correct.
-    if not (IsInt(rho) and rho > 1 and IsBasis(comp_alg_basis)) then return fail; fi;
-    if Length(F) > 1 then return fail; fi;
-    # Ensure that the optional field argument contains the left acting domain of the basis. 
-    K := Rationals;
-    if Length(F) = 1 then 
-        if not IsField(F[1]) or not Set(Basis(LeftActingDomain(UnderlyingLeftModule(comp_alg_basis))), y -> y in F[1]) then 
-            return fail; 
-        else 
-            K := F[1];
-        fi;
+    local jordan_basis, C, K, T, temp, coeffs, algebra, filter, n, m, z, l;
+    # Ensure inputs are correct by computing basis vectors:
+    if Length(F) > 1 then 
+        return fail; 
     fi;
-    # Evaluate basis vectors:
     jordan_basis := HermitianJordanAlgebraBasis(rho, comp_alg_basis );
-    if jordan_basis = fail then return jordan_basis; fi;
+    if jordan_basis = fail then 
+        return jordan_basis; 
+    fi;
+    # Record the composition algebra over F.
+    C := UnderlyingLeftModule(comp_alg_basis);
+    K := LeftActingDomain(C);
+    # Ensure that the optional field argument contains the left acting domain of the basis. 
+    if Length(F) = 1 then
+        F := F[1]; 
+        if not (IsField(F) or IsIntegers(F)) then 
+            return fail;  
+        elif IsField(F) and not IsSubset(F, K) then 
+            return fail;
+        fi;
+        K := F;
+    fi;
     # Define an empty structure constants table.
-    T := EmptySCTable(Size(jordan_basis), Zero(LeftActingDomain(UnderlyingLeftModule(comp_alg_basis))) );
+    T := EmptySCTable(Size(jordan_basis), Zero(K) );
     # Compute the structure constants.
     for n in [1..Size(jordan_basis)] do 
         for m in [1..Size(jordan_basis)] do 
@@ -549,7 +574,7 @@ InstallGlobalFunction( JordanHomotope , function(ring, u, label...)
 end );
 
 InstallGlobalFunction( SimpleEuclideanJordanAlgebra, function(rho, d, args...)
-    local temp;
+    local temp, F;
     temp := rec( );
     if not (IsInt(d) and IsInt(rho)) then return fail; fi;
     if rho < 2 then return fail; fi; 
