@@ -41,18 +41,29 @@
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X86C6713C8178A69F">3.2-2 JordanSpinFactor</a></span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X859F001D7CB6CBD8">3.2-3 HermitianSimpleJordanAlgebra</a></span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X800B48C383196E06">3.2-4 JordanHomotope</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7A6AFFE07994B4A9">3.2-5 AlbertAlgebra</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7B456B2582F195DB">3.2-6 Alb</a></span>
 </div></div>
-<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X7EA1D48F853C02F1">3.3 <span class="Heading">Additional Tools and Properties</span></a>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X7B9397277AF7F920">3.3 <span class="Heading">The Albert Algebra</span></a>
 </span>
 <div class="ContSSBlock">
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7C236EB080D05CD4">3.3-1 HermitianJordanAlgebraBasis</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X853480DC7F9B0BD7">3.3-2 JordanMatrixBasis</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X8031519B84E53A57">3.3-3 HermitianMatrixToJordanCoefficients</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7B6084887C1C5AF1">3.3-4 JordanAlgebraGramMatrix</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X806F76C07B315DE4">3.3-5 JordanAdjugate</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7C82B2EB78CF9C17">3.3-6 IsPositiveDefinite</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7A6AFFE07994B4A9">3.3-1 AlbertAlgebra</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7B456B2582F195DB">3.3-2 Alb</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X860036647BB9325E">3.3-3 AlbertVectorToHermitianMatrix</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X8385802B7AE842E6">3.3-4 HermitianMatrixToAlbertVector</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X7F03850D819127E2">3.4 <span class="Heading">The Quadratic Representation</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X80EC9BC680EC9BC6">3.4-1 P</a></span>
+</div></div>
+<div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X7EA1D48F853C02F1">3.5 <span class="Heading">Additional Tools and Properties</span></a>
+</span>
+<div class="ContSSBlock">
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7C236EB080D05CD4">3.5-1 HermitianJordanAlgebraBasis</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X853480DC7F9B0BD7">3.5-2 JordanMatrixBasis</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7D167A057F3CB029">3.5-3 HermitianMatrixToJordanVector</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7B6084887C1C5AF1">3.5-4 JordanAlgebraGramMatrix</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X806F76C07B315DE4">3.5-5 JordanAdjugate</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X7C82B2EB78CF9C17">3.5-6 IsPositiveDefinite</a></span>
 </div></div>
 </div>
 
@@ -203,9 +214,15 @@ v.2+(-1)*v.3+(-1)*v.4+(1/2)*v.5+(-2)*v.7+(1/2)*v.8+(-3/2)*v.9
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">SemiSimpleType(Derivations(Basis(H)));</span>
 "D4"</pre></div>
 
+<p><a id="X7B9397277AF7F920" name="X7B9397277AF7F920"></a></p>
+
+<h4>3.3 <span class="Heading">The Albert Algebra</span></h4>
+
+<p>The exceptional simple Euclidean Jordan algebra, or Albert algebra, may be constructed using <code class="func">SimpleEuclideanJordanAlgebra</code> (<a href="chap3.html#X7852050A81DEB9F4"><span class="RefLink">3.2-1</span></a>) with rank 3 and degree 8. However, that construction uses the upper triangular entries of the Hermitian matrices define the basis vectors (i.e., the <code class="code">[1][2], [2][3], [1][3]</code> entries). Much of the literature on the Albert algebra instead uses the <code class="code">[1][2], [2][3], [3][1]</code> entries of the Hermitian matrices to define the basis vectors (see for example <a href="chapBib.html#biBwilson_finite_2009">[Wil09a, pp. 147-148]</a>). The <strong class="pkg">ALCO</strong> provides a specific construction of the Albert algebra that uses this convention for defining basis vectors, described below.</p>
+
 <p><a id="X7A6AFFE07994B4A9" name="X7A6AFFE07994B4A9"></a></p>
 
-<h5>3.2-5 AlbertAlgebra</h5>
+<h5>3.3-1 AlbertAlgebra</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; AlbertAlgebra</code>( <var class="Arg">F</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>For <var class="Arg">F</var> a field, this function returns an Albert algebra over <var class="Arg">F</var>. For <code class="code"><var class="Arg">F</var> = Rationals</code>, this algebra is isomorphic to <code class="code">HermitianSimpleJordanAlgebra(3,8,Basis(Oct))</code> but in a basis that is more convenient for reproducing certain calculations in the literature. Specifically, while <code class="code">HermitianSimpleJordanAlgebra(3,8,Basis(Oct))</code> uses the upper-triangular elements of a Hermitian matrix as representative, <code class="code">AlbertAlgebra(<var class="Arg">F</var>)</code> uses the <code class="code">[1][2], [2][3], [3][1]</code> entries as representative. These are respectively labeled using <code class="code">k,i,j</code>.</p>
@@ -213,12 +230,16 @@ v.2+(-1)*v.3+(-1)*v.4+(1/2)*v.5+(-2)*v.7+(1/2)*v.8+(-3/2)*v.9
 
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">A := AlbertAlgebra(Rationals);</span>
 &lt;algebra of dimension 27 over Rationals&gt;
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">AsList(Basis(A));</span>
-[ i1, i2, i3, i4, i5, i6, i7, i8, j1, j2, j3, j4, j5, j6, j7, j8, k1, k2, k3, k4, k5, k6, k7, k8, ei, ej, ek ]</pre></div>
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">i := Basis(A){[1..8]}; j := Basis(A){[9..16]}; k := Basis(A){[17..24]}; e := Basis(A){[</span>
+25..27]};
+[ i1, i2, i3, i4, i5, i6, i7, i8 ]
+[ j1, j2, j3, j4, j5, j6, j7, j8 ]
+[ k1, k2, k3, k4, k5, k6, k7, k8 ]
+[ ei, ej, ek ]</pre></div>
 
 <p><a id="X7B456B2582F195DB" name="X7B456B2582F195DB"></a></p>
 
-<h5>3.2-6 Alb</h5>
+<h5>3.3-2 Alb</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; Alb</code></td><td class="tdright">(&nbsp;global variable&nbsp;)</td></tr></table></div>
 <p>The <strong class="pkg">ALCO</strong> package includes a loaded instance of the Albert algebra over the rationals.</p>
@@ -227,13 +248,70 @@ v.2+(-1)*v.3+(-1)*v.4+(1/2)*v.5+(-2)*v.7+(1/2)*v.8+(-3/2)*v.9
 <div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Alb;</span>
 &lt;algebra of dimension 27 over Rationals&gt;</pre></div>
 
+<p><a id="X860036647BB9325E" name="X860036647BB9325E"></a></p>
+
+<h5>3.3-3 AlbertVectorToHermitianMatrix</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; AlbertVectorToHermitianMatrix</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>For an element <var class="Arg">x</var> in <code class="code">Alb</code> (see <code class="func">Alb</code> (<a href="chap3.html#X7B456B2582F195DB"><span class="RefLink">3.3-2</span></a>)), this function returns the corresponding 3 x 3 Hermitian matrix with octonion entries in <code class="code">Oct</code> (see <code class="func">Oct</code> (<a href="chap2.html#X7CD8436C85792B3B"><span class="RefLink">2.1-4</span></a>)).</p>
+
+<p><a id="X8385802B7AE842E6" name="X8385802B7AE842E6"></a></p>
+
+<h5>3.3-4 HermitianMatrixToAlbertVector</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; HermitianMatrixToAlbertVector</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<p>For 3 x 3 Hermitian matrix with elements in <code class="code">Oct</code> (see <code class="func">Oct</code> (<a href="chap2.html#X7CD8436C85792B3B"><span class="RefLink">2.1-4</span></a>)), this function returns the corresponding vector in in <code class="code">Alb</code> (see <code class="func">Alb</code> (<a href="chap3.html#X7B456B2582F195DB"><span class="RefLink">3.3-2</span></a>)).</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">j := Basis(Alb){[9..16]};</span>
+[ j1, j2, j3, j4, j5, j6, j7, j8 ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">mat := AlbertVectorToHermitianMatrix(j[3]);; Display(mat);</span>
+[ [     0*e1,     0*e1,  (-1)*e3 ],
+  [     0*e1,     0*e1,     0*e1 ],
+  [       e3,     0*e1,     0*e1 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">HermitianMatrixToAlbertVector(mat);</span>
+j3</pre></div>
+
+<p><a id="X7F03850D819127E2" name="X7F03850D819127E2"></a></p>
+
+<h4>3.4 <span class="Heading">The Quadratic Representation</span></h4>
+
+<p>Many important features of simple Euclidean Jordan algebra and their isotopes are related to the quadratic representation. This aspect of Jordan algebras is described well in <a href="chapBib.html#biBmccrimmon_taste_2004">[McC04, pp.82-86]</a> and <a href="chapBib.html#biBfaraut_analysis_1994">[FK94, pp. 32-38]</a>. The following methods allow for the construction of Jordan operators, including the left translation and the quadratic maps.</p>
+
+<p><a id="X80EC9BC680EC9BC6" name="X80EC9BC680EC9BC6"></a></p>
+
+<h5>3.4-1 P</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; P</code>( <var class="Arg">x</var>[, <var class="Arg">y</var>] )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<p>For <var class="Arg">x</var> and <var class="Arg">y</var> Jordan algebra elements, satisfying <code class="code">IsJordanAlgebraObj</code> this operation applies two methods. In the case of <code class="code">P(<var class="Arg">x</var>, y)</code>, this operation returns <code class="code">2*x*(x*y) - (x^2)*y</code>. In the case of <code class="code">P(x)</code>, this operation returns the matrix representing the quadratic map in the canonical basis of the Jordan algebra <var class="Arg">J</var> containing <var class="Arg">x</var>. For <code class="code">L(x)</code> the matrix <code class="code">AdjointMatrix(CanonicalBasis(J), x)</code>, the operation <code class="code">P(<var class="Arg">x</var>)</code> returns the matrix <code class="code">2 L(x)^2 - L(x^2)</code>.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">J := JordanSpinFactor(IdentityMat(3));</span>
+&lt;algebra of dimension 4 over Rationals&gt;
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">x := Random(J); y := Random(J);</span>
+(-1)*v.1+(4/3)*v.2+(-1)*v.3+v.4
+(-1)*v.1+(-1/2)*v.2+(2)*v.3+(-1/2)*v.4
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">P(x,y);</span>
+(14/9)*v.1+(-79/18)*v.2+(-11/9)*v.3+(-53/18)*v.4
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">P(x);; Display(last);</span>
+[ [  43/9,  -8/3,     2,    -2 ],
+  [  -8/3,   7/9,  -8/3,   8/3 ],
+  [     2,  -8/3,  -7/9,    -2 ],
+  [    -2,   8/3,    -2,  -7/9 ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">LinearCombination(Basis(J), P(x)*ExtRepOfObj(y)) = P(x,y);</span>
+true
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">ExtRepOfObj(P(x,y)) = P(x)*ExtRepOfObj(y);</span>
+true
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">P(2*x) = 4*P(x);</span>
+true</pre></div>
+
 <p><a id="X7EA1D48F853C02F1" name="X7EA1D48F853C02F1"></a></p>
 
-<h4>3.3 <span class="Heading">Additional Tools and Properties</span></h4>
+<h4>3.5 <span class="Heading">Additional Tools and Properties</span></h4>
 
 <p><a id="X7C236EB080D05CD4" name="X7C236EB080D05CD4"></a></p>
 
-<h5>3.3-1 HermitianJordanAlgebraBasis</h5>
+<h5>3.5-1 HermitianJordanAlgebraBasis</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; HermitianJordanAlgebraBasis</code>( <var class="Arg">r</var>, <var class="Arg">B</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Returns a set of Hermitian matrices to serve as a basis for the Jordan algebra with or rank <var class="Arg">r</var> and degree given by the cardinality of composition algebra basis <var class="Arg">B</var>. The elements spanning each off-diagonal components are determined by basis <var class="Arg">B</var>.</p>
@@ -258,37 +336,36 @@ v.2+(-1)*v.3+(-1)*v.4+(1/2)*v.5+(-2)*v.7+(1/2)*v.8+(-3/2)*v.9
 
 <p><a id="X853480DC7F9B0BD7" name="X853480DC7F9B0BD7"></a></p>
 
-<h5>3.3-2 JordanMatrixBasis</h5>
+<h5>3.5-2 JordanMatrixBasis</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; JordanMatrixBasis</code>( <var class="Arg">J</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
 <p>If <code class="code">IsJordanAlgebra( <var class="Arg">J</var> )</code> and <var class="Arg">J</var> has been constructed using a matrix basis, then the set of matrices corresponding to <code class="code">CanonicalBasis( <var class="Arg">J</var> )</code> can be obtained using <code class="code">JordanMatrixBasis( <var class="Arg">J</var> )</code>.</p>
 
-<p><a id="X8031519B84E53A57" name="X8031519B84E53A57"></a></p>
+<p><a id="X7D167A057F3CB029" name="X7D167A057F3CB029"></a></p>
 
-<h5>3.3-3 HermitianMatrixToJordanCoefficients</h5>
+<h5>3.5-3 HermitianMatrixToJordanVector</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; HermitianMatrixToJordanCoefficients</code>( <var class="Arg">mat</var>, <var class="Arg">J</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; HermitianMatrixToJordanVector</code>( <var class="Arg">mat</var>, <var class="Arg">J</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>Converts matrix <var class="Arg">mat</var> into an element of Jordan algebra <var class="Arg">J</var>.</p>
 
 
 <div class="example"><pre>
-             
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">H := QuaternionAlgebra(Rationals);; AsList(Basis(H));</span>
+            gap&gt; H := QuaternionAlgebra(Rationals);; AsList(Basis(H));
 [ e, i, j, k ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">J := HermitianSimpleJordanAlgebra(2,Basis(H));</span>
 &lt;algebra of dimension 6 over Rationals&gt;
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">AsList(CanonicalBasis(J));</span>
 [ v.1, v.2, v.3, v.4, v.5, v.6 ]
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">JordanMatrixBasis(J);</span>
-[ [ [ e, 0*e ], [ 0*e, 0*e ] ],    [ [ 0*e, 0*e ], [ 0*e, e ] ], 
-  [ [ 0*e, e ], [ e, 0*e ] ],      [ [ 0*e, i ], [ (-1)*i, 0*e ] ], 
-  [ [ 0*e, j ], [ (-1)*j, 0*e ] ], [ [ 0*e, k ], [ (-1)*k, 0*e ] ] ]
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List(JordanMatrixBasis(J), x -&gt; HermitianMatrixToJordanCoefficients(x, J));</span>
+[ [ [ e, 0*e ], [ 0*e, 0*e ] ], [ [ 0*e, 0*e ], [ 0*e, e ] ], [ [ 0*e, e ], [ e, 0*e ] ],
+  [ [ 0*e, i ], [ (-1)*i, 0*e ] ], [ [ 0*e, j ], [ (-1)*j, 0*e ] ],
+  [ [ 0*e, k ], [ (-1)*k, 0*e ] ] ]
+<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List(JordanMatrixBasis(J), x -&gt; HermitianMatrixToJordanVector(x, J));</span>
 [ v.1, v.2, v.3, v.4, v.5, v.6 ]</pre></div>
 
 <p><a id="X7B6084887C1C5AF1" name="X7B6084887C1C5AF1"></a></p>
 
-<h5>3.3-4 JordanAlgebraGramMatrix</h5>
+<h5>3.5-4 JordanAlgebraGramMatrix</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; JordanAlgebraGramMatrix</code>( <var class="Arg">J</var> )</td><td class="tdright">(&nbsp;attribute&nbsp;)</td></tr></table></div>
 <p>For <code class="code">IsJordanAlgebra( <var class="Arg">J</var> )</code>, returns the Gram matrix on <code class="code">CanonicalBasis( <var class="Arg">J</var> )</code> using inner product <code class="code">Trace(x*y)</code>.</p>
@@ -310,14 +387,14 @@ v.2+(-1)*v.3+(-1)*v.4+(1/2)*v.5+(-2)*v.7+(1/2)*v.8+(-3/2)*v.9
 
 <p><a id="X806F76C07B315DE4" name="X806F76C07B315DE4"></a></p>
 
-<h5>3.3-5 JordanAdjugate</h5>
+<h5>3.5-5 JordanAdjugate</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; JordanAdjugate</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
 <p>For <code class="code">IsJordanAlgebraObj( <var class="Arg">x</var> )</code>, returns the adjugate of <var class="Arg">x</var>, which satisfies <code class="code">x*JordanAdjugate(x) = One(x)*Determinant(x)</code>. When <code class="code">Determinant(x)</code> is non-zero, <code class="code">JordanAdjugate(x)</code> is proportional to <code class="code">Inverse(x)</code>.</p>
 
 <p><a id="X7C82B2EB78CF9C17" name="X7C82B2EB78CF9C17"></a></p>
 
-<h5>3.3-6 IsPositiveDefinite</h5>
+<h5>3.5-6 IsPositiveDefinite</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IsPositiveDefinite</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;filter&nbsp;)</td></tr></table></div>
 <p>For <code class="code">IsJordanAlgebraObj( <var class="Arg">x</var> )</code>, returns <code class="code">true</code> when <var class="Arg">x</var> is positive definite and <code class="code">false</code> otherwise. This filter uses <code class="func">GenericMinimalPolynomial</code> (<a href="chap3.html#X85D508B5853906E5"><span class="RefLink">3.1-6</span></a>) to determine whether <var class="Arg">x</var> is positive definite.</p>

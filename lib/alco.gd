@@ -111,6 +111,14 @@ DeclareGlobalFunction( "AlbertAlgebra" );
 
 DeclareGlobalVariable( "Alb" );
 
+DeclareGlobalFunction( "HermitianMatrixToAlbertVector" );
+
+DeclareGlobalFunction( "AlbertVectorToHermitianMatrix" );
+
+DeclareOperation("P", [IsJordanAlgebraObj, IsJordanAlgebraObj]);
+
+DeclareOperation("P", [IsJordanAlgebraObj]);
+
 # T-Design Tools
 
 DeclareGlobalFunction( "JacobiPolynomial" );

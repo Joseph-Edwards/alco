@@ -340,7 +340,7 @@ InstallMethod( IsPositiveDefinite,
     end );
 
 # Function to construct a Hermitian simple Euclidean Jordan algebra basis.
-InstallGlobalFunction( HermitianJordanAlgebraBasis , function(rho, comp_alg_basis)
+InstallGlobalFunction( HermitianJordanAlgebraBasis, function(rho, comp_alg_basis)
     local peirce, d, F, conj, mat, frame, realbasis;
     # Ensure that the rank and degree are correct.
     if not (IsInt(rho) and rho > 1 and IsBasis(comp_alg_basis)) then return fail; fi;
@@ -374,32 +374,29 @@ end );
 
 # Function to convert a Hermitian matrix to a vector, or coefficients of a vector, in a Jordan algebra. 
 InstallGlobalFunction( HermitianMatrixToJordanCoefficients, function(mat, comp_alg_basis)
-    local temp, result, i, z, basis, realbasis, pos;
+    local temp, rho, d, i, basis;
     # Verify that the input is a Hermitian matrix.
     if not IsMatrix(mat) and mat = TransposedMat(ComplexConjugate(mat)) then return fail; fi;
-    # A record to record the results.
-    result := rec( );
     # Ensure that the second input is a basis. 
     if not IsBasis(comp_alg_basis) then return fail; fi;
     # Record basic parameters. 
     basis := comp_alg_basis;
-    result.d := Length(comp_alg_basis );
-    result.rho := Length(DiagonalOfMat(mat) ); 
-    # Define a basis for the diagonal components. 
-    realbasis := Filtered(basis, x -> RealPart(x) = x );
-    pos := List(realbasis, x -> Position(basis, x) );
-    if Length(realbasis) = 0 then realbasis := [One(basis)]; fi;
+    rho := Length(DiagonalOfMat(mat) );
+    d := Size(basis); 
     # Define a temporary list of coefficients.
     temp := []; 
     # Determine the coefficients due to the diagonal components of the matrix.
-    # First find the canonical basis for the subalgebra spanned by the identity. 
-    realbasis := Basis(Subalgebra(UnderlyingLeftModule(comp_alg_basis), [One(UnderlyingLeftModule(comp_alg_basis))]) );
-    # Then find the coefficients.
-    for i in [1..result.rho] do 
-        Append(temp, Coefficients(realbasis, mat[i][i]) );
+    for i in [1..rho] do 
+        if d in [1,2] then 
+            Append(temp, [RealPart(mat[i][i])]);
+        elif d in [4,8] then  
+            Append(temp, [Trace(mat[i][i])/2] );
+        else 
+            return fail;
+        fi;
     od;
     # Find the off-diagonal coefficients next.
-    for i in Combinations([1..result.rho],2) do 
+    for i in Combinations([1..rho],2) do 
         Append(temp, Coefficients(basis, mat[i[1]][i[2]]) );
     od;
     # Return the coefficients.
@@ -412,7 +409,7 @@ InstallGlobalFunction( HermitianMatrixToJordanVector, function(mat, J)
     # Verify that the second argument is a Jordan algebra with an off-diagonal basis defined. 
     if not (IsJordanAlgebra(J) and HasJordanOffDiagonalBasis(J)) then return fail; fi;
     # Verify that the matrix entries belong to the algebra spanned by the off-diagonal basis. 
-    if not IsSubset(UnderlyingLeftModule(JordanOffDiagonalBasis(J)), Flat(mat)) then return fail; fi;\
+    if not IsHomogeneousList(Flat([mat, JordanOffDiagonalBasis(J)])) then return fail; fi;
     # Compute the coefficients, if possible.
     temp := HermitianMatrixToJordanCoefficients(mat, JordanOffDiagonalBasis(J) );
     if temp = fail then return temp; fi;
@@ -471,10 +468,6 @@ InstallGlobalFunction( HermitianSimpleJordanAlgebra, function(rho, comp_alg_basi
     return algebra;
 end );
 
-
-
-
-
 InstallGlobalFunction( JordanSpinFactor,  function(gram_mat)
     local result, T, n, m, z, temp, coeffs, filter;
     if not IsMatrix(gram_mat) or Inverse(gram_mat) = fail then return fail; fi;
@@ -505,8 +498,6 @@ InstallGlobalFunction( JordanSpinFactor,  function(gram_mat)
         );
     return result.algebra;
 end );
-
-
 
 InstallMethod( JordanAlgebraGramMatrix, 
     "for a Jordan algebra",
@@ -803,10 +794,39 @@ end );
 
 InstallValue( Alb, AlbertAlgebra(Rationals) );
 
-# V := SimpleEuclideanJordanAlgebra(3,8,Basis(Oct));
-# B := Basis(V, Concatenation([Basis(V){[20..27]}, -Basis(V){[12..18]}, Basis(V){[19]}, B
-# asis(V){[4..11]}, Basis(V){[1..3]}]));
-# StructureConstantsTable(B){[1..27]} = StructureConstantsTable(Basis(Alb)){[1..27]};
+InstallGlobalFunction( HermitianMatrixToAlbertVector, 
+    function(mat)
+        local temp;
+        if not IsMatrix(mat) or not DimensionsMat(mat) = [3,3] or not IsSubset(Oct, Flat(mat)) then 
+            return fail;
+        fi;
+        if ComplexConjugate(TransposedMat(mat)) <> mat then 
+            return fail;
+        fi;
+        temp := HermitianMatrixToJordanCoefficients(mat, Basis(Oct));
+        temp := Concatenation([temp{[20..27]}, -temp{[12..18]}, temp{[19]}, temp{[4..11]}, temp{[1..3]}]);
+        return LinearCombination(Basis(Alb), temp);
+    end);
+
+InstallGlobalFunction( AlbertVectorToHermitianMatrix, 
+    function(vec)
+        if not vec in Alb then return fail; fi;
+        return LinearCombination(JordanMatrixBasis(Alb), ExtRepOfObj(vec));
+    end);
+
+InstallMethod(P, 
+     "for a Jordan algebra element",
+    [ IsJordanAlgebraObj ],
+    function(j)
+        return 2*AdjointMatrix(CanonicalBasis(FamilyObj(j)!.fullSCAlgebra), j)^2 - AdjointMatrix(CanonicalBasis(FamilyObj(j)!.fullSCAlgebra), j^2); 
+    end);
+
+InstallMethod(P, 
+     "for a Jordan algebra element",
+    [ IsJordanAlgebraObj, IsJordanAlgebraObj ],
+    function(j, k)
+        return 2*j*(j*k) - (j^2)*k; 
+    end);
 
 # T-Design Tools
 
