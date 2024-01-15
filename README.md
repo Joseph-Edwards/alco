@@ -1,3 +1,6 @@
+[![Build Status](https://github.com/BNasmith/alco/workflows/CI/badge.svg?branch=main)](https://github.com/BNasmith/alco/actions?query=workflow%3ACI+branch%3Amain)
+[![Code Coverage](https://codecov.io/github/BNasmith/alco/coverage.svg?branch=main&token=)](https://codecov.io/gh/BNasmith/alco)
+
 # The ALCO Package for GAP
 
 The **ALCO** package provides tools for algebraic combinatorics, most of which was written for **GAP** during the author's Ph.D. program. This package provides implementations in **GAP** of octonion algebras, Jordan algebras, and certain important integer subrings of those algebras. It also provides tools to compute the parameters of t-designs in spherical and projective spaces (modeled as manifolds of primitive idempotent elements in a simple Euclidean Jordan algebra). Finally, this package provides tools to explore octonion lattice constructions, including octonion Leech lattices. 
