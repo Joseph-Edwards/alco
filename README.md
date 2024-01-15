@@ -2,7 +2,24 @@
 
 The **ALCO** package provides tools for algebraic combinatorics, most of which was written for **GAP** during the author's Ph.D. program. This package provides implementations in **GAP** of octonion algebras, Jordan algebras, and certain important integer subrings of those algebras. It also provides tools to compute the parameters of t-designs in spherical and projective spaces (modeled as manifolds of primitive idempotent elements in a simple Euclidean Jordan algebra). Finally, this package provides tools to explore octonion lattice constructions, including octonion Leech lattices. 
 
-The ALCO package is Copyright (C) Benjamin Nasmith 2024 under a GNU General Public License version 3.   
+## Legal
+
+The ALCO package provides tools for algebraic combinatorics in GAP. 
+
+Copyright (C) 2024 Benjamin Nasmith
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 ## Setup
 

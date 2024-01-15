@@ -353,7 +353,7 @@
       JoinStringsWithSeparator( List( Filtered( ~.Persons, r -> r.IsAuthor ),
                                       r -> Concatenation(
           r.FirstNames, " ", r.LastName, " (", r.WWWHome, ")\n" ) ), "   " ),
-      "This program is distributed under a GNU General Public License", "\n",
+      "This program is distributed under GNU General Public License 3.0", "\n",
       # "For help, type: ?ALCO package \n",
       "----------------------------------------------------------------\n" ),
 
@@ -366,6 +366,8 @@
   ##  standard GAP test suite.
   TestFile := "tst/testall.g",
 
+  License := "GPL-3.0-or-later",
+  
   ##  *Optional*: Here you can list some keyword related to the topic
   ##  of the package.
   # Keywords := ["Smith normal form", "p-adic", "rational matrix inversion"]
