@@ -58,11 +58,9 @@
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X864255E37BDB3972">2.4-3 ComplexConjugate</a></span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X81B601A1823F31F0">2.4-4 RealPart</a></span>
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X78FF8724803E2AB4">2.4-5 QuaternionD4basis</a></span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X80F5CF497843D181">2.4-6 <span class="Heading">Golden Field Values</span></a>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7C5123127E6FFFA7">2.4-6 <span class="Heading">GoldenModSigma</span></a>
 </span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7C5123127E6FFFA7">2.4-7 <span class="Heading">GoldenModSigma</span></a>
-</span>
-<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7F28DE91825770B6">2.4-8 IcosianH4basis</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap2.html#X7F28DE91825770B6">2.4-7 IcosianH4basis</a></span>
 </div></div>
 </div>
 
@@ -400,38 +398,15 @@ true</pre></div>
 (-1/2)*e+(1/2)*i+(-1/2)*j+(-1/2)*k
 e</pre></div>
 
-<p><a id="X80F5CF497843D181" name="X80F5CF497843D181"></a></p>
-
-<h5>2.4-6 <span class="Heading">Golden Field Values</span></h5>
-
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; sigma</code></td><td class="tdright">(&nbsp;global variable&nbsp;)</td></tr></table></div>
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; tau</code></td><td class="tdright">(&nbsp;global variable&nbsp;)</td></tr></table></div>
-<p>The <strong class="pkg">ALCO</strong> package loads the following elements of the golden field, <code class="code">NF(5,[ 1, 4 ])</code>:</p>
-
-
-<div class="example"><pre> 
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">TeachingMode(true);</span>
-#I  Teaching mode is turned ON
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sigma;</span>
-(1-Sqrt(5))/2
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">tau;</span>
-(1+Sqrt(5))/2 
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Field(sigma);</span>
-NF(5,[ 1, 4 ])
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Field(tau);</span>
-NF(5,[ 1, 4 ])
-<span class="GAPprompt">gap&gt;</span> <span class="GAPinput">Field(Sqrt(5));</span>
-NF(5,[ 1, 4 ])</pre></div>
-
 <p><a id="X7C5123127E6FFFA7" name="X7C5123127E6FFFA7"></a></p>
 
-<h5>2.4-7 <span class="Heading">GoldenModSigma</span></h5>
+<h5>2.4-6 <span class="Heading">GoldenModSigma</span></h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; GoldenModSigma</code>( <var class="Arg">x</var> )</td><td class="tdright">(&nbsp;function&nbsp;)</td></tr></table></div>
-<p>For <var class="Arg">x</var> in the golden field <code class="code">NF(5,[ 1, 4 ])</code>, this function returns the rational coefficient of <code class="code">1</code> in the basis <code class="code">Basis(NF(5,[ 1, 4 ]), [1, sigma])</code>.</p>
+<p>For <var class="Arg">x</var> in the golden field <code class="code">NF(5,[ 1, 4 ])</code>, this function returns the rational coefficient of <code class="code">1</code> in the basis <code class="code">Basis(NF(5,[ 1, 4 ]), [1, (1-Sqrt(5))/2])</code>.</p>
 
 
-<div class="example"><pre> 
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">sigma := (1-Sqrt(5))/2;; tau := (1+Sqrt(5))/2;;</span>
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">x := 5 + 3*sigma;; GoldenModSigma(x);</span>
 5 
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">GoldenModSigma(sigma);</span>
@@ -441,7 +416,7 @@ NF(5,[ 1, 4 ])</pre></div>
 
 <p><a id="X7F28DE91825770B6" name="X7F28DE91825770B6"></a></p>
 
-<h5>2.4-8 IcosianH4basis</h5>
+<h5>2.4-7 IcosianH4basis</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; IcosianH4basis</code></td><td class="tdright">(&nbsp;global variable&nbsp;)</td></tr></table></div>
 <p>The <strong class="pkg">ALCO</strong> package loads a basis for a quaternion algebra over <code class="code">NF(5,[1,4])</code>. The ℤ-span of this basis is the icosian ring. These basis vectors close under pairwise reflection or multiplication to form a <span class="Math">H_4</span> set of vectors.</p>

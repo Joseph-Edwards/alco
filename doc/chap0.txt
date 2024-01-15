@@ -49,9 +49,8 @@
       2.4-3 ComplexConjugate
       2.4-4 RealPart
       2.4-5 QuaternionD4basis
-      2.4-6 [33X[0;0YGolden Field Values[133X
-      2.4-7 [33X[0;0YGoldenModSigma[133X
-      2.4-8 IcosianH4basis
+      2.4-6 [33X[0;0YGoldenModSigma[133X
+      2.4-7 IcosianH4basis
   3 [33X[0;0YSimple Euclidean Jordan Algebras[133X
     3.1 [33X[0;0YFilters and Basic Attributes[133X
       3.1-1 [33X[0;0YJordan Filters[133X
@@ -66,15 +65,21 @@
       3.2-2 JordanSpinFactor
       3.2-3 HermitianSimpleJordanAlgebra
       3.2-4 JordanHomotope
-      3.2-5 AlbertAlgebra
-      3.2-6 Alb
-    3.3 [33X[0;0YAdditional Tools and Properties[133X
-      3.3-1 HermitianJordanAlgebraBasis
-      3.3-2 JordanMatrixBasis
-      3.3-3 HermitianMatrixToJordanCoefficients
-      3.3-4 JordanAlgebraGramMatrix
-      3.3-5 JordanAdjugate
-      3.3-6 IsPositiveDefinite
+    3.3 [33X[0;0YThe Albert Algebra[133X
+      3.3-1 AlbertAlgebra
+      3.3-2 Alb
+      3.3-3 AlbertVectorToHermitianMatrix
+      3.3-4 HermitianMatrixToAlbertVector
+    3.4 [33X[0;0YThe Quadratic Representation[133X
+      3.4-1 P
+      3.4-2 JTS
+    3.5 [33X[0;0YAdditional Tools and Properties[133X
+      3.5-1 HermitianJordanAlgebraBasis
+      3.5-2 JordanMatrixBasis
+      3.5-3 HermitianMatrixToJordanVector
+      3.5-4 JordanAlgebraGramMatrix
+      3.5-5 JordanAdjugate
+      3.5-6 IsPositiveDefinite
   4 [33X[0;0YJordan Designs and their Association Schemes[133X
     4.1 [33X[0;0YJacobi Polynomials[133X
       4.1-1 JacobiPolynomial
@@ -119,6 +124,7 @@
       5.1-1 IsLeechLatticeGramMatrix
       5.1-2 IsGossetLatticeGramMatrix
       5.1-3 IsOctonionLattice
+      5.1-4 MOGLeechLatticeGeneratorMatrix
     5.2 [33X[0;0YOctonion Lattice Constructions[133X
       5.2-1 OctonionLatticeByGenerators
     5.3 [33X[0;0YOctonion Lattice Attributes[133X

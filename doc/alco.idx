@@ -21,9 +21,7 @@
 \indexentry{ComplexConjugate@\texttt  {ComplexConjugate}!Quaternions|hyperpage}{11}
 \indexentry{RealPart@\texttt  {RealPart}!Quaternions|hyperpage}{12}
 \indexentry{QuaternionD4basis@\texttt  {QuaternionD4basis}|hyperpage}{12}
-\indexentry{sigma@\texttt  {sigma}|hyperpage}{12}
-\indexentry{tau@\texttt  {tau}|hyperpage}{12}
-\indexentry{GoldenModSigma@\texttt  {GoldenModSigma}|hyperpage}{13}
+\indexentry{GoldenModSigma@\texttt  {GoldenModSigma}|hyperpage}{12}
 \indexentry{IcosianH4basis@\texttt  {IcosianH4basis}|hyperpage}{13}
 \indexentry{IsJordanAlgebra@\texttt  {IsJordanAlgebra}|hyperpage}{14}
 \indexentry{IsJordanAlgebraObj@\texttt  {IsJordanAlgebraObj}|hyperpage}{14}
@@ -39,74 +37,80 @@
 \indexentry{JordanHomotope@\texttt  {JordanHomotope}|hyperpage}{16}
 \indexentry{AlbertAlgebra@\texttt  {AlbertAlgebra}|hyperpage}{17}
 \indexentry{Alb@\texttt  {Alb}|hyperpage}{17}
-\indexentry{HermitianJordanAlgebraBasis@\texttt  {HermitianJordanAlgebraBasis}|hyperpage}{17}
-\indexentry{JordanMatrixBasis@\texttt  {JordanMatrixBasis}|hyperpage}{18}
-\indexentry{HermitianMatrixToJordanCoefficients@\texttt  {HermitianMatrixToJordanCoefficients}|hyperpage}{18}
-\indexentry{JordanAlgebraGramMatrix@\texttt  {JordanAlgebraGramMatrix}|hyperpage}{18}
-\indexentry{JordanAdjugate@\texttt  {JordanAdjugate}|hyperpage}{19}
-\indexentry{IsPositiveDefinite@\texttt  {IsPositiveDefinite}|hyperpage}{19}
-\indexentry{JacobiPolynomial@\texttt  {JacobiPolynomial}|hyperpage}{20}
-\indexentry{Q{\textunderscore }k{\textunderscore }epsilon@\texttt  {Q{\textunderscore }k{\textunderscore }epsilon}|hyperpage}{20}
-\indexentry{R{\textunderscore }k{\textunderscore }epsilon@\texttt  {R{\textunderscore }k{\textunderscore }epsilon}|hyperpage}{20}
-\indexentry{IsDesign@\texttt  {IsDesign}|hyperpage}{21}
-\indexentry{IsSphericalDesign@\texttt  {IsSphericalDesign}|hyperpage}{21}
-\indexentry{IsProjectiveDesign@\texttt  {IsProjectiveDesign}|hyperpage}{21}
-\indexentry{DesignByJordanParameters@\texttt  {DesignByJordanParameters}|hyperpage}{21}
-\indexentry{DesignJordanRank@\texttt  {DesignJordanRank}|hyperpage}{21}
-\indexentry{DesignJordanDegree@\texttt  {DesignJordanDegree}|hyperpage}{21}
-\indexentry{DesignQPolynomial@\texttt  {DesignQPolynomial}|hyperpage}{22}
-\indexentry{DesignConnectionCoefficients@\texttt  {DesignConnectionCoefficients}|hyperpage}{22}
-\indexentry{IsDesignWithAngleSet@\texttt  {IsDesignWithAngleSet}|hyperpage}{22}
-\indexentry{DesignAddAngleSet@\texttt  {DesignAddAngleSet}|hyperpage}{23}
-\indexentry{DesignByAngleSet@\texttt  {DesignByAngleSet}|hyperpage}{23}
-\indexentry{DesignNormalizedAnnihilatorPolynomial@\texttt  {Design}\-\texttt  {Normalized}\-\texttt  {Annihilator}\-\texttt  {Polynomial}|hyperpage}{23}
-\indexentry{DesignNormalizedIndicatorCoefficients@\texttt  {Design}\-\texttt  {Normalized}\-\texttt  {Indicator}\-\texttt  {Coefficients}|hyperpage}{23}
-\indexentry{IsDesignWithPositiveIndicatorCoefficients@\texttt  {IsDesign}\-\texttt  {With}\-\texttt  {Positive}\-\texttt  {Indicator}\-\texttt  {Coefficients}|hyperpage}{24}
-\indexentry{DesignSpecialBound@\texttt  {DesignSpecialBound}|hyperpage}{24}
-\indexentry{IsDesignWithCardinality@\texttt  {IsDesignWithCardinality}|hyperpage}{24}
-\indexentry{IsRegularSchemeDesign@\texttt  {IsRegularSchemeDesign}|hyperpage}{24}
-\indexentry{IsSpecialBoundDesign@\texttt  {IsSpecialBoundDesign}|hyperpage}{24}
-\indexentry{IsAssociationSchemeDesign@\texttt  {IsAssociationSchemeDesign}|hyperpage}{24}
-\indexentry{IsTightDesign@\texttt  {IsTightDesign}|hyperpage}{24}
-\indexentry{DesignCardinality@\texttt  {DesignCardinality}|hyperpage}{24}
-\indexentry{DesignAddCardinality@\texttt  {DesignAddCardinality}|hyperpage}{25}
-\indexentry{IsDesignWithStrength@\texttt  {IsDesignWithStrength}|hyperpage}{25}
-\indexentry{DesignStrength@\texttt  {DesignStrength}|hyperpage}{25}
-\indexentry{DesignAnnihilatorPolynomial@\texttt  {DesignAnnihilatorPolynomial}|hyperpage}{25}
-\indexentry{DesignIndicatorCoefficients@\texttt  {DesignIndicatorCoefficients}|hyperpage}{26}
-\indexentry{DesignSubdegrees@\texttt  {DesignSubdegrees}|hyperpage}{26}
-\indexentry{DesignBoseMesnerAlgebra@\texttt  {DesignBoseMesnerAlgebra}|hyperpage}{26}
-\indexentry{DesignBoseMesnerIdempotentBasis@\texttt  {DesignBoseMesnerIdempotentBasis}|hyperpage}{27}
-\indexentry{DesignIntersectionNumbers@\texttt  {DesignIntersectionNumbers}|hyperpage}{27}
-\indexentry{DesignKreinNumbers@\texttt  {DesignKreinNumbers}|hyperpage}{27}
-\indexentry{DesignFirstEigenmatrix@\texttt  {DesignFirstEigenmatrix}|hyperpage}{28}
-\indexentry{DesignSecondEigenmatrix@\texttt  {DesignSecondEigenmatrix}|hyperpage}{28}
-\indexentry{DesignMultiplicities@\texttt  {DesignMultiplicities}|hyperpage}{28}
-\indexentry{DesignValencies@\texttt  {DesignValencies}|hyperpage}{29}
-\indexentry{DesignReducedAdjacencyMatrices@\texttt  {DesignReducedAdjacencyMatrices}|hyperpage}{29}
-\indexentry{IsLeechLatticeGramMatrix@\texttt  {IsLeechLatticeGramMatrix}|hyperpage}{32}
-\indexentry{IsGossetLatticeGramMatrix@\texttt  {IsGossetLatticeGramMatrix}|hyperpage}{32}
-\indexentry{IsOctonionLattice@\texttt  {IsOctonionLattice}|hyperpage}{32}
-\indexentry{OctonionLatticeByGenerators@\texttt  {OctonionLatticeByGenerators}|hyperpage}{33}
-\indexentry{UnderlyingOctonionRing@\texttt  {UnderlyingOctonionRing}|hyperpage}{33}
-\indexentry{OctonionGramMatrix@\texttt  {OctonionGramMatrix}|hyperpage}{33}
-\indexentry{Dimension@\texttt  {Dimension}|hyperpage}{33}
-\indexentry{GeneratorsAsCoefficients@\texttt  {GeneratorsAsCoefficients}|hyperpage}{33}
-\indexentry{LLLReducedBasisCoefficients@\texttt  {LLLReducedBasisCoefficients}|hyperpage}{34}
-\indexentry{GramMatrix@\texttt  {GramMatrix}!GramMatrixLattice|hyperpage}{34}
-\indexentry{TotallyIsotropicCode@\texttt  {TotallyIsotropicCode}|hyperpage}{34}
-\indexentry{Basis@\texttt  {Basis}|hyperpage}{34}
-\indexentry{CanonicalBasis@\texttt  {CanonicalBasis}|hyperpage}{34}
-\indexentry{BasisVectors@\texttt  {BasisVectors}|hyperpage}{34}
-\indexentry{IsOctonionLatticeBasis@\texttt  {IsOctonionLatticeBasis}|hyperpage}{34}
-\indexentry{Rank@\texttt  {Rank}|hyperpage}{34}
-\indexentry{ScalarProduct@\texttt  {ScalarProduct}|hyperpage}{35}
-\indexentry{\texttt  {\symbol  {92}}in@\texttt  {\texttt  {\symbol  {92}}in}|hyperpage}{35}
-\indexentry{IsSublattice@\texttt  {IsSublattice}|hyperpage}{35}
-\indexentry{IsSubset@\texttt  {IsSubset}|hyperpage}{35}
-\indexentry{\texttt  {\symbol  {92}}=@\texttt  {\texttt  {\symbol  {92}}=}|hyperpage}{35}
-\indexentry{RealToOctonionVector@\texttt  {RealToOctonionVector}!RealToOctLattices|hyperpage}{35}
-\indexentry{OctonionToRealVector@\texttt  {OctonionToRealVector}!OctToRealLattices|hyperpage}{35}
-\indexentry{Closure@\texttt  {Closure}|hyperpage}{37}
-\indexentry{RandomClosure@\texttt  {RandomClosure}|hyperpage}{38}
-\indexentry{RandomOrbitOnSets@\texttt  {RandomOrbitOnSets}|hyperpage}{38}
+\indexentry{AlbertVectorToHermitianMatrix@\texttt  {AlbertVectorToHermitianMatrix}|hyperpage}{17}
+\indexentry{HermitianMatrixToAlbertVector@\texttt  {HermitianMatrixToAlbertVector}|hyperpage}{18}
+\indexentry{P@\texttt  {P}|hyperpage}{18}
+\indexentry{JTS@\texttt  {JTS}|hyperpage}{19}
+\indexentry{HermitianJordanAlgebraBasis@\texttt  {HermitianJordanAlgebraBasis}|hyperpage}{19}
+\indexentry{JordanMatrixBasis@\texttt  {JordanMatrixBasis}|hyperpage}{19}
+\indexentry{HermitianMatrixToJordanVector@\texttt  {HermitianMatrixToJordanVector}|hyperpage}{20}
+\indexentry{JordanAlgebraGramMatrix@\texttt  {JordanAlgebraGramMatrix}|hyperpage}{20}
+\indexentry{JordanAdjugate@\texttt  {JordanAdjugate}|hyperpage}{20}
+\indexentry{IsPositiveDefinite@\texttt  {IsPositiveDefinite}|hyperpage}{21}
+\indexentry{JacobiPolynomial@\texttt  {JacobiPolynomial}|hyperpage}{22}
+\indexentry{Q{\textunderscore }k{\textunderscore }epsilon@\texttt  {Q{\textunderscore }k{\textunderscore }epsilon}|hyperpage}{22}
+\indexentry{R{\textunderscore }k{\textunderscore }epsilon@\texttt  {R{\textunderscore }k{\textunderscore }epsilon}|hyperpage}{22}
+\indexentry{IsDesign@\texttt  {IsDesign}|hyperpage}{23}
+\indexentry{IsSphericalDesign@\texttt  {IsSphericalDesign}|hyperpage}{23}
+\indexentry{IsProjectiveDesign@\texttt  {IsProjectiveDesign}|hyperpage}{23}
+\indexentry{DesignByJordanParameters@\texttt  {DesignByJordanParameters}|hyperpage}{23}
+\indexentry{DesignJordanRank@\texttt  {DesignJordanRank}|hyperpage}{23}
+\indexentry{DesignJordanDegree@\texttt  {DesignJordanDegree}|hyperpage}{23}
+\indexentry{DesignQPolynomial@\texttt  {DesignQPolynomial}|hyperpage}{24}
+\indexentry{DesignConnectionCoefficients@\texttt  {DesignConnectionCoefficients}|hyperpage}{24}
+\indexentry{IsDesignWithAngleSet@\texttt  {IsDesignWithAngleSet}|hyperpage}{24}
+\indexentry{DesignAddAngleSet@\texttt  {DesignAddAngleSet}|hyperpage}{25}
+\indexentry{DesignByAngleSet@\texttt  {DesignByAngleSet}|hyperpage}{25}
+\indexentry{DesignNormalizedAnnihilatorPolynomial@\texttt  {Design}\-\texttt  {Normalized}\-\texttt  {Annihilator}\-\texttt  {Polynomial}|hyperpage}{25}
+\indexentry{DesignNormalizedIndicatorCoefficients@\texttt  {Design}\-\texttt  {Normalized}\-\texttt  {Indicator}\-\texttt  {Coefficients}|hyperpage}{25}
+\indexentry{IsDesignWithPositiveIndicatorCoefficients@\texttt  {IsDesign}\-\texttt  {With}\-\texttt  {Positive}\-\texttt  {Indicator}\-\texttt  {Coefficients}|hyperpage}{26}
+\indexentry{DesignSpecialBound@\texttt  {DesignSpecialBound}|hyperpage}{26}
+\indexentry{IsDesignWithCardinality@\texttt  {IsDesignWithCardinality}|hyperpage}{26}
+\indexentry{IsRegularSchemeDesign@\texttt  {IsRegularSchemeDesign}|hyperpage}{26}
+\indexentry{IsSpecialBoundDesign@\texttt  {IsSpecialBoundDesign}|hyperpage}{26}
+\indexentry{IsAssociationSchemeDesign@\texttt  {IsAssociationSchemeDesign}|hyperpage}{26}
+\indexentry{IsTightDesign@\texttt  {IsTightDesign}|hyperpage}{26}
+\indexentry{DesignCardinality@\texttt  {DesignCardinality}|hyperpage}{26}
+\indexentry{DesignAddCardinality@\texttt  {DesignAddCardinality}|hyperpage}{27}
+\indexentry{IsDesignWithStrength@\texttt  {IsDesignWithStrength}|hyperpage}{27}
+\indexentry{DesignStrength@\texttt  {DesignStrength}|hyperpage}{27}
+\indexentry{DesignAnnihilatorPolynomial@\texttt  {DesignAnnihilatorPolynomial}|hyperpage}{27}
+\indexentry{DesignIndicatorCoefficients@\texttt  {DesignIndicatorCoefficients}|hyperpage}{28}
+\indexentry{DesignSubdegrees@\texttt  {DesignSubdegrees}|hyperpage}{28}
+\indexentry{DesignBoseMesnerAlgebra@\texttt  {DesignBoseMesnerAlgebra}|hyperpage}{28}
+\indexentry{DesignBoseMesnerIdempotentBasis@\texttt  {DesignBoseMesnerIdempotentBasis}|hyperpage}{29}
+\indexentry{DesignIntersectionNumbers@\texttt  {DesignIntersectionNumbers}|hyperpage}{29}
+\indexentry{DesignKreinNumbers@\texttt  {DesignKreinNumbers}|hyperpage}{29}
+\indexentry{DesignFirstEigenmatrix@\texttt  {DesignFirstEigenmatrix}|hyperpage}{30}
+\indexentry{DesignSecondEigenmatrix@\texttt  {DesignSecondEigenmatrix}|hyperpage}{30}
+\indexentry{DesignMultiplicities@\texttt  {DesignMultiplicities}|hyperpage}{30}
+\indexentry{DesignValencies@\texttt  {DesignValencies}|hyperpage}{31}
+\indexentry{DesignReducedAdjacencyMatrices@\texttt  {DesignReducedAdjacencyMatrices}|hyperpage}{31}
+\indexentry{IsLeechLatticeGramMatrix@\texttt  {IsLeechLatticeGramMatrix}|hyperpage}{34}
+\indexentry{IsGossetLatticeGramMatrix@\texttt  {IsGossetLatticeGramMatrix}|hyperpage}{34}
+\indexentry{IsOctonionLattice@\texttt  {IsOctonionLattice}|hyperpage}{34}
+\indexentry{MOGLeechLatticeGeneratorMatrix@\texttt  {MOGLeechLatticeGeneratorMatrix}|hyperpage}{34}
+\indexentry{MOGLeechLatticeGramMatrix@\texttt  {MOGLeechLatticeGramMatrix}|hyperpage}{34}
+\indexentry{OctonionLatticeByGenerators@\texttt  {OctonionLatticeByGenerators}|hyperpage}{35}
+\indexentry{UnderlyingOctonionRing@\texttt  {UnderlyingOctonionRing}|hyperpage}{35}
+\indexentry{OctonionGramMatrix@\texttt  {OctonionGramMatrix}|hyperpage}{35}
+\indexentry{Dimension@\texttt  {Dimension}|hyperpage}{35}
+\indexentry{GeneratorsAsCoefficients@\texttt  {GeneratorsAsCoefficients}|hyperpage}{36}
+\indexentry{LLLReducedBasisCoefficients@\texttt  {LLLReducedBasisCoefficients}|hyperpage}{36}
+\indexentry{GramMatrix@\texttt  {GramMatrix}!GramMatrixLattice|hyperpage}{36}
+\indexentry{TotallyIsotropicCode@\texttt  {TotallyIsotropicCode}|hyperpage}{36}
+\indexentry{Basis@\texttt  {Basis}|hyperpage}{36}
+\indexentry{CanonicalBasis@\texttt  {CanonicalBasis}|hyperpage}{36}
+\indexentry{BasisVectors@\texttt  {BasisVectors}|hyperpage}{36}
+\indexentry{IsOctonionLatticeBasis@\texttt  {IsOctonionLatticeBasis}|hyperpage}{36}
+\indexentry{Rank@\texttt  {Rank}|hyperpage}{37}
+\indexentry{ScalarProduct@\texttt  {ScalarProduct}|hyperpage}{37}
+\indexentry{\texttt  {\symbol  {92}}in@\texttt  {\texttt  {\symbol  {92}}in}|hyperpage}{37}
+\indexentry{IsSublattice@\texttt  {IsSublattice}|hyperpage}{37}
+\indexentry{IsSubset@\texttt  {IsSubset}|hyperpage}{37}
+\indexentry{\texttt  {\symbol  {92}}=@\texttt  {\texttt  {\symbol  {92}}=}|hyperpage}{37}
+\indexentry{RealToOctonionVector@\texttt  {RealToOctonionVector}!RealToOctLattices|hyperpage}{37}
+\indexentry{OctonionToRealVector@\texttt  {OctonionToRealVector}!OctToRealLattices|hyperpage}{37}
+\indexentry{Closure@\texttt  {Closure}|hyperpage}{39}
+\indexentry{RandomClosure@\texttt  {RandomClosure}|hyperpage}{40}
+\indexentry{RandomOrbitOnSets@\texttt  {RandomOrbitOnSets}|hyperpage}{40}

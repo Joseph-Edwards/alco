@@ -52,25 +52,11 @@ InstallValue( QuaternionD4Basis, Basis(QuaternionAlgebra(Rationals),
 
 # Icosian and Golden Field Tools
 
-InstallValue( sigma, (1-Sqrt(5))/2 );
-
-InstallValue( tau, (1+Sqrt(5))/2 );
-
-# Previous versions of these functions:
-
-# InstallGlobalFunction(GoldenRationalComponent, function(z)
-#     return Trace(Field(sigma),Rationals,z)/2;
-# end );
-
-# InstallGlobalFunction(GoldenIrrationalComponent, function(z)
-#     return (z-Trace(Field(sigma),Rationals,z)/2)/Sqrt(5 );
-# end );
-
 InstallGlobalFunction( GoldenModSigma, function(q)
     # Check that q belongs to the quadratic field containing Sqrt(5).
     if not q in NF(5,[1,4]) then return fail; fi;
-    # Compute the coefficients in the basis [1,sigma] and return the 1 coefficient.
-    return Coefficients(Basis(NF(5,[1,4]), [1, sigma]), q)[1];
+    # Compute the coefficients in the basis [1,(1-Sqrt(5))/2] and return the 1 coefficient.
+    return Coefficients(Basis(NF(5,[1,4]), [1, (1-Sqrt(5))/2]), q)[1];
 end );
 
 InstallValue( IcosianH4Basis, Basis(QuaternionAlgebra(Field(Sqrt(5))),
@@ -426,7 +412,9 @@ end );
 InstallGlobalFunction( HermitianMatrixToJordanVector, function(mat, J)
     local temp;
     # Verify that the second argument is a Jordan algebra with an off-diagonal basis defined. 
-    if not (IsJordanAlgebra(J) and HasJordanOffDiagonalBasis(J)) then return fail; fi;
+    if not (IsJordanAlgebra(J) and HasJordanOffDiagonalBasis(J)) then 
+        return fail; 
+    fi;
     # Verify that the matrix entries belong to the algebra spanned by the off-diagonal basis. 
     if not IsHomogeneousList(Flat([mat, JordanOffDiagonalBasis(J)])) then return fail; fi;
     # Compute the coefficients, if possible.
@@ -495,7 +483,9 @@ end );
 
 InstallGlobalFunction( JordanSpinFactor,  function(gram_mat)
     local result, T, n, m, z, temp, coeffs, filter;
-    if not IsMatrix(gram_mat) or Inverse(gram_mat) = fail then return fail; fi;
+    if not IsMatrix(gram_mat) or Inverse(gram_mat) = fail then 
+        return fail; 
+    fi;
     result := rec( );
     result.F := Field(Flat(gram_mat) );
     result.rho := 2;
@@ -852,6 +842,12 @@ InstallMethod(P,
     function(j, k)
         return 2*j*(j*k) - (j^2)*k; 
     end);
+
+InstallMethod(JTS,
+    "for three Jordan algebra elements",
+    [IsJordanAlgebraObj, IsJordanAlgebraObj, IsJordanAlgebraObj],
+    {x,y,z} -> x*(y*z) + (x*y)*z - (x*z)*y
+    );
 
 # T-Design Tools
 
@@ -1392,6 +1388,41 @@ InstallGlobalFunction( IsGossetLatticeGramMatrix, function(G)
     return true;
 end );
 
+InstallValue( MOGLeechLatticeGeneratorMatrix, [
+    [8,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+    [4,4,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+    [4,0,4,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+    [4,0,0,4, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+    [4,0,0,0, 4,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+    [4,0,0,0, 0,4,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+    [4,0,0,0, 0,0,4,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+    [2,2,2,2, 2,2,2,2, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+    [4,0,0,0, 0,0,0,0, 4,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+    [4,0,0,0, 0,0,0,0, 0,4,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+    [4,0,0,0, 0,0,0,0, 0,0,4,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+    [2,2,2,2, 0,0,0,0, 2,2,2,2, 0,0,0,0, 0,0,0,0, 0,0,0,0],
+    [4,0,0,0, 0,0,0,0, 0,0,0,0, 4,0,0,0, 0,0,0,0, 0,0,0,0],
+    [2,2,0,0, 2,2,0,0, 2,2,0,0, 2,2,0,0, 0,0,0,0, 0,0,0,0],
+    [2,0,2,0, 2,0,2,0, 2,0,2,0, 2,0,2,0, 0,0,0,0, 0,0,0,0],
+    [2,0,0,2, 2,0,0,2, 2,0,0,2, 2,0,0,2, 0,0,0,0, 0,0,0,0],
+    [4,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 4,0,0,0, 0,0,0,0],
+    [2,0,2,0, 2,0,0,2, 2,2,0,0, 0,0,0,0, 2,2,0,0, 0,0,0,0],
+    [2,0,0,2, 2,2,0,0, 2,0,2,0, 0,0,0,0, 2,0,2,0, 0,0,0,0],
+    [2,2,0,0, 2,0,2,0, 2,0,0,2, 0,0,0,0, 2,0,0,2, 0,0,0,0],
+    [0,2,2,2, 2,0,0,0, 2,0,0,0, 2,0,0,0, 2,0,0,0, 2,0,0,0],
+    [0,0,0,0, 0,0,0,0, 2,2,0,0, 2,2,0,0, 2,2,0,0, 2,2,0,0],
+    [0,0,0,0, 0,0,0,0, 2,0,2,0, 2,0,2,0, 2,0,2,0, 2,0,2,0],
+   [-3,1,1,1, 1,1,1,1, 1,1,1,1, 1,1,1,1, 1,1,1,1, 1,1,1,1]
+    ]);
+
+InstallValue( MOGLeechLatticeGramMatrix, 
+    List(MOGLeechLatticeGeneratorMatrix, x -> 
+        List(MOGLeechLatticeGeneratorMatrix, y -> 
+            x*y/8
+            )
+        )
+    );
+
 InstallGlobalFunction( OctonionLatticeByGenerators, function(gens, g...)
     local   A,      # The underlying octonion ring.
             obj;    # The resulting lattice object
@@ -1556,27 +1587,26 @@ InstallMethod( \=,
 
 # Closure Functions
 
-InstallGlobalFunction( closure_step, function(gens, mult_func, opt...)
-    local temp, x, y, z, pair, pairchooser;
-    temp := Set(gens, x -> x );
-    if Length(opt) > 0 and opt[1] = true then 
-        pairchooser := UnorderedTuples;
-    else 
-        pairchooser := Tuples;
-    fi;
-    for pair in pairchooser(gens,2) do
-        x := pair[1];
-        y := pair[2];
-        z := mult_func(x,y );
-        if not (z in temp) then
-            AddSet(temp,z );
-        fi;
-    od;
-    return Set(temp );
-end );
-
 InstallGlobalFunction( Closure, function(gens, mult_func, opt...)
-    local temp, l;
+    local temp, l, closure_step;
+    closure_step := function(gens, mult_func, opt...)
+        local temp, x, y, z, pair, pairchooser;
+        temp := Set(gens, x -> x );
+        if Length(opt) > 0 and opt[1] = true then 
+            pairchooser := UnorderedTuples;
+        else 
+            pairchooser := Tuples;
+        fi;
+        for pair in pairchooser(gens,2) do
+            x := pair[1];
+            y := pair[2];
+            z := mult_func(x,y );
+            if not (z in temp) then
+                AddSet(temp,z );
+            fi;
+        od;
+        return Set(temp );
+    end;
     if not IsHomogeneousList(gens) then return fail; fi;
     temp := Set(gens );
     l := 0;

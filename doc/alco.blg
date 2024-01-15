@@ -3,44 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: alco.aux
 The style file: alpha.bst
 Database file #1: zotero.bib
-You've used 16 entries,
+You've used 18 entries,
             2543 wiz_defined-function locations,
-            661 strings with 6578 characters,
-and the built_in function-call counts, 5847 in all, are:
-= -- 590
-> -- 245
-< -- 11
-+ -- 80
-- -- 77
-* -- 436
-:= -- 991
-add.period$ -- 54
-call.type$ -- 16
-change.case$ -- 87
-chr.to.int$ -- 16
-cite$ -- 16
-duplicate$ -- 237
-empty$ -- 436
-format.name$ -- 100
-if$ -- 1168
-int.to.chr$ -- 1
+            671 strings with 6812 characters,
+and the built_in function-call counts, 6468 in all, are:
+= -- 648
+> -- 272
+< -- 13
++ -- 90
+- -- 85
+* -- 473
+:= -- 1096
+add.period$ -- 61
+call.type$ -- 18
+change.case$ -- 96
+chr.to.int$ -- 17
+cite$ -- 18
+duplicate$ -- 268
+empty$ -- 486
+format.name$ -- 111
+if$ -- 1296
+int.to.chr$ -- 2
 int.to.str$ -- 0
-missing$ -- 20
-newline$ -- 87
-num.names$ -- 49
-pop$ -- 74
+missing$ -- 24
+newline$ -- 97
+num.names$ -- 55
+pop$ -- 88
 preamble$ -- 1
-purify$ -- 109
+purify$ -- 122
 quote$ -- 0
-skip$ -- 177
+skip$ -- 200
 stack$ -- 0
-substring$ -- 328
-swap$ -- 19
-text.length$ -- 11
-text.prefix$ -- 8
+substring$ -- 343
+swap$ -- 22
+text.length$ -- 13
+text.prefix$ -- 9
 top$ -- 0
-type$ -- 104
+type$ -- 112
 warning$ -- 0
-while$ -- 58
-width$ -- 20
-write$ -- 221
+while$ -- 63
+width$ -- 21
+write$ -- 248

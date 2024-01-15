@@ -154,7 +154,20 @@
     [4X[28X"D4"[128X[104X
   [4X[32X[104X
   
-  [1X3.2-5 AlbertAlgebra[101X
+  
+  [1X3.3 [33X[0;0YThe Albert Algebra[133X[101X
+  
+  [33X[0;0YThe  exceptional  simple Euclidean Jordan algebra, or Albert algebra, may be
+  constructed  using  [2XSimpleEuclideanJordanAlgebra[102X  ([14X3.2-1[114X)  with  rank  3 and
+  degree  8.  However,  that construction uses the upper triangular entries of
+  the  Hermitian  matrices define the basis vectors (i.e., the [10X[1][2], [2][3],
+  [1][3][110X  entries).  Much of the literature on the Albert algebra instead uses
+  the  [10X[1][2],  [2][3], [3][1][110X entries of the Hermitian matrices to define the
+  basis  vectors  (see for example [Wil09a, pp. 147-148]). The [5XALCO[105X provides a
+  specific  construction  of  the Albert algebra that uses this convention for
+  defining basis vectors, described below.[133X
+  
+  [1X3.3-1 AlbertAlgebra[101X
   
   [33X[1;0Y[29X[2XAlbertAlgebra[102X( [3XF[103X ) [32X function[133X
   
@@ -170,11 +183,15 @@
   [4X[32X  Example  [32X[104X
     [4X[25Xgap>[125X [27XA := AlbertAlgebra(Rationals);[127X[104X
     [4X[28X<algebra of dimension 27 over Rationals>[128X[104X
-    [4X[25Xgap>[125X [27XAsList(Basis(A));[127X[104X
-    [4X[28X[ i1, i2, i3, i4, i5, i6, i7, i8, j1, j2, j3, j4, j5, j6, j7, j8, k1, k2, k3, k4, k5, k6, k7, k8, ei, ej, ek ][128X[104X
+    [4X[25Xgap>[125X [27Xi := Basis(A){[1..8]}; j := Basis(A){[9..16]}; k := Basis(A){[17..24]}; e := Basis(A){[[127X[104X
+    [4X[28X25..27]};[128X[104X
+    [4X[28X[ i1, i2, i3, i4, i5, i6, i7, i8 ][128X[104X
+    [4X[28X[ j1, j2, j3, j4, j5, j6, j7, j8 ][128X[104X
+    [4X[28X[ k1, k2, k3, k4, k5, k6, k7, k8 ][128X[104X
+    [4X[28X[ ei, ej, ek ][128X[104X
   [4X[32X[104X
   
-  [1X3.2-6 Alb[101X
+  [1X3.3-2 Alb[101X
   
   [33X[1;0Y[29X[2XAlb[102X [32X global variable[133X
   
@@ -186,10 +203,93 @@
     [4X[28X<algebra of dimension 27 over Rationals>[128X[104X
   [4X[32X[104X
   
+  [1X3.3-3 AlbertVectorToHermitianMatrix[101X
   
-  [1X3.3 [33X[0;0YAdditional Tools and Properties[133X[101X
+  [33X[1;0Y[29X[2XAlbertVectorToHermitianMatrix[102X( [3Xx[103X ) [32X function[133X
   
-  [1X3.3-1 HermitianJordanAlgebraBasis[101X
+  [33X[0;0YFor  an  element  [3Xx[103X  in  [10XAlb[110X  (see  [2XAlb[102X  ([14X3.3-2[114X)), this function returns the
+  corresponding  3  x 3 Hermitian matrix with octonion entries in [10XOct[110X (see [2XOct[102X
+  ([14X2.1-4[114X)).[133X
+  
+  [1X3.3-4 HermitianMatrixToAlbertVector[101X
+  
+  [33X[1;0Y[29X[2XHermitianMatrixToAlbertVector[102X( [3Xx[103X ) [32X function[133X
+  
+  [33X[0;0YFor  3  x  3  Hermitian  matrix with elements in [10XOct[110X (see [2XOct[102X ([14X2.1-4[114X)), this
+  function returns the corresponding vector in in [10XAlb[110X (see [2XAlb[102X ([14X3.3-2[114X)).[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27Xj := Basis(Alb){[9..16]};[127X[104X
+    [4X[28X[ j1, j2, j3, j4, j5, j6, j7, j8 ][128X[104X
+    [4X[25Xgap>[125X [27Xmat := AlbertVectorToHermitianMatrix(j[3]);; Display(mat);[127X[104X
+    [4X[28X[ [     0*e1,     0*e1,  (-1)*e3 ],[128X[104X
+    [4X[28X  [     0*e1,     0*e1,     0*e1 ],[128X[104X
+    [4X[28X  [       e3,     0*e1,     0*e1 ] ][128X[104X
+    [4X[25Xgap>[125X [27XHermitianMatrixToAlbertVector(mat);[127X[104X
+    [4X[28Xj3[128X[104X
+  [4X[32X[104X
+  
+  
+  [1X3.4 [33X[0;0YThe Quadratic Representation[133X[101X
+  
+  [33X[0;0YMany  important  features  of  simple  Euclidean  Jordan  algebra  and their
+  isotopes  are related to the quadratic representation. This aspect of Jordan
+  algebras  is  described well in [McC04, pp.82-86] and [FK94, pp. 32-38]. The
+  following  methods allow for the construction of Jordan operators, including
+  the left translation and the quadratic maps.[133X
+  
+  [1X3.4-1 P[101X
+  
+  [33X[1;0Y[29X[2XP[102X( [3Xx[103X[, [3Xy[103X] ) [32X operation[133X
+  
+  [33X[0;0YFor  [3Xx[103X  and  [3Xy[103X  Jordan  algebra elements, satisfying [10XIsJordanAlgebraObj[110X this
+  operation  applies  two  methods.  In  the  case  of [10XP([3Xx[103X[10X, y)[110X, this operation
+  returns [10X2*x*(x*y) - (x^2)*y[110X. In the case of [10XP(x)[110X, this operation returns the
+  matrix  representing  the quadratic map in the canonical basis of the Jordan
+  algebra [3XJ[103X containing [3Xx[103X. For [10XL(x)[110X the matrix [10XAdjointMatrix(CanonicalBasis(J),
+  x)[110X, the operation [10XP([3Xx[103X[10X)[110X returns the matrix [10X2 L(x)^2 - L(x^2)[110X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XJ := JordanSpinFactor(IdentityMat(3));[127X[104X
+    [4X[28X<algebra of dimension 4 over Rationals>[128X[104X
+    [4X[25Xgap>[125X [27Xx := Random(J); y := Random(J);[127X[104X
+    [4X[28X(-1)*v.1+(4/3)*v.2+(-1)*v.3+v.4[128X[104X
+    [4X[28X(-1)*v.1+(-1/2)*v.2+(2)*v.3+(-1/2)*v.4[128X[104X
+    [4X[25Xgap>[125X [27XP(x,y);[127X[104X
+    [4X[28X(14/9)*v.1+(-79/18)*v.2+(-11/9)*v.3+(-53/18)*v.4[128X[104X
+    [4X[25Xgap>[125X [27XP(x);; Display(last);[127X[104X
+    [4X[28X[ [  43/9,  -8/3,     2,    -2 ],[128X[104X
+    [4X[28X  [  -8/3,   7/9,  -8/3,   8/3 ],[128X[104X
+    [4X[28X  [     2,  -8/3,  -7/9,    -2 ],[128X[104X
+    [4X[28X  [    -2,   8/3,    -2,  -7/9 ] ][128X[104X
+    [4X[25Xgap>[125X [27XLinearCombination(Basis(J), P(x)*ExtRepOfObj(y)) = P(x,y);[127X[104X
+    [4X[28Xtrue[128X[104X
+    [4X[25Xgap>[125X [27XExtRepOfObj(P(x,y)) = P(x)*ExtRepOfObj(y);[127X[104X
+    [4X[28Xtrue[128X[104X
+    [4X[25Xgap>[125X [27XP(2*x) = 4*P(x);[127X[104X
+    [4X[28Xtrue[128X[104X
+  [4X[32X[104X
+  
+  [1X3.4-2 JTS[101X
+  
+  [33X[1;0Y[29X[2XJTS[102X( [3Xx[103X, [3Xy[103X, [3Xz[103X ) [32X operation[133X
+  
+  [33X[0;0YFor   Jordan   algebra  elements  [3Xx[103X,  [3Xy[103X,  [3Xz[103X  satisfying  [10XIsJordanAlgebraObj[110X,
+  [10XJTS([3Xx[103X[10X,[3Xy[103X[10X,[3Xz[103X[10X)[110X  returns the Jordan triple product defined in terms of the Jordan
+  product  as [10X[3Xx[103X[10X*([3Xy[103X[10X*[3Xz[103X[10X) + ([3Xx[103X[10X*[3Xy[103X[10X)*[3Xz[103X[10X - [3Xy[103X[10X*([3Xx[103X[10X*[3Xz[103X[10X)[110X. Equivalently, [10X2*JTS([3Xx[103X[10X,[3Xy[103X[10X,[3Xz[103X[10X)[110X is equal
+  to [10XP(x+z, y) - P(x, y) - P(z, y)[110X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XList(Basis(Alb), x -> JTS(i[1],i[1],x));[127X[104X
+    [4X[28X[ i1, i2, i3, i4, i5, i6, i7, i8, (1/2)*j1, (1/2)*j2, (1/2)*j3, (1/2)*j4, (1/2)*j5,[128X[104X
+    [4X[28X  (1/2)*j6, (1/2)*j7, (1/2)*j8, (1/2)*k1, (1/2)*k2, (1/2)*k3, (1/2)*k4, (1/2)*k5,[128X[104X
+    [4X[28X  (1/2)*k6, (1/2)*k7, (1/2)*k8, 0*i1, ej, ek ][128X[104X
+  [4X[32X[104X
+  
+  
+  [1X3.5 [33X[0;0YAdditional Tools and Properties[133X[101X
+  
+  [1X3.5-1 HermitianJordanAlgebraBasis[101X
   
   [33X[1;0Y[29X[2XHermitianJordanAlgebraBasis[102X( [3Xr[103X, [3XB[103X ) [32X function[133X
   
@@ -216,7 +316,7 @@
     [4X[28X  [  (-1)*k,     0*e ] ][128X[104X
   [4X[32X[104X
   
-  [1X3.3-2 JordanMatrixBasis[101X
+  [1X3.5-2 JordanMatrixBasis[101X
   
   [33X[1;0Y[29X[2XJordanMatrixBasis[102X( [3XJ[103X ) [32X attribute[133X
   
@@ -224,29 +324,28 @@
   then  the  set  of  matrices  corresponding  to  [10XCanonicalBasis(  [3XJ[103X[10X )[110X can be
   obtained using [10XJordanMatrixBasis( [3XJ[103X[10X )[110X.[133X
   
-  [1X3.3-3 HermitianMatrixToJordanCoefficients[101X
+  [1X3.5-3 HermitianMatrixToJordanVector[101X
   
-  [33X[1;0Y[29X[2XHermitianMatrixToJordanCoefficients[102X( [3Xmat[103X, [3XJ[103X ) [32X function[133X
+  [33X[1;0Y[29X[2XHermitianMatrixToJordanVector[102X( [3Xmat[103X, [3XJ[103X ) [32X function[133X
   
   [33X[0;0YConverts matrix [3Xmat[103X into an element of Jordan algebra [3XJ[103X.[133X
   
   [4X[32X  Example  [32X[104X
-    [4X[28X             [128X[104X
-    [4X[25Xgap>[125X [27XH := QuaternionAlgebra(Rationals);; AsList(Basis(H));[127X[104X
+    [4X[28X            gap> H := QuaternionAlgebra(Rationals);; AsList(Basis(H));[128X[104X
     [4X[28X[ e, i, j, k ][128X[104X
     [4X[25Xgap>[125X [27XJ := HermitianSimpleJordanAlgebra(2,Basis(H));[127X[104X
     [4X[28X<algebra of dimension 6 over Rationals>[128X[104X
     [4X[25Xgap>[125X [27XAsList(CanonicalBasis(J));[127X[104X
     [4X[28X[ v.1, v.2, v.3, v.4, v.5, v.6 ][128X[104X
     [4X[25Xgap>[125X [27XJordanMatrixBasis(J);[127X[104X
-    [4X[28X[ [ [ e, 0*e ], [ 0*e, 0*e ] ],    [ [ 0*e, 0*e ], [ 0*e, e ] ], [128X[104X
-    [4X[28X  [ [ 0*e, e ], [ e, 0*e ] ],      [ [ 0*e, i ], [ (-1)*i, 0*e ] ], [128X[104X
-    [4X[28X  [ [ 0*e, j ], [ (-1)*j, 0*e ] ], [ [ 0*e, k ], [ (-1)*k, 0*e ] ] ][128X[104X
-    [4X[25Xgap>[125X [27XList(JordanMatrixBasis(J), x -> HermitianMatrixToJordanCoefficients(x, J));[127X[104X
+    [4X[28X[ [ [ e, 0*e ], [ 0*e, 0*e ] ], [ [ 0*e, 0*e ], [ 0*e, e ] ], [ [ 0*e, e ], [ e, 0*e ] ],[128X[104X
+    [4X[28X  [ [ 0*e, i ], [ (-1)*i, 0*e ] ], [ [ 0*e, j ], [ (-1)*j, 0*e ] ],[128X[104X
+    [4X[28X  [ [ 0*e, k ], [ (-1)*k, 0*e ] ] ][128X[104X
+    [4X[25Xgap>[125X [27XList(JordanMatrixBasis(J), x -> HermitianMatrixToJordanVector(x, J));[127X[104X
     [4X[28X[ v.1, v.2, v.3, v.4, v.5, v.6 ][128X[104X
   [4X[32X[104X
   
-  [1X3.3-4 JordanAlgebraGramMatrix[101X
+  [1X3.5-4 JordanAlgebraGramMatrix[101X
   
   [33X[1;0Y[29X[2XJordanAlgebraGramMatrix[102X( [3XJ[103X ) [32X attribute[133X
   
@@ -269,7 +368,7 @@
     [4X[28X  [   0,   0,   0,   0,   0,   0,   0,   0,  -1,   2 ] ]  [128X[104X
   [4X[32X[104X
   
-  [1X3.3-5 JordanAdjugate[101X
+  [1X3.5-5 JordanAdjugate[101X
   
   [33X[1;0Y[29X[2XJordanAdjugate[102X( [3Xx[103X ) [32X function[133X
   
@@ -277,7 +376,7 @@
   [10Xx*JordanAdjugate(x)   =   One(x)*Determinant(x)[110X.   When   [10XDeterminant(x)[110X  is
   non-zero, [10XJordanAdjugate(x)[110X is proportional to [10XInverse(x)[110X.[133X
   
-  [1X3.3-6 IsPositiveDefinite[101X
+  [1X3.5-6 IsPositiveDefinite[101X
   
   [33X[1;0Y[29X[2XIsPositiveDefinite[102X( [3Xx[103X ) [32X filter[133X
   

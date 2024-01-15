@@ -411,7 +411,7 @@ e]]></Example>
           </Description>
       </ManSection>
 
-      <ManSection>
+      <!-- <ManSection>
         <Heading>Golden Field Values</Heading>
       <Var Name="sigma" />
       <Var Name="tau" />
@@ -430,13 +430,13 @@ NF(5,[ 1, 4 ])
 gap> Field(Sqrt(5));
 NF(5,[ 1, 4 ])]]></Example>
         </Description>
-      </ManSection>
+      </ManSection> -->
 
       <ManSection>
         <Heading>GoldenModSigma</Heading>
       <Func Name="GoldenModSigma" Arg="x" />
-        <Description> For <Arg>x</Arg> in the golden field <Code>NF(5,[ 1, 4 ])</Code>, this function returns the rational coefficient of <Code>1</Code> in the basis <Code>Basis(NF(5,[ 1, 4 ]), [1, sigma])</Code>. 
-        <Example><![CDATA[ 
+        <Description> For <Arg>x</Arg> in the golden field <Code>NF(5,[ 1, 4 ])</Code>, this function returns the rational coefficient of <Code>1</Code> in the basis <Code>Basis(NF(5,[ 1, 4 ]), [1, (1-Sqrt(5))/2])</Code>. 
+        <Example><![CDATA[gap> sigma := (1-Sqrt(5))/2;; tau := (1+Sqrt(5))/2;;
 gap> x := 5 + 3*sigma;; GoldenModSigma(x);
 5 
 gap> GoldenModSigma(sigma);
@@ -685,6 +685,20 @@ gap> ExtRepOfObj(P(x,y)) = P(x)*ExtRepOfObj(y);
 true
 gap> P(2*x) = 4*P(x);
 true]]></Example> 
+        </Description>
+      </ManSection>
+
+      <ManSection>
+        <Oper Name="JTS" Arg="x,y,z" />
+        <Description>
+          For Jordan algebra elements <Arg>x</Arg>, <Arg>y</Arg>, <Arg>z</Arg> satisfying <Code>IsJordanAlgebraObj</Code>, <Code>JTS(<Arg>x</Arg>,<Arg>y</Arg>,<Arg>z</Arg>)</Code> returns the Jordan triple product defined in terms of the Jordan product as <Code><Arg>x</Arg>*(<Arg>y</Arg>*<Arg>z</Arg>)
+            + (<Arg>x</Arg>*<Arg>y</Arg>)*<Arg>z</Arg>
+            - <Arg>y</Arg>*(<Arg>x</Arg>*<Arg>z</Arg>)</Code>. 
+          Equivalently, <Code>2*JTS(<Arg>x</Arg>,<Arg>y</Arg>,<Arg>z</Arg>)</Code> is equal to <Code>P(x+z, y) - P(x, y) - P(z, y)</Code>.
+          <Example><![CDATA[gap> List(Basis(Alb), x -> JTS(i[1],i[1],x));
+[ i1, i2, i3, i4, i5, i6, i7, i8, (1/2)*j1, (1/2)*j2, (1/2)*j3, (1/2)*j4, (1/2)*j5,
+  (1/2)*j6, (1/2)*j7, (1/2)*j8, (1/2)*k1, (1/2)*k2, (1/2)*k3, (1/2)*k4, (1/2)*k5,
+  (1/2)*k6, (1/2)*k7, (1/2)*k8, 0*i1, ej, ek ]]]></Example>
         </Description>
       </ManSection>
 
@@ -1375,6 +1389,17 @@ gap> D := DesignByAngleSet(4, 1, A);; DesignAddCardinality(D, DesignSpecialBound
         <ManSection>
           <Filt Name="IsOctonionLattice" />
           <Description>This is a subcategory of <Code>IsFreeLeftModule</Code> used below to construct octonion lattices with an inner product defined via an octonion gram matrix.</Description>
+        </ManSection>
+
+        <ManSection>
+          <Var Name="MOGLeechLatticeGeneratorMatrix" />
+          <Var Name="MOGLeechLatticeGramMatrix" />
+          <Description>
+            The variable  <Code>MOGLeechLatticeGeneratorMatrix</Code> stores the 24 x 24 integer matrix that span the Leech lattice <Cite Key="conway_sphere_2013" Where="p. 133" />.
+            The variable <Code>MOGLeechLatticeGramMatrix</Code> stores the Gram matrix of the generator matrix rows, with the inner product computed as <Code>x*y/8</Code>.
+            <Example><![CDATA[gap> IsLeechLatticeGramMatrix(MOGLeechLatticeGramMatrix);
+true]]></Example>
+          </Description>
         </ManSection>
 
     </Section>

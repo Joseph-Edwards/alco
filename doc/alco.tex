@@ -660,37 +660,8 @@ multiplication to form a $ D_4$ root system.
 \end{Verbatim}
  }
 
- 
-\subsection{\textcolor{Chapter }{Golden Field Values}}\logpage{[ 2, 4, 6 ]}
-\hyperdef{L}{X80F5CF497843D181}{}
-{
-\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{sigma\index{sigma@\texttt{sigma}}
-\label{sigma}
-}\hfill{\scriptsize (global variable)}}\\
-\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{tau\index{tau@\texttt{tau}}
-\label{tau}
-}\hfill{\scriptsize (global variable)}}\\
-
-
- The \textsf{ALCO} package loads the following elements of the golden field, \texttt{NF(5,[ 1, 4 ])}: 
-\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
-  !gapprompt@gap>| !gapinput@TeachingMode(true);|
-  #I  Teaching mode is turned ON
-  !gapprompt@gap>| !gapinput@sigma;|
-  (1-Sqrt(5))/2
-  !gapprompt@gap>| !gapinput@tau;|
-  (1+Sqrt(5))/2 
-  !gapprompt@gap>| !gapinput@Field(sigma);|
-  NF(5,[ 1, 4 ])
-  !gapprompt@gap>| !gapinput@Field(tau);|
-  NF(5,[ 1, 4 ])
-  !gapprompt@gap>| !gapinput@Field(Sqrt(5));|
-  NF(5,[ 1, 4 ])
-\end{Verbatim}
- }
-
- 
-\subsection{\textcolor{Chapter }{GoldenModSigma}}\logpage{[ 2, 4, 7 ]}
+  
+\subsection{\textcolor{Chapter }{GoldenModSigma}}\logpage{[ 2, 4, 6 ]}
 \hyperdef{L}{X7C5123127E6FFFA7}{}
 {
 \noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{GoldenModSigma({\mdseries\slshape x})\index{GoldenModSigma@\texttt{GoldenModSigma}}
@@ -698,8 +669,9 @@ multiplication to form a $ D_4$ root system.
 }\hfill{\scriptsize (function)}}\\
 
 
- For \mbox{\texttt{\mdseries\slshape x}} in the golden field \texttt{NF(5,[ 1, 4 ])}, this function returns the rational coefficient of \texttt{1} in the basis \texttt{Basis(NF(5,[ 1, 4 ]), [1, sigma])}. 
+ For \mbox{\texttt{\mdseries\slshape x}} in the golden field \texttt{NF(5,[ 1, 4 ])}, this function returns the rational coefficient of \texttt{1} in the basis \texttt{Basis(NF(5,[ 1, 4 ]), [1, (1-Sqrt(5))/2])}. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@sigma := (1-Sqrt(5))/2;; tau := (1+Sqrt(5))/2;;|
   !gapprompt@gap>| !gapinput@x := 5 + 3*sigma;; GoldenModSigma(x);|
   5 
   !gapprompt@gap>| !gapinput@GoldenModSigma(sigma);|
@@ -712,7 +684,7 @@ multiplication to form a $ D_4$ root system.
  
 
 \subsection{\textcolor{Chapter }{IcosianH4basis}}
-\logpage{[ 2, 4, 8 ]}\nobreak
+\logpage{[ 2, 4, 7 ]}\nobreak
 \hyperdef{L}{X7F28DE91825770B6}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{IcosianH4basis\index{IcosianH4basis@\texttt{IcosianH4basis}}
 \label{IcosianH4basis}
@@ -944,10 +916,19 @@ new algebra.
 \end{Verbatim}
  }
 
+ }
+
  
+\section{\textcolor{Chapter }{The Albert Algebra}}\logpage{[ 3, 3, 0 ]}
+\hyperdef{L}{X7B9397277AF7F920}{}
+{
+  The exceptional simple Euclidean Jordan algebra, or Albert algebra, may be
+constructed using \texttt{SimpleEuclideanJordanAlgebra} (\ref{SimpleEuclideanJordanAlgebra}) with rank 3 and degree 8. However, that construction uses the upper triangular
+entries of the Hermitian matrices define the basis vectors (i.e., the \texttt{[1][2], [2][3], [1][3]} entries). Much of the literature on the Albert algebra instead uses the \texttt{[1][2], [2][3], [3][1]} entries of the Hermitian matrices to define the basis vectors (see for example \cite[pp. 147-148]{wilson_finite_2009}). The \textsf{ALCO} provides a specific construction of the Albert algebra that uses this
+convention for defining basis vectors, described below. 
 
 \subsection{\textcolor{Chapter }{AlbertAlgebra}}
-\logpage{[ 3, 2, 5 ]}\nobreak
+\logpage{[ 3, 3, 1 ]}\nobreak
 \hyperdef{L}{X7A6AFFE07994B4A9}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{AlbertAlgebra({\mdseries\slshape F})\index{AlbertAlgebra@\texttt{AlbertAlgebra}}
 \label{AlbertAlgebra}
@@ -959,15 +940,19 @@ the literature. Specifically, while \texttt{HermitianSimpleJordanAlgebra(3,8,Bas
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
   !gapprompt@gap>| !gapinput@A := AlbertAlgebra(Rationals);|
   <algebra of dimension 27 over Rationals>
-  !gapprompt@gap>| !gapinput@AsList(Basis(A));|
-  [ i1, i2, i3, i4, i5, i6, i7, i8, j1, j2, j3, j4, j5, j6, j7, j8, k1, k2, k3, k4, k5, k6, k7, k8, ei, ej, ek ]
+  !gapprompt@gap>| !gapinput@i := Basis(A){[1..8]}; j := Basis(A){[9..16]}; k := Basis(A){[17..24]}; e := Basis(A){[|
+  25..27]};
+  [ i1, i2, i3, i4, i5, i6, i7, i8 ]
+  [ j1, j2, j3, j4, j5, j6, j7, j8 ]
+  [ k1, k2, k3, k4, k5, k6, k7, k8 ]
+  [ ei, ej, ek ]
 \end{Verbatim}
  }
 
  
 
 \subsection{\textcolor{Chapter }{Alb}}
-\logpage{[ 3, 2, 6 ]}\nobreak
+\logpage{[ 3, 3, 2 ]}\nobreak
 \hyperdef{L}{X7B456B2582F195DB}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{Alb\index{Alb@\texttt{Alb}}
 \label{Alb}
@@ -981,16 +966,114 @@ the literature. Specifically, while \texttt{HermitianSimpleJordanAlgebra(3,8,Bas
 \end{Verbatim}
  }
 
+ 
+
+\subsection{\textcolor{Chapter }{AlbertVectorToHermitianMatrix}}
+\logpage{[ 3, 3, 3 ]}\nobreak
+\hyperdef{L}{X860036647BB9325E}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{AlbertVectorToHermitianMatrix({\mdseries\slshape x})\index{AlbertVectorToHermitianMatrix@\texttt{AlbertVectorToHermitianMatrix}}
+\label{AlbertVectorToHermitianMatrix}
+}\hfill{\scriptsize (function)}}\\
+
+
+For an element \mbox{\texttt{\mdseries\slshape x}} in \texttt{Alb} (see \texttt{Alb} (\ref{Alb})), this function returns the corresponding 3 x 3 Hermitian matrix with
+octonion entries in \texttt{Oct} (see \texttt{Oct} (\ref{Oct})). }
+
+ 
+
+\subsection{\textcolor{Chapter }{HermitianMatrixToAlbertVector}}
+\logpage{[ 3, 3, 4 ]}\nobreak
+\hyperdef{L}{X8385802B7AE842E6}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{HermitianMatrixToAlbertVector({\mdseries\slshape x})\index{HermitianMatrixToAlbertVector@\texttt{HermitianMatrixToAlbertVector}}
+\label{HermitianMatrixToAlbertVector}
+}\hfill{\scriptsize (function)}}\\
+
+
+For 3 x 3 Hermitian matrix with elements in \texttt{Oct} (see \texttt{Oct} (\ref{Oct})), this function returns the corresponding vector in in \texttt{Alb} (see \texttt{Alb} (\ref{Alb})). 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@j := Basis(Alb){[9..16]};|
+  [ j1, j2, j3, j4, j5, j6, j7, j8 ]
+  !gapprompt@gap>| !gapinput@mat := AlbertVectorToHermitianMatrix(j[3]);; Display(mat);|
+  [ [     0*e1,     0*e1,  (-1)*e3 ],
+    [     0*e1,     0*e1,     0*e1 ],
+    [       e3,     0*e1,     0*e1 ] ]
+  !gapprompt@gap>| !gapinput@HermitianMatrixToAlbertVector(mat);|
+  j3
+\end{Verbatim}
+ }
+
  }
 
  
-\section{\textcolor{Chapter }{Additional Tools and Properties}}\logpage{[ 3, 3, 0 ]}
+\section{\textcolor{Chapter }{The Quadratic Representation}}\logpage{[ 3, 4, 0 ]}
+\hyperdef{L}{X7F03850D819127E2}{}
+{
+  Many important features of simple Euclidean Jordan algebra and their isotopes
+are related to the quadratic representation. This aspect of Jordan algebras is
+described well in \cite[pp.82-86]{mccrimmon_taste_2004} and \cite[pp. 32-38]{faraut_analysis_1994}. The following methods allow for the construction of Jordan operators,
+including the left translation and the quadratic maps. 
+
+\subsection{\textcolor{Chapter }{P}}
+\logpage{[ 3, 4, 1 ]}\nobreak
+\hyperdef{L}{X80EC9BC680EC9BC6}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{P({\mdseries\slshape x[, y]})\index{P@\texttt{P}}
+\label{P}
+}\hfill{\scriptsize (operation)}}\\
+
+
+ For \mbox{\texttt{\mdseries\slshape x}} and \mbox{\texttt{\mdseries\slshape y}} Jordan algebra elements, satisfying \texttt{IsJordanAlgebraObj} this operation applies two methods. In the case of \texttt{P(\mbox{\texttt{\mdseries\slshape x}}, y)}, this operation returns \texttt{2*x*(x*y) - (x\texttt{\symbol{94}}2)*y}. In the case of \texttt{P(x)}, this operation returns the matrix representing the quadratic map in the
+canonical basis of the Jordan algebra \mbox{\texttt{\mdseries\slshape J}} containing \mbox{\texttt{\mdseries\slshape x}}. For \texttt{L(x)} the matrix \texttt{AdjointMatrix(CanonicalBasis(J), x)}, the operation \texttt{P(\mbox{\texttt{\mdseries\slshape x}})} returns the matrix \texttt{2 L(x)\texttt{\symbol{94}}2 - L(x\texttt{\symbol{94}}2)}. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@J := JordanSpinFactor(IdentityMat(3));|
+  <algebra of dimension 4 over Rationals>
+  !gapprompt@gap>| !gapinput@x := Random(J); y := Random(J);|
+  (-1)*v.1+(4/3)*v.2+(-1)*v.3+v.4
+  (-1)*v.1+(-1/2)*v.2+(2)*v.3+(-1/2)*v.4
+  !gapprompt@gap>| !gapinput@P(x,y);|
+  (14/9)*v.1+(-79/18)*v.2+(-11/9)*v.3+(-53/18)*v.4
+  !gapprompt@gap>| !gapinput@P(x);; Display(last);|
+  [ [  43/9,  -8/3,     2,    -2 ],
+    [  -8/3,   7/9,  -8/3,   8/3 ],
+    [     2,  -8/3,  -7/9,    -2 ],
+    [    -2,   8/3,    -2,  -7/9 ] ]
+  !gapprompt@gap>| !gapinput@LinearCombination(Basis(J), P(x)*ExtRepOfObj(y)) = P(x,y);|
+  true
+  !gapprompt@gap>| !gapinput@ExtRepOfObj(P(x,y)) = P(x)*ExtRepOfObj(y);|
+  true
+  !gapprompt@gap>| !gapinput@P(2*x) = 4*P(x);|
+  true
+\end{Verbatim}
+ }
+
+ 
+
+\subsection{\textcolor{Chapter }{JTS}}
+\logpage{[ 3, 4, 2 ]}\nobreak
+\hyperdef{L}{X850A8E5182734D52}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{JTS({\mdseries\slshape x, y, z})\index{JTS@\texttt{JTS}}
+\label{JTS}
+}\hfill{\scriptsize (operation)}}\\
+
+
+ For Jordan algebra elements \mbox{\texttt{\mdseries\slshape x}}, \mbox{\texttt{\mdseries\slshape y}}, \mbox{\texttt{\mdseries\slshape z}} satisfying \texttt{IsJordanAlgebraObj}, \texttt{JTS(\mbox{\texttt{\mdseries\slshape x}},\mbox{\texttt{\mdseries\slshape y}},\mbox{\texttt{\mdseries\slshape z}})} returns the Jordan triple product defined in terms of the Jordan product as \texttt{\mbox{\texttt{\mdseries\slshape x}}*(\mbox{\texttt{\mdseries\slshape y}}*\mbox{\texttt{\mdseries\slshape z}}) + (\mbox{\texttt{\mdseries\slshape x}}*\mbox{\texttt{\mdseries\slshape y}})*\mbox{\texttt{\mdseries\slshape z}} - \mbox{\texttt{\mdseries\slshape y}}*(\mbox{\texttt{\mdseries\slshape x}}*\mbox{\texttt{\mdseries\slshape z}})}. Equivalently, \texttt{2*JTS(\mbox{\texttt{\mdseries\slshape x}},\mbox{\texttt{\mdseries\slshape y}},\mbox{\texttt{\mdseries\slshape z}})} is equal to \texttt{P(x+z, y) - P(x, y) - P(z, y)}. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@List(Basis(Alb), x -> JTS(i[1],i[1],x));|
+  [ i1, i2, i3, i4, i5, i6, i7, i8, (1/2)*j1, (1/2)*j2, (1/2)*j3, (1/2)*j4, (1/2)*j5,
+    (1/2)*j6, (1/2)*j7, (1/2)*j8, (1/2)*k1, (1/2)*k2, (1/2)*k3, (1/2)*k4, (1/2)*k5,
+    (1/2)*k6, (1/2)*k7, (1/2)*k8, 0*i1, ej, ek ]
+\end{Verbatim}
+ }
+
+ }
+
+ 
+\section{\textcolor{Chapter }{Additional Tools and Properties}}\logpage{[ 3, 5, 0 ]}
 \hyperdef{L}{X7EA1D48F853C02F1}{}
 {
   
 
 \subsection{\textcolor{Chapter }{HermitianJordanAlgebraBasis}}
-\logpage{[ 3, 3, 1 ]}\nobreak
+\logpage{[ 3, 5, 1 ]}\nobreak
 \hyperdef{L}{X7C236EB080D05CD4}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{HermitianJordanAlgebraBasis({\mdseries\slshape r, B})\index{HermitianJordanAlgebraBasis@\texttt{HermitianJordanAlgebraBasis}}
 \label{HermitianJordanAlgebraBasis}
@@ -1021,7 +1104,7 @@ with or rank \mbox{\texttt{\mdseries\slshape r}} and degree given by the cardina
  
 
 \subsection{\textcolor{Chapter }{JordanMatrixBasis}}
-\logpage{[ 3, 3, 2 ]}\nobreak
+\logpage{[ 3, 5, 2 ]}\nobreak
 \hyperdef{L}{X853480DC7F9B0BD7}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{JordanMatrixBasis({\mdseries\slshape J})\index{JordanMatrixBasis@\texttt{JordanMatrixBasis}}
 \label{JordanMatrixBasis}
@@ -1033,28 +1116,27 @@ corresponding to \texttt{CanonicalBasis( \mbox{\texttt{\mdseries\slshape J}} )} 
 
  
 
-\subsection{\textcolor{Chapter }{HermitianMatrixToJordanCoefficients}}
-\logpage{[ 3, 3, 3 ]}\nobreak
-\hyperdef{L}{X8031519B84E53A57}{}
-{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{HermitianMatrixToJordanCoefficients({\mdseries\slshape mat, J})\index{HermitianMatrixToJordanCoefficients@\texttt{HermitianMatrixToJordanCoefficients}}
-\label{HermitianMatrixToJordanCoefficients}
+\subsection{\textcolor{Chapter }{HermitianMatrixToJordanVector}}
+\logpage{[ 3, 5, 3 ]}\nobreak
+\hyperdef{L}{X7D167A057F3CB029}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{HermitianMatrixToJordanVector({\mdseries\slshape mat, J})\index{HermitianMatrixToJordanVector@\texttt{HermitianMatrixToJordanVector}}
+\label{HermitianMatrixToJordanVector}
 }\hfill{\scriptsize (function)}}\\
 
 
  Converts matrix \mbox{\texttt{\mdseries\slshape mat}} into an element of Jordan algebra \mbox{\texttt{\mdseries\slshape J}}. 
 \begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
-               
-  !gapprompt@gap>| !gapinput@H := QuaternionAlgebra(Rationals);; AsList(Basis(H));|
+              gap> H := QuaternionAlgebra(Rationals);; AsList(Basis(H));
   [ e, i, j, k ]
   !gapprompt@gap>| !gapinput@J := HermitianSimpleJordanAlgebra(2,Basis(H));|
   <algebra of dimension 6 over Rationals>
   !gapprompt@gap>| !gapinput@AsList(CanonicalBasis(J));|
   [ v.1, v.2, v.3, v.4, v.5, v.6 ]
   !gapprompt@gap>| !gapinput@JordanMatrixBasis(J);|
-  [ [ [ e, 0*e ], [ 0*e, 0*e ] ],    [ [ 0*e, 0*e ], [ 0*e, e ] ], 
-    [ [ 0*e, e ], [ e, 0*e ] ],      [ [ 0*e, i ], [ (-1)*i, 0*e ] ], 
-    [ [ 0*e, j ], [ (-1)*j, 0*e ] ], [ [ 0*e, k ], [ (-1)*k, 0*e ] ] ]
-  !gapprompt@gap>| !gapinput@List(JordanMatrixBasis(J), x -> HermitianMatrixToJordanCoefficients(x, J));|
+  [ [ [ e, 0*e ], [ 0*e, 0*e ] ], [ [ 0*e, 0*e ], [ 0*e, e ] ], [ [ 0*e, e ], [ e, 0*e ] ],
+    [ [ 0*e, i ], [ (-1)*i, 0*e ] ], [ [ 0*e, j ], [ (-1)*j, 0*e ] ],
+    [ [ 0*e, k ], [ (-1)*k, 0*e ] ] ]
+  !gapprompt@gap>| !gapinput@List(JordanMatrixBasis(J), x -> HermitianMatrixToJordanVector(x, J));|
   [ v.1, v.2, v.3, v.4, v.5, v.6 ]
 \end{Verbatim}
  }
@@ -1062,7 +1144,7 @@ corresponding to \texttt{CanonicalBasis( \mbox{\texttt{\mdseries\slshape J}} )} 
  
 
 \subsection{\textcolor{Chapter }{JordanAlgebraGramMatrix}}
-\logpage{[ 3, 3, 4 ]}\nobreak
+\logpage{[ 3, 5, 4 ]}\nobreak
 \hyperdef{L}{X7B6084887C1C5AF1}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{JordanAlgebraGramMatrix({\mdseries\slshape J})\index{JordanAlgebraGramMatrix@\texttt{JordanAlgebraGramMatrix}}
 \label{JordanAlgebraGramMatrix}
@@ -1090,7 +1172,7 @@ corresponding to \texttt{CanonicalBasis( \mbox{\texttt{\mdseries\slshape J}} )} 
  
 
 \subsection{\textcolor{Chapter }{JordanAdjugate}}
-\logpage{[ 3, 3, 5 ]}\nobreak
+\logpage{[ 3, 5, 5 ]}\nobreak
 \hyperdef{L}{X806F76C07B315DE4}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{JordanAdjugate({\mdseries\slshape x})\index{JordanAdjugate@\texttt{JordanAdjugate}}
 \label{JordanAdjugate}
@@ -1102,7 +1184,7 @@ corresponding to \texttt{CanonicalBasis( \mbox{\texttt{\mdseries\slshape J}} )} 
  
 
 \subsection{\textcolor{Chapter }{IsPositiveDefinite}}
-\logpage{[ 3, 3, 6 ]}\nobreak
+\logpage{[ 3, 5, 6 ]}\nobreak
 \hyperdef{L}{X7C82B2EB78CF9C17}{}
 {\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{IsPositiveDefinite({\mdseries\slshape x})\index{IsPositiveDefinite@\texttt{IsPositiveDefinite}}
 \label{IsPositiveDefinite}
@@ -1957,6 +2039,27 @@ permits one to reproduce the results found in \cite{elkies_exceptional_1996}, \c
 
 This is a subcategory of \texttt{IsFreeLeftModule} used below to construct octonion lattices with an inner product defined via an
 octonion gram matrix.}
+
+ 
+
+\subsection{\textcolor{Chapter }{MOGLeechLatticeGeneratorMatrix}}
+\logpage{[ 5, 1, 4 ]}\nobreak
+\hyperdef{L}{X7927C1DA80263FEE}{}
+{\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{MOGLeechLatticeGeneratorMatrix\index{MOGLeechLatticeGeneratorMatrix@\texttt{MOGLeechLatticeGeneratorMatrix}}
+\label{MOGLeechLatticeGeneratorMatrix}
+}\hfill{\scriptsize (global variable)}}\\
+\noindent\textcolor{FuncColor}{$\triangleright$\enspace\texttt{MOGLeechLatticeGramMatrix\index{MOGLeechLatticeGramMatrix@\texttt{MOGLeechLatticeGramMatrix}}
+\label{MOGLeechLatticeGramMatrix}
+}\hfill{\scriptsize (global variable)}}\\
+
+
+ The variable \texttt{MOGLeechLatticeGeneratorMatrix} stores the 24 x 24 integer matrix that span the Leech lattice \cite[p. 133]{conway_sphere_2013}. The variable \texttt{MOGLeechLatticeGramMatrix} stores the Gram matrix of the generator matrix rows, with the inner product
+computed as \texttt{x*y/8}. 
+\begin{Verbatim}[commandchars=!@|,fontsize=\small,frame=single,label=Example]
+  !gapprompt@gap>| !gapinput@IsLeechLatticeGramMatrix(MOGLeechLatticeGramMatrix);|
+  true
+\end{Verbatim}
+ }
 
  }
 

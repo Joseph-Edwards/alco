@@ -13,6 +13,11 @@ Eiichi Bannai, Etsuko Bannai, Tatsuro Ito, and Rie Tanaka.
   {Applications}. Walter de Gruyter GmbH, Berlin/Boston, 2021.
 \newblock OCLC: on1243061900.
 
+\bibitem[CS13]{conway_sphere_2013}
+John~Horton Conway and Neil James~Alexander Sloane.
+\newblock {\em Sphere packings, lattices and groups}, volume 290.
+\newblock Springer Science \& Business Media, 2013.
+
 \bibitem[CVL91]{cameron_designs_1991}
 Peter~Jephson Cameron and Jacobus~Hendricus Van~Lint.
 \newblock {\em Designs, graphs, codes and their links}, volume~3.
@@ -76,7 +81,12 @@ Benjamin Nasmith.
 \newblock {PhD} {Thesis}, Royal Military College of Canada, Kingston ON, 2023.
 \newblock Accepted: 2023-07-27T12:24:01Z.
 
-\bibitem[Wil09]{wilson_octonions_2009}
+\bibitem[Wil09a]{wilson_finite_2009}
+Robert~A. Wilson.
+\newblock {\em The {Finite} {Simple} {Groups}}.
+\newblock Graduate {Texts} in {Mathematics}. Springer-Verlag, London, 2009.
+
+\bibitem[Wil09b]{wilson_octonions_2009}
 Robert~A. Wilson.
 \newblock Octonions and the {Leech} lattice.
 \newblock {\em Journal of Algebra}, 322(6):2186--2190, September 2009.

@@ -9,6 +9,9 @@
   de  Gruyter GmbH, De {Gruyter}, {Series} in {Discrete} {Mathematics} and {Applications},
   5, Berlin/Boston (2021), (OCLC: on1243061900).
   
+  [[20XCS13[120X]  [16XConway,  J.  H.  and  Sloane,  N.  J.  A.[116X, [17XSphere packings, lattices and groups[117X,
+  Springer Science \& Business Media, [19X290[119X (2013).
+  
   [[20XCVL91[120X]  [16XCameron,  P.  J.  and  Van Lint, J. H.[116X, [17XDesigns, graphs, codes and their links[117X,
   Cambridge University Press, [19X3[119X, Cambridge (1991).
   
@@ -47,7 +50,10 @@
   {Thesis},   Royal   Military   College   of   Canada,  Kingston  ON  (2023),  (Accepted:
   2023-07-27T12:24:01Z).
   
-  [[20XWil09[120X]  [16XWilson,  R.  A.[116X,  [17XOctonions  and  the Leech lattice[117X, [18XJournal of Algebra[118X, [19X322[119X, 6
+  [[20XWil09a[120X]  [16XWilson,  R. A.[116X, [17XThe Finite Simple Groups[117X, Springer-Verlag, Graduate {Texts} in
+  {Mathematics}, London (2009).
+  
+  [[20XWil09b[120X]  [16XWilson,  R.  A.[116X,  [17XOctonions  and the Leech lattice[117X, [18XJournal of Algebra[118X, [19X322[119X, 6
   (2009), 2186--2190.
   
   [[20XWil11[120X]  [16XWilson,  R.  A.[116X,  [17XConway's  group and octonions[117X, [18XJournal of Group Theory[118X, [19X14[119X, 1

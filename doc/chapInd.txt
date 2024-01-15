@@ -5,8 +5,9 @@
   [2X\=[102X 5.4-5 
   [2X\in[102X 5.4-3 
   [2X\mod[102X 2.1-6 
-  [2XAlb[102X 3.2-6 
-  [2XAlbertAlgebra[102X 3.2-5 
+  [2XAlb[102X 3.3-2 
+  [2XAlbertAlgebra[102X 3.3-1 
+  [2XAlbertVectorToHermitianMatrix[102X 3.3-3 
   [2XBasis[102X 5.3-8 
   [2XBasisVectors[102X 5.3-8 
   [2XCanonicalBasis[102X 5.3-8 
@@ -42,13 +43,14 @@
   [2XDimension[102X 5.3-3 
   [2XGeneratorsAsCoefficients[102X 5.3-4 
   [2XGenericMinimalPolynomial[102X 3.1-6 
-  [2XGoldenModSigma[102X 2.4-7 
+  [2XGoldenModSigma[102X 2.4-6 
   [2XGramMatrix[102X, GramMatrixLattice 5.3-6 
       GramMatrixOctonion 2.2-3 
-  [2XHermitianJordanAlgebraBasis[102X 3.3-1 
-  [2XHermitianMatrixToJordanCoefficients[102X 3.3-3 
+  [2XHermitianJordanAlgebraBasis[102X 3.5-1 
+  [2XHermitianMatrixToAlbertVector[102X 3.3-4 
+  [2XHermitianMatrixToJordanVector[102X 3.5-3 
   [2XHermitianSimpleJordanAlgebra[102X 3.2-3 
-  [2XIcosianH4basis[102X 2.4-8 
+  [2XIcosianH4basis[102X 2.4-7 
   [2XIsAssociationSchemeDesign[102X 4.4-1 
   [2XIsDesign[102X 4.2-1 
   [2XIsDesignWithAngleSet[102X 4.3-1 
@@ -65,7 +67,7 @@
   [2XIsOctonionCollection[102X 2.1-1 
   [2XIsOctonionLattice[102X 5.1-3 
   [2XIsOctonionLatticeBasis[102X 5.3-8 
-  [2XIsPositiveDefinite[102X 3.3-6 
+  [2XIsPositiveDefinite[102X 3.5-6 
   [2XIsProjectiveDesign[102X 4.2-1 
   [2XIsRegularSchemeDesign[102X 4.4-1 
   [2XIsSpecialBoundDesign[102X 4.4-1 
@@ -74,14 +76,17 @@
   [2XIsSubset[102X 5.4-4 
   [2XIsTightDesign[102X 4.4-1 
   [2XJacobiPolynomial[102X 4.1-1 
-  [2XJordanAdjugate[102X 3.3-5 
-  [2XJordanAlgebraGramMatrix[102X 3.3-4 
+  [2XJordanAdjugate[102X 3.5-5 
+  [2XJordanAlgebraGramMatrix[102X 3.5-4 
   [2XJordanDegree[102X 3.1-3 
   [2XJordanHomotope[102X 3.2-4 
-  [2XJordanMatrixBasis[102X 3.3-2 
+  [2XJordanMatrixBasis[102X 3.5-2 
   [2XJordanRank[102X 3.1-2 
   [2XJordanSpinFactor[102X 3.2-2 
+  [2XJTS[102X 3.4-2 
   [2XLLLReducedBasisCoefficients[102X 5.3-5 
+  [2XMOGLeechLatticeGeneratorMatrix[102X 5.1-4 
+  [2XMOGLeechLatticeGramMatrix[102X 5.1-4 
   [2XNorm[102X, Jordan Algebras 3.1-5 
       Octonions 2.2-1 
       Quaternions 2.4-1 
@@ -93,6 +98,7 @@
   [2XOctonionLatticeByGenerators[102X 5.2-1 
   [2XOctonionToRealVector[102X 2.3-1 
       OctToRealLattices 5.4-6 
+  [2XP[102X 3.4-1 
   [2XQ_k_epsilon[102X 4.1-2 
   [2XQuaternionD4basis[102X 2.4-5 
   [2XR_k_epsilon[102X 4.1-2 
@@ -104,9 +110,7 @@
   [2XRealToOctonionVector[102X 2.3-2 
       RealToOctLattices 5.4-6 
   [2XScalarProduct[102X 5.4-2 
-  [2Xsigma[102X 2.4-6 
   [2XSimpleEuclideanJordanAlgebra[102X 3.2-1 
-  [2Xtau[102X 2.4-6 
   [2XTotallyIsotropicCode[102X 5.3-7 
   [2XTrace[102X, Jordan Algebras 3.1-4 
       Octonions 2.2-2 

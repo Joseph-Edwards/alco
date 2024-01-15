@@ -20,10 +20,6 @@ DeclareGlobalVariable( "QuaternionD4Basis" );
 
 # Icosian and Golden Field Tools
 
-DeclareGlobalVariable( "sigma" );
-
-DeclareGlobalVariable( "tau" );
-
 DeclareGlobalFunction( "GoldenRationalComponent" );
 
 DeclareGlobalFunction( "GoldenIrrationalComponent" );
@@ -31,7 +27,6 @@ DeclareGlobalFunction( "GoldenIrrationalComponent" );
 DeclareGlobalFunction( "GoldenModSigma" );
 
 DeclareGlobalVariable( "IcosianH4Basis" );
-
 
 # Octonion Algebra and Arithmetic Tools
 
@@ -118,6 +113,8 @@ DeclareGlobalFunction( "AlbertVectorToHermitianMatrix" );
 DeclareOperation("P", [IsJordanAlgebraObj, IsJordanAlgebraObj]);
 
 DeclareOperation("P", [IsJordanAlgebraObj]);
+
+DeclareOperation("JTS", [IsJordanAlgebraObj, IsJordanAlgebraObj, IsJordanAlgebraObj]);
 
 # T-Design Tools
 
@@ -209,6 +206,10 @@ DeclareGlobalFunction( "IsLeechLatticeGramMatrix" );
 
 DeclareGlobalFunction( "IsGossetLatticeGramMatrix" );
 
+DeclareGlobalVariable( "MOGLeechLatticeGeneratorMatrix" );
+
+DeclareGlobalVariable( "MOGLeechLatticeGramMatrix" );
+
 DeclareCategory( "IsOctonionLattice", IsFreeLeftModule );
 
     DeclareAttribute( "UnderlyingOctonionRing", IsOctonionLattice );
@@ -232,8 +233,6 @@ DeclareCategory( "IsOctonionLatticeBasis", IsCanonicalBasis );
 DeclareOperation( "IsSublattice", [ IsOctonionLattice, IsOctonionLattice ] );
 
 # Other Tools
-
-DeclareGlobalFunction( "closure_step" );
 
 DeclareGlobalFunction( "Closure" );
 

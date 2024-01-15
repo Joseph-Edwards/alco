@@ -54,6 +54,7 @@
 </span>
 <div class="ContSSBlock">
 <span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X80EC9BC680EC9BC6">3.4-1 P</a></span>
+<span class="ContSS"><br /><span class="nocss">&nbsp;&nbsp;</span><a href="chap3.html#X850A8E5182734D52">3.4-2 JTS</a></span>
 </div></div>
 <div class="ContSect"><span class="tocline"><span class="nocss">&nbsp;</span><a href="chap3.html#X7EA1D48F853C02F1">3.5 <span class="Heading">Additional Tools and Properties</span></a>
 </span>
@@ -304,6 +305,19 @@ true
 true
 <span class="GAPprompt">gap&gt;</span> <span class="GAPinput">P(2*x) = 4*P(x);</span>
 true</pre></div>
+
+<p><a id="X850A8E5182734D52" name="X850A8E5182734D52"></a></p>
+
+<h5>3.4-2 JTS</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&#8227; JTS</code>( <var class="Arg">x</var>, <var class="Arg">y</var>, <var class="Arg">z</var> )</td><td class="tdright">(&nbsp;operation&nbsp;)</td></tr></table></div>
+<p>For Jordan algebra elements <var class="Arg">x</var>, <var class="Arg">y</var>, <var class="Arg">z</var> satisfying <code class="code">IsJordanAlgebraObj</code>, <code class="code">JTS(<var class="Arg">x</var>,<var class="Arg">y</var>,<var class="Arg">z</var>)</code> returns the Jordan triple product defined in terms of the Jordan product as <code class="code"><var class="Arg">x</var>*(<var class="Arg">y</var>*<var class="Arg">z</var>) + (<var class="Arg">x</var>*<var class="Arg">y</var>)*<var class="Arg">z</var> - <var class="Arg">y</var>*(<var class="Arg">x</var>*<var class="Arg">z</var>)</code>. Equivalently, <code class="code">2*JTS(<var class="Arg">x</var>,<var class="Arg">y</var>,<var class="Arg">z</var>)</code> is equal to <code class="code">P(x+z, y) - P(x, y) - P(z, y)</code>.</p>
+
+
+<div class="example"><pre><span class="GAPprompt">gap&gt;</span> <span class="GAPinput">List(Basis(Alb), x -&gt; JTS(i[1],i[1],x));</span>
+[ i1, i2, i3, i4, i5, i6, i7, i8, (1/2)*j1, (1/2)*j2, (1/2)*j3, (1/2)*j4, (1/2)*j5,
+  (1/2)*j6, (1/2)*j7, (1/2)*j8, (1/2)*k1, (1/2)*k2, (1/2)*k3, (1/2)*k4, (1/2)*k5,
+  (1/2)*k6, (1/2)*k7, (1/2)*k8, 0*i1, ej, ek ]</pre></div>
 
 <p><a id="X7EA1D48F853C02F1" name="X7EA1D48F853C02F1"></a></p>
 
