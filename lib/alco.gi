@@ -112,7 +112,7 @@ InstallMethod( Norm,
     "for an octonion list",
     [ IsOctonionCollection ],
     function(vec)
-        return Sum(List(vec, x -> Norm(x)) );
+        return Sum(List(vec, Norm) );
     end );
 
 InstallMethod( ComplexConjugate,
@@ -1019,8 +1019,8 @@ InstallMethod( DesignNormalizedIndicatorCoefficients,
     x := Indeterminate(Field(DesignAngleSet(D)), "x" );
     Q := k -> Q_k_epsilon(k, 0, r, d, x );
     F := ValuePol(DesignNormalizedAnnihilatorPolynomial(D), x );
-    V := VectorSpace(Field(DesignAngleSet(D)), List([0..Degree(F)], k -> Q(k)) );
-    basis := Basis(V, List([0..Degree(F)], k -> Q(k)) );  
+    V := VectorSpace(Field(DesignAngleSet(D)), List([0..Degree(F)], Q) );
+    basis := Basis(V, List([0..Degree(F)], Q) );  
     return Coefficients(basis, F );
     end );
 
@@ -1344,7 +1344,7 @@ InstallGlobalFunction( IsLeechLatticeGramMatrix, function(G)
         return false;
     fi;
     # Confirm integral lattice (i.e. the lattice is a sublattice of the dual lattice):
-    if not Set(Flat(G), x -> IsInt(x)) = [true] then 
+    if not Set(Flat(G), IsInt) = [true] then 
         return false;
     fi;
     # Confirm unimodular (i.e. the dual lattice is also a sublattice of the lattice );
@@ -1373,7 +1373,7 @@ InstallGlobalFunction( IsGossetLatticeGramMatrix, function(G)
         return false;
     fi;
     # Confirm integral lattice (i.e. the lattice is a sublattice of the dual lattice):
-    if not Set(Flat(G), x -> IsInt(x)) = [true] then 
+    if not Set(Flat(G), IsInt) = [true] then 
         return false;
     fi;
     # Confirm unimodular (i.e. the dual lattice is also a sublattice of the lattice );
@@ -1430,7 +1430,7 @@ InstallGlobalFunction( OctonionLatticeByGenerators, function(gens, g...)
     if 
         not IsOctonionCollColl(gens) or # Needs to be a collection of octonion lists. 
         not IsHomogeneousList(Flat([gens, g])) or # Ensure that the octonions belong to the same octonion algebra. 
-        Length(Set(gens, x -> Length(x))) > 1 # The lists need to be equal length 
+        Length(Set(gens, Length)) > 1 # The lists need to be equal length 
     then 
         Display( "Usage: OctonionLatticeByGenerators( <gens> [, <g>]) where <gens> is a list of equal length octonion lists and optional argument <g> is a suitable octonion gram matrix." );
         return fail; 
@@ -1537,7 +1537,7 @@ InstallMethod( TotallyIsotropicCode,
     function(L)
         local lll_basis;
         lll_basis := BasisVectors(CanonicalBasis(L) );
-        if Set(Flat(lll_basis), x -> IsInt(x)) = [true] and Set(Flat(GramMatrix(L)*Z(2))) = [Z(2)*0] then 
+        if Set(Flat(lll_basis), IsInt) = [true] and Set(Flat(GramMatrix(L)*Z(2))) = [Z(2)*0] then 
             return VectorSpace(GF(2), lll_basis*Z(2) );
         fi;
         return fail;
@@ -1552,7 +1552,7 @@ InstallMethod( \in,
         A := FamilyObj(One(x))!.fullSCAlgebra;
         if A = UnderlyingOctonionRing(L) then 
             x := OctonionToRealVector(CanonicalBasis(A), x );
-            return Set(SolutionMat(LLLReducedBasisCoefficients(L), x), y -> IsInt(y)) = [true];
+            return Set(SolutionMat(LLLReducedBasisCoefficients(L), x), IsInt) = [true];
         fi;
         return false;
     end );
@@ -1591,7 +1591,7 @@ InstallGlobalFunction( Closure, function(gens, mult_func, opt...)
     local temp, l, closure_step;
     closure_step := function(gens, mult_func, opt...)
         local temp, x, y, z, pair, pairchooser;
-        temp := Set(gens, x -> x );
+        temp := Set(gens);
         if Length(opt) > 0 and opt[1] = true then 
             pairchooser := UnorderedTuples;
         else 
