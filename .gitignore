@@ -23,4 +23,4 @@ default
 /doc/*.toc
 /doc/manual.pdf
 /doc/_*.xml
-/doc/alco.xml
+/doc/title.xml
