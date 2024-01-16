@@ -87,15 +87,14 @@ SetPackageInfo( rec(
     "The <span class=\"pkgname\">ALCO</span> package provides tools for algebraic combinatorics including implementations of octonion and Jordan algebras.",
 
   PackageDoc := rec(
-    BookName  := "ALCO",
+    BookName  := ~.PackageName,
     ArchiveURLSubset := ["doc"],
     HTMLStart := "doc/chap0.html",
     PDFFile   := "doc/manual.pdf",
     SixFile   := "doc/manual.six",
-    # a longer title of the book, this together with the book name should
-    # fit on a single text line (appears with the '?books' command in GAP)
-    LongTitle := "ALCO/Tools for Algebraic Combinatorics",
+    LongTitle := ~.Subtitle,
   ),
+
 
 
   ##  Are there restrictions on the operating system for this package? Or does
