@@ -8,8 +8,8 @@ SetPackageInfo( rec(
   PackageName := "ALCO",
   Subtitle := "Tools for algebraic combinatorics",
   Version := "0.1",
-  Date := "01/01/2024", # dd/mm/yyyy format
-  #License := "TODO",
+  Date := "01/15/2024", # dd/mm/yyyy format
+  License := "GPL-3.0-or-later",
 
   PackageWWWHome := "https://github.com/BNasmith/alco",
 
@@ -105,8 +105,8 @@ SetPackageInfo( rec(
     # prepend a '=' for specifying an exact version.
     GAP := "4.12",
     SuggestedOtherPackages := [],
-    ExternalConditions := []
-
+    ExternalConditions := [],
+    NeededOtherPackages := []
   ),
 
   AvailabilityTest := ReturnTrue,
@@ -127,8 +127,6 @@ SetPackageInfo( rec(
       "----------------------------------------------------------------\n" ),
 
   TestFile := "tst/testall.g",
-
-  License := "GPL-3.0-or-later",
   
   ##  *Optional*: Here you can list some keyword related to the topic
   ##  of the package.
