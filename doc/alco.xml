@@ -3,17 +3,7 @@
 
 <Book Name="ALCO">
 
-<TitlePage>
-  <Title>The <Package>ALCO</Package> Package</Title>
-  <Version>Version 0.1</Version>
-  <Author>Benjamin Nasmith
-    <Email>bnasmith@proton.me</Email>
-  </Author>
-
-  <Copyright>&copyright; 2024 Benjamin Nasmith. <P />
-    <P />
-  </Copyright>
-</TitlePage>
+<#Include SYSTEM "title.xml">
 
 <TableOfContents />
 

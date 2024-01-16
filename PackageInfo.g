@@ -130,6 +130,35 @@ SetPackageInfo( rec(
   ##  *Optional*: Here you can list some keyword related to the topic
   ##  of the package.
   # Keywords := ["Smith normal form", "p-adic", "rational matrix inversion"]
-  Keywords := ["Octonions", "Jordan algebras", "t-Designs"]
+  Keywords := ["Octonions", "Jordan algebras", "t-Designs"],
+
+  AutoDoc := rec(
+    entities := rec(
+        VERSION := ~.Version,
+        DATE := ~.Date,
+        io := "<Package>io</Package>",
+        ALCO := "<Package>ALCO</Package>" ,
+    ),
+    TitlePage := rec(
+        Copyright := Concatenation(
+            "&copyright; 2024 by Benjamin Nasmith<P/>\n\n",
+            "This package may be distributed under the terms and conditions ", 
+            "of the GNU Public License Version 3 or (at your option) any later version.\n"
+            ), 
+        Abstract := Concatenation(
+            "ALCO provides implementations in &GAP; of octonion algebras, Jordan algebras, ",
+            "and certain important integer subrings of those algebras. It also provides ", 
+            "tools to compute the parameters of t-designs in spherical and projective spaces ", 
+            "(modeled as manifolds of primitive idempotent elements in a simple Euclidean ", 
+            "Jordan algebra). Finally, this package provides tools to explore octonion lattice ",
+            "constructions, including octonion Leech lattices.\n" 
+            ), 
+        Acknowledgements := Concatenation( 
+            "This documentation was prepared using the ", 
+            "&GAPDoc; package.\n",  
+            "<P/>\n" 
+            ) 
+    )
+),
 
 ));
