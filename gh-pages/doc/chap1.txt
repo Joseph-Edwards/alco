@@ -1,79 +1,0 @@
-  
-  [1X1 [33X[0;0YIntroduction[133X[101X
-  
-  [33X[0;0YThe  [5XALCO[105X  package provides tools for algebraic combinatorics, most of which
-  was  written for [5XGAP[105X during the author's Ph.D. program [Nas23]. This package
-  provides  implementations  in [5XGAP[105X of octonion algebras, Jordan algebras, and
-  certain important integer subrings of those algebras. It also provides tools
-  to  compute  the  parameters of t-designs in spherical and projective spaces
-  (modeled as manifolds of primitive idempotent elements in a simple Euclidean
-  Jordan  algebra).  Finally,  this package provides tools to explore octonion
-  lattice  constructions,  including  octonion  Leech  lattices. The following
-  examples  illustrate  how  one  might  use  this  package  to  explore these
-  structures.[133X
-  
-  [33X[0;0YThe  [5XALCO[105X package allows users to construct the octonion arithmetic (integer
-  ring). In the example below, we construct the octonion arithmetic and verify
-  that  the  basis  vectors define an E8 lattice relative to the inner product
-  shown:[133X
-  
-  [4X[32X  Example  [32X[104X
-    [4X[25Xgap>[125X [27XLoadPackage("alco"); [127X[104X
-    [4X[28Xtrue [128X[104X
-    [4X[25Xgap>[125X [27XA := OctonionArithmetic(Integers); [127X[104X
-    [4X[28X<algebra of dimension 8 over Integers>[128X[104X
-    [4X[25Xgap>[125X [27Xg := List(Basis(A), x -> List(Basis(A), y -> Norm(x+y) - Norm(x) - Norm(y)));;[127X[104X
-    [4X[25Xgap>[125X [27XDisplay(g);[127X[104X
-    [4X[28X[ [   2,   0,  -1,   0,   0,   0,   0,   0 ],[128X[104X
-    [4X[28X  [   0,   2,   0,  -1,   0,   0,   0,   0 ],[128X[104X
-    [4X[28X  [  -1,   0,   2,  -1,   0,   0,   0,   0 ],[128X[104X
-    [4X[28X  [   0,  -1,  -1,   2,  -1,   0,   0,   0 ],[128X[104X
-    [4X[28X  [   0,   0,   0,  -1,   2,  -1,   0,   0 ],[128X[104X
-    [4X[28X  [   0,   0,   0,   0,  -1,   2,  -1,   0 ],[128X[104X
-    [4X[28X  [   0,   0,   0,   0,   0,  -1,   2,  -1 ],[128X[104X
-    [4X[28X  [   0,   0,   0,   0,   0,   0,  -1,   2 ] ][128X[104X
-    [4X[25Xgap>[125X [27XIsGossetLatticeGramMatrix(g);[127X[104X
-    [4X[28Xtrue[128X[104X
-  [4X[32X[104X
-  
-  [33X[0;0YWe can also construct simple Euclidean Jordan algebras, including the Albert
-  algebra:[133X
-  
-  [4X[32X  Example  [32X[104X
-    [4X[25Xgap>[125X [27XJ := AlbertAlgebra(Rationals);[127X[104X
-    [4X[28X<algebra of dimension 27 over Rationals>[128X[104X
-    [4X[25Xgap>[125X [27XSemiSimpleType(Derivations(Basis(J)));[127X[104X
-    [4X[28X"F4"[128X[104X
-    [4X[25Xgap>[125X [27XAsList(Basis(J));[127X[104X
-    [4X[28X[ i1, i2, i3, i4, i5, i6, i7, i8, j1, j2, j3, j4, j5, j6, j7, j8, k1, k2, k3, k4, k5, k6,[128X[104X
-    [4X[28X  k7, k8, ei, ej, ek ][128X[104X
-    [4X[25Xgap>[125X [27XList(Basis(J), x -> Trace(x));[127X[104X
-    [4X[28X[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1 ][128X[104X
-    [4X[25Xgap>[125X [27XList(Basis(J), x -> Norm(x));[127X[104X
-    [4X[28X[ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1/2, 1/2, 1/2 ][128X[104X
-    [4X[25Xgap>[125X [27XList(Basis(J), x -> Determinant(x));[127X[104X
-    [4X[28X[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ][128X[104X
-    [4X[25Xgap>[125X [27XOne(J);[127X[104X
-    [4X[28Xei+ej+ek[128X[104X
-    [4X[25Xgap>[125X [27XDeterminant(One(J));[127X[104X
-    [4X[28X1[128X[104X
-  [4X[32X[104X
-  
-  [33X[0;0YThe  [5XALCO[105X  package  also  provides  tools  to  construct  octonion lattices,
-  including octonion Leech lattices:[133X
-  
-  [4X[32X  Example  [32X[104X
-    [4X[25Xgap>[125X [27Xshort := Set(ShortestVectors(GramMatrix(A),4).vectors, y -> LinearCombination(Basis(A), y));;[127X[104X
-    [4X[25Xgap>[125X [27Xfilt := Filtered(short, x -> x^2 + x + 2*One(x) = Zero(x));; [127X[104X
-    [4X[25Xgap>[125X [27XLength(filt);[127X[104X
-    [4X[28X576[128X[104X
-    [4X[25Xgap>[125X [27Xs := Random(filt);[127X[104X
-    [4X[28Xa3+a4+a5+a7+a8[128X[104X
-    [4X[25Xgap>[125X [27Xgens := List(Basis(A), x -> x*[[s,s,0],[0,s,s],ComplexConjugate([s,s,s])]);; [127X[104X
-    [4X[25Xgap>[125X [27Xgens := Concatenation(gens);;[127X[104X
-    [4X[25Xgap>[125X [27XL := OctonionLatticeByGenerators(gens, One(A)*IdentityMat(3)/2);[127X[104X
-    [4X[28X<free left module over Integers, with 24 generators>[128X[104X
-    [4X[25Xgap>[125X [27XIsLeechLatticeGramMatrix(GramMatrix(L));[127X[104X
-    [4X[28Xtrue[128X[104X
-  [4X[32X[104X
-  
