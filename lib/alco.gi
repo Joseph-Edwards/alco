@@ -68,44 +68,65 @@ InstallValue( IcosianH4Basis, Basis(QuaternionAlgebra(Field(Sqrt(5))),
         )) );
 
 # Function to construct an octonion algebra in a standard basis (i.e. e[1]*e[2] = e[4], and cycle indices). 
-InstallGlobalFunction( OctonionAlgebra, function(F)
-    local T, alg;
-    # Verify the input.
-    if not (IsField(F) or IsIntegers(F)) then return fail; fi;
-    # Precalculated structure constants table. 
-    T :=  [ [ [ [ 8 ], [ -1 ] ], [ [ 4 ], [ 1 ] ], [ [ 7 ], [ 1 ] ], [ [ 2 ], [ -1 ] ], [ [ 6 ], [ 1 ] ], 
-                [ [ 5 ], [ -1 ] ], [ [ 3 ], [ -1 ] ], [ [ 1 ], [ 1 ] ] ], 
-            [ [ [ 4 ], [ -1 ] ], [ [ 8 ], [ -1 ] ], [ [ 5 ], [ 1 ] ], [ [ 1 ], [ 1 ] ], [ [ 3 ], [ -1 ] ], 
-                [ [ 7 ], [ 1 ] ], [ [ 6 ], [ -1 ] ], [ [ 2 ], [ 1 ] ] ], 
-            [ [ [ 7 ], [ -1 ] ], [ [ 5 ], [ -1 ] ], [ [ 8 ], [ -1 ] ], [ [ 6 ], [ 1 ] ], [ [ 2 ], [ 1 ] ], 
-                [ [ 4 ], [ -1 ] ], [ [ 1 ], [ 1 ] ], [ [ 3 ], [ 1 ] ] ], 
-            [ [ [ 2 ], [ 1 ] ], [ [ 1 ], [ -1 ] ], [ [ 6 ], [ -1 ] ], [ [ 8 ], [ -1 ] ], [ [ 7 ], [ 1 ] ], 
-                [ [ 3 ], [ 1 ] ], [ [ 5 ], [ -1 ] ], [ [ 4 ], [ 1 ] ] ], 
-            [ [ [ 6 ], [ -1 ] ], [ [ 3 ], [ 1 ] ], [ [ 2 ], [ -1 ] ], [ [ 7 ], [ -1 ] ], [ [ 8 ], [ -1 ] ], 
-                [ [ 1 ], [ 1 ] ], [ [ 4 ], [ 1 ] ], [ [ 5 ], [ 1 ] ] ], 
-            [ [ [ 5 ], [ 1 ] ], [ [ 7 ], [ -1 ] ], [ [ 4 ], [ 1 ] ], [ [ 3 ], [ -1 ] ], [ [ 1 ], [ -1 ] ], 
-                [ [ 8 ], [ -1 ] ], [ [ 2 ], [ 1 ] ], [ [ 6 ], [ 1 ] ] ], 
-            [ [ [ 3 ], [ 1 ] ], [ [ 6 ], [ 1 ] ], [ [ 1 ], [ -1 ] ], [ [ 5 ], [ 1 ] ], [ [ 4 ], [ -1 ] ], 
-                [ [ 2 ], [ -1 ] ], [ [ 8 ], [ -1 ] ], [ [ 7 ], [ 1 ] ] ], 
-            [ [ [ 1 ], [ 1 ] ], [ [ 2 ], [ 1 ] ], [ [ 3 ], [ 1 ] ], [ [ 4 ], [ 1 ] ], [ [ 5 ], [ 1 ] ], 
-                [ [ 6 ], [ 1 ] ], [ [ 7 ], [ 1 ] ], [ [ 8 ], [ 1 ] ] ], 0, Zero(F) ];
-    # Define the algebra and properties.
-    alg := AlgebraByStructureConstantsArg([F, T, "e"], IsSCAlgebraObj and IsOctonion );
-    SetFilterObj( alg, IsOctonionAlgebra );
-    SetGramMatrix( alg, 2*IdentityMat(8) );
-    return alg;
-end );
+InstallGlobalFunction( OctonionAlgebra, function( F )
+    local e, stored, filter, T, A;
+    # Arguments checking
+    if not IsField(F) then 
+        Error( "usage: OctonionAlgebra( <F> ) for a field <F>." );
+    fi;
+    e:= One( F );
+    if e = fail then
+      Error( "<F> must have an identity element" );
+    fi;
+    # Generators in the right family may be already available.
+    stored := GET_FROM_SORTED_CACHE( OctonionAlgebraData, [ Characteristic(F), FamilyObj( F ) ],
+        function()
+            # Construct a filter describing element properties,
+            # which will be stored in the family.
+            filter:= IsSCAlgebraObj and IsOctonion;
+            # if HasIsAssociative( F ) and IsAssociative( F ) then
+            #     filter:= filter and IsAssociativeElement;
+            # fi;
+            T := [ [ [ [ 8 ], [ -1 ] ], [ [ 4 ], [ 1 ] ], [ [ 7 ], [ 1 ] ], [ [ 2 ], [ -1 ] ], [ [ 6 ], [ 1 ] ], 
+                    [ [ 5 ], [ -1 ] ], [ [ 3 ], [ -1 ] ], [ [ 1 ], [ 1 ] ] ], 
+                [ [ [ 4 ], [ -1 ] ], [ [ 8 ], [ -1 ] ], [ [ 5 ], [ 1 ] ], [ [ 1 ], [ 1 ] ], [ [ 3 ], [ -1 ] ], 
+                    [ [ 7 ], [ 1 ] ], [ [ 6 ], [ -1 ] ], [ [ 2 ], [ 1 ] ] ], 
+                [ [ [ 7 ], [ -1 ] ], [ [ 5 ], [ -1 ] ], [ [ 8 ], [ -1 ] ], [ [ 6 ], [ 1 ] ], [ [ 2 ], [ 1 ] ], 
+                    [ [ 4 ], [ -1 ] ], [ [ 1 ], [ 1 ] ], [ [ 3 ], [ 1 ] ] ], 
+                [ [ [ 2 ], [ 1 ] ], [ [ 1 ], [ -1 ] ], [ [ 6 ], [ -1 ] ], [ [ 8 ], [ -1 ] ], [ [ 7 ], [ 1 ] ], 
+                    [ [ 3 ], [ 1 ] ], [ [ 5 ], [ -1 ] ], [ [ 4 ], [ 1 ] ] ], 
+                [ [ [ 6 ], [ -1 ] ], [ [ 3 ], [ 1 ] ], [ [ 2 ], [ -1 ] ], [ [ 7 ], [ -1 ] ], [ [ 8 ], [ -1 ] ], 
+                    [ [ 1 ], [ 1 ] ], [ [ 4 ], [ 1 ] ], [ [ 5 ], [ 1 ] ] ], 
+                [ [ [ 5 ], [ 1 ] ], [ [ 7 ], [ -1 ] ], [ [ 4 ], [ 1 ] ], [ [ 3 ], [ -1 ] ], [ [ 1 ], [ -1 ] ], 
+                    [ [ 8 ], [ -1 ] ], [ [ 2 ], [ 1 ] ], [ [ 6 ], [ 1 ] ] ], 
+                [ [ [ 3 ], [ 1 ] ], [ [ 6 ], [ 1 ] ], [ [ 1 ], [ -1 ] ], [ [ 5 ], [ 1 ] ], [ [ 4 ], [ -1 ] ], 
+                    [ [ 2 ], [ -1 ] ], [ [ 8 ], [ -1 ] ], [ [ 7 ], [ 1 ] ] ], 
+                [ [ [ 1 ], [ 1 ] ], [ [ 2 ], [ 1 ] ], [ [ 3 ], [ 1 ] ], [ [ 4 ], [ 1 ] ], [ [ 5 ], [ 1 ] ], 
+                    [ [ 6 ], [ 1 ] ], [ [ 7 ], [ 1 ] ], [ [ 8 ], [ 1 ] ] ], 0, Zero(F) ];
+            # Construct the algebra.
+            A:= AlgebraByStructureConstantsArg([ F, T, "e" ], filter );
+            SetFilterObj( A, IsAlgebraWithOne );
+            SetFilterObj( A, IsOctonionAlgebra );
+            return A;
+        end );
+        A:= AlgebraWithOne( F, CanonicalBasis( stored ), "basis" );
+        SetGeneratorsOfAlgebra( A, GeneratorsOfAlgebraWithOne( A ) );
+        SetIsFullSCAlgebra( A, true );
+        SetFilterObj( A, IsOctonionAlgebra );
+    # Return the octonion algebra.
+    return A;
+    end );
 
 InstallMethod( Trace,
     "for an octonion",
     [ IsOctonion and IsSCAlgebraObj ],
-    oct -> ExtRepOfObj(oct)*GramMatrix(FamilyObj(oct)!.fullSCAlgebra)*ExtRepOfObj(One(oct)) 
+    oct -> 2*ExtRepOfObj(oct)[8] 
     );
 
 InstallMethod( Norm,
     "for an octonion",
     [ IsOctonion and IsSCAlgebraObj ],
-    oct -> ExtRepOfObj(oct)*GramMatrix(FamilyObj(oct)!.fullSCAlgebra)*ExtRepOfObj(oct)/2 
+    oct -> ExtRepOfObj(oct)*ExtRepOfObj(oct) 
     );
 
 InstallMethod( Norm,
@@ -135,11 +156,9 @@ InstallMethod( RealPart,
 #     oct -> oct - RealPart(oct)
 #     );
 
-InstallValue( Oct, OctonionAlgebra(Rationals) );  
-
 # Octonion arithmetic tools
 
-InstallValue( OctonionE8Basis, Basis(Oct,
+InstallValue( OctonionE8Basis, Basis(OctonionAlgebra(Rationals),
     List(
         [[ -1/2, 0, 0, 0, 1/2, 1/2, 1/2, 0 ], 
     [ -1/2, -1/2, 0, -1/2, 0, 0, -1/2, 0 ], 
@@ -149,32 +168,32 @@ InstallValue( OctonionE8Basis, Basis(Oct,
     [ 0, 1/2, 0, -1/2, 1/2, -1/2, 0, 0 ], 
     [ -1/2, 0, -1/2, 1/2, -1/2, 0, 0, 0 ], 
     [ 1/2, 0, 0, -1/2, 0, 1/2, 0, -1/2 ] ], 
-        x -> ObjByExtRep(FamilyObj(One(Oct)),x)
+        x -> ObjByExtRep(FamilyObj(One(OctonionAlgebra(Rationals))),x)
         )) );       
 
-InstallGlobalFunction( OctonionArithmetic, function(F, option...)
-    local T, alg, basis;
-    if not (IsField(F) or F = Integers) then return fail; fi;
-    if Length(option) = 0 then 
-        basis := OctonionE8Basis;
-    else 
-        basis := Basis(UnderlyingLeftModule(OctonionE8Basis), OctonionE8Basis*Inverse(OctonionE8Basis[8]) );
-    fi;
-    T := StructureConstantsTable(basis );
-    alg := AlgebraByStructureConstantsArg([F, T, "a"], IsSCAlgebraObj and IsOctonionArithmeticElement );
-    SetFilterObj( alg, IsOctonionAlgebra );
-    SetGramMatrix( alg, 
-      [ [   2,   0,  -1,   0,   0,   0,   0,   0 ],
-        [   0,   2,   0,  -1,   0,   0,   0,   0 ],
-        [  -1,   0,   2,  -1,   0,   0,   0,   0 ],
-        [   0,  -1,  -1,   2,  -1,   0,   0,   0 ],
-        [   0,   0,   0,  -1,   2,  -1,   0,   0 ],
-        [   0,   0,   0,   0,  -1,   2,  -1,   0 ],
-        [   0,   0,   0,   0,   0,  -1,   2,  -1 ],
-        [   0,   0,   0,   0,   0,   0,  -1,   2 ] ] 
-    );      
-    return alg;
-end );
+# InstallGlobalFunction( OctonionArithmetic, function(F, option...)
+#     local T, alg, basis;
+#     if not (IsField(F) or F = Integers) then return fail; fi;
+#     if Length(option) = 0 then 
+#         basis := OctonionE8Basis;
+#     else 
+#         basis := Basis(UnderlyingLeftModule(OctonionE8Basis), OctonionE8Basis*Inverse(OctonionE8Basis[8]) );
+#     fi;
+#     T := StructureConstantsTable(basis );
+#     alg := AlgebraByStructureConstantsArg([F, T, "a"], IsSCAlgebraObj and IsOctonionArithmeticElement );
+#     SetFilterObj( alg, IsOctonionAlgebra );
+#     SetGramMatrix( alg, 
+#       [ [   2,   0,  -1,   0,   0,   0,   0,   0 ],
+#         [   0,   2,   0,  -1,   0,   0,   0,   0 ],
+#         [  -1,   0,   2,  -1,   0,   0,   0,   0 ],
+#         [   0,  -1,  -1,   2,  -1,   0,   0,   0 ],
+#         [   0,   0,   0,  -1,   2,  -1,   0,   0 ],
+#         [   0,   0,   0,   0,  -1,   2,  -1,   0 ],
+#         [   0,   0,   0,   0,   0,  -1,   2,  -1 ],
+#         [   0,   0,   0,   0,   0,   0,  -1,   2 ] ] 
+#     );      
+#     return alg;
+# end );
 
 
 
@@ -792,12 +811,12 @@ InstallGlobalFunction(AlbertAlgebra, function(F)
     SetJordanRank( alg, 3 );
     SetJordanDegree( alg, 8 );
     # SetJordanMatrixBasis( result.algebra, result.basis );
-    SetJordanOffDiagonalBasis( alg, Basis(Oct) );
+    SetJordanOffDiagonalBasis( alg, Basis(OctonionAlgebra(Rationals)) );
     SetJordanHomotopeVector( alg, One(alg) );
     SetJordanBasisTraces( alg, List(Basis(alg), 
         j -> (Rank(j)/Dimension(FamilyObj(j)!.fullSCAlgebra))*Trace(AdjointMatrix(Basis(FamilyObj(j)!.fullSCAlgebra), j)))
         );
-    jordan_basis := HermitianJordanAlgebraBasis(3, CanonicalBasis(Oct) );
+    jordan_basis := HermitianJordanAlgebraBasis(3, CanonicalBasis(OctonionAlgebra(Rationals)) );
     e := jordan_basis{[1..3]};
     i := jordan_basis{[20..27]};
     j := ComplexConjugate(jordan_basis{[12..19]});
@@ -812,13 +831,13 @@ InstallValue( Alb, AlbertAlgebra(Rationals) );
 InstallGlobalFunction( HermitianMatrixToAlbertVector, 
     function(mat)
         local temp;
-        if not IsMatrix(mat) or not DimensionsMat(mat) = [3,3] or not IsSubset(Oct, Flat(mat)) then 
+        if not IsMatrix(mat) or not DimensionsMat(mat) = [3,3] or not IsSubset(OctonionAlgebra(Rationals), Flat(mat)) then 
             return fail;
         fi;
         if ComplexConjugate(TransposedMat(mat)) <> mat then 
             return fail;
         fi;
-        temp := HermitianMatrixToJordanCoefficients(mat, Basis(Oct));
+        temp := HermitianMatrixToJordanCoefficients(mat, Basis(OctonionAlgebra(Rationals)));
         temp := Concatenation([temp{[20..27]}, -temp{[12..18]}, temp{[19]}, temp{[4..11]}, temp{[1..3]}]);
         return LinearCombination(Basis(Alb), temp);
     end);

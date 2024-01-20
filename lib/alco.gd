@@ -40,15 +40,15 @@ DeclareCategoryCollections( "IsOctonionCollection" );
 
 DeclareAttribute( "Norm", IsOctonionCollection );
 
-DeclareCategory( "IsOctonionAlgebra", IsAlgebra );
+BindGlobal( "OctonionAlgebraData", NEW_SORTED_CACHE(true) );
+
+DeclareCategory( "IsOctonionAlgebra", IsOctonionCollection and IsFullSCAlgebra );
 
     DeclareAttribute( "GramMatrix", IsOctonionAlgebra );
 
 DeclareGlobalFunction( "OctonionArithmetic" );
 
 DeclareGlobalFunction( "OctonionAlgebra" );
-
-DeclareGlobalVariable( "Oct" );
 
 DeclareGlobalVariable( "OctonionE8Basis" );
 
