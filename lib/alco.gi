@@ -50,6 +50,76 @@ InstallValue( QuaternionD4Basis, Basis(QuaternionAlgebra(Rationals),
             [     1,     0,     0,     0 ] ], x -> ObjByExtRep(FamilyObj(One(QuaternionAlgebra(Rationals))),x)
         )) );
 
+BindGlobal( "HurwitzIntegers", Objectify( NewType(
+    CollectionsFamily(FamilyObj(QuaternionAlgebra(Rationals))),
+    IsHurwitzIntegers and IsRingWithOne and IsAttributeStoringRep ),
+    rec() ) );
+
+SetLeftActingDomain( HurwitzIntegers, Integers );
+SetName( HurwitzIntegers, "HurwitzIntegers" );
+SetString( HurwitzIntegers, "HurwitzIntegers" );
+SetIsLeftActedOnByDivisionRing( HurwitzIntegers, false );
+SetSize( HurwitzIntegers, infinity );
+SetGeneratorsOfRing( HurwitzIntegers, AsList(QuaternionD4Basis));
+SetGeneratorsOfLeftModule( HurwitzIntegers, AsList(QuaternionD4Basis) );
+SetIsWholeFamily( HurwitzIntegers, false );
+SetIsAssociative( HurwitzIntegers, false );
+
+InstallMethod( Units, 
+    "For Hurwitz integers", 
+    [ IsHurwitzIntegers ],
+    function(O)
+        return Closure(Basis(O), \*);
+    end);
+
+InstallMethod( IsHurwitzInt, 
+    "for Quaternions", 
+    [ IsQuaternion ],
+    function(x) 
+        return ForAll(Coefficients(Basis(HurwitzIntegers), x), IsInt);
+    end);
+
+InstallMethod( \in,
+    "for integers",
+    [ IsQuaternion, IsHurwitzIntegers ], 10000,
+    function( n, Integers )
+    return IsHurwitzInt( n );
+    end );
+
+InstallMethod( Basis,
+    "for Hurwitz integers (delegate to `CanonicalBasis')",
+    [ IsHurwitzIntegers ], CANONICAL_BASIS_FLAGS,
+    CanonicalBasis );
+
+
+InstallMethod( CanonicalBasis,
+    "for Hurwitz integers",
+    [ IsHurwitzIntegers ],
+    function( HurwitzIntegers )
+    local B;
+    B:= Objectify( NewType( FamilyObj( HurwitzIntegers ),
+                                IsFiniteBasisDefault
+                            and IsCanonicalBasis
+                            and IsCanonicalBasisHurwitzIntegersRep ),
+                   rec() );
+    SetUnderlyingLeftModule( B, HurwitzIntegers );
+    SetIsIntegralBasis( B, true );
+    SetBasisVectors( B, Immutable( BasisVectors(QuaternionD4Basis)));
+    # Return the basis.
+    return B;
+    end );
+
+DeclareOperation( "Coefficients", [ IsCanonicalBasisHurwitzIntegersRep,
+      IsQuaternion ] );
+
+InstallMethod( Coefficients,
+    "for the canonical basis of HurwitzIntegers",
+    [ IsCanonicalBasisHurwitzIntegersRep,
+      IsQuaternion ], 0,
+    function( B, v )
+        return SolutionMat(List(B, ExtRepOfObj), ExtRepOfObj(v));
+    end );
+
 # Icosian and Golden Field Tools
 
 InstallGlobalFunction( GoldenModSigma, function(q)
@@ -173,7 +243,7 @@ InstallValue( OctonionE8Basis, Basis(OctonionAlgebra(Rationals),
 
 BindGlobal( "OctavianIntegers", Objectify( NewType(
     CollectionsFamily(FamilyObj(OctonionAlgebra(Rationals))),
-    IsOctavianIntegers and IsAttributeStoringRep ),
+    IsOctavianIntegers and IsRingWithOne and IsAttributeStoringRep ),
     rec() ) );
 
 SetLeftActingDomain( OctavianIntegers, Integers );

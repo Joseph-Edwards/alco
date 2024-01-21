@@ -18,6 +18,16 @@
 
 DeclareGlobalVariable( "QuaternionD4Basis" );
 
+DeclareOperation("IsHurwitzInt", [ IsQuaternion ] );
+
+DeclareGlobalName( "HurwitzIntegers" );
+
+DeclareCategory( "IsHurwitzIntegers", IsFLMLOR
+  and IsFiniteDimensional );
+
+DeclareRepresentation(
+    "IsCanonicalBasisHurwitzIntegersRep", IsAttributeStoringRep );
+
 # Icosian and Golden Field Tools
 
 DeclareGlobalFunction( "GoldenRationalComponent" );
