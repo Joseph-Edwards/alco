@@ -110,6 +110,8 @@ DeclareGlobalFunction( "SimpleEuclideanJordanAlgebra" );
 
 # Albert Algebra Tools
 
+BindGlobal( "AlbertAlgebraData", NEW_SORTED_CACHE(true) );
+
 DeclareGlobalFunction( "AlbertAlgebra" );
 
 DeclareGlobalVariable( "Alb" );

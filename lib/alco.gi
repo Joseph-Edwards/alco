@@ -671,10 +671,21 @@ end );
 
 # Albert Algebra tools
 
-# Albert algebra by structure constants, computed elsewhere. 
-InstallGlobalFunction(AlbertAlgebra, function(F)
-    local T, alg, jordan_basis, i, j, k, e, temp;
-    T := [ [ [ [ 26, 27 ], [ 1, 1 ] ], [ [  ], [  ] ], [ [  ], [  ] ], [ [  ], [  ] ], [ [  ], [  ] ], 
+InstallGlobalFunction( AlbertAlgebra, function( F )
+    local e, i, j, k, jordan_basis, stored, filter, T, A;
+    # Arguments checking
+    if not IsField(F) then 
+        Error( "usage: AlbertAlgebra( <F> ) for a field <F>." );
+    fi;
+    e:= One( F );
+    if e = fail then
+      Error( "<F> must have an identity element" );
+    fi;
+    # Generators in the right family may be already available.
+    stored := GET_FROM_SORTED_CACHE( AlbertAlgebraData, [ Characteristic(F), FamilyObj( F ) ],
+        function()
+            filter:= IsSCAlgebraObj and IsJordanAlgebraObj;
+            T := [ [ [ [ 26, 27 ], [ 1, 1 ] ], [ [  ], [  ] ], [ [  ], [  ] ], [ [  ], [  ] ], [ [  ], [  ] ], 
       [ [  ], [  ] ], [ [  ], [  ] ], [ [  ], [  ] ], [ [ 24 ], [ -1/2 ] ], [ [ 20 ], [ -1/2 ] ], 
       [ [ 23 ], [ -1/2 ] ], [ [ 18 ], [ 1/2 ] ], [ [ 22 ], [ -1/2 ] ], [ [ 21 ], [ 1/2 ] ], 
       [ [ 19 ], [ 1/2 ] ], [ [ 17 ], [ -1/2 ] ], [ [ 16 ], [ -1/2 ] ], [ [ 12 ], [ 1/2 ] ], 
@@ -854,30 +865,39 @@ InstallGlobalFunction(AlbertAlgebra, function(F)
       [ [  ], [  ] ], [ [  ], [  ] ], [ [  ], [  ] ], [ [  ], [  ] ], [ [  ], [  ] ], 
       [ [  ], [  ] ], [ [  ], [  ] ], [ [  ], [  ] ], [ [  ], [  ] ], [ [  ], [  ] ], 
       [ [ 27 ], [ 1 ] ] ], 1, Zero(F) ]; 
-    alg := AlgebraByStructureConstantsArg([F, T, "i1", "i2", "i3", "i4", "i5", "i6", "i7", "i8", 
-    "j1", "j2", "j3", "j4", "j5", "j6", "j7", "j8", 
-    "k1", "k2", "k3", "k4", "k5", "k6", "k7", "k8", 
-    "ei", "ej", "ek"], IsSCAlgebraObj and IsJordanAlgebraObj );
-    SetFilterObj( alg, IsJordanAlgebra );
-    SetJordanRank( alg, 3 );
-    SetJordanDegree( alg, 8 );
-    # SetJordanMatrixBasis( result.algebra, result.basis );
-    SetJordanOffDiagonalBasis( alg, Basis(OctonionAlgebra(Rationals)) );
-    SetJordanHomotopeVector( alg, One(alg) );
-    SetJordanBasisTraces( alg, List(Basis(alg), 
-        j -> (Rank(j)/Dimension(FamilyObj(j)!.fullSCAlgebra))*Trace(AdjointMatrix(Basis(FamilyObj(j)!.fullSCAlgebra), j)))
+            # Construct the algebra.
+            A:= AlgebraByStructureConstantsArg([F, T, "i1", "i2", "i3", "i4", "i5", "i6", "i7", "i8", 
+            "j1", "j2", "j3", "j4", "j5", "j6", "j7", "j8", 
+            "k1", "k2", "k3", "k4", "k5", "k6", "k7", "k8", 
+            "ei", "ej", "ek"], filter );
+            SetFilterObj( A, IsAlgebraWithOne );
+            SetFilterObj( A, IsJordanAlgebra );
+            SetJordanRank( A, 3 );
+            SetJordanDegree( A, 8 );
+            return A;
+        end );
+        A:= AlgebraWithOne( F, CanonicalBasis( stored ), "basis" );
+        SetGeneratorsOfAlgebra( A, GeneratorsOfAlgebraWithOne( A ) );
+        SetIsFullSCAlgebra( A, true );
+        SetFilterObj( A, IsJordanAlgebra );
+        SetJordanRank( A, 3 );
+        SetJordanDegree( A, 8 );
+        SetJordanOffDiagonalBasis( A, Basis(OctonionAlgebra(Rationals)) );
+        SetJordanHomotopeVector( A, One(A) );
+        SetJordanBasisTraces( A, List(Basis(A), 
+            j -> (Rank(j)/Dimension(FamilyObj(j)!.fullSCAlgebra))*Trace(AdjointMatrix(Basis(FamilyObj(j)!.fullSCAlgebra), j)))
         );
-    jordan_basis := HermitianJordanAlgebraBasis(3, CanonicalBasis(OctonionAlgebra(Rationals)) );
-    e := jordan_basis{[1..3]};
-    i := jordan_basis{[20..27]};
-    j := ComplexConjugate(jordan_basis{[12..19]});
-    k := jordan_basis{[4..11]};
-    jordan_basis := Concatenation([i,j,k,e]);
-    SetJordanMatrixBasis( alg, jordan_basis );
-    return alg;
-end );
+        jordan_basis := HermitianJordanAlgebraBasis(3, CanonicalBasis(OctonionAlgebra(Rationals)) );
+        e := jordan_basis{[1..3]};
+        i := jordan_basis{[20..27]};
+        j := ComplexConjugate(jordan_basis{[12..19]});
+        k := jordan_basis{[4..11]};
+        jordan_basis := Concatenation([i,j,k,e]);
+        SetJordanMatrixBasis( A, jordan_basis );
+        return A;
+    end );
 
-InstallValue( Alb, AlbertAlgebra(Rationals) );
+# InstallValue( Alb, AlbertAlgebra(Rationals) );
 
 InstallGlobalFunction( HermitianMatrixToAlbertVector, 
     function(mat)
@@ -890,13 +910,13 @@ InstallGlobalFunction( HermitianMatrixToAlbertVector,
         fi;
         temp := HermitianMatrixToJordanCoefficients(mat, Basis(OctonionAlgebra(Rationals)));
         temp := Concatenation([temp{[20..27]}, -temp{[12..18]}, temp{[19]}, temp{[4..11]}, temp{[1..3]}]);
-        return LinearCombination(Basis(Alb), temp);
+        return LinearCombination(Basis(AlbertAlgebra(Rationals)), temp);
     end);
 
 InstallGlobalFunction( AlbertVectorToHermitianMatrix, 
     function(vec)
         if not vec in Alb then return fail; fi;
-        return LinearCombination(JordanMatrixBasis(Alb), ExtRepOfObj(vec));
+        return LinearCombination(JordanMatrixBasis(AlbertAlgebra(Rationals)), ExtRepOfObj(vec));
     end);
 
 InstallMethod(P, 
