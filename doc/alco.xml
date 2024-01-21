@@ -17,14 +17,10 @@
     It also provides tools to compute the parameters of t-designs in spherical and projective spaces (modeled as manifolds of primitive idempotent elements in a simple Euclidean Jordan algebra). 
     Finally, this package provides tools to explore octonion lattice constructions, including octonion Leech lattices. The following examples illustrate how one might use this package to explore these structures.<P/>
 
-      The <Package>ALCO</Package> package allows users to construct the octonion arithmetic (integer
-      ring). In the example below, we construct the octonion arithmetic and verify that the basis
-      vectors define an E8 lattice relative to the inner product shown: 
-<Example><![CDATA[gap> LoadPackage("alco"); 
-true 
-gap> A := OctonionArithmetic(Integers); 
-<algebra of dimension 8 over Integers>
-gap> g := List(Basis(A), x -> List(Basis(A), y -> Norm(x+y) - Norm(x) - Norm(y)));;
+      The <Package>ALCO</Package> package allows users to work with the octavian integer ring (also known as the octonion arithmetic). In the example below, we verify that the octavian integers define an E8 lattice relative to the standard octonion inner product: 
+<Example><![CDATA[gap> O := OctavianIntegers;
+OctavianIntegers
+gap> g := List(Basis(O), x -> List(Basis(O), y -> Norm(x+y) - Norm(x) - Norm(y)));;
 gap> Display(g);
 [ [   2,   0,  -1,   0,   0,   0,   0,   0 ],
   [   0,   2,   0,  -1,   0,   0,   0,   0 ],
@@ -36,7 +32,21 @@ gap> Display(g);
   [   0,   0,   0,   0,   0,   0,  -1,   2 ] ]
 gap> IsGossetLatticeGramMatrix(g);
 true]]></Example>
-      
+
+The <Package>ALCO</Package> package also provides tools to construct octonion lattices, including octonion Leech lattices:
+<Example><![CDATA[gap> short := Set(ShortestVectors(g,4).vectors, y -> LinearCombination(Basis(O), y));;
+gap> filt := Filtered(short, x -> x^2 + x + 2*One(x) = Zero(x));;
+gap> Length(filt);
+576
+gap> s := filt[1];
+(-1)*e1+(-1/2)*e2+(-1/2)*e3+(-1/2)*e4+(-1/2)*e8
+gap> gens := List(Basis(O), x -> x*[[s,s,0],[0,s,s],ComplexConjugate([s,s,s])]);;
+gap> gens := Concatenation(gens);;
+gap> L := OctonionLatticeByGenerators(gens, One(O)*IdentityMat(3)/2);
+<free left module over Integers, with 24 generators>
+gap> IsLeechLatticeGramMatrix(GramMatrix(L));
+true]]></Example>
+
 We can also construct simple Euclidean Jordan algebras, including the Albert algebra:
 <Example><![CDATA[gap> J := AlbertAlgebra(Rationals);
 <algebra of dimension 27 over Rationals>
@@ -56,19 +66,7 @@ ei+ej+ek
 gap> Determinant(One(J));
 1]]></Example>
 
-The <Package>ALCO</Package> package also provides tools to construct octonion lattices, including octonion Leech lattices:
-<Example><![CDATA[gap> short := Set(ShortestVectors(GramMatrix(A),4).vectors, y -> LinearCombination(Basis(A), y));;
-gap> filt := Filtered(short, x -> x^2 + x + 2*One(x) = Zero(x));; 
-gap> Length(filt);
-576
-gap> s := Random(filt);
-a3+a4+a5+a7+a8
-gap> gens := List(Basis(A), x -> x*[[s,s,0],[0,s,s],ComplexConjugate([s,s,s])]);; 
-gap> gens := Concatenation(gens);;
-gap> L := OctonionLatticeByGenerators(gens, One(A)*IdentityMat(3)/2);
-<free left module over Integers, with 24 generators>
-gap> IsLeechLatticeGramMatrix(GramMatrix(L));
-true]]></Example>
+
 
   </Chapter>
 
@@ -84,11 +82,9 @@ true]]></Example>
       <ManSection>
           <Heading>Octonion Filters</Heading>
           <Filt Name="IsOctonion" />
-          <Filt Name="IsOctonionArithmeticElement" />
           <Filt Name="IsOctonionCollection" />
           <Filt Name="IsOctonionAlgebra" />
-          <Description>These filters determine whether an element is an octonion, an octonion
-      arithmetic element, and octonion collection, or an octonion algebra.</Description>
+          <Description>These filters determine whether an element is an octonion, an octonion collection, or an octonion algebra.</Description>
         </ManSection>
 
         <ManSection>
@@ -113,47 +109,25 @@ gap> Derivations(Basis(O)); SemiSimpleType(last);
         </ManSection>
         
         <ManSection>
-          <Func Name="OctonionArithmetic" Arg="R [, option]" />
-          <Description> Returns an octonion algebra over <Arg>R</Arg>, for <Arg>R</Arg> a field or <Code><Arg>R</Arg> = Integers</Code>, in a basis with the geometry of the simple roots of <Math>E_8</Math>. The &ZZ;-linear combinations of the basis vectors form both an octonion arithmetic and the <Math>E_8</Math> lattice with respect to inner product <Code>Norm(x+y) - Norm(x) - Norm(y)</Code>.
-          The algebra is constructed using the structure constants defined by the basis vectors <Ref Var="OctonionE8Basis"/>.
-          If the argument <Arg>option</Arg> is supplied, then the algebra is instead constructed using the structure constants of the basis vectors <Code>OctonionE8Basis*Inverse(OctonionE8Basis[8])</Code>, which ensures that the final basis vector is the identity element. 
-            <Example><![CDATA[gap> A := OctonionArithmetic(Integers); a := Basis(A);;
-<algebra of dimension 8 over Integers>
-gap> LeftActingDomain(A);
-Integers
-gap> AsList(a);
-[ a1, a2, a3, a4, a5, a6, a7, a8 ]
-gap> One(A);
-(-2)*a1+(-3)*a2+(-4)*a3+(-6)*a4+(-5)*a5+(-4)*a6+(-3)*a7+(-2)*a8
-gap> List(a{[1..7]}, x -> x^2 = - One(A));
-[ true, true, true, true, true, true, true ]
-gap> Order(a[8]);
-3
-gap> Random(A)*Random(A) in A;
+          <Var Name="OctavianIntegers" />
+          <Oper Name="IsOctavianInt" Arg="x"/>
+          <Description> The <Code>OctavianIntegers</Code> are a subring of the octonion algebra with elements that have the geometry of scaled <Math>E_8</Math> lattice. This ring is named and studied in <Cite Key="conway_quaternions_2003" Where="p. 105" />. <Code>CanonicalBasis(OctavianIntegers)</Code> returns <Ref Var="OctonionE8Basis"/>. We can test whether an octonion is in <Code>OctavianIntegers</Code> using the operation <Code>IsOctavianInt(<Arg>x</Arg>)</Code>. 
+            <Example><![CDATA[gap> e := BasisVectors(Basis(OctavianIntegers));
+[ (-1/2)*e1+(1/2)*e5+(1/2)*e6+(1/2)*e7, (-1/2)*e1+(-1/2)*e2+(-1/2)*e4+(-1/2)*e7,
+  (1/2)*e2+(1/2)*e3+(-1/2)*e5+(-1/2)*e7, (1/2)*e1+(-1/2)*e3+(1/2)*e4+(1/2)*e5,
+  (-1/2)*e2+(1/2)*e3+(-1/2)*e5+(1/2)*e7, (1/2)*e2+(-1/2)*e4+(1/2)*e5+(-1/2)*e6,
+  (-1/2)*e1+(-1/2)*e3+(1/2)*e4+(-1/2)*e5, (1/2)*e1+(-1/2)*e4+(1/2)*e6+(-1/2)*e8 ]
+gap> ForAll(e, IsOctavianInt);
 true
-gap> List(Basis(A), x -> Order(x));
-[ 4, 4, 4, 4, 4, 4, 4, 3 ]
-gap> B := OctonionArithmetic(Rationals, true);
-<algebra of dimension 8 over Rationals>
-gap> List(Basis(B), x -> Order(x));
-[ 4, 4, 4, 4, 4, 4, 3, 1 ]]]></Example>
+gap> ForAll(e/2, IsOctavianInt);
+false]]></Example>
           </Description>
         </ManSection>
 
-        
-        <ManSection>
-          <Var Name="Oct" />
-          <Description> The <Package>ALCO</Package> package loads an instance of <Ref Func="OctonionAlgebra" /> over &QQ; as <C>Oct</C>.
-        <Example><![CDATA[
-gap> Oct;
-<algebra of dimension 8 over Rationals>
-]]></Example>
-          </Description>
-        </ManSection>
 
       <ManSection>
           <Var Name="OctonionE8Basis" />
-        <Description> The <Package>ALCO</Package> package also loads a basis for <Ref Var="Oct" /> which also serves as the &ZZ;-span of an octonion arithmetic. This basis also serves as the basis vectors for the <Ref Func="OctonionArithmetic" /> algebra.
+        <Description> The <Package>ALCO</Package> package also loads a basis for <Code>OctonionAlgebra(<Arg>Rationals</Arg>)</Code> which also serves as generators for <Ref Var="OctavianIntegers"/>.
           <Example><![CDATA[
 gap> 2*BasisVectors(OctonionE8Basis);
 [ (-1)*e1+e5+e6+e7, (-1)*e1+(-1)*e2+(-1)*e4+(-1)*e7, e2+e3+(-1)*e5+(-1)*e7,
@@ -164,7 +138,7 @@ gap> 2*BasisVectors(OctonionE8Basis);
 
 
 
-            <ManSection>
+            <!-- <ManSection>
           <Func Name="\mod" Arg ="x, n"/>
           <Description> For <Arg>x</Arg> an octonion arithmetic element (namely an element of
       algebra <Code>OctonionArithmetic(<Arg>F</Arg>)</Code>), and <Arg>n</Arg> and integer, the
@@ -179,7 +153,7 @@ a3+a4+a7+a8
 gap> \mod(x,2);
 a3+a4+a7+a8]]></Example>
           </Description>
-        </ManSection>
+        </ManSection> -->
 
       </Section>
 
@@ -210,7 +184,7 @@ gap> List(Basis(Oct), x -> RealPart(x));
         </Description>
       </ManSection>
 
-      <ManSection>
+      <!-- <ManSection>
       <Attr Name="GramMatrix" Arg="O" Label="GramMatrixOctonion" />
         <Description>Returns the Gram matrix on the canonical basis of octonion algebra (or arithmetic) <Arg>O</Arg> on the basis given by inner product <Math>(x,y) = N(x+y) - N(x) - N(y)</Math>. Of note, the Gram matrix of octonion arithmetic <Code>A</Code> shown below is the Gram matrix of an <Math>E_8</Math> unimodular lattice.
         <Example><![CDATA[
@@ -236,7 +210,7 @@ gap> A := OctonionArithmetic(Rationals); Display(GramMatrix(A));
   [   0,   0,   0,   0,   0,   0,  -1,   2 ] ]]]></Example>        
         
         </Description>
-      </ManSection>
+      </ManSection> -->
 
       <ManSection>
       <Meth Name="ComplexConjugate" Arg="x" Label="Octonions" />
@@ -264,28 +238,21 @@ gap> A := OctonionArithmetic(Rationals); Display(GramMatrix(A));
         <ManSection>
       <Func Name="OctonionToRealVector" Arg="Basis, x" />
           <Description> Let <Arg>x</Arg> be an octonion vector of the form <Math>x = (x_1, x_2, ..., x_n)</Math>, for <Math>x_i</Math> octonion valued coefficients. Let <Arg>Basis</Arg> be a basis for the octonion algebra containing coefficients <Math>x_i</Math>. This function returns a vector <Arg>y</Arg> of length <Math>8n</Math> containing the concatenation of the coefficients of <Math>x_i</Math> in the octonion basis given by <Arg>Basis</Arg>.
-            <Example><![CDATA[gap> x := Basis(Oct)[1];
-e1
-gap> OctonionToRealVector(Basis(Oct), [x,x]);
-[ 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ]]]></Example>
+            <Example><![CDATA[gap> e := BasisVectors(OctonionE8Basis);;
+gap> e{[1,2,3]};
+[ (-1/2)*e1+(1/2)*e5+(1/2)*e6+(1/2)*e7, (-1/2)*e1+(-1/2)*e2+(-1/2)*e4+(-1/2)*e7,
+  (1/2)*e2+(1/2)*e3+(-1/2)*e5+(-1/2)*e7 ]
+gap> OctonionToRealVector(OctonionE8Basis, e{[1,2,3]});
+[ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 ]]]></Example>
           </Description>
         </ManSection>
 
         <ManSection>
       <Func Name="RealToOctonionVector" Arg="Basis, y" />
           <Description> This function is the is the inverse operation to <Ref Func="OctonionToRealVector" />.
-          <Example><![CDATA[
-gap> A := OctonionArithmetic(Integers);
-<algebra of dimension 8 over Integers>
-gap> a := Basis(A);; AsList(a);
-[ a1, a2, a3, a4, a5, a6, a7, a8 ]
-gap> x := List([1..3], n -> Random(A));
-[ (-1)*a1+(-1)*a2+(-1)*a3+a4+(-1)*a5+a6+(-2)*a7+(-1)*a8, (-2)*a1+(-1)*a3+(2)*a4+(-2)*a5+(
-    -1)*a6+(2)*a7+(-3)*a8, (-1)*a1+(3)*a2+(-2)*a4+a5+(-4)*a6+a8 ]
-gap> OctonionToRealVector(a, x);
-[ -1, -1, -1, 1, -1, 1, -2, -1, -2, 0, -1, 2, -2, -1, 2, -3, -1, 3, 0, -2, 1, -4, 0, 1 ]
-gap> RealToOctonionVector(a,last) = last2;
-true]]></Example> 
+          <Example><![CDATA[gap> RealToOctonionVector(Basis(OctonionAlgebra(Rationals)), [1..16]);
+[ e1+(2)*e2+(3)*e3+(4)*e4+(5)*e5+(6)*e6+(7)*e7+(8)*e8, (9)*e1+(10)*e2+(11)*e3+(12)*e4+(
+    13)*e5+(14)*e6+(15)*e7+(16)*e8 ]]]></Example> 
           </Description>
         </ManSection>
         
@@ -627,12 +594,13 @@ gap> i := Basis(A){[1..8]}; j := Basis(A){[9..16]}; k := Basis(A){[17..24]}; e :
 
       <ManSection>
         <Func Name="AlbertVectorToHermitianMatrix" Arg="x" />
-        <Description>For an element <Arg>x</Arg> in <Code>Alb</Code> (see <Ref Var="Alb"/>), this function returns the corresponding 3 x 3 Hermitian matrix with octonion entries in <Code>Oct</Code> (see <Ref Var="Oct"/>). </Description>
+        <Description>For an element <Arg>x</Arg> in <Code>Alb</Code> (see <Ref Var="Alb"/>), this function returns the corresponding 3 x 3 Hermitian matrix with octonion entries in <Code>OctonionAlgebra(<Arg>Rationals</Arg>)</Code> (see <Ref Var="OctonionAlgebra"/>). </Description>
       </ManSection>
 
       <ManSection>
         <Func Name="HermitianMatrixToAlbertVector" Arg="x" />
-        <Description>For 3 x 3 Hermitian matrix with elements in <Code>Oct</Code> (see <Ref Var="Oct"/>), this function returns the corresponding vector in in <Code>Alb</Code> (see <Ref Var="Alb"/>).
+        <Description>For 3 x 3 Hermitian matrix with elements in <Code>OctonionAlgebra(<Arg>
+              Rationals</Arg>)</Code> (see <Ref Var="OctonionAlgebra"/>), this function returns the corresponding vector in in <Code>Alb</Code> (see <Ref Var="Alb"/>).
         <Example><![CDATA[gap> j := Basis(Alb){[9..16]};
 [ j1, j2, j3, j4, j5, j6, j7, j8 ]
 gap> mat := AlbertVectorToHermitianMatrix(j[3]);; Display(mat);
@@ -1405,7 +1373,7 @@ true]]></Example>
           The inner product on the lattice is defined by optional argument <Arg>g</Arg>, which is an octonion square matrix that defaults to the identity matrix. 
           For <Arg>x,y</Arg> octonion vectors in the lattice, the inner product is computed as <Code>
             ScalarProduct(<Arg>L</Arg>, <Arg>x</Arg>, <Arg>y</Arg>) = Trace(<Arg>x</Arg>*<Arg>g</Arg>*ComplexConjugate(<Arg>y</Arg>))</Code>.   
-            <Example><![CDATA[gap> O := OctonionArithmetic(Integers);; 
+            <Example><![CDATA[gap> O := OctavianIntegers;;
 gap> gens := Concatenation(List(Basis(O), x -> x*IdentityMat(3)));;
 gap> O3 := OctonionLatticeByGenerators(gens);
 <free left module over Integers, with 24 generators>]]></Example>
@@ -1541,14 +1509,12 @@ gap> O3 := OctonionLatticeByGenerators(gens);
             Likewise, the function <Code>OctonionToRealVector(<Arg>B</Arg>, <Arg>y</Arg>)</Code> is the concatenation of the real coefficients of the octonion entries computed using the basis <Arg>B</Arg>.
             In contrast, <Code>RealToOctonionVector(<Arg>L</Arg>, <Arg>x</Arg>)</Code> returns the linear combination of the octonion lattice canonical basis vectors defined by <Code>LLLReducedBasisCoefficients(<Arg>L</Arg>)</Code> given by the coefficients <Arg>x</Arg>.
             The function <Code>OctonionToRealVector(<Arg>L</Arg>, <Arg>y</Arg>)</Code> determines the lattice coefficients of octonion vector <Arg>y</Arg> in the canonical basis of octonion lattice <Arg>L</Arg>.
-            <Example><![CDATA[gap> O := OctonionArithmetic(Integers); B := Basis(O);
-<algebra of dimension 8 over Integers>
-CanonicalBasis( <algebra of dimension 8 over Integers> )
-gap> L := OctonionLatticeByGenerators(Concatenation(List(B, x -> x*IdentityMat(3))));
+            <Example><![CDATA[gap> O := OctavianIntegers;;
+gap> gens := Concatenation(List(Basis(O), x -> x*IdentityMat(3)));;
+gap> O3 := OctonionLatticeByGenerators(gens);
 <free left module over Integers, with 24 generators>
-Time of last command: 464 ms
-gap> List(IdentityMat(24), x -> RealToOctonionVector(L, x)) = List(LLLReducedBasisCoefficien
-ts(L), y -> RealToOctonionVector(Basis(O), y));
+gap> List(IdentityMat(24), x -> RealToOctonionVector(O3, x)) = List(LLLReducedBasisCoefficien
+ts(O3), y -> RealToOctonionVector(Basis(O), y));
 true]]></Example> 
             Another example illustrates the inverse properties of these functions.
             <Example><![CDATA[gap> OctonionToRealVector(L, RealToOctonionVector(L, [1..24])) = [1..24];
@@ -1587,12 +1553,7 @@ gap> Closure(QuaternionD4Basis,\*);
   (-1)*k, k, j, i, (1/2)*e+(-1/2)*i+(-1/2)*j+(-1/2)*k, (1/2)*e+(-1/2)*i+(-1/2)*j+(1/2)*k,
   (1/2)*e+(-1/2)*i+(1/2)*j+(-1/2)*k, (1/2)*e+(-1/2)*i+(1/2)*j+(1/2)*k,
   (1/2)*e+(1/2)*i+(-1/2)*j+(-1/2)*k, (1/2)*e+(1/2)*i+(-1/2)*j+(1/2)*k,
-  (1/2)*e+(1/2)*i+(1/2)*j+(-1/2)*k, (1/2)*e+(1/2)*i+(1/2)*j+(1/2)*k, e ] 
-gap> start := AsList(Basis(OctonionArithmetic(Rationals)));
-[ a1, a2, a3, a4, a5, a6, a7, a8 ]
-gap> units := Closure(start, \*);;
-gap> Length(units);
-240]]></Example>    
+  (1/2)*e+(1/2)*i+(1/2)*j+(-1/2)*k, (1/2)*e+(1/2)*i+(1/2)*j+(1/2)*k, e ]]]></Example>    
       </Description>
     </ManSection>
   </Section>

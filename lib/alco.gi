@@ -171,37 +171,88 @@ InstallValue( OctonionE8Basis, Basis(OctonionAlgebra(Rationals),
         x -> ObjByExtRep(FamilyObj(One(OctonionAlgebra(Rationals))),x)
         )) );       
 
-# InstallGlobalFunction( OctonionArithmetic, function(F, option...)
-#     local T, alg, basis;
-#     if not (IsField(F) or F = Integers) then return fail; fi;
-#     if Length(option) = 0 then 
-#         basis := OctonionE8Basis;
-#     else 
-#         basis := Basis(UnderlyingLeftModule(OctonionE8Basis), OctonionE8Basis*Inverse(OctonionE8Basis[8]) );
-#     fi;
-#     T := StructureConstantsTable(basis );
-#     alg := AlgebraByStructureConstantsArg([F, T, "a"], IsSCAlgebraObj and IsOctonionArithmeticElement );
-#     SetFilterObj( alg, IsOctonionAlgebra );
-#     SetGramMatrix( alg, 
-#       [ [   2,   0,  -1,   0,   0,   0,   0,   0 ],
-#         [   0,   2,   0,  -1,   0,   0,   0,   0 ],
-#         [  -1,   0,   2,  -1,   0,   0,   0,   0 ],
-#         [   0,  -1,  -1,   2,  -1,   0,   0,   0 ],
-#         [   0,   0,   0,  -1,   2,  -1,   0,   0 ],
-#         [   0,   0,   0,   0,  -1,   2,  -1,   0 ],
-#         [   0,   0,   0,   0,   0,  -1,   2,  -1 ],
-#         [   0,   0,   0,   0,   0,   0,  -1,   2 ] ] 
-#     );      
-#     return alg;
-# end );
+BindGlobal( "OctavianIntegers", Objectify( NewType(
+    CollectionsFamily(FamilyObj(OctonionAlgebra(Rationals))),
+    IsOctavianIntegers and IsAttributeStoringRep ),
+    rec() ) );
+
+SetLeftActingDomain( OctavianIntegers, Integers );
+SetName( OctavianIntegers, "OctavianIntegers" );
+SetString( OctavianIntegers, "OctavianIntegers" );
+SetIsLeftActedOnByDivisionRing( OctavianIntegers, false );
+SetSize( OctavianIntegers, infinity );
+SetGeneratorsOfRing( OctavianIntegers, AsList(OctonionE8Basis));
+SetGeneratorsOfLeftModule( OctavianIntegers, AsList(OctonionE8Basis) );
+SetIsWholeFamily( OctavianIntegers, false );
+SetIsAssociative( OctavianIntegers, false );
+
+InstallMethod( Units, 
+    "For octavian integers", 
+    [ IsOctavianIntegers ],
+    function(O)
+        return Closure(Basis(O), \*);
+    end);
+
+InstallMethod( IsOctavianInt, 
+    "for Octonions", 
+    [ IsOctonion ],
+    function(x) 
+        return ForAll(Coefficients(Basis(OctavianIntegers), x), IsInt);
+    end);
+
+InstallMethod( \in,
+    "for integers",
+    [ IsOctonion, IsOctavianIntegers ], 10000,
+    function( n, Integers )
+    return IsOctavianInt( n );
+    end );
+
+InstallMethod( Basis,
+    "for Octavian integers (delegate to `CanonicalBasis')",
+    [ IsOctavianIntegers ], CANONICAL_BASIS_FLAGS,
+    CanonicalBasis );
+
+
+InstallMethod( CanonicalBasis,
+    "for Octavian integers",
+    [ IsOctavianIntegers ],
+    function( OctavianIntegers )
+    local B;
+    B:= Objectify( NewType( FamilyObj( OctavianIntegers ),
+                                IsFiniteBasisDefault
+                            and IsCanonicalBasis
+                            and IsCanonicalBasisOctavianIntegersRep ),
+                   rec() );
+    SetUnderlyingLeftModule( B, OctavianIntegers );
+    SetIsIntegralBasis( B, true );
+    SetBasisVectors( B, Immutable( BasisVectors(OctonionE8Basis)));
+    # Return the basis.
+    return B;
+    end );
+
+DeclareOperation( "Coefficients", [ IsCanonicalBasisOctavianIntegersRep,
+      IsOctonion ] );
+
+InstallMethod( Coefficients,
+    "for the canonical basis of OctavianIntegers",
+    [ IsCanonicalBasisOctavianIntegersRep,
+      IsOctonion ], 0,
+    function( B, v )
+        return SolutionMat(List(B, ExtRepOfObj), ExtRepOfObj(v));
+    end );
 
 
 
 InstallMethod( \mod, 
     "For an octonion integer", 
-    [IsOctonionArithmeticElement, IsPosInt], 0,
+    [IsOctonion, IsPosInt], 0,
     function(a,m)
-        return ObjByExtRep(FamilyObj(One(a)), List(ExtRepOfObj(a), i -> i mod m) );
+        local coeffs;
+        coeffs := Coefficients(Basis(OctavianIntegers), a); 
+        if not ForAll(coeffs, IsInt) then 
+            return fail;
+        fi; 
+        return LinearCombination(Basis(OctavianIntegers),  coeffs mod m);
     end );
 
 InstallGlobalFunction( OctonionToRealVector,

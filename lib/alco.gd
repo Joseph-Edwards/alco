@@ -46,7 +46,15 @@ DeclareCategory( "IsOctonionAlgebra", IsOctonionCollection and IsFullSCAlgebra )
 
     DeclareAttribute( "GramMatrix", IsOctonionAlgebra );
 
-DeclareGlobalFunction( "OctonionArithmetic" );
+DeclareOperation("IsOctavianInt", [ IsOctonion ] );
+
+DeclareGlobalName( "OctavianIntegers" );
+
+DeclareCategory( "IsOctavianIntegers", IsFLMLOR
+  and IsFiniteDimensional );
+
+DeclareRepresentation(
+    "IsCanonicalBasisOctavianIntegersRep", IsAttributeStoringRep );
 
 DeclareGlobalFunction( "OctonionAlgebra" );
 
