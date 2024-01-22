@@ -14,6 +14,35 @@
 #     You should have received a copy of the GNU General Public License
 #     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+# Cyclotomic Tools
+
+DeclareGlobalFunction( "IsEisenInt" );
+
+DeclareGlobalName( "EisensteinIntegers");
+
+DeclareCategory( "IsEisensteinIntegers", IsEuclideanRing and IsFLMLOR
+  and IsFiniteDimensional );
+
+DeclareRepresentation(
+    "IsCanonicalBasisEisensteinIntegersRep", IsAttributeStoringRep,
+    [ "conductor", "zumbroichbase" ] );
+
+DeclareOperation( "Coefficients", [ IsCanonicalBasisEisensteinIntegersRep,
+      IsCyc ] );
+
+DeclareOperation("IsKleinInt", [ IsCyc ] );
+
+DeclareGlobalName( "KleinianIntegers");
+
+DeclareCategory( "IsKleinianIntegers", IsEuclideanRing and IsFLMLOR
+  and IsFiniteDimensional );
+
+DeclareRepresentation(
+    "IsCanonicalBasisKleinianIntegersRep", IsAttributeStoringRep );
+
+DeclareOperation( "Coefficients", [ IsCanonicalBasisKleinianIntegersRep,
+      IsCyc ] );
+
 # Quaternion Tools
 
 DeclareGlobalVariable( "QuaternionD4Basis" );
@@ -28,6 +57,9 @@ DeclareCategory( "IsHurwitzIntegers", IsFLMLOR
 DeclareRepresentation(
     "IsCanonicalBasisHurwitzIntegersRep", IsAttributeStoringRep );
 
+DeclareOperation( "Coefficients", [ IsCanonicalBasisHurwitzIntegersRep,
+      IsQuaternion ] );
+
 # Icosian and Golden Field Tools
 
 DeclareGlobalFunction( "GoldenRationalComponent" );
@@ -37,6 +69,19 @@ DeclareGlobalFunction( "GoldenIrrationalComponent" );
 DeclareGlobalFunction( "GoldenModSigma" );
 
 DeclareGlobalVariable( "IcosianH4Basis" );
+
+DeclareOperation("IsIcosian", [ IsQuaternion ] );
+
+DeclareGlobalName( "IcosianRing" );
+
+DeclareCategory( "IsIcosianRing", IsFLMLOR
+  and IsFiniteDimensional );
+
+DeclareRepresentation(
+    "IsCanonicalBasisIcosianRingRep", IsAttributeStoringRep );
+
+DeclareOperation( "Coefficients", [ IsCanonicalBasisIcosianRingRep,
+      IsQuaternion ] );
 
 # Octonion Algebra and Arithmetic Tools
 
@@ -56,6 +101,8 @@ DeclareCategory( "IsOctonionAlgebra", IsOctonionCollection and IsFullSCAlgebra )
 
     DeclareAttribute( "GramMatrix", IsOctonionAlgebra );
 
+DeclareGlobalVariable( "OctonionE8Basis" );
+
 DeclareOperation("IsOctavianInt", [ IsOctonion ] );
 
 DeclareGlobalName( "OctavianIntegers" );
@@ -66,9 +113,10 @@ DeclareCategory( "IsOctavianIntegers", IsFLMLOR
 DeclareRepresentation(
     "IsCanonicalBasisOctavianIntegersRep", IsAttributeStoringRep );
 
-DeclareGlobalFunction( "OctonionAlgebra" );
+DeclareOperation( "Coefficients", [ IsCanonicalBasisOctavianIntegersRep,
+      IsOctonion ] );
 
-DeclareGlobalVariable( "OctonionE8Basis" );
+DeclareGlobalFunction( "OctonionAlgebra" );
 
 DeclareGlobalFunction( "OctonionToRealVector" );
 

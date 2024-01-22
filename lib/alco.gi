@@ -14,6 +14,128 @@
 #     You should have received a copy of the GNU General Public License
 #     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+# Cyclotomic tools
+
+BindGlobal( "EisensteinIntegers", Objectify( NewType(
+    CollectionsFamily(CyclotomicsFamily),
+    IsEisensteinIntegers and IsAttributeStoringRep ),
+    rec() ) );
+
+SetLeftActingDomain( EisensteinIntegers, Integers );
+SetName( EisensteinIntegers, "EisensteinIntegers" );
+SetString( EisensteinIntegers, "EisensteinIntegers" );
+SetIsLeftActedOnByDivisionRing( EisensteinIntegers, false );
+SetSize( EisensteinIntegers, infinity );
+SetGeneratorsOfRing( EisensteinIntegers, [ E(3) ] );
+SetGeneratorsOfLeftModule( EisensteinIntegers, [ 1, E(3) ] );
+SetIsFinitelyGeneratedMagma( EisensteinIntegers, false );
+SetUnits( EisensteinIntegers, Set([ -1, 1, -E(3), E(3), -E(3)^2, E(3)^2 ] ));
+SetIsWholeFamily( EisensteinIntegers, false );
+
+InstallMethod( \in,
+    "for Eisenstein integers",
+    IsElmsColls,
+    [ IsCyc, IsEisensteinIntegers ],
+    function( cyc, EisensteinIntegers )
+    return IsCycInt( cyc ) and 3 mod Conductor( cyc ) = 0;
+    end );
+
+InstallMethod( Basis,
+    "for Eisenstein integers (delegate to `CanonicalBasis')",
+    [ IsEisensteinIntegers ], CANONICAL_BASIS_FLAGS,
+    CanonicalBasis );
+
+InstallMethod( CanonicalBasis,
+    "for Eisenstein integers",
+    [ IsEisensteinIntegers ],
+    function( EisensteinIntegers )
+    local B;
+
+    B:= Objectify( NewType( FamilyObj( EisensteinIntegers ),
+                                IsFiniteBasisDefault
+                            and IsCanonicalBasis
+                            and IsCanonicalBasisEisensteinIntegersRep ),
+                   rec() );
+    SetUnderlyingLeftModule( B, EisensteinIntegers );
+    SetIsIntegralBasis( B, true );
+    SetBasisVectors( B, Immutable( [ 1, E(3) ] ) );
+    B!.conductor:= 3;
+    B!.zumbroichbase := [ 0, 1 ];
+
+    # Return the basis.
+    return B;
+    end );
+
+InstallMethod( Coefficients,
+    "for the canonical basis of IcosianRing",
+    [ IsCanonicalBasisEisensteinIntegersRep,
+      IsCyc ], 0,
+    function( B, v )
+        return Coefficients(Basis(CF(3), BasisVectors(B)), v);
+    end );
+
+BindGlobal( "KleinianIntegers", Objectify( NewType(
+    CollectionsFamily(CyclotomicsFamily),
+    IsKleinianIntegers and IsAttributeStoringRep ),
+    rec() ) );
+
+SetLeftActingDomain( KleinianIntegers, Integers );
+SetName( KleinianIntegers, "KleinianIntegers" );
+SetString( KleinianIntegers, "KleinianIntegers" );
+SetIsLeftActedOnByDivisionRing( KleinianIntegers, false );
+SetSize( KleinianIntegers, infinity );
+SetGeneratorsOfRing( KleinianIntegers, [ 1, EB(7) ] );
+SetGeneratorsOfLeftModule( KleinianIntegers, [ 1, EB(7) ] );
+SetIsFinitelyGeneratedMagma( KleinianIntegers, false );
+SetUnits( KleinianIntegers, Set([ -1, 1 ] ));
+SetIsWholeFamily( KleinianIntegers, false );
+
+InstallMethod( IsKleinInt, 
+    "for cyclotomics", 
+    [ IsCyc ],
+    function(x) 
+        return ForAll(Coefficients(Basis(KleinianIntegers), x), IsInt);
+    end);
+
+InstallMethod( \in,
+    "for Kleinian integers",
+    IsElmsColls,
+    [ IsCyc, IsKleinianIntegers ],
+    function( cyc, KleinianIntegers )
+        return IsKleinInt( cyc );
+    end );
+
+InstallMethod( Basis,
+    "for Kleinian integers (delegate to `CanonicalBasis')",
+    [ IsKleinianIntegers ], CANONICAL_BASIS_FLAGS,
+    CanonicalBasis );
+
+InstallMethod( CanonicalBasis,
+    "for Kleinian integers",
+    [ IsKleinianIntegers ],
+    function( KleinianIntegers )
+    local B;
+
+    B:= Objectify( NewType( FamilyObj( KleinianIntegers ),
+                                IsFiniteBasisDefault
+                            and IsCanonicalBasis
+                            and IsCanonicalBasisKleinianIntegersRep ),
+                   rec() );
+    SetUnderlyingLeftModule( B, KleinianIntegers );
+    SetIsIntegralBasis( B, true );
+    SetBasisVectors( B, Immutable( [ 1, EB(7) ] ) );
+    return B;
+    end );
+
+InstallMethod( Coefficients,
+    "for the canonical basis of IcosianRing",
+    [ IsCanonicalBasisKleinianIntegersRep,
+      IsCyc ], 0,
+    function( B, v )
+        return Coefficients(Basis(Field(EB(7)), BasisVectors(B)), v);
+    end );
+
+
 # Quaternion tools
 
 # THIS IS DIFFERENT THAT STANDARD GAP. Might need to remove. 
@@ -109,9 +231,6 @@ InstallMethod( CanonicalBasis,
     return B;
     end );
 
-DeclareOperation( "Coefficients", [ IsCanonicalBasisHurwitzIntegersRep,
-      IsQuaternion ] );
-
 InstallMethod( Coefficients,
     "for the canonical basis of HurwitzIntegers",
     [ IsCanonicalBasisHurwitzIntegersRep,
@@ -136,6 +255,76 @@ InstallValue( IcosianH4Basis, Basis(QuaternionAlgebra(Field(Sqrt(5))),
             [ -1/2*E(5)-1/2*E(5)^4, 0, 1/2, -1/2*E(5)^2-1/2*E(5)^3 ] ], 
         x -> ObjByExtRep(FamilyObj(One(QuaternionAlgebra(Field(Sqrt(5))))),x)
         )) );
+
+
+BindGlobal( "IcosianRing", Objectify( NewType(
+    CollectionsFamily(FamilyObj(QuaternionAlgebra(Rationals))),
+    IsIcosianRing and IsRingWithOne and IsAttributeStoringRep ),
+    rec() ) );
+
+SetLeftActingDomain( IcosianRing, Integers );
+SetName( IcosianRing, "IcosianRing" );
+SetString( IcosianRing, "IcosianRing" );
+SetIsLeftActedOnByDivisionRing( IcosianRing, false );
+SetSize( IcosianRing, infinity );
+SetGeneratorsOfRing( IcosianRing, AsList(IcosianH4Basis));
+SetGeneratorsOfLeftModule( IcosianRing, AsList(IcosianH4Basis) );
+SetIsWholeFamily( IcosianRing, false );
+SetIsAssociative( IcosianRing, false );
+
+InstallMethod( Units, 
+    "For Icosians", 
+    [ IsIcosianRing ],
+    function(O)
+        return Closure(Basis(O), \*);
+    end);
+
+InstallMethod( IsIcosian, 
+    "for Quaternions", 
+    [ IsQuaternion ],
+    function(x) 
+        return ForAll(Coefficients(Basis(IcosianRing), x), y -> 
+                    ForAll(Coefficients(Basis(NF(5,[1,4]), [1, (1-Sqrt(5))/2]), y), IsInt)
+            );
+    end);
+
+InstallMethod( \in,
+    "for integers",
+    [ IsQuaternion, IsIcosianRing ], 10000,
+    function( n, Integers )
+    return IsIcosian( n );
+    end );
+
+InstallMethod( Basis,
+    "for Icosians (delegate to `CanonicalBasis')",
+    [ IsIcosianRing ], CANONICAL_BASIS_FLAGS,
+    CanonicalBasis );
+
+
+InstallMethod( CanonicalBasis,
+    "for Icosians",
+    [ IsIcosianRing ],
+    function( IcosianRing )
+    local B;
+    B:= Objectify( NewType( FamilyObj( IcosianRing ),
+                                IsFiniteBasisDefault
+                            and IsCanonicalBasis
+                            and IsCanonicalBasisIcosianRingRep ),
+                   rec() );
+    SetUnderlyingLeftModule( B, IcosianRing );
+    SetIsIntegralBasis( B, true );
+    SetBasisVectors( B, Immutable( BasisVectors(IcosianH4Basis)));
+    # Return the basis.
+    return B;
+    end );
+
+InstallMethod( Coefficients,
+    "for the canonical basis of IcosianRing",
+    [ IsCanonicalBasisIcosianRingRep,
+      IsQuaternion ], 0,
+    function( B, v )
+        return SolutionMat(List(B, ExtRepOfObj), ExtRepOfObj(v));
+    end );
 
 # Function to construct an octonion algebra in a standard basis (i.e. e[1]*e[2] = e[4], and cycle indices). 
 InstallGlobalFunction( OctonionAlgebra, function( F )
@@ -300,9 +489,6 @@ InstallMethod( CanonicalBasis,
     return B;
     end );
 
-DeclareOperation( "Coefficients", [ IsCanonicalBasisOctavianIntegersRep,
-      IsOctonion ] );
-
 InstallMethod( Coefficients,
     "for the canonical basis of OctavianIntegers",
     [ IsCanonicalBasisOctavianIntegersRep,
@@ -310,8 +496,6 @@ InstallMethod( Coefficients,
     function( B, v )
         return SolutionMat(List(B, ExtRepOfObj), ExtRepOfObj(v));
     end );
-
-
 
 InstallMethod( \mod, 
     "For an octonion integer", 
