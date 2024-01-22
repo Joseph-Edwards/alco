@@ -18,6 +18,12 @@
 LoadPackage("AutoDoc");
 LoadPackage("alco");
 
+# AutoDoc(rec(
+#     scaffold := rec( MainPage := false )
+# ));
+
 AutoDoc(rec(
+    extract_examples := true,
     scaffold := rec( MainPage := false )
 ));
+
