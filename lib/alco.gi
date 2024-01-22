@@ -1133,6 +1133,11 @@ InstallGlobalFunction( AlbertAlgebra, function( F )
             SetFilterObj( A, IsJordanAlgebra );
             SetJordanRank( A, 3 );
             SetJordanDegree( A, 8 );
+            SetJordanOffDiagonalBasis( A, Basis(OctonionAlgebra(Rationals)) );
+            SetJordanHomotopeVector( A, One(A) );
+            SetJordanBasisTraces( A, List(Basis(A), 
+                j -> (Rank(j)/Dimension(FamilyObj(j)!.fullSCAlgebra))*Trace(AdjointMatrix(Basis(FamilyObj(j)!.fullSCAlgebra), j)))
+            );
             return A;
         end );
         A:= AlgebraWithOne( F, CanonicalBasis( stored ), "basis" );
