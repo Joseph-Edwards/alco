@@ -172,17 +172,17 @@ BindGlobal( "AlbertAlgebraData", NEW_SORTED_CACHE(true) );
 
 DeclareGlobalFunction( "AlbertAlgebra" );
 
-DeclareGlobalVariable( "Alb" );
+DeclareCategory( "IsAlbertAlgebraObj", IsJordanAlgebraObj );
 
 DeclareGlobalFunction( "HermitianMatrixToAlbertVector" );
 
 DeclareGlobalFunction( "AlbertVectorToHermitianMatrix" );
 
-DeclareOperation("P", [IsJordanAlgebraObj, IsJordanAlgebraObj]);
+DeclareOperation("JordanQuadraticOperator", [IsJordanAlgebraObj, IsJordanAlgebraObj]);
 
-DeclareOperation("P", [IsJordanAlgebraObj]);
+DeclareOperation("JordanQuadraticOperator", [IsJordanAlgebraObj]);
 
-DeclareOperation("JTS", [IsJordanAlgebraObj, IsJordanAlgebraObj, IsJordanAlgebraObj]);
+DeclareOperation("JordanTripleSystem", [IsJordanAlgebraObj, IsJordanAlgebraObj, IsJordanAlgebraObj]);
 
 # T-Design Tools
 

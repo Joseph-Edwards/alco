@@ -943,7 +943,7 @@ InstallGlobalFunction( AlbertAlgebra, function( F )
     # Generators in the right family may be already available.
     stored := GET_FROM_SORTED_CACHE( AlbertAlgebraData, [ Characteristic(F), FamilyObj( F ) ],
         function()
-            filter:= IsSCAlgebraObj and IsJordanAlgebraObj;
+            filter:= IsSCAlgebraObj and IsJordanAlgebraObj and IsAlbertAlgebraObj;
             T := [ [ [ [ 26, 27 ], [ 1, 1 ] ], [ [  ], [  ] ], [ [  ], [  ] ], [ [  ], [  ] ], [ [  ], [  ] ], 
       [ [  ], [  ] ], [ [  ], [  ] ], [ [  ], [  ] ], [ [ 24 ], [ -1/2 ] ], [ [ 20 ], [ -1/2 ] ], 
       [ [ 23 ], [ -1/2 ] ], [ [ 18 ], [ 1/2 ] ], [ [ 22 ], [ -1/2 ] ], [ [ 21 ], [ 1/2 ] ], 
@@ -1156,8 +1156,6 @@ InstallGlobalFunction( AlbertAlgebra, function( F )
         return A;
     end );
 
-# InstallValue( Alb, AlbertAlgebra(Rationals) );
-
 InstallGlobalFunction( HermitianMatrixToAlbertVector, 
     function(mat)
         local temp;
@@ -1174,25 +1172,28 @@ InstallGlobalFunction( HermitianMatrixToAlbertVector,
 
 InstallGlobalFunction( AlbertVectorToHermitianMatrix, 
     function(vec)
-        if not vec in Alb then return fail; fi;
+        if not IsAlbertAlgebraObj(vec) then return fail; fi;
         return LinearCombination(JordanMatrixBasis(AlbertAlgebra(Rationals)), ExtRepOfObj(vec));
     end);
 
-InstallMethod(P, 
+
+
+# See Faraut and Koranyi p. 32
+InstallMethod( JordanQuadraticOperator, 
      "for a Jordan algebra element",
     [ IsJordanAlgebraObj ],
     function(j)
         return 2*AdjointMatrix(CanonicalBasis(FamilyObj(j)!.fullSCAlgebra), j)^2 - AdjointMatrix(CanonicalBasis(FamilyObj(j)!.fullSCAlgebra), j^2); 
     end);
 
-InstallMethod(P, 
-     "for a Jordan algebra element",
+InstallMethod( JordanQuadraticOperator, 
+     "for a pair of Jordan algebra elements",
     [ IsJordanAlgebraObj, IsJordanAlgebraObj ],
     function(j, k)
         return 2*j*(j*k) - (j^2)*k; 
     end);
 
-InstallMethod(JTS,
+InstallMethod( JordanTripleSystem,
     "for three Jordan algebra elements",
     [IsJordanAlgebraObj, IsJordanAlgebraObj, IsJordanAlgebraObj],
     {x,y,z} -> x*(y*z) + (x*y)*z - (x*z)*y
