@@ -174,7 +174,7 @@ InstallValue( QuaternionD4Basis, Basis(QuaternionAlgebra(Rationals),
 
 BindGlobal( "HurwitzIntegers", Objectify( NewType(
     CollectionsFamily(FamilyObj(QuaternionAlgebra(Rationals))),
-    IsHurwitzIntegers and IsRingWithOne and IsAttributeStoringRep ),
+    IsHurwitzIntegers and IsRingWithOne and IsQuaternionCollection and IsAttributeStoringRep ),
     rec() ) );
 
 SetLeftActingDomain( HurwitzIntegers, Integers );
@@ -222,6 +222,7 @@ InstallMethod( CanonicalBasis,
     B:= Objectify( NewType( FamilyObj( HurwitzIntegers ),
                                 IsFiniteBasisDefault
                             and IsCanonicalBasis
+                            and IsQuaternionCollection
                             and IsCanonicalBasisHurwitzIntegersRep ),
                    rec() );
     SetUnderlyingLeftModule( B, HurwitzIntegers );
@@ -259,7 +260,7 @@ InstallValue( IcosianH4Basis, Basis(QuaternionAlgebra(Field(Sqrt(5))),
 
 BindGlobal( "IcosianRing", Objectify( NewType(
     CollectionsFamily(FamilyObj(QuaternionAlgebra(Rationals))),
-    IsIcosianRing and IsRingWithOne and IsAttributeStoringRep ),
+    IsIcosianRing and IsRingWithOne and IsQuaternionCollection and IsAttributeStoringRep ),
     rec() ) );
 
 SetLeftActingDomain( IcosianRing, Integers );
@@ -309,6 +310,7 @@ InstallMethod( CanonicalBasis,
     B:= Objectify( NewType( FamilyObj( IcosianRing ),
                                 IsFiniteBasisDefault
                             and IsCanonicalBasis
+                            and IsQuaternionCollection
                             and IsCanonicalBasisIcosianRingRep ),
                    rec() );
     SetUnderlyingLeftModule( B, IcosianRing );
@@ -432,7 +434,7 @@ InstallValue( OctonionE8Basis, Basis(OctonionAlgebra(Rationals),
 
 BindGlobal( "OctavianIntegers", Objectify( NewType(
     CollectionsFamily(FamilyObj(OctonionAlgebra(Rationals))),
-    IsOctavianIntegers and IsRingWithOne and IsAttributeStoringRep ),
+    IsOctavianIntegers and IsRingWithOne and IsOctonionCollection and IsAttributeStoringRep ),
     rec() ) );
 
 SetLeftActingDomain( OctavianIntegers, Integers );
@@ -480,6 +482,7 @@ InstallMethod( CanonicalBasis,
     B:= Objectify( NewType( FamilyObj( OctavianIntegers ),
                                 IsFiniteBasisDefault
                             and IsCanonicalBasis
+                            and IsOctonionCollection
                             and IsCanonicalBasisOctavianIntegersRep ),
                    rec() );
     SetUnderlyingLeftModule( B, OctavianIntegers );
@@ -716,17 +719,19 @@ InstallGlobalFunction( HermitianMatrixToJordanCoefficients, function(mat, comp_a
             Append(temp, [Trace(mat[i][i])/2] );
         elif IsCyclotomicCollection(comp_alg_basis) then 
             Append(temp, [RealPart(mat[i][i])]);
-        else 
+        else
+            Display("Here"); 
             return fail;
         fi;
     od;
     # Find the off-diagonal coefficients next.
     for i in Combinations([1..rho],2) do
-        if not (IsQuaternionCollection(comp_alg_basis) or             IsOctonionCollection(comp_alg_basis) ) and LeftActingDomain(UnderlyingLeftModule(comp_alg_basis)) = Integers then     
-            Append(temp, Coefficients(Basis(Rationals,[1]), mat[i[1]][i[2]]) );
-        else 
-            Append(temp, Coefficients(basis, mat[i[1]][i[2]]) );
-        fi;
+        # if not (IsQuaternionCollection(comp_alg_basis) or IsOctonionCollection(comp_alg_basis) ) and LeftActingDomain(UnderlyingLeftModule(comp_alg_basis)) = Integers then     
+        #     Append(temp, Coefficients(Basis(Rationals,[1]), mat[i[1]][i[2]]) );
+        # else 
+        #     Append(temp, Coefficients(basis, mat[i[1]][i[2]]) );
+        # fi;
+        Append(temp, Coefficients(basis, mat[i[1]][i[2]]) );
     od;
     # Return the coefficients.
     return temp;

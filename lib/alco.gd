@@ -52,7 +52,7 @@ DeclareOperation("IsHurwitzInt", [ IsQuaternion ] );
 DeclareGlobalName( "HurwitzIntegers" );
 
 DeclareCategory( "IsHurwitzIntegers", IsFLMLOR
-  and IsFiniteDimensional );
+  and IsFiniteDimensional and IsQuaternionCollection );
 
 DeclareRepresentation(
     "IsCanonicalBasisHurwitzIntegersRep", IsAttributeStoringRep );
