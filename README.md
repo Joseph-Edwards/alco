@@ -36,14 +36,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 The ALCO package allows users to construct the octonion arithmetic (integer ring). 
 In the example below, we construct the octonion arithmetic and verify that the 
-basis vectors define an E8 lattice relative to the inner product shown:
+basis vectors define an $E_8$ lattice relative to the inner product shown:
 
 ```
-gap> LoadPackage("alco");
-true
-gap> A := OctonionArithmetic(Integers);
-<algebra of dimension 8 over Integers>
-gap> g := List(Basis(A), x -> List(Basis(A), y -> Norm(x+y) - Norm(x) - Norm(y)));;
+gap> O := OctavianIntegers;
+OctavianIntegers
+gap> g := List(Basis(O), x -> List(Basis(O), y -> Norm(x+y) - Norm(x) - Norm(y)));;
 gap> Display(g);
 [ [   2,   0,  -1,   0,   0,   0,   0,   0 ],
   [   0,   2,   0,  -1,   0,   0,   0,   0 ],
@@ -53,8 +51,6 @@ gap> Display(g);
   [   0,   0,   0,   0,  -1,   2,  -1,   0 ],
   [   0,   0,   0,   0,   0,  -1,   2,  -1 ],
   [   0,   0,   0,   0,   0,   0,  -1,   2 ] ]
-gap> Determinant(g);
-1
 gap> IsGossetLatticeGramMatrix(g);
 true
 ```
@@ -64,42 +60,42 @@ algebra:
 
 ```
 gap> J := AlbertAlgebra(Rationals);
-<algebra of dimension 27 over Rationals>
+<algebra-with-one of dimension 27 over Rationals>
 gap> SemiSimpleType(Derivations(Basis(J)));
 "F4"
-gap> AsList(Basis(J));
-[ i1, i2, i3, i4, i5, i6, i7, i8, j1, j2, j3, j4, j5, j6, j7, j8, k1, k2, k3, k4, k5, k6,
-  k7, k8, ei, ej, ek ]
-gap> List(Basis(J), x -> Trace(x));
-[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1 ]
-gap> List(Basis(J), x -> Norm(x));
-[ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1/2, 1/2, 1/2 ]
-gap> List(Basis(J), x -> Determinant(x));
-[ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+gap> i := Basis(J){[1..8]};
+[ i1, i2, i3, i4, i5, i6, i7, i8 ]
+gap> j := Basis(J){[9..16]};
+[ j1, j2, j3, j4, j5, j6, j7, j8 ]
+gap> k := Basis(J){[17..24]};
+[ k1, k2, k3, k4, k5, k6, k7, k8 ]
+gap> e := Basis(J){[25..27]};
+[ ei, ej, ek ]
+gap> List(e, IsIdempotent);
+[ true, true, true ]
+gap> Set(i, x -> x^2);
+[ ej+ek ]
+gap> Set(j, x -> x^2);
+[ ei+ek ]
 gap> One(J);
 ei+ej+ek
 gap> Determinant(One(J));
-1  
+1
+gap> Trace(One(J));
+3  
 ```
 
 The ALCO package also provides tools to construct octonion lattices, including 
 octonion Leech lattices.
 
 ```
-gap> short_vectors := Set(ShortestVectors(GramMatrix(A),4).vectors, y -> LinearCombination(B
-asis(A), y));;
-gap> filt := Filtered(short_vectors, x -> x^2 + x + 2*One(x) = Zero(x));; 
-gap> Length(filt);
-576
-gap> s := Random(filt);
-a3+a4+a5+a7+a8
-gap> gens := List(Basis(A), x -> x*[[s,s,0],[0,s,s],ComplexConjugate([s,s,s])]);; 
-gap> gens := Concatenation(gens);;
-gap> Length(gens);
-24
-gap> L := OctonionLatticeByGenerators(gens, One(A)*IdentityMat(3)/2);
+gap> short := Set(ShortestVectors(g,4).vectors, y -> LinearCombination(Basis(OctavianIntegers), y));;
+gap> s := Filtered(short, x -> x^2 + x + 2*One(x) = Zero(x))[1];
+(-1)*e1+(-1/2)*e2+(-1/2)*e3+(-1/2)*e4+(-1/2)*e8
+gap> gens := List(Basis(OctavianIntegers), x -> x*[[s,s,0],[0,s,s],ComplexConjugate([s,s,s])]);;
+gap> gens := Concatenation(gens);; 
+gap> L := OctonionLatticeByGenerators(gens, One(O)*IdentityMat(3)/2);
 <free left module over Integers, with 24 generators>
-Time of last command: 433 ms
 gap> IsLeechLatticeGramMatrix(GramMatrix(L));
 true
 ```
