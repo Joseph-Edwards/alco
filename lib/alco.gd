@@ -16,7 +16,7 @@
 
 # Cyclotomic Tools
 
-DeclareGlobalFunction( "IsEisenInt" );
+DeclareOperation( "IsEisenInt", [ IsCyc ] );
 
 DeclareGlobalName( "EisensteinIntegers");
 

@@ -40,6 +40,13 @@ InstallMethod( \in,
     return IsCycInt( cyc ) and 3 mod Conductor( cyc ) = 0;
     end );
 
+InstallMethod( IsEisenInt, 
+    "for cyclotomics", 
+    [ IsCyc ],
+    function(x) 
+        return x in EisensteinIntegers;
+    end);
+
 InstallMethod( Basis,
     "for Eisenstein integers (delegate to `CanonicalBasis')",
     [ IsEisensteinIntegers ], CANONICAL_BASIS_FLAGS,
@@ -67,7 +74,7 @@ InstallMethod( CanonicalBasis,
     end );
 
 InstallMethod( Coefficients,
-    "for the canonical basis of IcosianRing",
+    "for the canonical basis of Eisenstein integers",
     [ IsCanonicalBasisEisensteinIntegersRep,
       IsCyc ], 0,
     function( B, v )
@@ -93,7 +100,10 @@ SetIsWholeFamily( KleinianIntegers, false );
 InstallMethod( IsKleinInt, 
     "for cyclotomics", 
     [ IsCyc ],
-    function(x) 
+    function(x)
+        if DegreeOverPrimeField(Field(Union(Basis(KleinianIntegers), [x]))) > 2 then 
+            return false;
+        fi; 
         return ForAll(Coefficients(Basis(KleinianIntegers), x), IsInt);
     end);
 

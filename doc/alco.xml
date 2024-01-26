@@ -80,9 +80,9 @@ gap> Trace(One(J));
       <Heading>Octonions</Heading> 
 
       Let <Math>C</Math> be a vector space over field <Math>k</Math> equipped with a non-degenerate quadratic form <Math>N:C \rightarrow k</Math>. 
-      If <Math>C</Math> is also an algebra with product that satifies the composition rule <Math>N(x y) = N(x) N(y)</Math> then we call <Math>C</Math> a <Emph>composition algebra</Emph>. Quaternions and octonions are examples of composition algebras.<P/>
+      If <Math>C</Math> is also an algebra with a product that satifies the composition rule <Math>N(x y) = N(x) N(y)</Math> then we call <Math>C</Math> a <Emph>composition algebra</Emph>. Quaternions and octonions are examples of composition algebras.<P/>
 
-      As described in <Cite Key="springer_octonions_2000" Where="Theorm 1.6.2" />, a composition algebra has dimension <Math>1</Math>, <Math>2</Math>, <Math>4</Math>, or <Math>8</Math>. Compositions algebras of dimension <Math>1</Math> or <Math>2</Math> are commutative and associative. A <Emph>quaternion algebra</Emph> is a composition of dimension <Math>4</Math>. Quaternion algebras are associative but noncommutative. 
+      As described in <Cite Key="springer_octonions_2000" Where="Theorm 1.6.2" />, a composition algebra has dimension <Math>1</Math>, <Math>2</Math>, <Math>4</Math>, or <Math>8</Math>. Compositions algebras of dimension <Math>1</Math> or <Math>2</Math> are commutative and associative. A <Emph>quaternion algebra</Emph> is a composition algebra of dimension <Math>4</Math>. Quaternion algebras are associative but noncommutative. 
       An <Emph>octonion algebra</Emph> is a composition algebra of dimension <Math>8</Math>. Octonion algebras are both noncommutative and nonassociative but still have many interesting properties. <P/>
           
       The non-degenerate quadratic form <Math>N</Math> of a composition algebra is called the <Emph>norm</Emph> of that algebra. In fact, a composition algebra is determined up to isomorphism by its norm so the task of classifying composition algebras is equivalent to the task of classifying the possible norms in that vector space <Cite Key="springer_octonions_2000" Where="chap. 1, sec. 7" />.
@@ -107,7 +107,7 @@ gap> Trace(One(J));
 
         <ManSection>
           <Func Name="OctonionAlgebra" Arg="F" />
-          <Description> Returns an octonion algebra over field <Arg>F</Arg> in a standard orthonormal basis <Math>\{e_{i}, i = 1,...,8\}</Math> such that <Math>1 = e_8</Math> is the identity element and <Math>e_{i} = e_{i+1}e_{i+3} = - e_{i+3}e_{i+1}</Math> for <Math>i = 1,...,7</Math>, with indices evaluated modulo 7. This corresponds to the basis provided in <Cite Key="baez_octonions_2002"/> and <Cite Key="conway_quaternions_2003"/> (except that <Code>e7</Code> corresponds to <Math>e_0</Math> in the literature, since the first entry in a &GAP; list has index 1). 
+          <Description> Returns an octonion algebra over field <Arg>F</Arg> in a standard orthonormal basis <Math>\{e_{i}, i = 1,...,8\}</Math> such that <Math>1 = e_8</Math> is the identity element and <Math>e_{i} = e_{i+1}e_{i+3} = - e_{i+3}e_{i+1}</Math> for <Math>i = 1,...,7</Math>, with indices evaluated modulo 7. This corresponds to the basis provided in <Cite Key="baez_octonions_2002"/> and <Cite Key="conway_quaternions_2003"/> (except that <Code>e7</Code> corresponds to <Math>e_0</Math> in the literature, since the first entry in a &GAP; list has index 1). Whether or not the algebra constructed is a division algebra or a split-octonion algebra depends on the choices of field <Arg>F</Arg>. For example, <Code>OctonionAlgebra(Rationals)</Code> is a division composition algebra, but <Code>OctonionAlgebra(GF(3))</Code> is a split composition algebra. Other examples are discussed in <Cite Key="springer_octonions_2000" Where="chap. 1, sec. 10" />. 
 <Example><![CDATA[gap> O := OctonionAlgebra(Rationals); e := Basis(O);;
 <algebra-with-one of dimension 8 over Rationals>
 gap> LeftActingDomain(O);
@@ -150,8 +150,13 @@ false]]></Example>
 
       <ManSection>
           <Var Name="OctonionE8Basis" />
-        <Description> The <Package>ALCO</Package> package also loads a basis for <Code>OctonionAlgebra(<Arg>Rationals</Arg>)</Code> which also serves as generators for <Ref Var="OctavianIntegers"/>.
+        <Description> The <Package>ALCO</Package> package also loads a basis for <Code>OctonionAlgebra(<Arg>Rationals</Arg>)</Code> which also serves as generators for <Ref Var="OctavianIntegers"/>. This octonion integer lattice has the geometry of a <Math>E_8</Math> (Gossett) lattice relative to the inner product defined by the octonion norm.
           <Example><![CDATA[gap> BasisVectors(OctonionE8Basis) = BasisVectors(Basis(OctavianIntegers));
+true
+gap> g := List(OctonionE8Basis, x -> 
+> List(OctonionE8Basis, y -> 
+> Norm(x+y) - Norm(x) - Norm(y)));;
+gap> IsGossetLatticeGramMatrix(g);
 true]]></Example>
         </Description>
       </ManSection>
@@ -183,7 +188,7 @@ a3+a4+a7+a8]]></Example>
 
       <ManSection>
       <Meth Name="Norm" Arg="x" Label="Octonions" />
-        <Description>Returns the norm of octonion <Arg>x</Arg>. Recall that an octonion algebra satisfies the composition property <Math>N(xy) = N(x)N(y)</Math>. 
+        <Description>Returns the norm of octonion <Arg>x</Arg>. Recall that an octonion algebra satisfies the composition property <Math>N(xy) = N(x)N(y)</Math>. In the canonical basis for <Ref Func="OctonionAlgebra"/>, the norm is the sum of the squares of the coefficients.  
         <Example><![CDATA[gap> Oct := OctonionAlgebra(Rationals);;
 gap> List(Basis(Oct), Norm);
 [ 1, 1, 1, 1, 1, 1, 1, 1 ]
@@ -195,11 +200,13 @@ true]]></Example>
 
       <ManSection>
       <Meth Name="Trace" Arg="x" Label="Octonions" />
-        <Description>Returns the trace of octonion <Arg>x</Arg>. Note that <Code>Trace(<Arg>x</Arg>)</Code> is an element of <Code>LeftActingDomain(<Arg>A</Arg>)</Code>, where <Arg>A</Arg> is the octonion algebra containing <Arg>x</Arg>. 
-          The trace and real part are related via <Code>RealPart(<Arg>x</Arg>) = Trace(<Arg>x</Arg>)*One(<Arg>x</Arg>)/2</Code>. 
-        <Example><![CDATA[gap> List(Basis(OctonionAlgebra(Rationals)), Trace);
+        <Description>Returns the trace of octonion <Arg>x</Arg>. In the canonical basis for <Ref Func="OctonionAlgebra"/>, the trace is twice the coefficient of the identity element <Math>1 = e_8</Math>. The trace and real part are related via <Code>RealPart(<Arg>x</Arg>) = Trace(<Arg>x</Arg>)*One(<Arg>x</Arg>)/2</Code>.          
+        Note that <Code>Trace(<Arg>x</Arg>)</Code> is an element of <Code>LeftActingDomain(<Arg>A</Arg>)</Code>, where <Arg>A</Arg> is the octonion algebra containing <Arg>x</Arg>. 
+        <Example><![CDATA[gap> e := BasisVectors(Basis(OctonionAlgebra(Rationals)));
+[ e1, e2, e3, e4, e5, e6, e7, e8 ]
+gap> List(e, Trace);
 [ 0, 0, 0, 0, 0, 0, 0, 2 ]
-gap> List(Basis(OctonionAlgebra(Rationals)), RealPart);
+gap> List(e, RealPart);
 [ 0*e1, 0*e1, 0*e1, 0*e1, 0*e1, 0*e1, 0*e1, e8 ]]]></Example>
         </Description>
       </ManSection>
@@ -234,13 +241,21 @@ gap> A := OctonionArithmetic(Rationals); Display(GramMatrix(A));
 
       <ManSection>
       <Meth Name="ComplexConjugate" Arg="x" Label="Octonions" />
-          <Description>Returns the octonion conjugate of octonion <Arg>x</Arg>, defined by <Code>One(x)*Trace(x) - x</Code>.
+          <Description>Returns the octonion conjugate of octonion <Arg>x</Arg>, defined by <Code>One(x)*Trace(x) - x</Code>. In the canonical basis of <Ref Func="OctonionAlgebra"/>, this method negates the coefficients of <Math>e_1, e_2, \ldots, e_7</Math> but leaves the identity <Math>e_8</Math> fixed.
+            <Example><![CDATA[gap> e := BasisVectors(Basis(OctonionAlgebra(Rationals)));
+[ e1, e2, e3, e4, e5, e6, e7, e8 ]
+gap> List(e, ComplexConjugate);
+[ (-1)*e1, (-1)*e2, (-1)*e3, (-1)*e4, (-1)*e5, (-1)*e6, (-1)*e7, e8 ]]]></Example>
           </Description>
       </ManSection>
 
       <ManSection>
       <Meth Name="RealPart" Arg="x" Label="Octonions" />
           <Description>Returns the real component of octonion <Arg>x</Arg>, defined by <Code>(1/2)*One(x)*Trace(x)</Code>.
+            <Example><![CDATA[gap> e := BasisVectors(Basis(OctonionAlgebra(Rationals)));
+[ e1, e2, e3, e4, e5, e6, e7, e8 ]
+gap> List(e, RealPart);
+[ 0*e1, 0*e1, 0*e1, 0*e1, 0*e1, 0*e1, 0*e1, e8 ]]]></Example>
           </Description>
       </ManSection>
 
@@ -279,7 +294,7 @@ e1+(2)*e2+(3)*e3+(4)*e4+(5)*e5+(6)*e6+(7)*e7+(8)*e8
         <ManSection>
           <Func Name="VectorToIdempotentMatrix" Arg="x" />
           <Description>
-            Let <Arg>x</Arg> be a vector satisfying <Code>IsHomogeneousList</Code> and <Code>IsAssociative</Code> with elements that are <Code>IsCyc</Code>, <Code>IsQuaternion</Code>, or <Code>IsOctonion</Code>. Then this function returns the idempotent matrix <Code>TransposedMat([ComplexConjugate(<Arg>x</Arg>)])*[<Arg>x</Arg>]/Trace(<Arg>x</Arg>)</Code>.  
+            Let <Arg>x</Arg> be a vector satisfying <Code>IsHomogeneousList</Code> and <Code>IsAssociative</Code> with elements that are <Code>IsCyc</Code>, <Code>IsQuaternion</Code>, or <Code>IsOctonion</Code>. Then this function returns the idempotent matrix <Code>M/Trace(M)</Code> where <Code>M = TransposedMat([ComplexConjugate(<Arg>x</Arg>)])*[<Arg>x</Arg>]</Code>.  
             <Example><![CDATA[gap> Oct := OctonionAlgebra(Rationals);;
 gap> x := [One(Oct), Basis(Oct)[1], Basis(Oct)[2]];
 [ e8, e1, e2 ]
@@ -309,7 +324,7 @@ true]]></Example>
  
       <ManSection>
       <Meth Name="Norm" Arg="x" Label="Quaternions" />
-        <Description>Returns the norm of quaternion <Arg>x</Arg>. Recall that a quaternion algebra satisfies the composition property <Math>N(xy) = N(x)N(y)</Math>. 
+        <Description>Returns the norm of quaternion <Arg>x</Arg>. Recall that a quaternion algebra satisfies the composition property <Math>N(xy) = N(x)N(y)</Math>. In the canonical basis of <Code>QuaternionAlgebra</Code>, the norm is the sum of the squares of the coefficients. 
         <Example><![CDATA[gap> H := QuaternionAlgebra(Rationals); AsList(Basis(H));
 <algebra-with-one of dimension 4 over Rationals>
 [ e, i, j, k ]
@@ -323,21 +338,26 @@ true]]></Example>
 
       <ManSection>
       <Meth Name="Trace" Arg="x" Label="Quaternions" />
-        <Description>Returns the trace of quaternion <Arg>x</Arg>, such that <Code>RealPart(<Arg>x</Arg>) = Trace(<Arg>x</Arg>)*One(<Arg>x</Arg>)/2</Code>.
-        <Example><![CDATA[gap> H := QuaternionAlgebra(Rationals);;
-gap> List(Basis(H), Trace);
+        <Description>Returns the trace of quaternion <Arg>x</Arg>, such that <Code>RealPart(<Arg>x</Arg>) = Trace(<Arg>x</Arg>)*One(<Arg>x</Arg>)/2</Code>. In the canonical basis of <Code>QuaternionAlgebra</Code>, the trace is twice the coefficient of the identity element. <Example><![CDATA[gap> e := BasisVectors(Basis(QuaternionAlgebra(Rationals)));
+[ e, i, j, k ]
+gap> List(e, Trace);
 [ 2, 0, 0, 0 ]]]></Example>
         </Description>
       </ManSection>
 
       <ManSection>
       <Meth Name="ComplexConjugate" Arg="x" Label="Quaternions" />
-          <Description>Returns the quaternion conjugate of quaternion <Arg>x</Arg>, defined by <Code>One(x)*Trace(x) - x</Code>.</Description>
+          <Description>Returns the quaternion conjugate of quaternion <Arg>x</Arg>, defined by <Code>One(x)*Trace(x) - x</Code>.
+          <Example><![CDATA[gap> e := BasisVectors(Basis(QuaternionAlgebra(Rationals)));
+[ e, i, j, k ]
+gap> List(e, ComplexConjugate);
+[ e, (-1)*i, (-1)*j, (-1)*k ]]]></Example>
+          </Description>
       </ManSection>
 
       <ManSection>
       <Meth Name="RealPart" Arg="x" Label="Quaternions" />
-          <Description>Using the built in &GAP; function, returns the real component of quaternion <Arg>x</Arg>, equivalent to <Code>(1/2)*One(x)*Trace(x)</Code>. Of note, the value of <Code>ImaginaryPart(<Arg>x</Arg>)</Code> as defined in &GAP; can yield surprising results (due to dividing by the imaginary unit <Math>i</Math>) and should be used with caution.
+          <Description>Using the built in &GAP; function, returns the real component of quaternion <Arg>x</Arg>, equivalent to <Code>(1/2)*One(x)*Trace(x)</Code>. Of note, the value of <Code>ImaginaryPart(<Arg>x</Arg>)</Code> as defined in &GAP; can yield surprising results (due to dividing by the imaginary unit <Math>i</Math>) and should be used with caution. The <Package>ALCO</Package> package does not include an imaginary part method for octonions to prevent a discrepancy with the built in method for quaternions. 
           <Example><![CDATA[gap> H := QuaternionAlgebra(Rationals); AsList(Basis(H));
 <algebra-with-one of dimension 4 over Rationals>
 [ e, i, j, k ]
@@ -370,11 +390,28 @@ gap> List(Basis(H), x -> ImaginaryPart(x));
           </Description>
       </ManSection> -->
 
+       <ManSection>
+          <Var Name="HurwitzIntegers" />
+          <Oper Name="IsHurwitzInt" Arg="x"/>
+          <Description> The <Code>HurwitzIntegers</Code> are a subring of the quaternion algebra with elements that have the geometry of scaled <Math>D_4</Math> lattice. This ring is named and studied in <Cite Key="conway_quaternions_2003" Where="p. 55" />. <Code>CanonicalBasis(HurwitzIntegers)</Code> returns <Ref Var="QuaternionD4Basis"/>. We can test whether a quaternion is in <Code>HurwitzIntegers</Code> using the operation <Code>IsHurwitzInt(<Arg>x</Arg>)</Code>. 
+            <Example><![CDATA[gap> f := BasisVectors(Basis(HurwitzIntegers));;
+gap> for x in f do Display(x); od;
+(-1/2)*e+(-1/2)*i+(-1/2)*j+(1/2)*k
+(-1/2)*e+(-1/2)*i+(1/2)*j+(-1/2)*k
+(-1/2)*e+(1/2)*i+(-1/2)*j+(-1/2)*k
+e
+gap> ForAll(f, IsHurwitzInt);
+true
+gap> ForAll(f/2, IsHurwitzInt);
+false]]></Example>
+          </Description>
+        </ManSection>
+
       <ManSection>
       <Var Name="QuaternionD4Basis" />
           <Description> The <Package>ALCO</Package> package loads a basis for a quaternion algebra
       over &QQ; with the geometry of a <Math>D_4</Math> simple root system. The &ZZ;-span of this
-      basis is the Hurwitz ring. These basis vectors close under pairwise reflection or multiplication to form a <Math>
+      basis is the <Ref Var="HurwitzIntegers"/> ring. These basis vectors close under pairwise reflection or multiplication to form a <Math>
       D_4</Math> root system. <Example><![CDATA[gap> B := QuaternionD4Basis;;
 gap> for x in BasisVectors(B) do Display(x); od;
 (-1/2)*e+(-1/2)*i+(-1/2)*j+(1/2)*k
@@ -419,11 +456,31 @@ gap> GoldenModSigma(tau);
         </Description>
       </ManSection>        
 
+       <ManSection>
+          <Var Name="IcosianRing" />
+          <Oper Name="IsIcosian" Arg="x"/>
+          <Description> The <Code>IcosianRing</Code> is a subring of the the quaternion algebra over <Code>NF(5,[1,4])</Code> generated by a set of vectors with an <Math>H_4</Math> geometry. This ring is described well in <Cite Key="wilson_finite_2009" Where="p. 220" />. <Code>CanonicalBasis(IcosianRing)</Code> returns <Ref Var="IcosianH4Basis"/>. We can test whether a quaternion is in <Code>IcosianRing</Code> using the operation <Code>IsIcosian(<Arg>x</Arg>)</Code>. Note that a quaternion is an icosian when it is a &ZZ;-linear combination of the union of <Code>Basis(IcosianRing)</Code> and <Code>Basis(IcosianRing)*EB(5)</Code>. 
+            <Example><![CDATA[gap> f := BasisVectors(Basis(IcosianRing));;
+gap> for x in f do Display(x); od;
+(-1)*i
+(-1/2*E(5)^2-1/2*E(5)^3)*i+(1/2)*j+(-1/2*E(5)-1/2*E(5)^4)*k
+(-1)*j
+(-1/2*E(5)-1/2*E(5)^4)*e+(1/2)*j+(-1/2*E(5)^2-1/2*E(5)^3)*k
+gap> ForAll(f, IsIcosian);
+true
+gap> ForAll(f/2, IsIcosian);
+false
+gap> EB(5) = -(1/2)*(1-Sqrt(5));
+true
+gap> ForAll(f*EB(5), IsIcosian);
+true]]></Example>
+          </Description>
+        </ManSection>
+
             <ManSection>
       <Var Name="IcosianH4Basis" />
-        <Description> The <Package>ALCO</Package> package loads a basis for a quaternion algebra
-          over <Code>NF(5,[1,4])</Code>. The &ZZ;-span of this basis is the icosian ring. These
-          basis vectors close under pairwise reflection or multiplication to form a <Math>H_4</Math> set of vectors. <Example><![CDATA[gap> B := IcosianH4Basis;;
+        <Description> The <Package>ALCO</Package> package loads a basis for a quaternion algebra over <Code>NF(5,[1,4])</Code>. Note that a quaternion is an icosian when it is a &ZZ;-linear combination of the union of <Code>
+        IcosianH4Basis</Code> and <Code>IcosianH4Basis*EB(5)</Code>. These basis vectors close under pairwise reflection or multiplication to form a <Math>H_4</Math> set of vectors. <Example><![CDATA[gap> B := IcosianH4Basis;;
 gap> for x in BasisVectors(B) do Display(x); od;
 (-1)*i
 (-1/2*E(5)^2-1/2*E(5)^3)*i+(1/2)*j+(-1/2*E(5)-1/2*E(5)^4)*k
@@ -431,7 +488,39 @@ gap> for x in BasisVectors(B) do Display(x); od;
 (-1/2*E(5)-1/2*E(5)^4)*e+(1/2)*j+(-1/2*E(5)^2-1/2*E(5)^3)*k]]></Example>
         </Description>
       </ManSection>
+      </Section>
 
+      <Section>
+        <Heading>Other Integer Rings</Heading>
+        Certain addition integer subrings of elements satisfying <Code>IsCyc</Code> are also included in the <Package>ALCO</Package> package.
+
+        <ManSection>
+          <Var Name="EisensteinIntegers" />
+          <Oper Name="IsEisenInt" Arg="x"/>
+          <Description> The <Code>EisensteinIntegers</Code> is a subring of the complex numbers generated by <Code>1</Code> and <Code>E(3)</Code>. This subring has the geometry of an <Math>A_2</Math> lattice. This ring is described well in <Cite Key="conway_quaternions_2003" Where="p. 16" />. 
+          We can test whether an element in <Code>IsCyc</Code> is an Eisenstein integer using the operation <Code>IsEisenInt(<Arg>x</Arg>)</Code>.  
+            <Example><![CDATA[gap> f := BasisVectors(Basis(EisensteinIntegers));
+[ 1, E(3) ]
+gap> IsEisenInt(E(4));
+false
+gap> IsEisenInt(1+E(3)^2);
+true]]></Example>
+          </Description>
+        </ManSection>
+
+        <ManSection>
+          <Var Name="KleinianIntegers" />
+          <Oper Name="IsKleinInt" Arg="x"/>
+          <Description> The <Code>KleinianIntegers</Code> is a subring of the complex numbers generated by <Code>1</Code> and <Code>(1/2)*(-1+Sqrt(-7))</Code>. This ring is described in <Cite Key="conway_quaternions_2003" Where="p. 18" />. 
+          We can test whether an element in <Code>IsCyc</Code> is an Kleinian integer using the operation <Code>IsKleinInt(<Arg>x</Arg>)</Code>.  
+            <Example><![CDATA[gap> f := BasisVectors(Basis(KleinianIntegers));
+[ 1, E(7)+E(7)^2+E(7)^4 ]
+gap> IsKleinInt(E(4));
+false
+gap> IsKleinInt(1+E(7)+E(7)^2+E(7)^4);
+true]]></Example>
+          </Description>
+        </ManSection>
 
       </Section>
 
