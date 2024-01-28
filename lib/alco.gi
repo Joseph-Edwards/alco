@@ -590,10 +590,22 @@ InstallMethod( Rank,
     J -> JordanRank(J)
     );
 
+InstallMethod( JordanRank, 
+    "for a Jordan algebra element",
+    [ IsJordanAlgebraObj ],
+    j -> JordanRank(FamilyObj(j)!.fullSCAlgebra)
+    );
+
 InstallMethod( Rank, 
     "for a Jordan algebra element",
     [ IsJordanAlgebraObj ],
-    j -> Rank(FamilyObj(j)!.fullSCAlgebra)
+    j -> JordanRank(j)
+    );
+
+InstallMethod( JordanDegree, 
+    "for a Jordan algebra element",
+    [ IsJordanAlgebraObj ],
+    j -> JordanDegree(FamilyObj(j)!.fullSCAlgebra)
     );
 
 InstallMethod( Degree, 
@@ -605,7 +617,7 @@ InstallMethod( Degree,
 InstallMethod( Degree, 
     "for a Jordan algebra element",
     [ IsJordanAlgebraObj ],
-    j -> Degree(FamilyObj(j)!.fullSCAlgebra)
+    j -> JordanDegree(j)
     );
 
 InstallMethod( Trace,
@@ -777,6 +789,9 @@ InstallGlobalFunction( HermitianSimpleJordanAlgebra, function(rho, comp_alg_basi
     # Record the composition algebra over F.
     C := UnderlyingLeftModule(comp_alg_basis);
     K := LeftActingDomain(C);
+    if Length(F) = 0 and IsSubset(Rationals, K) then 
+        K := Rationals;
+    fi;
     # Ensure that the optional field argument contains the left acting domain of the basis. 
     if Length(F) = 1 then
         F := F[1]; 
@@ -808,6 +823,7 @@ InstallGlobalFunction( HermitianSimpleJordanAlgebra, function(rho, comp_alg_basi
     filter:= IsSCAlgebraObj and IsJordanAlgebraObj;
     algebra := AlgebraByStructureConstantsArg([K, T], filter );
     SetFilterObj( algebra, IsJordanAlgebra );
+    SetFilterObj( algebra, IsAlgebraWithOne);
     # Assign various attributes to the algebra.
     SetJordanRank( algebra, rho );
     SetJordanDegree( algebra, Length(comp_alg_basis) );
@@ -822,7 +838,8 @@ end );
 
 InstallGlobalFunction( JordanSpinFactor,  function(gram_mat)
     local result, T, n, m, z, temp, coeffs, filter;
-    if not IsMatrix(gram_mat) or Inverse(gram_mat) = fail then 
+    if not IsMatrix(gram_mat) or Inverse(gram_mat) = fail or gram_mat <> TransposedMat(gram_mat) then 
+        Display("Usage: JordanSpinFactor(G) requires <G> to be a positive definite symmetric matrix.");
         return fail; 
     fi;
     result := rec( );
@@ -844,6 +861,7 @@ InstallGlobalFunction( JordanSpinFactor,  function(gram_mat)
     filter:= IsSCAlgebraObj and IsJordanAlgebraObj;
     result.algebra := AlgebraByStructureConstantsArg([result.F, T], filter );
     SetFilterObj( result.algebra, IsJordanAlgebra );
+    SetFilterObj( result.algebra, IsAlgebraWithOne);
     SetJordanRank( result.algebra, result.rho );
     SetJordanDegree( result.algebra, result.d );
     SetJordanHomotopeVector( result.algebra, One(result.algebra) );
@@ -887,6 +905,9 @@ InstallGlobalFunction( JordanHomotope , function(ring, u, label...)
         result.algebra := AlgebraByStructureConstantsArg([result.F, T], filter );
     fi;
     SetFilterObj( result.algebra, IsJordanAlgebra );
+    if Inverse(u) <> fail then 
+        SetFilterObj( result.algebra, IsAlgebraWithOne);
+    fi;
     SetJordanRank( result.algebra, result.rho );
     SetJordanDegree( result.algebra, result.d );
     if HasJordanMatrixBasis( result.algebra) then 
@@ -912,11 +933,12 @@ InstallGlobalFunction( SimpleEuclideanJordanAlgebra, function(rho, d, args...)
     if rho = 2 then 
         if Length(args) = 0 then 
             return JordanSpinFactor(IdentityMat(d+1) );
-        elif IsMatrix(args[1]) and DimensionsMat(args[1]) = [d+1, d+1] and Inverse(args[1]) <> fail then 
-            return JordanSpinFactor(args[1] );
-        elif d in [1,2,4,8] and IsBasis(args[1]) then 
+            elif IsMatrix(args[1]) and DimensionsMat(args[1]) = [d+1, d+1] and TransposedMat(args[1]) = args[1] and Inverse(args[1]) <> fail then 
+                return JordanSpinFactor(args[1] );
+        elif d in [1,2,4,8] and IsBasis(args[1]) and Dimension(args[1]) = d then 
             return HermitianSimpleJordanAlgebra(rho, args[1] );
-        else 
+        else
+            Display("Usage: SimpleEuclideanJordanAlgebra(2, d [, args]) where <args> is either empty, a symmetric invertible matrix, or when <d> = 1,2,4,8 <args> can also be a basis for a composition algebra."); 
             return fail;
         fi;
     fi;
@@ -931,7 +953,7 @@ InstallGlobalFunction( SimpleEuclideanJordanAlgebra, function(rho, d, args...)
         elif d = 1 then 
             return HermitianSimpleJordanAlgebra(rho, Basis(Rationals, [1]) );
         fi;
-    elif IsBasis(args[1]) then 
+    elif IsBasis(args[1]) and Dimension(args[1]) = d then 
         return HermitianSimpleJordanAlgebra(rho, args[1] );
     else 
         return fail;
@@ -1154,6 +1176,7 @@ InstallGlobalFunction( AlbertAlgebra, function( F )
         SetGeneratorsOfAlgebra( A, GeneratorsOfAlgebraWithOne( A ) );
         SetIsFullSCAlgebra( A, true );
         SetFilterObj( A, IsJordanAlgebra );
+        SetFilterObj( A, IsAlgebraWithOne);
         SetJordanRank( A, 3 );
         SetJordanDegree( A, 8 );
         SetJordanOffDiagonalBasis( A, Basis(OctonionAlgebra(Rationals)) );

@@ -146,6 +146,10 @@ DeclareCategory( "IsJordanAlgebraObj", IsSCAlgebraObj );
 
     DeclareGlobalFunction( "GenericMinimalPolynomial" );
 
+    DeclareAttribute( "JordanRank", IsJordanAlgebraObj );
+
+    DeclareAttribute( "JordanDegree", IsJordanAlgebraObj );
+
     DeclareAttribute( "JordanAdjugate", IsJordanAlgebraObj );
 
     DeclareAttribute( "IsPositiveDefinite", IsJordanAlgebraObj );
