@@ -10,7 +10,7 @@
 #
 gap> START_TEST("alco01.tst");
 
-# doc/ALCO.xml:22-35
+# doc/ALCO.xml:25-38
 gap> O := OctavianIntegers;
 OctavianIntegers
 gap> g := List(Basis(O), x -> List(Basis(O), y -> Norm(x+y) - Norm(x) - Norm(y)));;
@@ -26,7 +26,7 @@ gap> Display(g);
 gap> IsGossetLatticeGramMatrix(g);
 true
 
-# doc/ALCO.xml:39-47
+# doc/ALCO.xml:44-52
 gap> short := Set(ShortestVectors(g,4).vectors, y -> LinearCombination(Basis(OctavianIntegers), y));;
 gap> s := Filtered(short, x -> x^2 + x + 2*One(x) = Zero(x))[1];
 (-1)*e1+(-1/2)*e2+(-1/2)*e3+(-1/2)*e4+(-1/2)*e8
@@ -37,7 +37,7 @@ gap> L := OctonionLatticeByGenerators(gens, One(O)*IdentityMat(3)/2);
 gap> IsLeechLatticeGramMatrix(GramMatrix(L));
 true
 
-# doc/ALCO.xml:50-73
+# doc/ALCO.xml:54-77
 gap> J := AlbertAlgebra(Rationals);
 <algebra-with-one of dimension 27 over Rationals>
 gap> SemiSimpleType(Derivations(Basis(J)));
