@@ -148,21 +148,6 @@ InstallMethod( Coefficients,
 
 # Quaternion tools
 
-# THIS IS DIFFERENT THAT STANDARD GAP. Might need to remove. 
-#   Perhaps I do not implement "Imaginary Part" for quaternions or octonions in my package. Encourage use of x - Re(x) in order to compute Im(x). 
-
-# InstallMethod( RealPart,
-#     "for a quaternion",
-#     [ IsQuaternion and IsSCAlgebraObj ],
-#     quat -> (1/2)*(quat + ComplexConjugate(quat)) 
-#     );
-
-# InstallMethod( ImaginaryPart,
-#     "for a quaternion",
-#     [ IsQuaternion and IsSCAlgebraObj ],
-#     quat -> (1/2)*(quat - ComplexConjugate(quat)) 
-#     );
-
 InstallMethod( Trace, 
     "for a quaternion",
     [ IsQuaternion and IsSCAlgebraObj ],
