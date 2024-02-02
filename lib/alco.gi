@@ -1226,8 +1226,16 @@ InstallMethod( JordanTripleSystem,
 
 InstallGlobalFunction( JacobiPolynomial, function(k, a, b)
     local temp, a1, a2, a3, a4, n, x;
-    # if not (a > -1 and b > -1) then return fail; fi;
-    n := k -1;
+    if not IsInt(k) and k > -1 then 
+        return fail;
+    fi; 
+    if not (IsPolynomial(a) or (IsRat(a) and a > -1)) then 
+        return fail;
+    fi;
+    if not (IsPolynomial(b) or (IsRat(b) and a > -1)) then 
+        return fail;
+    fi;  
+    n := k - 1;
     a1 := 2*(n+1)*(n+a+b+1)*(2*n+a+b );
     a2 := (2*n+a+b+1)*(a^2 - b^2 );
     a3 := (2*n + a + b)*(2*n + a + b + 1)*(2*n + a + b + 2 );
@@ -1300,7 +1308,7 @@ InstallMethod( PrintObj,
     Print( "<design with rank ", DesignJordanRank(x), " and degree ", DesignJordanDegree(x), ">" );
    end );
 
-InstallMethod(DesignQPolynomial,
+InstallMethod(DesignQPolynomials,
     "Generic method for designs",
     [ IsDesign ],
     function(D)
@@ -1341,6 +1349,12 @@ InstallMethod( DesignAddAngleSet,
     "for designs",
     [ IsDesign, IsList ],
     function(D, A)
+        if not (ForAll(A, IsCyc) and 
+            ForAll(A, x -> ComplexConjugate(x) = x) and
+            ForAll(A, x -> not IsRat(x) or (x < 1 and x >= 0)))
+        then 
+            return fail;
+        fi;  
         SetDesignAngleSet(D, Set(A) );
         SetFilterObj(D, IsDesignWithAngleSet );
         # Assign Positive Indicator Coefficients filter if applicable.
@@ -1353,6 +1367,14 @@ InstallMethod( DesignAddAngleSet,
 InstallGlobalFunction( DesignByAngleSet,  function(rank, degree, A)
     local obj, F, x;
     obj := DesignByJordanParameters(rank, degree );
+    if obj = fail then return obj; fi;
+    # Test the angle set:
+    if not (ForAll(A, IsCyc) and 
+            ForAll(A, x -> ComplexConjugate(x) = x) and
+            ForAll(A, x -> not IsRat(x) or (x < 1 and x >= 0)))
+    then 
+            return fail;
+    fi; 
     # Assign angle set.
     SetDesignAngleSet(obj, Set(A) );
     SetFilterObj(obj, IsDesignWithAngleSet ); 
@@ -1522,8 +1544,8 @@ InstallMethod( DesignIntersectionNumbers,
         Convolution := function(rank, degree, i, j, x)
             local f, temp, q, y;
             y := Indeterminate(Rationals, "x" );
-            q := DesignQPolynomial(D );
-            q := k -> ValuePol(DesignQPolynomial(D)(k), y );
+            q := DesignQPolynomials(D );
+            q := k -> ValuePol(DesignQPolynomials(D)(k), y );
             f := DesignConnectionCoefficients(D)(Maximum(i,j) );
             # f := ConnectionCoefficients(rank, degree, Maximum(i,j) );
             temp := List([0..Minimum(i,j)], k -> f[i+1][k+1]*f[j+1][k+1]*q(k) );
@@ -1615,8 +1637,8 @@ InstallMethod( DesignBoseMesnerIdempotentBasis,
         final := Sum(Basis(DesignBoseMesnerAlgebra(D)))/v;
         # The 1 to s-1 idempotents.
         for i in [1..s-1] do 
-            temp := Sum(List([1..s], k -> ValuePol(DesignQPolynomial(D)(i), A[k])*Basis(DesignBoseMesnerAlgebra(D))[k]) ); 
-            temp := temp + ValuePol(DesignQPolynomial(D)(i), 1)*Basis(DesignBoseMesnerAlgebra(D))[s + 1];
+            temp := Sum(List([1..s], k -> ValuePol(DesignQPolynomials(D)(i), A[k])*Basis(DesignBoseMesnerAlgebra(D))[k]) ); 
+            temp := temp + ValuePol(DesignQPolynomials(D)(i), 1)*Basis(DesignBoseMesnerAlgebra(D))[s + 1];
             temp := temp/v;
             Append(idempotents, [temp] );
         od;

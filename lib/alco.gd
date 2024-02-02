@@ -210,7 +210,7 @@ DeclareAttribute( "DesignJordanRank", IsDesign );
 
 DeclareAttribute( "DesignJordanDegree", IsDesign );
 
-DeclareAttribute( "DesignQPolynomial", IsDesign );
+DeclareAttribute( "DesignQPolynomials", IsDesign );
 
 DeclareAttribute( "DesignConnectionCoefficients", IsDesign );
 

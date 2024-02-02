@@ -1049,26 +1049,39 @@ gap> DiagonalOfMat(JordanAlgebraGramMatrix(J));
 
 
     <Chapter>
-      <Heading>Jordan Designs and their Association Schemes</Heading> A spherical or projective
-      design is simply a finite subset of a sphere or projective space (see <Cite
+      <Heading>Spherical and Projective Designs</Heading> 
+      A spherical or projective design is a finite subset of a sphere or projective space (see <Cite
         Key="delsarte_spherical_1977" /> and <Cite Key="hoggar_t-designs_1982" /> for more details).
-      The <Package>ALCO</Package> package examines both types of designs as finite subsets of the
-      manifolds of primitive idempotents in a simple Euclidean Jordan algebra. This requires
-      converting the angle <Math>\cos(x)</Math> between two unit vectors in a sphere into the
-      corresponding angle on a rank 2 Jordan manifold of primitive idempotents <Cite
-        Key="nasmith_tight_2023" Where="p. 72" />: <Math>(1 + \cos(x))/2</Math>. The tools below
-      allow one to construct a &GAP; object to represent a design and collect various computed
-      attributes. Constructing a design and its parameters using these tools does not guarantee the
-      existence of such a design, although known examples and possible instances may be studied
-      using these tools. <Section>
-        <Heading>Jacobi Polynomials</Heading>
+      Certain designs have special properties and interesting symmetries. 
+      The <Package>ALCO</Package> package allows users to study both spherical and projective designs 
+      by modelling both as finite sets of primitive idempotents of a simple Euclidean Jordan algebra. <P/>
 
+      Specifically, the primitive idempotents of simple Euclidean Jordan algebras of rank <Math>2</Math> 
+      have the geometry of a sphere. 
+      The correspondence involves converting Euclidean inner product <Math>\cos(\alpha)</Math> between two 
+      unit vectors on a sphere into the corresponding Jordan inner product <Math>\mathrm{Tr}(x\circ y)</Math>
+      given by <Math>(1 + \cos(\alpha))/2</Math> (described in <Cite Key="nasmith_tight_2023" Where="p. 72" />).  
+      Likewise, the primitive idempotents of a simple Euclidean Jordan algebras of degrees <Math>1</Math>, 
+      <Math>2</Math>, <Math>4</Math>, or <Math>8</Math> have the geometry of a real, complex, quaternion,
+      or octonion projective space. <P/>  
+
+      The tools below allow one to construct a &GAP; object to represent a design and collect various 
+      computed attributes. Constructing a design and its parameters using these tools does not guarantee 
+      the existence of such a design, although known examples and possible instances may be studied
+      using these tools. 
+      
+      <Section>
+        <Heading>Jacobi Polynomials</Heading>
+      One advantage of studying spherical and projective designs together as sets of Jordan primitive 
+      idempotents is both the spherical and projective cases can be studied together using Jacobi 
+      polynomials, with suitable parameters chosen for the appropriate simple Euclidean Jordan algebra.
         <ManSection>
           <Func Name="JacobiPolynomial" Arg="k, a, b" />
           <Description> This function returns the Jacobi polynomial <Math>P_k^{(a,b)}(x)</Math> of
-      degree <Arg>k</Arg> and type <Arg>(a,b)</Arg> as defined in <Cite
-              Key="abramowitz_handbook_1972"
-              Where="chap. 22" />. <Example><![CDATA[gap> a := Indeterminate(Rationals, "a");; 
+      degree <Arg>k</Arg> and type <Arg>(a,b)</Arg> as defined in <Cite Key="abramowitz_handbook_1972" Where="chap. 22" />.
+      The argument <Arg>k</Arg> must be a non-negative integer. 
+      The arguments <Arg>a</Arg> and <Arg>b</Arg> must be either rational numbers greater than <Math>-1</Math> or must satisfy <Code>IsPolynomial</Code>.
+      <Example><![CDATA[gap> a := Indeterminate(Rationals, "a");; 
 gap> b := Indeterminate(Rationals, "b");; 
 gap> x := Indeterminate(Rationals, "x");;
 gap> JacobiPolynomial(0,a,b);
@@ -1096,8 +1109,10 @@ gap> ValuePol(last,x);
   <Section>
         <Heading>Jordan Designs</Heading>
 
+        The <Package>ALCO</Package> package defines new categories within <Code>IsObject</Code> in order to construct and study Jordan designs.  
+
         <ManSection>
-          <Heading>Jordan Design Filters</Heading>
+          <Heading>Jordan Design Categories</Heading>
           <Filt Name="IsDesign" />
           <Filt Name="IsSphericalDesign" />
           <Filt Name="IsProjectiveDesign" />
@@ -1116,7 +1131,11 @@ true
 gap> IsSphericalDesign(D);
 false
 gap> IsProjectiveDesign(D);
-true]]></Example>
+true
+gap> DesignByJordanParameters(4,8);
+fail
+gap> DesignByJordanParameters(3,9);
+fail]]></Example>
           </Description>
         </ManSection>
 
@@ -1133,16 +1152,17 @@ gap> [DesignJordanRank(D), DesignJordanDegree(D)];
         </ManSection>
 
         <ManSection>
-          <Attr Name="DesignQPolynomial" Arg="D" />
-          <Description> This attribute stores a function on non-negative integers that returns the
-      coefficients of the renormalized Jacobi polynomial in the manifold of Jordan primitive
-      idempotents corresponding to the design <Arg>D</Arg>. <Example><![CDATA[gap> D := DesignByJordanParameters(3,8);
+          <Attr Name="DesignQPolynomials" Arg="D" />
+          <Description> 
+          Many properties of a Jordan design are computed using the family of renormalized Jacobi polynomials that correspond to the spherical or projective space in question.
+          This attribute stores a function <Code>DesignQPolynomial(<Arg>D</Arg>)(<Arg>k</Arg>)</Code> that returns the <Arg>k</Arg>-th polynomial in the family, as a list of coefficients, where <Arg>k</Arg> is a non-negative integer. 
+          <Example><![CDATA[gap> D := DesignByJordanParameters(3,8);
 <design with rank 3 and degree 8>
 gap> r := DesignJordanRank(D);; d := DesignJordanDegree(D);;
 gap> x := Indeterminate(Rationals, "x");;
-gap> DesignQPolynomial(D);
+gap> DesignQPolynomials(D);
 function( k ) ... end
-gap> DesignQPolynomial(D)(2);
+gap> DesignQPolynomials(D)(2);
 [ 90, -585, 819 ]
 gap> CoefficientsOfUnivariatePolynomial(Q_k_epsilon(2,0,r,d,x));
 [ 90, -585, 819 ]]]></Example>
@@ -1151,10 +1171,12 @@ gap> CoefficientsOfUnivariatePolynomial(Q_k_epsilon(2,0,r,d,x));
 
         <ManSection>
           <Attr Name="DesignConnectionCoefficients" Arg="D" />
-          <Description> This attribute stores the connection coefficients, defined in <Cite
-              Key="hoggar_t-designs_1992" Where="p. 261" />, which determine the linear combinations
-      of <Code>DesignQPolynomial(<Arg>D</Arg>)</Code> polynomials that yield each power of the
-      indeterminate. <Example><![CDATA[gap> D := DesignByJordanParameters(3,8);
+          <Description> 
+           The connection coefficients of a design <Arg>D</Arg> determine which linear combinations of 
+           <Code>DesignQPolynomials(<Arg>D</Arg>)</Code> yield each power of the indeterminate <Cite
+              Key="hoggar_t-designs_1992" Where="p. 261" />. 
+            This attribute stores a function <Code>DesignConnectionCoefficients(<Arg>D</Arg>)(<Arg>s</Arg>)</Code> that computes the connection coefficients of each power up to positive integer <Arg>s</Arg>.
+            <Example><![CDATA[gap> D := DesignByJordanParameters(3,8);
 <design with rank 3 and degree 8>
 gap> DesignConnectionCoefficients(D);
 function( s ) ... end
@@ -1164,7 +1186,7 @@ gap> f := DesignConnectionCoefficients(D)(3);; Display(f);
   [     5/39,    5/273,    1/819,        0 ],
   [     5/91,     1/91,    1/728,  1/12376 ] ]
 gap> for j in [1..4] do Display(Sum(List([1..4], i -> 
-> f[j][i]*DesignQPolynomial(D)(i-1)))); od;
+> f[j][i]*DesignQPolynomials(D)(i-1)))); od;
 [ 1, 0, 0, 0 ]
 [ 0, 1, 0, 0 ]
 [ 0, 0, 1, 0 ]
@@ -1175,17 +1197,35 @@ gap> for j in [1..4] do Display(Sum(List([1..4], i ->
       </Section>
 
       <Section>
-        <Heading>Designs with an Angle Set</Heading> We can compute a number of properties of a
-      design once the angle set is given. <ManSection>
+        <Heading>Designs with an Angle Set</Heading> 
+        The angle set of a design is the set of all inner products between distinct elements in the design. 
+        In the case of a Jordan design, each inner product is computed as <Math>\mathrm{Tr}(x\circ y)</Math>
+        for <Math>x</Math> and <Math>y</Math> primitive idempotents. 
+        This means that the angle set of a design is a set of real numbers in the interval <Math>[0, 1)</Math>.        
+        We can compute many additional properties of a design once the angle set is known. 
+      
+      <ManSection>
           <Filt Name="IsDesignWithAngleSet" />
-          <Description>This filter identifies the design as equipped with an angle set.</Description>
+          <Description>This filter identifies whether an object that satisfies <Code>IsDesign</Code> is 
+            equipped with an angle set.
+          </Description>
         </ManSection>
 
 
         <ManSection>
+          <Heading>Design Angle Sets</Heading>
           <Oper Name="DesignAddAngleSet" Arg="D, A" />
+          <Attr Name="DesignAngleSet" Arg="D" />
           <Description>For a design <Arg>D</Arg> without an angle set, records the angle set <Arg>A</Arg>
-      as an attribute <Code>DesignAngleSet</Code>. <Example><![CDATA[gap> D := DesignByJordanParameters(4,4);
+      as an attribute <Code>DesignAngleSet</Code>. 
+      The angle set <Arg>A</Arg> must be a list of real-valued elements in <Code>IsCyc</Code> in the interval <Math>[0, 1)</Math>.
+      Note that when <Arg>A</Arg> contains irrational elements for which &lt; does not provide an ordering, inclusion in the interval given above is not checked.
+      Also note that the angle set cannot be modified once set as an attribute of the design.
+      <Example><![CDATA[gap> D := DesignByJordanParameters(4,4);
+<design with rank 4 and degree 4>
+gap> DesignAddAngleSet(D, [2]);
+fail
+gap> D;
 <design with rank 4 and degree 4>
 gap> DesignAddAngleSet(D, [1/3,1/9]);
 <design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>
@@ -1196,8 +1236,9 @@ gap> DesignAngleSet(D);
 
         <ManSection>
           <Func Name="DesignByAngleSet" Arg="rank, degree, A" />
-          <Description>Constructs a new design with Jordan rank and degree given by <Arg>rank</Arg>
-      and <Arg>degree</Arg>, with angle set <Arg>A</Arg>. <Example><![CDATA[gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);
+          <Description>This function constructs a new design with Jordan rank and degree given by <Arg>rank</Arg>
+          and <Arg>degree</Arg>, with angle set <Arg>A</Arg>. The same constrains on angle set <Arg>A</Arg> given in <Ref Oper="DesignAddAngleSet" /> apply.
+      <Example><![CDATA[gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);
 <design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>
 gap> DesignAngleSet(D);
 [ 1/9, 1/3 ]]]></Example>
@@ -1206,26 +1247,34 @@ gap> DesignAngleSet(D);
 
       <ManSection>
           <Attr Name="DesignNormalizedAnnihilatorPolynomial" Arg="D" />
-          <Description>The normalized annihilator polynomial is defined for an angle set in <Cite
-              Key="bannai_algebraic_2021" Where="p. 185" />. This polynomial is stored as an
-      attribute of a design with an angle set. <Example><![CDATA[gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);
+          <Description>The normalized annihilator polynomial is defined for an angle set <Math>A</Math> as 
+            the polynomial <Math>p(x)</Math> of degree equal to the cardinality of <Math>A</Math> with the 
+            elements of <Math>A</Math> for roots and normalization such that <Math>p(1) = 1</Math> <Cite Key="bannai_algebraic_2021" Where="p. 185" />.
+            The coefficients of this polynomial are stored as an attribute of a design with an angle set. 
+            <Example><![CDATA[gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);
 <design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>
-gap> DesignNormalizedAnnihilatorPolynomial(D);
-[ 1/16, -3/4, 27/16 ]]]></Example>
+gap> p := DesignNormalizedAnnihilatorPolynomial(D);
+[ 1/16, -3/4, 27/16 ]
+gap> ValuePol(p, 1/9);
+0
+gap> ValuePol(p, 1/3);
+0
+gap> ValuePol(p, 1);
+1]]></Example>
           </Description>
         </ManSection>
 
       <ManSection>
           <Attr Name="DesignNormalizedIndicatorCoefficients" Arg="D" />
-          <Description>The normalized indicator coefficients are the <Code>DesignQPolynomial(<Arg>D</Arg>
-      )</Code>-expansion coefficients of <Code>DesignNormalizedAnnihilatorPolynomial(<Arg>D</Arg>)</Code>,
-      discussed for the spherical case in <Cite
-              Key="bannai_algebraic_2021" Where="p. 185" />. These coefficients are stored as an
-      attribute of a design with an angle set. <Example><![CDATA[gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);
+          <Description>
+          The normalized indicator coefficients are the <Code>DesignQPolynomials(<Arg>D</Arg>)</Code>-expansion 
+          coefficients of <Code>DesignNormalizedAnnihilatorPolynomial(<Arg>D</Arg>)</Code>, discussed for the spherical case in <Cite Key="bannai_algebraic_2021" Where="p. 185" />. These coefficients are stored as an
+          attribute of a design with an angle set. 
+      <Example><![CDATA[gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);
 <design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>
 gap> f := DesignNormalizedIndicatorCoefficients(D);
 [ 1/64, 7/960, 9/3520 ]
-gap> Sum(List([1..3], i -> f[i]*DesignQPolynomial(D)(i-1)));
+gap> Sum(List([1..3], i -> f[i]*DesignQPolynomials(D)(i-1)));
 [ 1/16, -3/4, 27/16 ]
 gap> DesignNormalizedAnnihilatorPolynomial(D);
 [ 1/16, -3/4, 27/16 ]]]></Example>
@@ -1235,16 +1284,18 @@ gap> DesignNormalizedAnnihilatorPolynomial(D);
         <ManSection>
           <Filt Name="IsDesignWithPositiveIndicatorCoefficients" />
           <Description>
-            This filter determins whether the normalized indicator coefficients of a design are
-      positive, which has significance for certain theorems about designs.
+            This filter determines whether the normalized indicator coefficients of a design are
+            positive, which has significance for certain theorems about designs.
           </Description>
         </ManSection>
 
         <ManSection>
           <Attr Name="DesignSpecialBound" Arg="D" />
-          <Description> The special bound of a design satisfying <Code>
-      IsDesignWithPositiveIndicatorCoefficients</Code> is the upper limit on the possible
-      cardinality for the given angle set. <Example><![CDATA[gap> D := DesignByAngleSet(4, 4, [1/3,1/9]);
+          <Description> The special bound of a design satisfying 
+            <Code>IsDesignWithPositiveIndicatorCoefficients</Code> is the upper limit on the possible
+      cardinality for the given angle set <Cite Key="hoggar_t-designs_1992" Where="pp. 257-258"/>. 
+      This attribute stores the special bound when it exists for a design.
+        <Example><![CDATA[gap> D := DesignByAngleSet(4, 4, [1/3,1/9]);
 <design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>
 gap> IsDesignWithPositiveIndicatorCoefficients(D);
 true
@@ -1256,91 +1307,124 @@ gap> DesignSpecialBound(D);
       </Section>
 
       <Section>
-        <Heading>Designs with Cardinality and Angle Set</Heading> More properties of a design with
-      an angle set can be computed once the cardinality is also given. <ManSection>
-          <Heading>Some Filters</Heading>
-          <Filt Name="IsDesignWithCardinality" />
-          <Filt Name="IsRegularSchemeDesign" />
-          <Filt Name="IsSpecialBoundDesign" />
-          <Filt Name="IsAssociationSchemeDesign" />
-          <Filt Name="IsTightDesign" />
-          <Description> A design with cardinality has a specified number of points. Given a design
-      with <Math>v</Math> points and angle set <Math>A</Math>, it is possible to compute the
-      strength <Math>t</Math> of a design and write <Math>s</Math> as the size of set <Math>A</Math>.
-      When a design satisfies <Math>t >= s - 1 </Math> it admits a regular scheme. A design at the
-      special bound satisfies <Math>t >= s</Math>. When a design satisfies <Math>t >= 2s - 2</Math>
-      it admits an association scheme. Finally, when a design satisfies <Math>t = 2s - 1</Math> for <Math>
-      0</Math> in <Math>A</Math> or <Math>t = 2s</Math> otherwise, it is a tight design (these
-      properties are discussed in <Cite Key="hoggar_t-designs_1992" />). </Description>
-        </ManSection>
-
+        <Heading>Designs with Angle Set and Cardinality</Heading> 
+        
+        
+        Many more properties of a design with an angle set can be computed once the cardinality of the design is also known.
+        In what follows let <Math>v</Math> be the cardinality of a design and let <Math>s</Math> be the cardinality of the angle set <Math>A</Math> of that design.
+        
         <ManSection>
-          <Attr Name="DesignCardinality" Arg="D" />
-          <Description> Returns the cardinality of design <Arg>D</Arg> when that design satisfies <Code>
-      IsDesignWithCardinality</Code>. </Description>
-        </ManSection>
-
-        <ManSection>
-          <Func Name="DesignAddCardinality" Arg="D, v" />
-          <Description>This function stores the the specified cardinality <Arg>v</Arg> as attribute <Code>
-      DesignCardinality</Code> of design <Arg>D</Arg>. The method requires the <Arg>D</Arg>
-      satisfies <Code>IsDesignWithAngleSet</Code>. <Example><![CDATA[gap> D := DesignByAngleSet(4, 4, [1/3,1/9]);
+          <Heading>Design Cardinality</Heading>
+            <Filt Name="IsDesignWithCardinality" />
+            <Oper Name="DesignAddCardinality" Arg="D, v" />
+            <Attr Name="DesignCardinality" Arg="D" />
+          <Description>
+              As a finite set, each design has a cardinality. When this cardinality is known for an object <Arg>D</Arg> that satisfies <Code>IsDesign(<Arg>D</Arg>)</Code>, the cardinality is stored as the attribute <Code>DesignCardinality(<Arg>D</Arg>)</Code>. 
+              In order to set the cardinality of a design, we can use the operation <Code>DesignAddCardinality(<Arg>D</Arg>, v)</Code>.
+              When <Code>DesignAddCardinality</Code> is called, the <Package>ALCO</Package> package immediately attempts to compute <Ref Attr="DesignStrength" />.
+              <Example><![CDATA[gap> D := DesignByAngleSet(4,4, [1/3,1/9]);
 <design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>
-gap> DesignSpecialBound(D);
-64
+gap> HasDesignCardinality(D);
+false
 gap> DesignAddCardinality(D, 64);
 <2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
-gap> IsSpecialBoundDesign(D);
-true
 gap> DesignCardinality(D);
 64]]></Example>
           </Description>
         </ManSection>
 
         <ManSection>
-          <Filt Name="IsDesignWithStrength" />
-          <Description> This filter identifies designs for which the attribute <Code>DesignStrength</Code>
-      is known. </Description>
-        </ManSection>
-
-        <ManSection>
-          <Attr Name="DesignStrength" Arg="D" />
-          <Description> For a design <Arg>D</Arg> that satisfies <Code>
-      IsDesignWithPositiveIndicatorCoefficients</Code>, <Code>IsDesignWithCardinality</Code>, and <Code>
-      IsSpecialBoundDesign</Code>, we can compute the strength <Math>t</Math> of the design using
-      the normalized indicator coefficients. This allows us to immediately determine whether the
-      design also satisfies <Code>IsTightDesign</Code> or <Code>IsAssociationSchemeDesign</Code>. <Example><![CDATA[gap> D := DesignByAngleSet(4, 4, [1/3,1/9]);
-<design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>
-gap> DesignAddCardinality(D, 64);
-<2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
-gap> DesignStrength(D);
-2]]></Example>
+          <Heading>Designs at the Special Bound</Heading>
+          <Filt Name="IsSpecialBoundDesign" />
+          <Description>
+            As described in <Ref Attr="DesignSpecialBound" />, we can compute the special bound 
+            of a design using the angle set. Once the cardinality is also known we can assess 
+            whether the design reaches the special bound. 
+            This filter identifies when a design with an angle set and cardinality also meets the 
+            special bound.
           </Description>
         </ManSection>
 
         <ManSection>
           <Attr Name="DesignAnnihilatorPolynomial" Arg="D" />
           <Description> The annihilator polynomial for design <Arg>D</Arg> is defined by multiplying
-      the <Code>DesignNormalizedAnnihilatorPolynomial(<Arg>D</Arg>)</Code> by <Code>
-      DesignCardinality(<Arg>D</Arg>)</Code>. <Example><![CDATA[gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);; DesignAddCardinality(D, 64);; D;
+          the <Code>DesignNormalizedAnnihilatorPolynomial(<Arg>D</Arg>)</Code> by 
+          <Code>DesignCardinality(<Arg>D</Arg>)</Code>. 
+          <Example><![CDATA[gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);; 
+gap> DesignAddCardinality(D, 64);; D;
 <2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
 gap> DesignAnnihilatorPolynomial(D);
-[ 4, -48, 108 ]]]></Example>
+[ 4, -48, 108 ]
+gap> ValuePol(last, 1);
+64]]></Example>
           </Description>
         </ManSection>
 
       <ManSection>
           <Attr Name="DesignIndicatorCoefficients" Arg="D" />
           <Description> The indicator coefficients for design <Arg>D</Arg> are defined by
-      multiplying <Code> DesignNormalizedIndicatorCoefficients(<Arg>D</Arg>)</Code> by <Code>
-      DesignCardinality(<Arg>
-                D</Arg>)</Code>. These indicator coefficients are often useful for directly
-      determining the strength of a design at the special bound. <Example><![CDATA[gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);; DesignAddCardinality(D, 64);; D;
+      multiplying <Code> DesignNormalizedIndicatorCoefficients(<Arg>D</Arg>)</Code> by 
+      <Code>DesignCardinality(<Arg>D</Arg>)</Code>. These indicator coefficients are often useful for directly
+      determining the strength of a design at the special bound. 
+      <Example><![CDATA[gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);; DesignAddCardinality(D, 64);; D;
 <2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
 gap> DesignIndicatorCoefficients(D);
 [ 1, 7/15, 9/55 ]]]></Example>
           </Description>
         </ManSection>
+        
+        <ManSection>
+          <Heading>Design Strength</Heading>
+            <Filt Name="IsDesignWithStrength" />
+            <Attr Name="DesignStrength" Arg="D" />
+            <Description> 
+              The <Math>t</Math>-design is a design with the following special property: 
+              the integral of any degree <Math>t</Math> polynomial over the sphere or projective 
+              space containing the design is equal to the average value of that polynomial 
+              evaluated at the points of the <Math>t</Math>-design.
+              The parameter <Math>t</Math> is called the <Emph>strength</Emph> of the design. <P/> 
+              
+              For a design <Arg>D</Arg> that satisfies <Code>IsDesignWithPositiveIndicatorCoefficients</Code>, <Code>IsDesignWithCardinality</Code>, and <Code>IsSpecialBoundDesign</Code>, we can compute the 
+              strength <Math>t</Math> of the design using a theorem given in 
+              <Cite Key="hoggar_t-designs_1992" Where="p. 258" /> that examines the indicator coefficients.
+              The filter <Code>IsDesignWithStrength</Code> indicates when the attribute <Code>DesignStrength</Code>
+              has been successfully computed.  
+              <Example><![CDATA[gap> D := DesignByAngleSet(4,4, [1/3,1/9]);
+<design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>
+gap> DesignAddCardinality(D, 64);
+<2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
+gap> IsDesignWithStrength(D);
+true
+gap> DesignStrength(D);
+2]]></Example>
+            </Description>
+          </ManSection>
+
+          <ManSection>
+            <Heading>Schemes and Tight Designs</Heading>
+
+            <Filt Name="IsRegularSchemeDesign" />
+            <Filt Name="IsAssociationSchemeDesign" />
+            <Filt Name="IsTightDesign" />
+            <Description> These filters identify various special categories of designs that satisfy <Ref Filt="IsDesignWithStrength" />. In what follows recall that <Math>t</Math> denotes the strength
+              of the design and <Code>s</Code> denotes the cardinality of the angle set <Math>A</Math>. 
+              The definitions below are provided in <Cite Key="hoggar_t-designs_1992" />. <P/>
+
+              A design admits a <Emph>regular scheme</Emph> when <Math>t \ge s - 1 </Math>. The filter 
+              <Code>IsRegularSchemeDesign</Code> returns true when both <Math>t</Math> and <Math>s</Math>
+              are known and satisfy the regular scheme inequality given above. <P/>
+
+              A design admits an <Emph>association scheme</Emph> when <Math>t \ge 2s - 2 </Math>. The filter 
+              <Code>IsAssociationSchemeDesign</Code> returns true when both <Math>t</Math> and <Math>s</Math>
+              are known and satisfy the association scheme inequality given above. <P/>
+
+              Finally, a design is <Emph>tight</Emph> when it satisfies <Math>t = 2s - 1</Math>
+              for <Math>0</Math> in <Math>A</Math> or <Math>t = 2s</Math> otherwise. The filter 
+              <Code>IsTightDesign</Code> returns true when the appropriate equality is satisfied for a design.
+            </Description>
+          </ManSection>
+
+ 
 
 
       </Section>
@@ -1351,9 +1435,13 @@ gap> DesignIndicatorCoefficients(D);
         <ManSection>
           <Attr Name="DesignSubdegrees" Arg="D" />
           <Description> For a design <Arg>D</Arg> with cardinality and angle set that satisfies <Code>
-      IsRegularSchemeDesign</Code>, namely <Math>t >= s - 1</Math>, we can compute the regular
-      subdegrees as described in <Cite
-              Key="hoggar_t-designs_1992" Where="Theorem 3.2" />. <Example><![CDATA[gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);; DesignAddCardinality(D, 64);; D;
+      IsRegularSchemeDesign</Code>, namely <Math>t \ge s - 1</Math>, we can compute the regular
+      subdegrees as described in <Cite Key="hoggar_t-designs_1992" Where="Theorem 3.2" />. 
+      The subdegrees count the number of elements forming each angle with some representative element 
+      in the design. 
+      So, in the example below, there are <Math>27</Math> elements forming an angle (inner product) of 
+      <Math>1/9</Math> with some representative design element.  
+      <Example><![CDATA[gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);; DesignAddCardinality(D, 64);; D;
 <2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
 gap> DesignSubdegrees(D);
 [ 27, 36 ]]]></Example>
@@ -1363,16 +1451,17 @@ gap> DesignSubdegrees(D);
       </Section>
 
       <Section>
-        <Heading>Designs Admitting an Association Scheme</Heading> When a design satisfies <Math>t >
-      = 2s - 2</Math> then it also admits an association scheme. We can use results given in <Cite
-          Key="hoggar_t-designs_1992" /> to determine the parameters of the corresponding
-      association scheme. <ManSection>
+        <Heading>Designs Admitting an Association Scheme</Heading> 
+        When a design satisfies <Math>t \ge 2s - 2</Math> then it also admits an association scheme. We can use results given in <Cite Key="hoggar_t-designs_1992" /> to determine the parameters of the corresponding association scheme. 
+        For more details about association schemes see <Cite Key="cameron_designs_1991" /> or <Cite Key="bannai_algebraic_2021" />. 
+
+        <ManSection>
           <Attr Name="DesignBoseMesnerAlgebra" Arg="D" />
           <Description> For a design that satisfies <Code>IsAssociationSchemeDesign</Code>, we can
-      define the corresponding Bose-Mesner algebra <Cite Key="bannai_algebraic_2021"
-              Where="pp. 53-57" />. The canonical basis for this algebra corresponds to the
-      adjacency matrices <Math>A_i</Math>, with the <Code>s+1</Code>-th basis vector corresponding
-      to <Math>A_0</Math>. <Example><![CDATA[gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);; DesignAddCardinality(D, 64);; D;
+      define the corresponding Bose-Mesner algebra <Cite Key="bannai_algebraic_2021" Where="pp. 53-57" />. 
+      The canonical basis for this algebra corresponds to the adjacency matrices <Math>A_i</Math>, 
+      with the <Code>s+1</Code>-th basis vector corresponding to <Math>A_0</Math>. 
+      <Example><![CDATA[gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);; DesignAddCardinality(D, 64);; D;
 <2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
 gap> B := DesignBoseMesnerAlgebra(D);
 <algebra of dimension 3 over Rationals>
@@ -1386,16 +1475,17 @@ A3]]></Example>
         <ManSection>
           <Attr Name="DesignBoseMesnerIdempotentBasis" Arg="D" />
           <Description>For a design that satisfies <Code>IsAssociationSchemeDesign</Code>, we can
-      also define the idempotent basis of the corresponding Bose-Mesner algebra <Cite
-              Key="bannai_algebraic_2021" Where="pp. 53-57" />. <Example><![CDATA[gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);; DesignAddCardinality(D, 64);; D;
+      also define the idempotent basis of the corresponding Bose-Mesner algebra 
+      <Cite Key="bannai_algebraic_2021" Where="pp. 53-57" />. 
+      <Example><![CDATA[gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);; DesignAddCardinality(D, 64);; D;
 <2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
 gap> for x in BasisVectors(DesignBoseMesnerIdempotentBasis(D)) do Display(x); 
 > od;
 (-5/64)*A1+(3/64)*A2+(27/64)*A3
 (1/16)*A1+(-1/16)*A2+(9/16)*A3
 (1/64)*A1+(1/64)*A2+(1/64)*A3
-gap> List(DesignBoseMesnerIdempotentBasis(D), IsIdempotent);
-[ true, true, true ]]]></Example>
+gap> ForAll(DesignBoseMesnerIdempotentBasis(D), IsIdempotent);
+true]]></Example>
           </Description>
         </ManSection>
         
@@ -1405,8 +1495,9 @@ gap> List(DesignBoseMesnerIdempotentBasis(D), IsIdempotent);
           <Description> The intersection numbers <Math>p^k_{i,j}</Math> are given by <Code>
       DesignIntersectionNumbers(<Arg>D</Arg>)[k][i][j]</Code>. These intersection numbers serve as
       the structure constants for the <Code>DesignBoseMesnerAlgebra(<Arg>D</Arg>)</Code>. Namely, <Math>A_i
-      A_j = \sum_{k = 1}^{s+1} p^{k}_{i,j} A_k</Math> (see <Cite Key="bannai_algebraic_2021"
-              Where="pp. 53-57" />). <Example><![CDATA[gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);; DesignAddCardinality(D, 64);; D;
+      A_j = \sum_{k = 1}^{s+1} p^{k}_{i,j} A_k</Math> 
+      (see <Cite Key="bannai_algebraic_2021" Where="pp. 53-57" />). 
+      <Example><![CDATA[gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);; DesignAddCardinality(D, 64);; D;
 <2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
 gap> A := BasisVectors(Basis(DesignBoseMesnerAlgebra(D)));;
 gap> p := DesignIntersectionNumbers(D);;
@@ -1417,13 +1508,15 @@ true]]></Example>
 
         <ManSection>
           <Attr Name="DesignKreinNumbers" Arg="D" />
-          <Description> The Krein numbers <Math>q^k_{i,j}</Math> are given by <Code>
-      DesignKreinNumbers(<Arg>D</Arg>)[k][i][j]</Code>. The Krein numbers serve as the structure
+          <Description> The Krein numbers <Math>q^k_{i,j}</Math> are given by 
+            <Code>DesignKreinNumbers(<Arg>D</Arg>)[k][i][j]</Code>. The Krein numbers serve as the structure
       constants for the <Code>DesignBoseMesnerAlgebra(<Arg>D</Arg>)</Code> in the idempotent basis
       given by <Code>DesignBoseMesnerIdempotentBasis(<Arg>D</Arg>)</Code> using the Hadamard matrix
-      product <Math>\circ</Math>. Namely, for idempotent basis <Math>E_i</Math> and Hadamard product <Math>
-      \circ</Math>, we have <Math>E_i \circ E_j = \sum_{k = 1}^{s+1} q^{k}_{i,j} E_k</Math> (see <Cite
-              Key="bannai_algebraic_2021" Where="pp. 53-57" />). <Example><![CDATA[gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);; DesignAddCardinality(D, 64);; D;
+      product <Math>\circ</Math>. Namely, for idempotent basis <Math>E_i</Math> and Hadamard product 
+      <Math>\circ</Math>, we have <Math>E_i \circ E_j = \sum_{k = 1}^{s+1} q^{k}_{i,j} E_k</Math> 
+      (see <Cite Key="bannai_algebraic_2021" Where="pp. 53-57" />). 
+      
+      <Example><![CDATA[gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);; DesignAddCardinality(D, 64);; D;
 <2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
 gap> q := DesignKreinNumbers(D);; 
 gap> Display(q);
@@ -1436,12 +1529,14 @@ gap> Display(q);
 
         <ManSection>
           <Attr Name="DesignFirstEigenmatrix" Arg="D" />
-          <Description> As describe in <Cite Key="bannai_algebraic_2021"
-              Where="p. 58" />, the first eigenmatrix of a Bose-Mesner algebra <Math>P_i(j)</Math>
+          <Description> As describe in <Cite Key="bannai_algebraic_2021" Where="p. 58" />, 
+            the first eigenmatrix of a Bose-Mesner algebra <Math>P_i(j)</Math>
       defines the expansion of the adjacency matrix basis <Math>A_i</Math> in terms of the
       idempotent basis <Math>E_j</Math> as follows: <Math>A_i = \sum_{j = 1}^{s+1} P_i(j) E_j </Math>.
-      This attribute returns the component <Math>P_i(j)</Math> as <Code>DesignFirstEigenmatrix(<Arg>
-      D</Arg>)[i][j]</Code>. <Example><![CDATA[gap> D := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;
+      This attribute returns the component <Math>P_i(j)</Math> as 
+      <Code>DesignFirstEigenmatrix(<Arg>D</Arg>)[i][j]</Code>. 
+      
+      <Example><![CDATA[gap> D := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;
 <2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
 gap> a := Basis(DesignBoseMesnerAlgebra(D));;
 gap> e := DesignBoseMesnerIdempotentBasis(D);;
@@ -1457,8 +1552,10 @@ true]]></Example>
               Where="p. 58" />, the second eigenmatrix of a Bose-Mesner algebra <Math>Q_i(j)</Math>
       defines the expansion of the idempotent basis <Math>E_i</Math> in terms of the adjacency
       matrix basis <Math>A_j</Math> as follows: <Math>E_i = (1/v)\sum_{j = 1}^{s+1} Q_i(j) A_j </Math>.
-      This attribute returns the component <Math>Q_i(j)</Math> as <Code>DesignSecondEigenmatrix(<Arg>
-      D</Arg>)[i][j]</Code>. <Example><![CDATA[gap> D := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;
+      This attribute returns the component <Math>Q_i(j)</Math> as 
+      <Code>DesignSecondEigenmatrix(<Arg>D</Arg>)[i][j]</Code>. 
+      
+      <Example><![CDATA[gap> D := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;
 <2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
 gap> a := Basis(DesignBoseMesnerAlgebra(D));;
 gap> e := DesignBoseMesnerIdempotentBasis(D);;
@@ -1475,8 +1572,10 @@ true]]></Example>
           <Attr Name="DesignMultiplicities" Arg="D" />
           <Description> As describe in <Cite Key="bannai_algebraic_2021"
               Where="pp. 58-59" />, the design multiplicy <Math>m_i</Math> is defined as the
-      dimension of the space that idempotent matrix <Math>E_i</Math> projects onto, or <Math>m_i =
-      trace(E_i)</Math>. We also have <Math>m_i = Q_i(s+1)</Math>. <Example><![CDATA[gap> D := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;
+      dimension of the space that idempotent matrix <Math>E_i</Math> projects onto, or 
+      <Math>m_i = \mathrm{Tr}(E_i)</Math>. We also have <Math>m_i = Q_i(s+1)</Math>. 
+      
+      <Example><![CDATA[gap> D := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;
 <2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
 gap> DesignMultiplicities(D);
 [ 27, 36, 1 ]]]></Example>
@@ -1488,7 +1587,9 @@ gap> DesignMultiplicities(D);
           <Description> As describe in <Cite Key="bannai_algebraic_2021"
               Where="pp. 55, 59" />, the design valency <Math>k_i</Math> is defined as the fixed
       number of <Math>i</Math>-associates of any element in the association scheme (also known as
-      the subdegree). We also have <Math>k_i = P_i(s+1)</Math>. <Example><![CDATA[gap> D := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;
+      the subdegree). We also have <Math>k_i = P_i(s+1)</Math>. 
+      
+      <Example><![CDATA[gap> D := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;
 <2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
 gap> DesignValencies(D);
 [ 27, 36, 1 ]]]></Example>
@@ -1509,8 +1610,9 @@ gap> DesignValencies(D);
       <Section>
         <Heading>Examples</Heading> This section provides a number of known examples that can be
       studied using the <Package>ALCO</Package> package. The following tight projective t-designs
-      are identified in <Cite
-          Key="hoggar_t-designs_1982" Where="Examples 1-11" />. <Example><![CDATA[gap> DesignByAngleSet(2, 1, [0,1/2]);;
+      are identified in <Cite Key="hoggar_t-designs_1982" Where="Examples 1-11" />. 
+      
+      <Example><![CDATA[gap> DesignByAngleSet(2, 1, [0,1/2]);;
 gap> DesignAddCardinality(last, DesignSpecialBound(last));
 <Tight 3-design with rank 2, degree 1, cardinality 4, and angle set 
 [ 0, 1/2 ]> 
@@ -1551,14 +1653,21 @@ gap> DesignAddCardinality(last, DesignSpecialBound(last));
 gap> DesignByAngleSet(24, 1, [0,1/16,1/4]);;
 gap> DesignAddCardinality(last, DesignSpecialBound(last));
 <Tight 5-design with rank 24, degree 1, cardinality 98280, and angle set
-[ 0, 1/16, 1/4 ]>]]></Example> An additional
-      icosahedron projective example is identified in <Cite Key="lyubich_tight_2009" />. <Example><![CDATA[gap> DesignByAngleSet(2, 2, [ 0, (5-Sqrt(5))/10, (5+Sqrt(5))/10 ]);;
+[ 0, 1/16, 1/4 ]>]]></Example> 
+
+An additional icosahedron projective example is identified in <Cite Key="lyubich_tight_2009" />. 
+
+<Example><![CDATA[gap> DesignByAngleSet(2, 2, [ 0, (5-Sqrt(5))/10, (5+Sqrt(5))/10 ]);;
 gap> DesignAddCardinality(last, DesignSpecialBound(last));
 <Tight 5-design with rank 2, degree 2, cardinality 12, and angle set
 [ 0, -3/5*E(5)-2/5*E(5)^2-2/5*E(5)^3-3/5*E(5)^4,
   -2/5*E(5)-3/5*E(5)^2-3/5*E(5)^3-2/5*E(5)^4 ]>]]></Example>
-      The Leech lattice short vector design and several other tight spherical designs are given
-      below: <Example><![CDATA[gap> DesignByAngleSet(2, 23, [ 0, 1/4, 3/8, 1/2, 5/8, 3/4 ]);;
+
+
+  The Leech lattice short vector design and several other tight spherical designs are given
+      below: 
+      
+<Example><![CDATA[gap> DesignByAngleSet(2, 23, [ 0, 1/4, 3/8, 1/2, 5/8, 3/4 ]);;
 gap> DesignAddCardinality(last, DesignSpecialBound(last));
 <Tight 11-design with rank 2, degree 23, cardinality 196560, and angle set
 [ 0, 1/4, 3/8, 1/2, 5/8, 3/4 ]>
@@ -1585,8 +1694,12 @@ gap> DesignAddCardinality(last, DesignSpecialBound(last));
 gap> DesignByAngleSet(2, 22, [0,1/3,1/2,2/3]);;
 gap> DesignAddCardinality(last, DesignSpecialBound(last));
 <Tight 7-design with rank 2, degree 22, cardinality 4600, and angle set
-[ 0, 1/3, 1/2, 2/3 ]>]]></Example> Some projective designs meeting the special bound are given in <Cite
-          Key="hoggar_t-designs_1982" Where="Examples 1-11" />: <Example><![CDATA[gap> DesignByAngleSet(4, 4, [0,1/4,1/2]);;
+[ 0, 1/3, 1/2, 2/3 ]>]]></Example> 
+
+Some projective designs meeting the special bound are given in 
+<Cite Key="hoggar_t-designs_1982" Where="Examples 1-11" />: 
+
+<Example><![CDATA[gap> DesignByAngleSet(4, 4, [0,1/4,1/2]);;
 gap> DesignAddCardinality(last, DesignSpecialBound(last));
 <3-design with rank 4, degree 4, cardinality 180, and angle set
 [ 0, 1/4, 1/2 ]>
@@ -1631,8 +1744,11 @@ gap> DesignAddCardinality(last, DesignSpecialBound(last));
 gap> DesignByAngleSet(12, 2, [0,1/3,1/4,1/12]);;
 gap> DesignAddCardinality(last, DesignSpecialBound(last));
 <5-design with rank 12, degree 2, cardinality 32760, and angle set
-[ 0, 1/12, 1/4, 1/3 ]>]]></Example> Two important
-      designs related to the <Math>H_4</Math> Weyl group are as follows: <Example><![CDATA[gap> A := [ 0, 1/4, 1/2, 3/4, (5-Sqrt(5))/8, (5+Sqrt(5))/8,
+[ 0, 1/12, 1/4, 1/3 ]>]]></Example> 
+
+Two important designs related to the <Math>H_4</Math> Weyl group are as follows: 
+
+<Example><![CDATA[gap> A := [ 0, 1/4, 1/2, 3/4, (5-Sqrt(5))/8, (5+Sqrt(5))/8,
 > (3-Sqrt(5))/8, (3+Sqrt(5))/8 ];;
 gap> D := DesignByAngleSet(2, 3, A);;
 gap> DesignAddCardinality(last, DesignSpecialBound(last));
