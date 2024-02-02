@@ -10,7 +10,7 @@
 #
 gap> START_TEST("alco03.tst");
 
-# doc/ALCO.xml:690-704
+# doc/ALCO.xml:713-727
 gap> J := AlbertAlgebra(Rationals);;
 gap> x := Sum(Basis(J){[4,5,6,25,26,27]});
 i4+i5+i6+ei+ej+ek
@@ -27,13 +27,13 @@ gap> Determinant(x);
 gap> Norm(x);
 9/2
 
-# doc/ALCO.xml:735-738
+# doc/ALCO.xml:758-761
 gap> J := SimpleEuclideanJordanAlgebra(3,8);
 <algebra-with-one of dimension 27 over Rationals>
 gap> Derivations(Basis(J));; SemiSimpleType(last);
 "F4"
 
-# doc/ALCO.xml:747-764
+# doc/ALCO.xml:770-787
 gap> J := JordanSpinFactor(IdentityMat(8));
 <algebra-with-one of dimension 9 over Rationals>
 gap> One(J);
@@ -53,13 +53,13 @@ gap> p := GenericMinimalPolynomial(x);
 gap> ValuePol(p,x);
 0*v.1
 
-# doc/ALCO.xml:771-774
+# doc/ALCO.xml:794-797
 gap> J := HermitianSimpleJordanAlgebra(3,QuaternionD4Basis);
 <algebra-with-one of dimension 15 over Rationals>
 gap> [JordanRank(J), JordanDegree(J)];
 [ 3, 4 ]
 
-# doc/ALCO.xml:788-799
+# doc/ALCO.xml:813-824
 gap> J := SimpleEuclideanJordanAlgebra(2,7);
 <algebra-with-one of dimension 9 over Rationals>
 gap> u := Sum(Basis(J){[1,2,7,8]});
@@ -73,7 +73,7 @@ gap> H := JordanHomotope(J, u, "w.");
 gap> One(H);
 (-1/2)*w.1+(1/2)*w.2+(1/2)*w.7+(1/2)*w.8
 
-# doc/ALCO.xml:823-833
+# doc/ALCO.xml:848-858
 gap> A := AlbertAlgebra(Rationals);
 <algebra-with-one of dimension 27 over Rationals>
 gap> i := Basis(A){[1..8]};;
@@ -86,7 +86,7 @@ gap> Display(i); Display(j); Display(k); Display(e);
 [ k1, k2, k3, k4, k5, k6, k7, k8 ]
 [ ei, ej, ek ]
 
-# doc/ALCO.xml:849-856
+# doc/ALCO.xml:872-879
 gap> j := Basis(AlbertAlgebra(Rationals)){[9..16]};
 [ j1, j2, j3, j4, j5, j6, j7, j8 ]
 gap> mat := AlbertVectorToHermitianMatrix(j[3]);; Display(mat);
@@ -96,7 +96,7 @@ gap> mat := AlbertVectorToHermitianMatrix(j[3]);; Display(mat);
 gap> HermitianMatrixToAlbertVector(mat);
 j3
 
-# doc/ALCO.xml:876-894
+# doc/ALCO.xml:899-917
 gap> J := JordanSpinFactor(IdentityMat(3));
 <algebra-with-one of dimension 4 over Rationals>
 gap> x := [-1,4/3,-1,1]*Basis(J);
@@ -117,7 +117,7 @@ true
 gap> JordanQuadraticOperator(2*x) = 4*JordanQuadraticOperator(x);
 true
 
-# doc/ALCO.xml:906-923
+# doc/ALCO.xml:929-946
 gap> J := AlbertAlgebra(Rationals);
 <algebra-with-one of dimension 27 over Rationals>
 gap> i := Basis(J){[1..8]};
@@ -137,7 +137,7 @@ gap> List(k, x -> 2*JordanTripleSystem(i[1],i[1],x));
 gap> List(e, x -> JordanTripleSystem(i[1],i[1],x));
 [ 0*i1, ej, ek ]
 
-# doc/ALCO.xml:938-953
+# doc/ALCO.xml:961-976
 gap> H := QuaternionAlgebra(Rationals);;
 gap> for x in HermitianJordanAlgebraBasis(2, Basis(H)) do Display(x); od;
 [ [    e,  0*e ],
@@ -155,7 +155,7 @@ gap> for x in HermitianJordanAlgebraBasis(2, Basis(H)) do Display(x); od;
 gap> AsList(Basis(H));
 [ e, i, j, k ]
 
-# doc/ALCO.xml:969-988
+# doc/ALCO.xml:993-1012
 gap> H := QuaternionAlgebra(Rationals);;
 gap> J := HermitianSimpleJordanAlgebra(2,Basis(H));
 <algebra-with-one of dimension 6 over Rationals>
@@ -177,7 +177,7 @@ gap> JordanMatrixBasis(J);; for x in last do Display(x); od;
 gap> List(JordanMatrixBasis(J), x -> HermitianMatrixToJordanVector(x, J));
 [ v.1, v.2, v.3, v.4, v.5, v.6 ]
 
-# doc/ALCO.xml:995-1000
+# doc/ALCO.xml:1019-1024
 gap> J := HermitianSimpleJordanAlgebra(2,OctonionE8Basis);
 <algebra-with-one of dimension 10 over Rationals>
 gap> List(Basis(J), x -> List(Basis(J), y -> Trace(x*y))) = JordanAlgebraGramMatrix(J);

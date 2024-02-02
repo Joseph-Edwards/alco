@@ -628,7 +628,7 @@ true]]></Example>
       Euclidean Jordan algebras are in one-to-one correspondence with structures known as symmetric
       cones, and any Euclidean Jordan algebra is the direct sum of simple Euclidean Jordan algebras <Cite
         Key="faraut_analysis_1994" Where="chap. 3" />. <P /> The simple Euclidean Jordan algebras,
-      in turn, are classified into four families and one exception by rank and degree <Cite
+      in turn, are classified by rank and degree into four families and one exception <Cite
         Key="faraut_analysis_1994" Where="chap. 5" />. The first family consists of rank 2 algebras
       with degree any positive integer. The remaining three families consist Jordan algebras with
       degree 1, 2, or 4 with rank a positive integer greater than 2. The exceptional algebra has
@@ -643,56 +643,62 @@ true]]></Example>
           <Heading>Jordan Filters</Heading>
           <Filt Name="IsJordanAlgebra" />
           <Filt Name="IsJordanAlgebraObj" />
-          <Description>These filters determine whether an element is a Jordan algebra (<Code>
-      IsJordanAlgebra</Code>) or is an element in a Jordan algebra (<Code>IsJordanAlgebraObj</Code>
+          <Description>These filters determine whether an element is a Jordan algebra (<Code>IsJordanAlgebra</Code>) or is an element in a Jordan algebra (<Code>IsJordanAlgebraObj</Code>
       ).
           </Description>
         </ManSection>
 
         <ManSection>
+          <Heading>Jordan Rank</Heading>
           <Meth Name="JordanRank" Arg="x" />
+          <Meth Name="Rank" Arg="x" Label="Jordan Algebras" />
           <Description>The rank of a Jordan algeba is the size of a maximal set of mutually
       orthogonal primitive idempotents in the algebra. The rank and degree are used to classify the
       simple Euclidean Jordan algebras. This method returns the rank of <Arg>x</Arg> when <Code>
-      IsJordanAlgebra(<Arg>x</Arg>)</Code> or the rank of the Jordan algebra containing <Arg>x</Arg>
-      when <Code>IsJordanAlgebraObj(<Arg>x</Arg>)</Code>. The method <Code>Rank(<Arg>x</Arg>)</Code>
+      IsJordanAlgebra(<Arg>x</Arg>)</Code> or the rank of the Jordan algebra containing <Arg>x</Arg> (computed as <Code>FamilyObj(x)!.fullSCAlgebra</Code>) when <Code>IsJordanAlgebraObj(<Arg>x</Arg>)</Code>. The method <Code>Rank(<Arg>x</Arg>)</Code>
       returns <Code>JordanRank(<Arg>x</Arg>)</Code> when <Arg>x</Arg> satisfies either <Code>
       IsJordanAlgebra</Code> or <Code>IsJordanAlgebraObj</Code>. </Description>
         </ManSection>
 
         <ManSection>
+          <Heading>Jordan Degree</Heading>
           <Meth Name="JordanDegree" Arg="x" />
+          <Meth Name="Degree" Arg="x" Label="Jordan Algebras" />
           <Description> The degree of a Jordan algebra is the dimension of the off-diagonal entries
       in a Pierce decomposition of the Jordan algebra. For example, a Jordan algebra of quaternion
       hermitian matrices has degree 4. This method returns the degree of <Arg>x</Arg> when <Code>
       IsJordanAlgebra(<Arg>x</Arg>)</Code> or the degree of the Jordan algebra containing <Arg>x</Arg>
+      (computed as <Code>FamilyObj(x)!.fullSCAlgebra</Code>)
       when <Code>IsJordanAlgebraObj(<Arg>x</Arg>)</Code>. The method <Code>Degree(<Arg>x</Arg>)</Code>
       returns <Code>JordanDegree(<Arg>x</Arg>)</Code> when <Arg>x</Arg> satisfies either <Code>
       IsJordanAlgebra</Code> or <Code>IsJordanAlgebraObj</Code>. </Description>
         </ManSection>
+      
+      
       Each vector in a simple Euclidean Jordan algebra can be written as a &RR;-linear combination
       of mutually orthogonal primitive idempotents. This is called the <Emph>spectral decomposition</Emph>
       of a Jordan algebra element. The coefficients in the decomposition are the <Emph>eigenvalues</Emph>
       of the element. The Jordan trace and determinant, described below, are respectively the sum
-      and product of these eigenvalues with multiplicities included <Cite Key="faraut_analysis_1994"
-          Where="p. 44" />. <ManSection>
+      and product of these eigenvalues with multiplicities included <Cite Key="faraut_analysis_1994" Where="p. 44" />. 
+          
+        <ManSection>
           <Meth Name="Trace" Arg="x" Label="Jordan Algebras" />
-          <Description>Returns the Jordan trace of <Arg>x</Arg> when <Code>IsJordanAlgebraObj(<Arg>x</Arg>
-      )</Code>. The trace of a Jordan algebra element is the sum of the eigenvalues of that element
+          <Description>Returns the Jordan trace of <Arg>x</Arg> when <Code>IsJordanAlgebraObj(<Arg>x</Arg>)</Code>. 
+      The trace of a Jordan algebra element is the sum of the eigenvalues of that element
       (with multiplicies included). </Description>
         </ManSection>
 
         <ManSection>
           <Meth Name="Determinant" Arg="x" Label="Jordan Algebras" />
-          <Description>Returns the Jordan determinant of <Arg>x</Arg> when <Code>IsJordanAlgebraObj(<Arg>
-      x</Arg>)</Code>. The determinant of a Jordan algebra element is the product of the eigenvalues
+          <Description>Returns the Jordan determinant of <Arg>x</Arg> when <Code>IsJordanAlgebraObj(<Arg>x</Arg>)</Code>. The determinant of a Jordan algebra element is the product of the eigenvalues
       of that element (with multiplicies included).</Description>
         </ManSection>
 
         <ManSection>
           <Meth Name="Norm" Arg="x" Label="Jordan Algebras" />
-          <Description>Returns the Jordan norm of <Arg>x</Arg> when <Code>IsJordanAlgebraObj(<Arg>x</Arg>
-      )</Code>. The Jordan norm has the value <Code>Trace(<Arg>x</Arg>^2)/2</Code>. </Description>
+          <Description>Returns the Jordan norm of <Arg>x</Arg> when <Code>IsJordanAlgebraObj(<Arg>x</Arg>)</Code>. 
+            The Jordan norm has the value <Code>Trace(<Arg>x</Arg>^2)/2</Code>. 
+          </Description>
         </ManSection>
 
 
@@ -728,28 +734,28 @@ gap> Norm(x);
     <Section>
         <Heading>Jordan Algebra Constructions</Heading>
 
+        The classification of simple Euclidean Jordan algebras is described in <Cite Key="faraut_analysis_1994" Where="chap. 5" />.
+        A simple Euclidean Jordan algebra can be constructed in the following two ways. 
+        A rank <Math>2</Math> algebra can be constructed from a positive definite Gram matrix in the manner described in <Cite Key="faraut_analysis_1994" Where="p. 25" />. 
+        A degree <Math>1</Math>, <Math>2</Math>, <Math>4</Math>, or <Math>8</Math> algebra can be constructed using Hermitian matrices over a composition algebra of dimension equal to the degree with the product <Math>(xy+yx)/2</Math>.  
+        In certain cases both constructions are possible. 
+        The <Package>ALCO</Package> package provides tools to use both constructions to create simple Euclidean Jordan algebras with elements that satisfy <Code>IsSCAlgebraObj</Code>. 
+
         <ManSection>
           <Func Name="SimpleEuclideanJordanAlgebra" Arg="rho, d[, args]" />
-          <Description> Returns a simple Euclidean Jordan algebra over &QQ;. The classification of
-      simple Euclidean Jordan algebras is described in <Cite Key="faraut_analysis_1994"
-              Where="chap. 5" />. For Jordan algebras of rank <Arg>rho</Arg> equal to 2, this
-      construction uses <Ref Func="JordanSpinFactor" />. If optional <Arg>args</Arg> is empty then
-      the result is <Code>JordanSpinFactor(IdentityMat(<Arg>d</Arg>+1))</Code>. If optional <Arg>
-      args</Arg> is a symmetric matrix of dimension <Arg>d</Arg>+1, then this function returns <Code>
-      JordanSpinFactor(args)</Code>. If neither of these rank 2 cases apply, and <Arg>d</Arg> is
-      equal to 1,2,4, or 8, and if <Arg>args</Arg> is a composition algebra basis, then this
-      function returns <Code>HermitianSimpleJordanAlgebra(<Arg>rho</Arg>, <Arg>args</Arg>)</Code>.
-      Finally, in the cases where rank <Arg>rho</Arg> is greater than 2, we must have <Arg>d</Arg>
-      equal to one of 1,2,4, or 8. Note that <Arg>d</Arg> equals 8 is only permitted when <Arg>rho</Arg>
-      equals 3. When optional <Arg>args</Arg> is a composition algebra basis of dimension <Arg>d</Arg>,
-      this function returns <Code>HermitianSimpleJordanAlgebra(<Arg>rho</Arg>, <Arg>args</Arg>)</Code>.
-      Otherwise, when optional <Arg>args</Arg> is empty, this function returns <Code>
-      HermitianSimpleJordanAlgebra(<Arg>rho</Arg>, <Arg>B</Arg>)</Code> for <Arg>B</Arg> either <Code>Basis(Rationals,
-      [1])</Code>, <Code>Basis(CF(4), [1, E(4)])</Code>, <Code>Basis(QuaternionAlgebra(Rationals))</Code>,
-      or <Code>Basis(OctonionAlgebra(Rationals))</Code>. Note that (in constrast to <Ref
-              Func="AlbertAlgebra" />) the Hermitian Jordan algebras constructed using <Code>
-      SimpleEuclideanJordanAlgebra</Code> uses the upper triangular entries of the Hermitian
-      matrices define the basis vectors. <Example><![CDATA[gap> J := SimpleEuclideanJordanAlgebra(3,8);
+          <Description> Returns a simple Euclidean Jordan algebra over &QQ;. The construction used depends on the arguments given in the following manner. <P/>
+
+          For Jordan algebras of rank <Arg>rho</Arg> equal to <Math>2</Math>, the <Ref Func="JordanSpinFactor" /> construction is used. 
+          If optional <Arg>args</Arg> is empty then the result is <Code>JordanSpinFactor(IdentityMat(<Arg>d</Arg>+1))</Code>. 
+          If optional <Arg>args</Arg> is a symmetric matrix of dimension <Arg>d</Arg>+1, then <Code>JordanSpinFactor(args)</Code> is used. 
+          If neither of these rank 2 cases apply, and <Arg>d</Arg> is equal to 1,2,4, or 8, and if <Arg>args</Arg> is a composition algebra basis, then <Code>HermitianSimpleJordanAlgebra(<Arg>rho</Arg>, <Arg>args</Arg>)</Code> is used.<P/>
+
+          In the cases where rank <Arg>rho</Arg> is greater than <Math>2</Math>, we must have <Arg>d</Arg> equal to one of <Math>1</Math>, <Math>2</Math>, <Math>4</Math>, or <Math>8</Math>. Note that <Arg>d</Arg> equals <Math>8</Math> is only permitted when <Arg>rho</Arg> equals <Math>3</Math>. 
+          When optional <Arg>args</Arg> is a composition algebra basis of dimension <Arg>d</Arg>,  <Code>HermitianSimpleJordanAlgebra(<Arg>rho</Arg>, <Arg>args</Arg>)</Code> is used.
+          Otherwise, when optional <Arg>args</Arg> is empty, this function uses <Code>HermitianSimpleJordanAlgebra(<Arg>rho</Arg>, <Arg>B</Arg>)</Code> for <Arg>B</Arg> either <Code>CanonicalBasis(Rationals)</Code>, <Code>Basis(CF(4), [1, E(4)])</Code>, <Code>CanonicalBasis(QuaternionAlgebra(Rationals))</Code>, or <Code>CanonicalBasis(OctonionAlgebra(Rationals))</Code>. <P/>
+          
+          Note that (in contrast to <Ref Func="AlbertAlgebra" />) the Hermitian Jordan algebras constructed using <Code>SimpleEuclideanJordanAlgebra</Code> uses the upper triangular entries of the Hermitian matrices define the basis vectors. 
+          <Example><![CDATA[gap> J := SimpleEuclideanJordanAlgebra(3,8);
 <algebra-with-one of dimension 27 over Rationals>
 gap> Derivations(Basis(J));; SemiSimpleType(last);
 "F4"]]></Example>
@@ -798,7 +804,9 @@ gap> [JordanRank(J), JordanDegree(J)];
       )</Code>, and for <Arg>u</Arg> a vector in <Arg>J</Arg>, this function returns the
       corresponding <Arg>u</Arg>-homotope algebra with the product of <Math>x</Math> and <Math>y</Math>
       defined as <Math>x(uy)+(xu)y - u(xy)</Math>. The <Arg>u</Arg>-homotope algebra also belongs to
-      the filter <Code>IsJordanAlgebra</Code>. Of note, if <Arg>u</Arg> is invertible in <Arg>J</Arg>
+      the filter <Code>IsJordanAlgebra</Code>. <P/>
+      
+      Of note, if <Arg>u</Arg> is invertible in <Arg>J</Arg>
       then the corresponding <Arg>u</Arg>-homotope algebra is called a <Arg>u</Arg>-isotope. The
       optional argument <Arg>s</Arg> is a string that determines the labels of the canonical basis
       vectors in the new algebra. The main definitions and properties of Jordan homotopes and
@@ -861,9 +869,7 @@ gap> Display(i); Display(j); Display(k); Display(e);
 
       <ManSection>
           <Func Name="HermitianMatrixToAlbertVector" Arg="x" />
-          <Description>For 3 x 3 Hermitian matrix with elements in <Code>OctonionAlgebra(<Arg>
-      Rationals</Arg>)</Code>, this function returns the corresponding vector in in <Code>
-      AlbertAlgebra(<Arg>Rationals</Arg>)</Code>. <Example><![CDATA[gap> j := Basis(AlbertAlgebra(Rationals)){[9..16]};
+          <Description>For 3 x 3 Hermitian matrix with elements in <Code>OctonionAlgebra(<Arg>Rationals</Arg>)</Code>, this function returns the corresponding vector in in <Code>AlbertAlgebra(<Arg>Rationals</Arg>)</Code>. <Example><![CDATA[gap> j := Basis(AlbertAlgebra(Rationals)){[9..16]};
 [ j1, j2, j3, j4, j5, j6, j7, j8 ]
 gap> mat := AlbertVectorToHermitianMatrix(j[3]);; Display(mat);
 [ [     0*e1,     0*e1,  (-1)*e3 ],
@@ -881,16 +887,16 @@ j3]]></Example>
       Jordan algebra and their isotopes are related to the quadratic representation. This aspect of
       Jordan algebras is described well in <Cite Key="mccrimmon_taste_2004" Where="pp.82-86" /> and <Cite
           Key="faraut_analysis_1994" Where="pp. 32-38" />. The following methods allow for the
-      construction of Jordan operators, including the left translation and the quadratic maps. <ManSection>
+      construction of Jordan quadratic maps and the standard triple product on a Jordan algebra. 
+      
+      <ManSection>
           <Oper Name="JordanQuadraticOperator" Arg="x [,y]" />
-          <Description> For <Arg>x</Arg> and <Arg>y</Arg> Jordan algebra elements, satisfying <Code>
-      IsJordanAlgebraObj</Code> this operation applies two methods. In the case of <Code>
-      JordanQuadraticOperator(<Arg>x</Arg>, y)</Code>, this operation returns <Code>2*x*(x*y) -
-      (x^2)*y</Code>. In the case of <Code>JordanQuadraticOperator(x)</Code>, this operation returns
-      the matrix representing the quadratic map in the canonical basis of the Jordan algebra <Arg>J</Arg>
-      containing <Arg>x</Arg>. For <Code>L(x)</Code> the matrix <Code>AdjointMatrix(CanonicalBasis(J),
-      x)</Code>, the operation <Code>P(<Arg>x</Arg>)</Code> returns the matrix <Code>2 L(x)^2 -
-      L(x^2)</Code>. <Example><![CDATA[gap> J := JordanSpinFactor(IdentityMat(3));
+          <Description> For <Arg>x</Arg> and <Arg>y</Arg> Jordan algebra elements, satisfying <Code>IsJordanAlgebraObj</Code> this operation applies two methods. 
+          In the case of <Code>JordanQuadraticOperator(<Arg>x</Arg>, y)</Code>, this operation returns <Code>2*x*(x*y) - (x^2)*y</Code>. 
+          In the case of <Code>JordanQuadraticOperator(x)</Code>, this operation returns
+          the matrix representing the quadratic map in the canonical basis of the Jordan algebra <Arg>J</Arg>
+          containing <Arg>x</Arg>. For <Code>L(x)</Code> the matrix <Code>AdjointMatrix(CanonicalBasis(J), x)</Code>, the operation <Code>P(<Arg>x</Arg>)</Code> returns the matrix <Code>2 L(x)^2 - L(x^2)</Code>. 
+          <Example><![CDATA[gap> J := JordanSpinFactor(IdentityMat(3));
 <algebra-with-one of dimension 4 over Rationals>
 gap> x := [-1,4/3,-1,1]*Basis(J);
 (-1)*v.1+(4/3)*v.2+(-1)*v.3+v.4
@@ -915,12 +921,12 @@ true]]></Example>
       <ManSection>
           <Oper Name="JordanTripleSystem" Arg="x,y,z" />
           <Description> For Jordan algebra elements <Arg>x</Arg>, <Arg>y</Arg>, <Arg>z</Arg>
-      satisfying <Code>IsJordanAlgebraObj</Code>, <Code>JordanTripleSystem(<Arg>x</Arg>,<Arg>y</Arg>
-      ,<Arg>z</Arg>)</Code> returns the Jordan triple product defined in terms of the Jordan product
-      as <Code><Arg>x</Arg>*(<Arg>y</Arg>*<Arg>z</Arg>) + (<Arg>x</Arg>*<Arg>y</Arg>)*<Arg>z</Arg> - <Arg>
-      y</Arg>*(<Arg>x</Arg>*<Arg>z</Arg>)</Code>. Equivalently, <Code>2*JordanTripleSystem(<Arg>x</Arg>
-      ,<Arg>y</Arg>,<Arg>z</Arg>)</Code> is equal to <Code>JordanQuadraticOperator(x+z, y) -
-      JordanQuadraticOperator(x, y) - JordanQuadraticOperator(z, y)</Code>. <Example><![CDATA[gap> J := AlbertAlgebra(Rationals);
+      satisfying <Code>IsJordanAlgebraObj</Code>, the operation <Code>JordanTripleSystem(<Arg>x</Arg>,<Arg>y</Arg>,<Arg>z</Arg>)</Code> 
+      returns the Jordan triple product defined in terms of the Jordan product as 
+      <Code><Arg>x</Arg>*(<Arg>y</Arg>*<Arg>z</Arg>) + (<Arg>x</Arg>*<Arg>y</Arg>)*<Arg>z</Arg> - <Arg>y</Arg>*(<Arg>x</Arg>*<Arg>z</Arg>)</Code>. 
+      Equivalently, <Code>2*JordanTripleSystem(<Arg>x</Arg>,<Arg>y</Arg>,<Arg>z</Arg>)</Code> is equal to 
+      <Code>JordanQuadraticOperator(x+z, y) - JordanQuadraticOperator(x, y) - JordanQuadraticOperator(z, y)</Code>. 
+      <Example><![CDATA[gap> J := AlbertAlgebra(Rationals);
 <algebra-with-one of dimension 27 over Rationals>
 gap> i := Basis(J){[1..8]};
 [ i1, i2, i3, i4, i5, i6, i7, i8 ]
@@ -974,9 +980,10 @@ gap> AsList(Basis(H));
         <ManSection>
           <Attr Name="JordanMatrixBasis" Arg="J" />
           <Description> If <Code>IsJordanAlgebra( <Arg>J</Arg> )</Code> and <Arg>J</Arg> has been
-      constructed using a matrix basis, then the set of matrices corresponding to <Code>
-      CanonicalBasis( <Arg>J</Arg> )</Code> can be obtained using <Code>JordanMatrixBasis( <Arg>J</Arg>
-      )</Code>. </Description>
+      constructed using a matrix basis, then the set of matrices corresponding to 
+      <Code>CanonicalBasis( <Arg>J</Arg> )</Code> can be obtained using 
+      <Code>JordanMatrixBasis( <Arg>J</Arg> )</Code>. 
+          </Description>
         </ManSection>
 
         <ManSection>
@@ -1020,18 +1027,20 @@ gap> DiagonalOfMat(JordanAlgebraGramMatrix(J));
 
         <ManSection>
           <Func Name="JordanAdjugate" Arg="x" />
-          <Description> For <Code>IsJordanAlgebraObj( <Arg>x</Arg> )</Code>, returns the adjugate of <Arg>
-      x</Arg>, which satisfies <Code>x*JordanAdjugate(<Arg>x</Arg>) = One(<Arg>x</Arg>)*Determinant(<Arg>
-      x</Arg>)</Code>. When <Code>Determinant(<Arg>x</Arg>)</Code> is non-zero, <Code>
-      JordanAdjugate(<Arg>x</Arg>)</Code> is proportional to <Code>Inverse(<Arg>x</Arg>)</Code>. </Description>
+          <Description> For <Code>IsJordanAlgebraObj( <Arg>x</Arg> )</Code>, returns the adjugate of <Arg>x</Arg>, 
+          which satisfies <Code>x*JordanAdjugate(<Arg>x</Arg>) = One(<Arg>x</Arg>)*Determinant(<Arg>x</Arg>)</Code>. 
+          When <Code>Determinant(<Arg>x</Arg>)</Code> is non-zero, <Code>JordanAdjugate(<Arg>x</Arg>)</Code> is 
+          proportional to <Code>Inverse(<Arg>x</Arg>)</Code>. 
+        </Description>
         </ManSection>
 
         <ManSection>
           <Filt Name="IsPositiveDefinite" Arg="x" />
           <Description> For <Code>IsJordanAlgebraObj( <Arg>x</Arg> )</Code>, returns <Code>true</Code>
-      when <Arg>x</Arg> is positive definite and <Code>false</Code> otherwise. This filter uses <Ref
-              Func="GenericMinimalPolynomial" /> to determine whether <Arg>x</Arg> is positive
-      definite. </Description>
+          when <Arg>x</Arg> is positive definite and <Code>false</Code> otherwise. This filter uses 
+          <Ref Func="GenericMinimalPolynomial" /> to determine whether <Arg>x</Arg> is positive
+          definite. 
+        </Description>
         </ManSection>
 
       </Section>
