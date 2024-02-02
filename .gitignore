@@ -24,3 +24,9 @@ default
 /doc/manual.pdf
 /doc/_*.xml
 /doc/title.xml
+
+
+# /doc/ALCO.pdf
+/doc/ALCO.fls
+/doc/ALCO.fdb_latexmk
+/doc/ALCO.synctex.gz
