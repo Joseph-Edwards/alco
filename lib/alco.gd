@@ -285,6 +285,8 @@ DeclareGlobalVariable( "MOGLeechLatticeGramMatrix" );
 DeclareCategory( "IsOctonionLattice", IsFreeLeftModule );
 
     DeclareAttribute( "UnderlyingOctonionRing", IsOctonionLattice );
+
+    DeclareAttribute( "UnderlyingOctonionRingBasis", IsOctonionLattice );
     
     DeclareAttribute( "OctonionGramMatrix", IsOctonionLattice );
 

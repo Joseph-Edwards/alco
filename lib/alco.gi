@@ -1731,9 +1731,10 @@ InstallGlobalFunction( IsLeechLatticeGramMatrix, function(G)
     # Confirm M is a basis for a 24 dimensional lattice.
     if not 
         (   
-            IsMatrix(G) and 
+            IsOrdinaryMatrix(G) and 
             DimensionsMat(G) = [24,24] and 
-            TransposedMat(G) = G
+            TransposedMat(G) = G and 
+            ForAll(Flat(G), IsInt)
         )
       then 
         return false;
@@ -1760,9 +1761,10 @@ InstallGlobalFunction( IsGossetLatticeGramMatrix, function(G)
     # Confirm M is a basis for a 8 dimensional lattice.
     if not 
         (   
-            IsMatrix(G) and 
+            IsOrdinaryMatrix(G) and 
             DimensionsMat(G) = [8,8] and 
-            TransposedMat(G) = G
+            TransposedMat(G) = G and 
+            ForAll(Flat(G), IsInt)
         )
       then 
         return false;
@@ -1818,16 +1820,18 @@ InstallValue( MOGLeechLatticeGramMatrix,
         )
     );
 
-InstallGlobalFunction( OctonionLatticeByGenerators, function(gens, g...)
+InstallGlobalFunction( OctonionLatticeByGenerators, function(gens, args...)
     local   A,      # The underlying octonion ring.
+            B,      # The underlying octonion ring basis.
+            G,      # The octonion gram matrix.
             obj;    # The resulting lattice object
     # Check that the inputs are correct (a list of equal length lists of octonions from the same algebra implementation in GAP).    
     if 
-        not IsOctonionCollColl(gens) or # Needs to be a collection of octonion lists. 
-        not IsHomogeneousList(Flat([gens, g])) or # Ensure that the octonions belong to the same octonion algebra. 
+        not IsOctonionCollColl(gens) or # Needs to be a collection of octonion lists.
+        not IsHomogeneousList(Flat([gens, args])) or # Ensure that the octonions belong to the same octonion algebra. 
         Length(Set(gens, Length)) > 1 # The lists need to be equal length 
     then 
-        Display( "Usage: OctonionLatticeByGenerators( <gens> [, <g>]) where <gens> is a list of equal length octonion lists and optional argument <g> is a suitable octonion gram matrix." );
+        Display( "Usage: OctonionLatticeByGenerators( <gens> [, <G>[, <B>]]) where <gens> is a list of equal length octonion lists, optional <G> is a suitable octonion gram matrix, and optional <B> is a basis for the underlying octonion algebra." );
         return fail; 
     fi;
     # Construct the Z-module.
@@ -1836,18 +1840,25 @@ InstallGlobalFunction( OctonionLatticeByGenerators, function(gens, g...)
     # Determine the octonion algebra.
     A := FamilyObj(One(Flat(gens)))!.fullSCAlgebra;
     SetUnderlyingOctonionRing(obj, A );
-    # If no octonion gram matrix is supplied, provide the identity matrix.
-    if Length(g) = 0 then 
-        SetOctonionGramMatrix(obj, IdentityMat(Length(gens[1]))*One(A) );
+    # Determine the prefered basis for the octonion algebra.
+    if Length(args) = 2 then 
+        B := Basis(A, AsList(args[2]));
+        SetUnderlyingOctonionRingBasis(obj, B);
     else 
-        g := g[1];
+        SetUnderlyingOctonionRingBasis(obj, CanonicalBasis(A));
+    fi;
+    # If no octonion gram matrix is supplied, provide the half the identity matrix.
+    if Length(args) = 0 then 
+        SetOctonionGramMatrix(obj, IdentityMat(Length(gens[1]))*One(A)/2 );
+    else 
+        G := args[1];
         if 
-            not IsMatrix(g) or DimensionsMat(gens)[2] <> DimensionsMat(g)[1] 
+            not IsMatrix(G) or DimensionsMat(gens)[2] <> DimensionsMat(G)[1] 
         then
-            Display( "Usage: OctonionLatticeByGenerators( <gens> [, <g>]) where <gens> is a list of equal length octonion lists and optional argument <g> is a suitable octonion gram matrix." );
+            Display( "Usage: OctonionLatticeByGenerators( <gens> [, <G>]) where <gens> is a list of equal length octonion lists and optional argument <G> is a suitable octonion gram matrix." );
             return fail;
         fi;
-        SetOctonionGramMatrix(obj, g );
+        SetOctonionGramMatrix(obj, G );
     fi;
     # Assign appropriate filters.
     SetFilterObj(obj, IsRowModule );
@@ -1855,7 +1866,7 @@ InstallGlobalFunction( OctonionLatticeByGenerators, function(gens, g...)
     # Convert the generators into coefficient lists according to the canonical octonion ring basis.
     SetGeneratorsAsCoefficients(obj, 
         List(GeneratorsOfLeftOperatorAdditiveGroup(obj), x -> 
-            OctonionToRealVector(CanonicalBasis(UnderlyingOctonionRing(obj)),x)
+            OctonionToRealVector(UnderlyingOctonionRingBasis(obj), x)
         )
     );
     # Compute the LLLReducedBasisVectors.
