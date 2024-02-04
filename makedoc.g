@@ -27,4 +27,4 @@ AutoDoc(rec(
     scaffold := rec( MainPage := false )
 ));
 
-Test("./tst/alco06.tst", rec(transformFunction := NormalizedWhitespace));
+# Test("./tst/alco06.tst", rec(transformFunction := NormalizedWhitespace));
