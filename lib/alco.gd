@@ -68,7 +68,7 @@ DeclareGlobalFunction( "GoldenIrrationalComponent" );
 
 DeclareGlobalFunction( "GoldenModSigma" );
 
-DeclareGlobalVariable( "IcosianH4Basis" );
+DeclareGlobalVariable( "IcosianH4Generators" );
 
 DeclareOperation("IsIcosian", [ IsQuaternion ] );
 

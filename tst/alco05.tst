@@ -10,7 +10,7 @@
 #
 gap> START_TEST("alco05.tst");
 
-# doc/ALCO.xml:1856-1861
+# doc/ALCO.xml:1835-1840
 gap> M := MOGLeechLatticeGeneratorMatrix;;
 gap> G := M*TransposedMat(M)/8;;
 gap> G = MOGLeechLatticeGramMatrix;
@@ -18,7 +18,7 @@ true
 gap> IsLeechLatticeGramMatrix(G);
 true
 
-# doc/ALCO.xml:1926-1960
+# doc/ALCO.xml:1905-1939
 gap> O := OctavianIntegers;;
 gap> gens := Concatenation(List(IdentityMat(3), x -> List(Basis(O), y -> x*y)));
 [ [ (-1/2)*e1+(1/2)*e5+(1/2)*e6+(1/2)*e7, 0*e1, 0*e1 ],
@@ -55,17 +55,17 @@ gap> KnownAttributesOfObject(O3);
   "OctonionGramMatrix", "GeneratorsAsCoefficients",
   "LLLReducedBasisCoefficients" ]
 
-# doc/ALCO.xml:1983-1984
+# doc/ALCO.xml:1962-1963
 gap> UnderlyingOctonionRing(O3);
 <algebra-with-one of dimension 8 over Rationals>
 
-# doc/ALCO.xml:1997-2000
+# doc/ALCO.xml:1976-1979
 gap> OctonionGramMatrix(O3);; Display(last);
 [ [  (1/2)*e8,      0*e1,      0*e1 ],
   [      0*e1,  (1/2)*e8,      0*e1 ],
   [      0*e1,      0*e1,  (1/2)*e8 ] ]
 
-# doc/ALCO.xml:2013-2037
+# doc/ALCO.xml:1992-2016
 gap> GeneratorsAsCoefficients(O3);
 [ [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
   [ 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
@@ -92,7 +92,7 @@ gap> GeneratorsAsCoefficients(O3);
   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 ],
   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 ] ]
 
-# doc/ALCO.xml:2048-2072
+# doc/ALCO.xml:2027-2051
 gap> LLLReducedBasisCoefficients(O3);
 [ [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
   [ 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
@@ -119,20 +119,20 @@ gap> LLLReducedBasisCoefficients(O3);
   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0 ],
   [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1 ] ]
 
-# doc/ALCO.xml:2084-2087
+# doc/ALCO.xml:2063-2066
 gap> Dimension(O3);
 24
 gap> Rank(O3);
 24
 
-# doc/ALCO.xml:2098-2102
+# doc/ALCO.xml:2077-2081
 gap> g := 2*GramMatrix(O3);;
 gap> DimensionsMat(g);
 [ 24, 24 ]
 gap> DeterminantMat(g);
 1
 
-# doc/ALCO.xml:2121-2149
+# doc/ALCO.xml:2100-2128
 gap> IsOctonionLatticeBasis(Basis(O3));
 true
 gap> b := BasisVectors(Basis(O3));
@@ -163,7 +163,7 @@ gap> b := BasisVectors(Basis(O3));
 gap> GramMatrix(O3) = List(b, x -> List(b, y -> ScalarProduct(O3, x, y)));
 true
 
-# doc/ALCO.xml:2182-2187
+# doc/ALCO.xml:2161-2166
 gap> x := Sum(BasisVectors(Basis(O3)){[2,3,4]});
 [ (1/2)*e2+(1/2)*e3+(-1/2)*e5+(-3/2)*e7, 0*e1, 0*e1 ]
 gap> x in O3;
@@ -171,7 +171,7 @@ true
 gap> \in( x, O3);
 true
 
-# doc/ALCO.xml:2204-2213
+# doc/ALCO.xml:2184-2193
 gap> b := BasisVectors(Basis(O3));;
 gap> b[1];
 [ (-1/2)*e1+(1/2)*e5+(1/2)*e6+(1/2)*e7, 0*e1, 0*e1 ]
@@ -183,7 +183,7 @@ gap> c[1];
 gap> GramMatrix(O3) = List(c, x -> List(c, y -> ScalarProduct(O3, x, y)));
 true
 
-# doc/ALCO.xml:2235-2248
+# doc/ALCO.xml:2213-2226
 gap> s := LinearCombination(OctonionE8Basis, [ 1, 2, 1, 2, 2, 2, 2, 1 ]);;
 gap> leech_gens := List(Basis(OctavianIntegers), x -> 
 > x*[[s,s,0],[0,s,s],ComplexConjugate([s,s,s])]);;
@@ -199,7 +199,7 @@ true
 gap> IsSubset(O3, Leech);
 true
 
-# doc/ALCO.xml:2266-2269
+# doc/ALCO.xml:2244-2247
 gap> rand := Random(O3);;
 gap> coeffs := Coefficients(Basis(O3), rand);;
 gap> rand = LinearCombination(Basis(O3), coeffs);

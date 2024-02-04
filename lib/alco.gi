@@ -244,7 +244,7 @@ InstallGlobalFunction( GoldenModSigma, function(q)
     return Coefficients(Basis(NF(5,[1,4]), [1, (1-Sqrt(5))/2]), q)[1];
 end );
 
-InstallValue( IcosianH4Basis, Basis(QuaternionAlgebra(Field(Sqrt(5))),
+InstallValue( IcosianH4Generators, Basis(QuaternionAlgebra(Field(Sqrt(5))),
     List([  [ 0, -1, 0, 0 ], 
             [ 0, -1/2*E(5)^2-1/2*E(5)^3, 1/2, -1/2*E(5)-1/2*E(5)^4 ],
             [ 0, 0, -1, 0 ], 
@@ -263,8 +263,8 @@ SetName( IcosianRing, "IcosianRing" );
 SetString( IcosianRing, "IcosianRing" );
 SetIsLeftActedOnByDivisionRing( IcosianRing, false );
 SetSize( IcosianRing, infinity );
-SetGeneratorsOfRing( IcosianRing, AsList(IcosianH4Basis));
-SetGeneratorsOfLeftModule( IcosianRing, AsList(IcosianH4Basis) );
+SetGeneratorsOfRing( IcosianRing, AsList(IcosianH4Generators));
+SetGeneratorsOfLeftModule( IcosianRing, AsList(IcosianH4Generators) );
 SetIsWholeFamily( IcosianRing, false );
 SetIsAssociative( IcosianRing, false );
 
@@ -310,7 +310,7 @@ InstallMethod( CanonicalBasis,
                    rec() );
     SetUnderlyingLeftModule( B, IcosianRing );
     SetIsIntegralBasis( B, true );
-    SetBasisVectors( B, Immutable( BasisVectors(IcosianH4Basis)));
+    SetBasisVectors( B, Immutable( BasisVectors(IcosianH4Generators)));
     # Return the basis.
     return B;
     end );

@@ -10,7 +10,7 @@
 #
 gap> START_TEST("alco04.tst");
 
-# doc/ALCO.xml:1084-1092
+# doc/ALCO.xml:1056-1064
 gap> a := Indeterminate(Rationals, "a");; 
 gap> b := Indeterminate(Rationals, "b");; 
 gap> x := Indeterminate(Rationals, "x");;
@@ -21,7 +21,7 @@ gap> JacobiPolynomial(1,a,b);
 gap> ValuePol(last,x);
 1/2*a*x+1/2*b*x+1/2*a-1/2*b+x
 
-# doc/ALCO.xml:1127-1138
+# doc/ALCO.xml:1099-1110
 gap> D := DesignByJordanParameters(3,8);
 <design with rank 3 and degree 8>
 gap> IsDesign(D);
@@ -35,13 +35,13 @@ fail
 gap> DesignByJordanParameters(3,9);
 fail
 
-# doc/ALCO.xml:1147-1150
+# doc/ALCO.xml:1119-1122
 gap> D := DesignByJordanParameters(3,8);
 <design with rank 3 and degree 8>
 gap> [DesignJordanRank(D), DesignJordanDegree(D)];
 [ 3, 8 ]
 
-# doc/ALCO.xml:1159-1168
+# doc/ALCO.xml:1131-1140
 gap> D := DesignByJordanParameters(3,8);
 <design with rank 3 and degree 8>
 gap> r := DesignJordanRank(D);; d := DesignJordanDegree(D);;
@@ -53,7 +53,7 @@ gap> DesignQPolynomials(D)(2);
 gap> CoefficientsOfUnivariatePolynomial(Q_k_epsilon(2,0,r,d,x));
 [ 90, -585, 819 ]
 
-# doc/ALCO.xml:1179-1193
+# doc/ALCO.xml:1151-1165
 gap> D := DesignByJordanParameters(3,8);
 <design with rank 3 and degree 8>
 gap> DesignConnectionCoefficients(D);
@@ -70,7 +70,7 @@ gap> for j in [1..4] do Display(Sum(List([1..4], i ->
 [ 0, 0, 1, 0 ]
 [ 0, 0, 0, 1 ]
 
-# doc/ALCO.xml:1224-1233
+# doc/ALCO.xml:1196-1205
 gap> D := DesignByJordanParameters(4,4);
 <design with rank 4 and degree 4>
 gap> DesignAddAngleSet(D, [2]);
@@ -82,13 +82,13 @@ gap> DesignAddAngleSet(D, [1/3,1/9]);
 gap> DesignAngleSet(D);
 [ 1/9, 1/3 ]
 
-# doc/ALCO.xml:1241-1244
+# doc/ALCO.xml:1213-1216
 gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);
 <design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>
 gap> DesignAngleSet(D);
 [ 1/9, 1/3 ]
 
-# doc/ALCO.xml:1254-1263
+# doc/ALCO.xml:1226-1235
 gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);
 <design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>
 gap> p := DesignNormalizedAnnihilatorPolynomial(D);
@@ -100,7 +100,7 @@ gap> ValuePol(p, 1/3);
 gap> ValuePol(p, 1);
 1
 
-# doc/ALCO.xml:1273-1280
+# doc/ALCO.xml:1245-1252
 gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);
 <design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>
 gap> f := DesignNormalizedIndicatorCoefficients(D);
@@ -110,7 +110,7 @@ gap> Sum(List([1..3], i -> f[i]*DesignQPolynomials(D)(i-1)));
 gap> DesignNormalizedAnnihilatorPolynomial(D);
 [ 1/16, -3/4, 27/16 ]
 
-# doc/ALCO.xml:1298-1303
+# doc/ALCO.xml:1270-1275
 gap> D := DesignByAngleSet(4, 4, [1/3,1/9]);
 <design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>
 gap> IsDesignWithPositiveIndicatorCoefficients(D);
@@ -118,7 +118,7 @@ true
 gap> DesignSpecialBound(D);
 64
 
-# doc/ALCO.xml:1325-1332
+# doc/ALCO.xml:1297-1304
 gap> D := DesignByAngleSet(4,4, [1/3,1/9]);
 <design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>
 gap> HasDesignCardinality(D);
@@ -128,7 +128,7 @@ gap> DesignAddCardinality(D, 64);
 gap> DesignCardinality(D);
 64
 
-# doc/ALCO.xml:1353-1359
+# doc/ALCO.xml:1325-1331
 gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);; 
 gap> DesignAddCardinality(D, 64);; D;
 <2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
@@ -137,13 +137,13 @@ gap> DesignAnnihilatorPolynomial(D);
 gap> ValuePol(last, 1);
 64
 
-# doc/ALCO.xml:1369-1372
+# doc/ALCO.xml:1341-1344
 gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);; DesignAddCardinality(D, 64);; D;
 <2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
 gap> DesignIndicatorCoefficients(D);
 [ 1, 7/15, 9/55 ]
 
-# doc/ALCO.xml:1392-1399
+# doc/ALCO.xml:1366-1373
 gap> D := DesignByAngleSet(4,4, [1/3,1/9]);
 <design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>
 gap> DesignAddCardinality(D, 64);
@@ -153,23 +153,24 @@ true
 gap> DesignStrength(D);
 2
 
-# doc/ALCO.xml:1444-1447
+# doc/ALCO.xml:1419-1422
 gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);; DesignAddCardinality(D, 64);; D;
 <2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
 gap> DesignSubdegrees(D);
 [ 27, 36 ]
 
-# doc/ALCO.xml:1464-1471
+# doc/ALCO.xml:1441-1449
 gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);; DesignAddCardinality(D, 64);; D;
 <2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
 gap> B := DesignBoseMesnerAlgebra(D);
 <algebra of dimension 3 over Rationals>
 gap> BasisVectors(CanonicalBasis(B));
 [ A1, A2, A3 ]
-gap> One(B);
+gap> One(B); IsSCAlgebraObj(last);
 A3
+true
 
-# doc/ALCO.xml:1480-1488
+# doc/ALCO.xml:1458-1466
 gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);; DesignAddCardinality(D, 64);; D;
 <2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
 gap> for x in BasisVectors(DesignBoseMesnerIdempotentBasis(D)) do Display(x); 
@@ -180,7 +181,7 @@ gap> for x in BasisVectors(DesignBoseMesnerIdempotentBasis(D)) do Display(x);
 gap> ForAll(DesignBoseMesnerIdempotentBasis(D), IsIdempotent);
 true
 
-# doc/ALCO.xml:1500-1505
+# doc/ALCO.xml:1478-1483
 gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);; DesignAddCardinality(D, 64);; D;
 <2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
 gap> A := BasisVectors(Basis(DesignBoseMesnerAlgebra(D)));;
@@ -188,7 +189,7 @@ gap> p := DesignIntersectionNumbers(D);;
 gap> A[1]*A[2] = Sum(List([1..3]), k -> p[k][1][2]*A[k]);
 true
 
-# doc/ALCO.xml:1519-1526
+# doc/ALCO.xml:1497-1504
 gap> D := DesignByAngleSet(4, 4, [1/3, 1/9]);; DesignAddCardinality(D, 64);; D;
 <2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
 gap> q := DesignKreinNumbers(D);; 
@@ -198,7 +199,7 @@ gap> Display(q);
   [ [ 27, 0, 0 ], [ 0, 36, 0 ], [ 0, 0, 1 ] ] ]
   
 
-# doc/ALCO.xml:1539-1545
+# doc/ALCO.xml:1517-1523
 gap> D := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;
 <2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
 gap> a := Basis(DesignBoseMesnerAlgebra(D));;
@@ -207,7 +208,7 @@ gap> ForAll([1..3], i -> a[i] = Sum([1..3], j ->
 > DesignFirstEigenmatrix(D)[i][j]*e[j]));
 true
 
-# doc/ALCO.xml:1558-1567
+# doc/ALCO.xml:1536-1545
 gap> D := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;
 <2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
 gap> a := Basis(DesignBoseMesnerAlgebra(D));;
@@ -219,19 +220,19 @@ gap> DesignFirstEigenmatrix(D) = Inverse(DesignSecondEigenmatrix(D))
 > *DesignCardinality(D);
 true
 
-# doc/ALCO.xml:1578-1581
+# doc/ALCO.xml:1556-1559
 gap> D := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;
 <2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
 gap> DesignMultiplicities(D);
 [ 27, 36, 1 ]
 
-# doc/ALCO.xml:1592-1595
+# doc/ALCO.xml:1570-1573
 gap> D := DesignByAngleSet(4,4,[1/3,1/9]);; DesignAddCardinality(D, 64);; D;
 <2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
 gap> DesignValencies(D);
 [ 27, 36, 1 ]
 
-# doc/ALCO.xml:1615-1656
+# doc/ALCO.xml:1593-1634
 gap> DesignByAngleSet(2, 1, [0,1/2]);;
 gap> DesignAddCardinality(last, DesignSpecialBound(last));
 <Tight 3-design with rank 2, degree 1, cardinality 4, and angle set 
@@ -275,14 +276,14 @@ gap> DesignAddCardinality(last, DesignSpecialBound(last));
 <Tight 5-design with rank 24, degree 1, cardinality 98280, and angle set
 [ 0, 1/16, 1/4 ]>
 
-# doc/ALCO.xml:1660-1664
+# doc/ALCO.xml:1638-1642
 gap> DesignByAngleSet(2, 2, [ 0, (5-Sqrt(5))/10, (5+Sqrt(5))/10 ]);;
 gap> DesignAddCardinality(last, DesignSpecialBound(last));
 <Tight 5-design with rank 2, degree 2, cardinality 12, and angle set
 [ 0, -3/5*E(5)-2/5*E(5)^2-2/5*E(5)^3-3/5*E(5)^4,
   -2/5*E(5)-3/5*E(5)^2-3/5*E(5)^3-2/5*E(5)^4 ]>
 
-# doc/ALCO.xml:1670-1697
+# doc/ALCO.xml:1648-1675
 gap> DesignByAngleSet(2, 23, [ 0, 1/4, 3/8, 1/2, 5/8, 3/4 ]);;
 gap> DesignAddCardinality(last, DesignSpecialBound(last));
 <Tight 11-design with rank 2, degree 23, cardinality 196560, and angle set
@@ -312,7 +313,7 @@ gap> DesignAddCardinality(last, DesignSpecialBound(last));
 <Tight 7-design with rank 2, degree 22, cardinality 4600, and angle set
 [ 0, 1/3, 1/2, 2/3 ]>
 
-# doc/ALCO.xml:1702-1747
+# doc/ALCO.xml:1680-1725
 gap> DesignByAngleSet(4, 4, [0,1/4,1/2]);;
 gap> DesignAddCardinality(last, DesignSpecialBound(last));
 <3-design with rank 4, degree 4, cardinality 180, and angle set
@@ -360,7 +361,7 @@ gap> DesignAddCardinality(last, DesignSpecialBound(last));
 <5-design with rank 12, degree 2, cardinality 32760, and angle set
 [ 0, 1/12, 1/4, 1/3 ]>
 
-# doc/ALCO.xml:1751-1765
+# doc/ALCO.xml:1729-1743
 gap> A := [ 0, 1/4, 1/2, 3/4, (5-Sqrt(5))/8, (5+Sqrt(5))/8,
 > (3-Sqrt(5))/8, (3+Sqrt(5))/8 ];;
 gap> D := DesignByAngleSet(2, 3, A);;

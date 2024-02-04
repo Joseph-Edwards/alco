@@ -28,3 +28,5 @@ AutoDoc(rec(
 ));
 
 # Test("./tst/alco06.tst", rec(transformFunction := NormalizedWhitespace));
+
+FORCE_QUIT_GAP();

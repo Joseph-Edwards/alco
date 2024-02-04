@@ -27,7 +27,7 @@ gap> Display(g);
 gap> IsGossetLatticeGramMatrix(g);
 true
 
-# doc/ALCO.xml:45-55
+# doc/ALCO.xml:46-56
 gap> short := Set(ShortestVectors(g,4).vectors, y -> 
 > LinearCombination(Basis(OctavianIntegers), y));;
 gap> s := First(short, x -> x^2 + x + 2*One(x) = Zero(x));
@@ -40,7 +40,7 @@ gap> L := OctonionLatticeByGenerators(gens, One(O)*IdentityMat(3)/2);
 gap> IsLeechLatticeGramMatrix(GramMatrix(L));
 true
 
-# doc/ALCO.xml:55-78
+# doc/ALCO.xml:56-79
 gap> J := AlbertAlgebra(Rationals);
 <algebra-with-one of dimension 27 over Rationals>
 gap> SemiSimpleType(Derivations(Basis(J)));
@@ -53,8 +53,8 @@ gap> k := Basis(J){[17..24]};
 [ k1, k2, k3, k4, k5, k6, k7, k8 ]
 gap> e := Basis(J){[25..27]};
 [ ei, ej, ek ]
-gap> List(e, IsIdempotent);
-[ true, true, true ]
+gap> ForAll(e, IsIdempotent);
+true
 gap> Set(i, x -> x^2);
 [ ej+ek ]
 gap> Set(j, x -> x^2);

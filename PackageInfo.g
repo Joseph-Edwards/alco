@@ -7,8 +7,8 @@ SetPackageInfo( rec(
 
   PackageName := "ALCO",
   Subtitle := "Tools for algebraic combinatorics",
-  Version := "0.1",
-  Date := "15/01/2024", # dd/mm/yyyy format
+  Version := "0.2",
+  Date := "04/02/2024", # dd/mm/yyyy format
   License := "GPL-3.0-or-later",
 
   PackageWWWHome := "https://github.com/BNasmith/alco",

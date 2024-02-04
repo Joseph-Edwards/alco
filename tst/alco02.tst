@@ -10,7 +10,7 @@
 #
 gap> START_TEST("alco02.tst");
 
-# doc/ALCO.xml:137-154
+# doc/ALCO.xml:140-157
 gap> O := OctonionAlgebra(Rationals);
 <algebra-with-one of dimension 8 over Rationals>
 gap> LeftActingDomain(O);
@@ -30,7 +30,7 @@ gap> Derivations(Basis(O));
 gap> SemiSimpleType(last);
 "G2"
 
-# doc/ALCO.xml:167-180
+# doc/ALCO.xml:171-184
 gap> a := BasisVectors(Basis(OctavianIntegers));;
 gap> for x in a do Display(x); od;
 (-1/2)*e1+(1/2)*e5+(1/2)*e6+(1/2)*e7
@@ -46,16 +46,15 @@ true
 gap> ForAll(a/2, IsOctavianInt);
 false
 
-# doc/ALCO.xml:190-196
+# doc/ALCO.xml:195-200
 gap> BasisVectors(OctonionE8Basis) = BasisVectors(Basis(OctavianIntegers));
 true
-gap> g := List(OctonionE8Basis, x -> 
-> List(OctonionE8Basis, y -> 
+gap> g := List(OctonionE8Basis, x -> List(OctonionE8Basis, y -> 
 > Norm(x+y) - Norm(x) - Norm(y)));;
 gap> IsGossetLatticeGramMatrix(g);
 true
 
-# doc/ALCO.xml:230-235
+# doc/ALCO.xml:218-223
 gap> Oct := OctonionAlgebra(Rationals);;
 gap> List(Basis(Oct), Norm);
 [ 1, 1, 1, 1, 1, 1, 1, 1 ]
@@ -63,7 +62,7 @@ gap> x := Random(Oct);; y := Random(Oct);;
 gap> Norm(x*y) = Norm(x)*Norm(y);
 true
 
-# doc/ALCO.xml:244-249
+# doc/ALCO.xml:236-241
 gap> e := BasisVectors(Basis(OctonionAlgebra(Rationals)));
 [ e1, e2, e3, e4, e5, e6, e7, e8 ]
 gap> List(e, Trace);
@@ -71,19 +70,19 @@ gap> List(e, Trace);
 gap> List(e, RealPart);
 [ 0*e1, 0*e1, 0*e1, 0*e1, 0*e1, 0*e1, 0*e1, e8 ]
 
-# doc/ALCO.xml:258-261
+# doc/ALCO.xml:250-253
 gap> e := BasisVectors(Basis(OctonionAlgebra(Rationals)));
 [ e1, e2, e3, e4, e5, e6, e7, e8 ]
 gap> List(e, ComplexConjugate);
 [ (-1)*e1, (-1)*e2, (-1)*e3, (-1)*e4, (-1)*e5, (-1)*e6, (-1)*e7, e8 ]
 
-# doc/ALCO.xml:269-272
+# doc/ALCO.xml:261-264
 gap> e := BasisVectors(Basis(OctonionAlgebra(Rationals)));
 [ e1, e2, e3, e4, e5, e6, e7, e8 ]
 gap> List(e, RealPart);
 [ 0*e1, 0*e1, 0*e1, 0*e1, 0*e1, 0*e1, 0*e1, e8 ]
 
-# doc/ALCO.xml:292-301
+# doc/ALCO.xml:284-293
 gap> O := UnderlyingLeftModule(OctonionE8Basis);
 <algebra-with-one of dimension 8 over Rationals>
 gap> BasisVectors(CanonicalBasis(O));
@@ -95,7 +94,7 @@ gap> y := OctonionToRealVector(CanonicalBasis(O), x);
 gap> RealToOctonionVector(CanonicalBasis(O), y);
 [ (-1)*e1+e5+e6+e7, (-1)*e1+(-1)*e2+(-1)*e4+(-1)*e7 ]
 
-# doc/ALCO.xml:310-318
+# doc/ALCO.xml:304-312
 gap> Oct := OctonionAlgebra(Rationals);;
 gap> x := Basis(Oct){[8,1,2]};
 [ e8, e1, e2 ]
@@ -106,11 +105,11 @@ gap> y := VectorToIdempotentMatrix(x);; Display(y);
 gap> IsIdempotent(y);
 true
 
-# doc/ALCO.xml:330-331
+# doc/ALCO.xml:324-325
 gap> WeylReflection([1,0,1],[0,1,1]);
 [ -1, 1, 0 ]
 
-# doc/ALCO.xml:341-360
+# doc/ALCO.xml:335-354
 gap> H := QuaternionAlgebra(Rationals);
 <algebra-with-one of dimension 4 over Rationals>
 gap> IsQuaternion(Random(H));
@@ -132,7 +131,7 @@ gap> List(b, RealPart);
 gap> List(b, ImaginaryPart);
 [ 0*e, e, k, (-1)*j ]
 
-# doc/ALCO.xml:367-374
+# doc/ALCO.xml:363-370
 gap> H := QuaternionAlgebra(Rationals);;
 gap> b := BasisVectors(CanonicalBasis(H));
 [ e, i, j, k ]
@@ -142,14 +141,14 @@ gap> x := Random(H);; y := Random(H);;
 gap> Norm(x*y) = Norm(x)*Norm(y);
 true
 
-# doc/ALCO.xml:382-386
+# doc/ALCO.xml:379-383
 gap> H := QuaternionAlgebra(Rationals);;
 gap> b := BasisVectors(CanonicalBasis(H));
 [ e, i, j, k ]
 gap> List(b, Trace);
 [ 2, 0, 0, 0 ]
 
-# doc/ALCO.xml:450-459
+# doc/ALCO.xml:397-406
 gap> f := BasisVectors(Basis(HurwitzIntegers));;
 gap> for x in f do Display(x); od;
 (-1/2)*e+(-1/2)*i+(-1/2)*j+(1/2)*k
@@ -161,7 +160,7 @@ true
 gap> ForAll(f/2, IsHurwitzInt);
 false
 
-# doc/ALCO.xml:469-474
+# doc/ALCO.xml:416-421
 gap> B := QuaternionD4Basis;;
 gap> for x in BasisVectors(B) do Display(x); od;
 (-1/2)*e+(-1/2)*i+(-1/2)*j+(1/2)*k
@@ -169,7 +168,7 @@ gap> for x in BasisVectors(B) do Display(x); od;
 (-1/2)*e+(1/2)*i+(-1/2)*j+(-1/2)*k
 e
 
-# doc/ALCO.xml:526-543
+# doc/ALCO.xml:452-469
 gap> f := BasisVectors(Basis(IcosianRing));;
 gap> for x in f do Display(x); od;
 (-1)*i
@@ -189,15 +188,15 @@ true
 gap> ForAll(f*(1+Sqrt(5))/2, IsIcosian);
 true
 
-# doc/ALCO.xml:553-558
-gap> f := BasisVectors(IcosianH4Basis);;
+# doc/ALCO.xml:479-484
+gap> f := BasisVectors(IcosianH4Generators);;
 gap> for x in f do Display(x); od;
 (-1)*i
 (-1/2*E(5)^2-1/2*E(5)^3)*i+(1/2)*j+(-1/2*E(5)-1/2*E(5)^4)*k
 (-1)*j
 (-1/2*E(5)-1/2*E(5)^4)*e+(1/2)*j+(-1/2*E(5)^2-1/2*E(5)^3)*k
 
-# doc/ALCO.xml:566-572
+# doc/ALCO.xml:494-500
 gap> sigma := (1-Sqrt(5))/2;; tau := (1+Sqrt(5))/2;;
 gap> x := 5 + 3*sigma;; GoldenModSigma(x);
 5
@@ -206,7 +205,7 @@ gap> GoldenModSigma(sigma);
 gap> GoldenModSigma(tau);
 1
 
-# doc/ALCO.xml:591-596
+# doc/ALCO.xml:521-526
 gap> f := BasisVectors(Basis(EisensteinIntegers));
 [ 1, E(3) ]
 gap> IsEisenInt(E(4));
@@ -214,7 +213,7 @@ false
 gap> IsEisenInt(1+E(3)^2);
 true
 
-# doc/ALCO.xml:606-611
+# doc/ALCO.xml:538-543
 gap> f := BasisVectors(Basis(KleinianIntegers));
 [ 1, E(7)+E(7)^2+E(7)^4 ]
 gap> IsKleinInt(E(4));
