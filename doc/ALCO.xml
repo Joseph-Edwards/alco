@@ -1924,120 +1924,240 @@ true]]></Example>
             basis for the octavian integers as the underlying octonion ring basis <Arg>B</Arg> for the construction. 
             
             <Example><![CDATA[gap> O := OctavianIntegers;;
-gap> gens := Concatenation(List(Basis(O), x -> x*IdentityMat(3)));
+gap> gens := Concatenation(List(IdentityMat(3), x -> List(Basis(O), y -> x*y)));
 [ [ (-1/2)*e1+(1/2)*e5+(1/2)*e6+(1/2)*e7, 0*e1, 0*e1 ],
-  [ 0*e1, (-1/2)*e1+(1/2)*e5+(1/2)*e6+(1/2)*e7, 0*e1 ],
-  [ 0*e1, 0*e1, (-1/2)*e1+(1/2)*e5+(1/2)*e6+(1/2)*e7 ],
   [ (-1/2)*e1+(-1/2)*e2+(-1/2)*e4+(-1/2)*e7, 0*e1, 0*e1 ],
-  [ 0*e1, (-1/2)*e1+(-1/2)*e2+(-1/2)*e4+(-1/2)*e7, 0*e1 ],
-  [ 0*e1, 0*e1, (-1/2)*e1+(-1/2)*e2+(-1/2)*e4+(-1/2)*e7 ],
   [ (1/2)*e2+(1/2)*e3+(-1/2)*e5+(-1/2)*e7, 0*e1, 0*e1 ],
-  [ 0*e1, (1/2)*e2+(1/2)*e3+(-1/2)*e5+(-1/2)*e7, 0*e1 ],
-  [ 0*e1, 0*e1, (1/2)*e2+(1/2)*e3+(-1/2)*e5+(-1/2)*e7 ],
   [ (1/2)*e1+(-1/2)*e3+(1/2)*e4+(1/2)*e5, 0*e1, 0*e1 ],
-  [ 0*e1, (1/2)*e1+(-1/2)*e3+(1/2)*e4+(1/2)*e5, 0*e1 ],
-  [ 0*e1, 0*e1, (1/2)*e1+(-1/2)*e3+(1/2)*e4+(1/2)*e5 ],
   [ (-1/2)*e2+(1/2)*e3+(-1/2)*e5+(1/2)*e7, 0*e1, 0*e1 ],
-  [ 0*e1, (-1/2)*e2+(1/2)*e3+(-1/2)*e5+(1/2)*e7, 0*e1 ],
-  [ 0*e1, 0*e1, (-1/2)*e2+(1/2)*e3+(-1/2)*e5+(1/2)*e7 ],
   [ (1/2)*e2+(-1/2)*e4+(1/2)*e5+(-1/2)*e6, 0*e1, 0*e1 ],
-  [ 0*e1, (1/2)*e2+(-1/2)*e4+(1/2)*e5+(-1/2)*e6, 0*e1 ],
-  [ 0*e1, 0*e1, (1/2)*e2+(-1/2)*e4+(1/2)*e5+(-1/2)*e6 ],
   [ (-1/2)*e1+(-1/2)*e3+(1/2)*e4+(-1/2)*e5, 0*e1, 0*e1 ],
-  [ 0*e1, (-1/2)*e1+(-1/2)*e3+(1/2)*e4+(-1/2)*e5, 0*e1 ],
-  [ 0*e1, 0*e1, (-1/2)*e1+(-1/2)*e3+(1/2)*e4+(-1/2)*e5 ],
   [ (1/2)*e1+(-1/2)*e4+(1/2)*e6+(-1/2)*e8, 0*e1, 0*e1 ],
+  [ 0*e1, (-1/2)*e1+(1/2)*e5+(1/2)*e6+(1/2)*e7, 0*e1 ],
+  [ 0*e1, (-1/2)*e1+(-1/2)*e2+(-1/2)*e4+(-1/2)*e7, 0*e1 ],
+  [ 0*e1, (1/2)*e2+(1/2)*e3+(-1/2)*e5+(-1/2)*e7, 0*e1 ],
+  [ 0*e1, (1/2)*e1+(-1/2)*e3+(1/2)*e4+(1/2)*e5, 0*e1 ],
+  [ 0*e1, (-1/2)*e2+(1/2)*e3+(-1/2)*e5+(1/2)*e7, 0*e1 ],
+  [ 0*e1, (1/2)*e2+(-1/2)*e4+(1/2)*e5+(-1/2)*e6, 0*e1 ],
+  [ 0*e1, (-1/2)*e1+(-1/2)*e3+(1/2)*e4+(-1/2)*e5, 0*e1 ],
   [ 0*e1, (1/2)*e1+(-1/2)*e4+(1/2)*e6+(-1/2)*e8, 0*e1 ],
+  [ 0*e1, 0*e1, (-1/2)*e1+(1/2)*e5+(1/2)*e6+(1/2)*e7 ],
+  [ 0*e1, 0*e1, (-1/2)*e1+(-1/2)*e2+(-1/2)*e4+(-1/2)*e7 ],
+  [ 0*e1, 0*e1, (1/2)*e2+(1/2)*e3+(-1/2)*e5+(-1/2)*e7 ],
+  [ 0*e1, 0*e1, (1/2)*e1+(-1/2)*e3+(1/2)*e4+(1/2)*e5 ],
+  [ 0*e1, 0*e1, (-1/2)*e2+(1/2)*e3+(-1/2)*e5+(1/2)*e7 ],
+  [ 0*e1, 0*e1, (1/2)*e2+(-1/2)*e4+(1/2)*e5+(-1/2)*e6 ],
+  [ 0*e1, 0*e1, (-1/2)*e1+(-1/2)*e3+(1/2)*e4+(-1/2)*e5 ],
   [ 0*e1, 0*e1, (1/2)*e1+(-1/2)*e4+(1/2)*e6+(-1/2)*e8 ] ]
-gap> G := One(O)*IdentityMat(3)/2;;
+gap> G := IdentityMat(3)*One(O)/2;;
 gap> B := CanonicalBasis(O);;
 gap> O3 := OctonionLatticeByGenerators(gens, G, B);
 <free left module over Integers, with 24 generators>
 gap> KnownAttributesOfObject(O3);
-[ "LeftActingDomain", "GeneratorsOfLeftOperatorAdditiveGroup",
+[ "LeftActingDomain", "Dimension", "GeneratorsOfLeftOperatorAdditiveGroup",
   "UnderlyingOctonionRing", "UnderlyingOctonionRingBasis",
   "OctonionGramMatrix", "GeneratorsAsCoefficients",
   "LLLReducedBasisCoefficients" ]]]></Example>
-
           </Description>
-        </ManSection>
-
-      
+        </ManSection>     
       
       </Section>
 
     <Section>
         <Heading>Octonion Lattice Attributes</Heading>
 
+        An free left module <Arg>L</Arg> that satisfies <Code>IsOctonionLattice(<Arg>L</Arg>)</Code> has 
+        several attributes in addition to those of a free left module (such as <Code>LeftActingDomain</Code> 
+        and <Code>GeneratorsOfLeftOperatorAdditiveGroup</Code>). 
+        In the examples of this section, we use the octonion lattice <Code>O3</Code> constructed above 
+        to illustrate these attributes.
+
         <ManSection>
           <Attr Name="UnderlyingOctonionRing" Arg="L" />
-          <Description> This attribute stores the octonion algebra containing the octonion
-      coefficients of the generating vectors, stored as <Code>GeneratorsOfLeftOperatorAdditiveGroup(<Arg>
-      L</Arg>)</Code>. </Description>
+          <Description> 
+            When <Arg>L</Arg> satisfies <Code>IsOctonionLattice(<Arg>L</Arg>)</Code>, this attribute 
+            stores the octonion algebra to which the coefficients of the generating octonion vectors
+            <Arg>gens</Arg> belong. This algebra is determined by 
+            <Code>FamilyObj(One(Flat(<Arg>gens</Arg>)))!.fullSCAlgebra</Code> where <Arg>gens</Arg> 
+            is given by <Code>GeneratorsOfLeftOperatorAdditiveGroup(<Arg>L</Arg>)</Code>.
+            <Example><![CDATA[gap> UnderlyingOctonionRing(O3);
+<algebra-with-one of dimension 8 over Rationals>]]></Example>
+          </Description>
         </ManSection>
 
         <ManSection>
           <Attr Name="OctonionGramMatrix" Arg="L" />
-          <Description> This attribute stores the optional argument <Arg>g</Arg> of <Code>
-      OctonionLatticeByGenerators(<Arg>gens</Arg> [,<Arg>g</Arg>])</Code>. This attribute stores the
-      octonion matrix used to calculate the inner product on the lattice via <Code>Trace(<Arg>x</Arg>
-      *<Arg>g</Arg>*ComplexConjugate(<Arg>y</Arg>))</Code>. The default value of this attribute is
-      the identity matrix. </Description>
+          <Description>
+            When <Arg>L</Arg> satisfies <Code>IsOctonionLattice(<Arg>L</Arg>)</Code>, this attribute 
+            stores the optional argument <Arg>G</Arg> of <Ref Func="OctonionLatticeByGenerators" />. 
+            When the optional argument is not supplied, the default value is half the appropriate 
+            octonion identity matrix. 
+            This octonion matrix is used to compute <Ref Oper="ScalarProduct" Label="Octonion Lattices"/> between lattice 
+            vectors.
+            <Example><![CDATA[gap> OctonionGramMatrix(O3);; Display(last);
+[ [  (1/2)*e8,      0*e1,      0*e1 ],
+  [      0*e1,  (1/2)*e8,      0*e1 ],
+  [      0*e1,      0*e1,  (1/2)*e8 ] ]]]></Example>
+          </Description>
         </ManSection>
-
-        <ManSection>
-          <Attr Name="Dimension" Arg="L" />
-          <Description> For <Arg>L</Arg> satisfying <Code>IsOctonionLattice</Code> these attributes
-      determine the lattice rank, which is equivalent to the lattice dimension. The value is
-      computed by determining <Code>Rank(GeneratorsAsCoefficients(<Arg>L</Arg>))</Code>. </Description>
-        </ManSection>
-
-
+        
         <ManSection>
           <Attr Name="GeneratorsAsCoefficients" Arg="L" />
-          <Description> This attributes converts the lattice generators, stored as <Code>
-      GeneratorsOfLeftOperatorAdditiveGroup(<Arg>L</Arg>)</Code>, into a list of coefficients. For
-      each generating vector <Arg>x</Arg>, the coefficient list <Code>
-      OctonionToRealVector(CanonicalBasis(UnderlyingOctonionRing(<Arg>L</Arg>)), <Arg>x</Arg>)</Code>
-      is added to the list <Code> GeneratorsAsCoefficients(<Arg>L</Arg>)</Code>. </Description>
+          <Description> 
+            When <Arg>L</Arg> satisfies <Code>IsOctonionLattice(<Arg>L</Arg>)</Code>, this attribute 
+            stores converts the lattice generators, <Code>GeneratorsOfLeftOperatorAdditiveGroup(<Arg>L</Arg>)</Code>, 
+            into a list of coefficients using <Code>OctonionToRealVector(<Arg>B</Arg>, <Arg>x</Arg>)</Code>
+            for each generator <Arg>x</Arg>. Recall that <Arg>B</Arg> is an optional argument of 
+            <Ref Func="OctonionLatticeByGenerators" /> that defaults to 
+            <Code>CanonicalBasis(UnderlyingOctonionRing(<Arg>L</Arg>))</Code>.
+            <Example><![CDATA[gap> GeneratorsAsCoefficients(O3);
+[ [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 ] ]]]></Example>
+          </Description>
         </ManSection>
 
         <ManSection>
           <Attr Name="LLLReducedBasisCoefficients" Arg="L" />
-          <Description> This attribute stores the result of <Code>LLLReducedBasis(<Arg>L</Arg>,
-      GeneratorsAsCoefficients(<Arg>L</Arg>)).basis</Code>. This provides a set of basis vectors as
-      coefficients for <Arg>L</Arg>, since there is no test to ensure that <Code>
-      GeneratorsOfLeftOperatorAdditiveGroup</Code> form a &ZZ;-module basis. </Description>
+          <Description> 
+            When <Arg>L</Arg> satisfies <Code>IsOctonionLattice(<Arg>L</Arg>)</Code>, this attribute
+            stores the LLL reduced basis computed from <Code>GeneratorsAsCoefficients(<Arg>L</Arg>)</Code>.
+            These vectors define the <Ref Attr="CanonicalBasis" Label="Octonion Lattices" /> for <Arg>L</Arg>
+            and are used to compute the attribute <Ref Attr="GramMatrix" Label="Octonion Lattices" />.
+            <Example><![CDATA[gap> LLLReducedBasisCoefficients(O3);
+[ [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0 ],
+  [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1 ] ]]]></Example>
+         </Description>
         </ManSection>
 
-
         <ManSection>
-          <Attr Name="GramMatrix" Arg="L" Label="GramMatrixLattice" />
-          <Description> This attribute stores the Gram matrix of vectors <Code>
-      LLLReducedBasisCoefficients(<Arg>L</Arg>)</Code> relative to <Code>ScalarProduct(<Arg>L</Arg>, <Arg>
-      x</Arg>, <Arg>y</Arg>)</Code>. </Description>
+          <Heading>Octonion Lattice Dimension</Heading>
+          <Attr Name="Dimension" Arg="L" Label="Octonion Lattices"/>
+          <Attr Name="Rank" Arg="L" Label="Octonion Lattices" />
+          <Description> 
+            When <Arg>L</Arg> satisfies <Code>IsOctonionLattice(<Arg>L</Arg>)</Code>, these attributes
+            stores the lattice dimension, also known as rank. This is calculated by finding the 
+            number of vectors in <Code>LLLReducedBasisCoefficients(<Arg>L</Arg>)</Code>. 
+            <Example><![CDATA[gap> Dimension(O3);
+24
+gap> Rank(O3);
+24]]></Example>
+          </Description>
         </ManSection>
 
-
         <ManSection>
-          <Attr Name="TotallyIsotropicCode" Arg="L" />
-          <Description> This attribute stores the vectorspace over <Code>GF(2)</Code> generated by
-      the vectors <Code>LLLReducedBasisCoefficients(<Arg>L</Arg>)</Code> multiplied by <Code>Z(2)</Code>
-      (see <Cite Key="lepowsky_e8-approach_1982" /> for more details). </Description>
+          <Attr Name="GramMatrix" Arg="L" Label="Octonion Lattices" />
+          <Description> 
+            When <Arg>L</Arg> satisfies <Code>IsOctonionLattice(<Arg>L</Arg>)</Code>, this attribute
+            stores the Gram matrix defined by the basis stored using the <Ref Attr="LLLReducedBasisCoefficients" />
+            attribute and the inner producte defined on the lattice by 
+            <Ref Oper="ScalarProduct" Label="Octonion Lattices" />.
+            <Example><![CDATA[gap> g := 2*GramMatrix(O3);;
+gap> DimensionsMat(g);
+[ 24, 24 ]
+gap> DeterminantMat(g);
+1]]></Example>
+          </Description>
         </ManSection>
 
         <ManSection>
           <Heading>Lattice Basis</Heading>
-          <Attr Name="Basis" Arg="L" />
-          <Attr Name="CanonicalBasis" Arg="L" />
-          <Attr Name="BasisVectors" Arg="B" />
-          <Filt Name="IsOctonionLatticeBasis" />
-          <Description> For <Arg>L</Arg> satisfying <Code>IsOctonionLattice</Code> the attributes <Code>
-      Basis(<Arg>L</Arg>)</Code> and <Code> CanonicalBasis(<Arg>L</Arg>)</Code> are equivalent. The
-      corresponding basis satisfies <Code>IsOctonionLatticeBasis(<Arg>B</Arg>)</Code> and provides a
-      basis for octonion lattice <Arg>L</Arg> as a left free Z-module. In turn, <Code>BasisVectors(<Arg>
-      B</Arg>)</Code> are given by <Code>LLLReducedBasisCoefficients(<Arg>L</Arg>)</Code>. </Description>
+          <Attr Name="Basis" Arg="L" Label="Octonion Lattices" />
+          <Attr Name="CanonicalBasis" Arg="L" Label="Octonion Lattices" />
+          <Attr Name="BasisVectors" Arg="B" Label="Octonion Lattices" />
+          <Filt Name="IsOctonionLatticeBasis" Label="Octonion Lattices" />
+          <Description> 
+            When <Arg>L</Arg> satisfies <Code>IsOctonionLattice(<Arg>L</Arg>)</Code>, these attributes 
+            are used to store the lattice canonical basis determined by <Ref Attr="LLLReducedBasisCoefficients"/>. 
+            The attributes <Code>Basis(<Arg>L</Arg>)</Code> and <Code>CanonicalBasis(<Arg>L</Arg>)</Code> 
+            are equivalent and satisfy the filter <Code>IsOctonionLatticeBasis</Code>.
+            The attribute <Code>BasisVectors</Code> returns the vectors stored in the attribute 
+            <Ref Attr="LLLReducedBasisCoefficients"/> converted into octonion triples using 
+            <Code>RealToOctonionVector(UnderlyingOctonionRingBasis(<Arg>L</Arg>), <Arg>x</Arg>)</Code> 
+            for each <Arg>x</Arg> in <Code>LLLReducedBasisCoefficients(<Arg>L</Arg>)</Code>.
+            <Example><![CDATA[gap> IsOctonionLatticeBasis(Basis(O3));
+true
+gap> b := BasisVectors(Basis(O3));
+[ [ (-1/2)*e1+(1/2)*e5+(1/2)*e6+(1/2)*e7, 0*e1, 0*e1 ],
+  [ (-1/2)*e1+(-1/2)*e2+(-1/2)*e4+(-1/2)*e7, 0*e1, 0*e1 ],
+  [ (1/2)*e1+(1/2)*e2+(1/2)*e4+(-1/2)*e7, 0*e1, 0*e1 ],
+  [ (1/2)*e2+(1/2)*e3+(-1/2)*e5+(-1/2)*e7, 0*e1, 0*e1 ],
+  [ (1/2)*e1+(1/2)*e3+(1/2)*e4+(-1/2)*e5, 0*e1, 0*e1 ],
+  [ (1/2)*e1+(1/2)*e2+(1/2)*e3+(-1/2)*e6, 0*e1, 0*e1 ],
+  [ (1/2)*e2+(1/2)*e4+(-1/2)*e5+(-1/2)*e6, 0*e1, 0*e1 ],
+  [ (1/2)*e1+(1/2)*e2+(-1/2)*e5+(-1/2)*e8, 0*e1, 0*e1 ],
+  [ 0*e1, (-1/2)*e1+(1/2)*e5+(1/2)*e6+(1/2)*e7, 0*e1 ],
+  [ 0*e1, (-1/2)*e1+(-1/2)*e2+(-1/2)*e4+(-1/2)*e7, 0*e1 ],
+  [ 0*e1, (1/2)*e1+(1/2)*e2+(1/2)*e4+(-1/2)*e7, 0*e1 ],
+  [ 0*e1, (1/2)*e2+(1/2)*e3+(-1/2)*e5+(-1/2)*e7, 0*e1 ],
+  [ 0*e1, (1/2)*e1+(1/2)*e3+(1/2)*e4+(-1/2)*e5, 0*e1 ],
+  [ 0*e1, (1/2)*e1+(1/2)*e2+(1/2)*e3+(-1/2)*e6, 0*e1 ],
+  [ 0*e1, (1/2)*e2+(1/2)*e4+(-1/2)*e5+(-1/2)*e6, 0*e1 ],
+  [ 0*e1, (1/2)*e1+(1/2)*e2+(-1/2)*e5+(-1/2)*e8, 0*e1 ],
+  [ 0*e1, 0*e1, (-1/2)*e1+(1/2)*e5+(1/2)*e6+(1/2)*e7 ],
+  [ 0*e1, 0*e1, (-1/2)*e1+(-1/2)*e2+(-1/2)*e4+(-1/2)*e7 ],
+  [ 0*e1, 0*e1, (1/2)*e1+(1/2)*e2+(1/2)*e4+(-1/2)*e7 ],
+  [ 0*e1, 0*e1, (1/2)*e2+(1/2)*e3+(-1/2)*e5+(-1/2)*e7 ],
+  [ 0*e1, 0*e1, (1/2)*e1+(1/2)*e3+(1/2)*e4+(-1/2)*e5 ],
+  [ 0*e1, 0*e1, (1/2)*e1+(1/2)*e2+(1/2)*e3+(-1/2)*e6 ],
+  [ 0*e1, 0*e1, (1/2)*e2+(1/2)*e4+(-1/2)*e5+(-1/2)*e6 ],
+  [ 0*e1, 0*e1, (1/2)*e1+(1/2)*e2+(-1/2)*e5+(-1/2)*e8 ] ]
+gap> GramMatrix(O3) = List(b, x -> List(b, y -> ScalarProduct(O3, x, y)));
+true]]></Example>
+
+          </Description>
         </ManSection>
+
+        <!-- <ManSection>
+          <Attr Name="TotallyIsotropicCode" Arg="L" />
+          <Description> This attribute stores the vectorspace over <Code>GF(2)</Code> generated by
+      the vectors <Code>LLLReducedBasisCoefficients(<Arg>L</Arg>)</Code> multiplied by <Code>Z(2)</Code>
+      (see <Cite Key="lepowsky_e8-approach_1982" /> for more details). </Description>
+        </ManSection> -->
+
 
       </Section>
     
@@ -2045,81 +2165,109 @@ gap> KnownAttributesOfObject(O3);
     <Section>
         <Heading>Octonion Lattice Operations</Heading>
 
-        <ManSection>
-          <Oper Name="Rank" Arg="L" />
-          <Description> For <Arg>L</Arg> satisfying <Code>IsOctonionLattice</Code> these attributes
-      determine the lattice rank, which is equivalent to the lattice dimension. The value is
-      computed by determining <Code>Rank(GeneratorsAsCoefficients(<Arg>L</Arg>))</Code>. </Description>
-        </ManSection>
-
-        <ManSection>
-          <Oper Name="ScalarProduct" Arg="L, x, y" />
-          <Description>For <Arg>L</Arg> that satisfies <Code>IsOctonionLattice</Code> and <Arg>x</Arg>
-      , <Arg>y</Arg> either octonion vectors or coefficient vectors, this operation computes <Code>
-      Trace(<Arg>x</Arg>*<Arg>g</Arg>*ComplexConjugate(<Arg>y</Arg>))</Code> where <Arg>g</Arg> is
-      equal to <Code>OctonionGramMatrix(<Arg>L</Arg>)</Code>. </Description>
-        </ManSection>
-
+        There are some additional operations available to study octonion lattices. In the examples 
+        that follow, we continue to use the lattice <Code>O3</Code> defined in the example of 
+        <Ref Func="OctonionLatticeByGenerators" />.
 
         <ManSection>
           <Oper Name="\in" Arg="x, L" />
-          <Description> For <Arg>x</Arg> an octonion vector (satisfies <Code>IsOctonionCollection</Code>
-      and <Arg>L</Arg> an octonion lattice (satisfies <Code>IsOctonionLattice</Code>), this function
-      evaluates inclusion of <Arg>x</Arg> in <Arg>L</Arg>. Note that <Code>\in(<Arg>x</Arg>,<Arg>L</Arg>
-      )</Code> and <Code><Arg>x</Arg> in <Arg>L</Arg></Code> are equivalent expression. </Description>
+          <Description> 
+            When <Arg>L</Arg> satisfies <Code>IsOctonionLattice(<Arg>L</Arg>)</Code> and <Arg>x</Arg>
+            is an octonion row vector that satisfies <Code>IsOctonionCollection and IsRowVector</Code>,
+            this operation test whether vector <Arg>x</Arg> is in lattice <Arg>L</Arg>. 
+            This operation will return <Code>fail</Code> when <Arg>x</Arg> and <Arg>L</Arg> do not 
+            share the same underlying octonion ring. 
+            Note that <Code>\in(<Arg>x</Arg>,<Arg>L</Arg>)</Code> and 
+            <Code><Arg>x</Arg> in <Arg>L</Arg></Code> are equivalent expression. 
+            <Example><![CDATA[gap> x := Sum(BasisVectors(Basis(O3)){[2,3,4]});
+[ (1/2)*e2+(1/2)*e3+(-1/2)*e5+(-3/2)*e7, 0*e1, 0*e1 ]
+gap> x in O3;
+true
+gap> \in( x, O3);
+true]]></Example>
+          </Description>
+        </ManSection>
+
+        <ManSection>
+          <Oper Name="ScalarProduct" Arg="L, x, y" Label="Octonion Lattices" />
+          <Description>
+            When <Arg>L</Arg> satisfies <Code>IsOctonionLattice(<Arg>L</Arg>)</Code> and <Arg>x</Arg>, 
+            <Arg>y</Arg> satisfy <Code>IsOctonionCollection and IsRowVector</Code> then 
+            this operation returns 
+            <Code>Trace(<Arg>x</Arg>*OctonionGramMatrix(<Arg>L</Arg>)*ComplexConjugate(<Arg>y</Arg>))</Code>. 
+            Here the trace is the method <Ref Meth="Trace" Label="Octonions" /> acting on an octonion
+            argument (corresponding to twice the real part, or identity coefficient, of the octonion).
+            When <Arg>x</Arg>, <Arg>y</Arg> are not octonion vectors but rather coefficient vectors of 
+            the appropriate length, with<Code>IsHomogeneousList(Flat([x,y,GeneratorsAsCoefficients(L)]))</Code>,
+            then the operation <Code>ScalarProduct</Code> converts <Arg>x</Arg> and <Arg>y</Arg>
+            to suitable octonion vectors to compute the scalar product.
+          <Example><![CDATA[gap> b := BasisVectors(Basis(O3));;
+gap> b[1];
+[ (-1/2)*e1+(1/2)*e5+(1/2)*e6+(1/2)*e7, 0*e1, 0*e1 ]
+gap> GramMatrix(O3) = List(b, x -> List(b, y -> ScalarProduct(O3, x, y)));
+true
+gap> c := LLLReducedBasisCoefficients(O3);;
+gap> c[1];
+[ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ]
+gap> GramMatrix(O3) = List(c, x -> List(c, y -> ScalarProduct(O3, x, y)));
+true]]></Example>  
+          
+          </Description>
         </ManSection>
 
         <ManSection>
           <Heading>Sublattice Identification</Heading>
           <Oper Name="IsSublattice" Arg="L, M" />
           <Oper Name="IsSubset" Arg="L, M" />
-          <Description> For both <Arg>L</Arg> and <Arg>M</Arg> octonion lattices (satisfies <Code>
-      IsOctonionLattice</Code>) these two functions determine whether the elements of <Arg>M</Arg>
-      are contained in <Arg>L</Arg>. </Description>
-        </ManSection>
-
-        <ManSection>
           <Oper Name="\=" Arg="L, M" />
-          <Description> For both <Arg>L</Arg> and <Arg>M</Arg> octonion lattices (satisfies <Code>
-      IsOctonionLattice</Code>) the expression <Code><Arg>L</Arg> = <Arg>M</Arg></Code> return true
-      when <Code>IsSublattice(<Arg>L</Arg>, <Arg>M</Arg>) and IsSublattice(<Arg>L</Arg>, <Arg>M</Arg>
-      )</Code>. </Description>
+          <Description> 
+            When <Arg>L</Arg> and <Arg>M</Arg> both satisfy <Code>IsOctonionLattice(<Arg>L</Arg>)</Code>,
+            these operations determine whether <Arg>M</Arg> is a sublattice of <Arg>L</Arg> by
+            checking whether the basis vectors for <Arg>M</Arg> are in <Arg>L</Arg>. 
+            If the lattices <Arg>L</Arg> and <Arg>M</Arg> do not share the same <Ref Attr="UnderlyingOctonionRing" /> 
+            then the operation will return <Code>fail</Code>. 
+            The operation <Code>\=</Code> returns the value of 
+            <Code>IsSublattice(<Arg>L</Arg>, <Arg>M</Arg>) and IsSublattice(<Arg>L</Arg>, <Arg>M</Arg>)</Code>. 
+            <P/>
+
+            In the example below we construct an octonion Leech lattice <Code>Leech</Code> and verify 
+            that it is a sublattice of <Code>O3</Code>.
+            <Example><![CDATA[gap> s := LinearCombination(OctonionE8Basis, [ 1, 2, 1, 2, 2, 2, 2, 1 ]);;
+gap> leech_gens := List(Basis(OctavianIntegers), x -> 
+> x*[[s,s,0],[0,s,s],ComplexConjugate([s,s,s])]);;
+gap> leech_gens := Concatenation(leech_gens);;
+gap> Leech := OctonionLatticeByGenerators(leech_gens, G, B);
+<free left module over Integers, with 24 generators>
+gap> IsLeechLatticeGramMatrix(GramMatrix(Leech));
+true
+gap> IsSublattice(Leech, O3);
+false
+gap> IsSublattice(O3, Leech);
+true
+gap> IsSubset(O3, Leech);
+true]]></Example>
+
+          </Description>
         </ManSection>
 
-
-          <!-- This entry needs help. -->
         <ManSection>
-          <Heading>Converting Between Real and Octonion Vectors</Heading>
-          <Func Name="RealToOctonionVector" Arg="L, x" Label="RealToOctLattices" />
-          <Func Name="OctonionToRealVector" Arg="L, y" Label="OctToRealLattices" />
-          <Description> Let <Arg>L</Arg> be an octonion lattice, satisfying <Code>IsOctonionLattice</Code>,
-      and let <Arg>B</Arg> be a basis for the octonion algebra <Code>UnderlyingOctonionRing(<Arg>L</Arg>
-      )</Code>. Let <Arg>x</Arg> be a real vector with <Code>Length(<Arg>x</Arg>) mod 8 = 0</Code>
-      and let <Arg>y</Arg> be an octonion vector of length <Code>Dimension(<Arg>L</Arg>)/8</Code>.
-      The function <Code>RealToOctonionVector(<Arg>B</Arg>, <Arg>x</Arg>)</Code> returns an octonion
-      vector constructed by taking each successive octonion entry as the linear combination in the
-      eight basis vectors of <Arg>B</Arg> of the corresponding eight real coefficients. Likewise,
-      the function <Code>OctonionToRealVector(<Arg>B</Arg>, <Arg>y</Arg>)</Code> is the
-      concatenation of the real coefficients of the octonion entries computed using the basis <Arg>B</Arg>.
-      In contrast, <Code>RealToOctonionVector(<Arg>L</Arg>, <Arg>x</Arg>)</Code> returns the linear
-      combination of the octonion lattice canonical basis vectors defined by <Code>
-      LLLReducedBasisCoefficients(<Arg>L</Arg>)</Code> given by the coefficients <Arg>x</Arg>. The
-      function <Code>OctonionToRealVector(<Arg>L</Arg>, <Arg>y</Arg>)</Code> determines the lattice
-      coefficients of octonion vector <Arg>y</Arg> in the canonical basis of octonion lattice <Arg>L</Arg>
-      .
-            <Example><![CDATA[gap> O := OctavianIntegers;;
-gap> gens := Concatenation(List(Basis(O), x -> x*IdentityMat(3)));;
-gap> O3 := OctonionLatticeByGenerators(gens);
-<free left module over Integers, with 24 generators>
-gap> List(IdentityMat(24), x -> RealToOctonionVector(O3, x)) = 
-> List(LLLReducedBasisCoefficients(O3), y -> 
-> RealToOctonionVector(Basis(O), y));
-true]]></Example> Another example illustrates the inverse properties of these
-      functions. <Example><![CDATA[gap> OctonionToRealVector(O3, RealToOctonionVector(O3, [1..24])) = [1..24];
-true
-gap> OctonionToRealVector(Basis(O), RealToOctonionVector(Basis(O), [1..24]))
-> = [1..24];
-true]]></Example>
+          <Heading>Lattice Vector Coefficients</Heading>
+          <Oper Name="Coefficients" Arg="B, y" Label="Octonion Lattices" />
+          <Description> 
+            Let <Arg>B</Arg> satisfy <Code>IsOctonionLatticeBasis(<Arg>B</Arg>)</Code> with basis
+            <Arg>B</Arg> belonging to octonion lattice <Arg>L</Arg>.
+            For <Code><Arg>y</Arg> in <Arg>L</Arg></Code> such that 
+            <Code>IsOctonionCollection(<Arg>y</Arg>)</Code>, the coefficients in <Arg>y</Arg> in the 
+            lattice basis <Arg>B</Arg> can be determined by 
+            <Code>Coefficients(<Arg>B</Arg>, <Arg>y</Arg>)</Code>.
+            For <Code><Arg>x</Arg></Code> an integer row vector of suitable length, the 
+            linear combination of basis vectors is computed in the usual way as 
+            <Code>LinearCombination(<Arg>B</Arg>, <Arg>x</Arg>)</Code>.
+            <Example><![CDATA[gap> rand := Random(O3);;
+gap> coeffs := Coefficients(Basis(O3), rand);;
+gap> rand = LinearCombination(Basis(O3), coeffs);
+true]]></Example> 
+            
           </Description>
         </ManSection>
 
@@ -2137,12 +2285,14 @@ true]]></Example>
         <ManSection>
           <Func Name="Closure" Arg="gens, op [, option] " />
           <Description> For <Arg>gens</Arg> satisfying <Code>IsHomogeneousList</Code>, this function
-      computes the closure of <Arg>gens</Arg> by addition of all elements of the form <Code><Arg>op</Arg>
-      (x,y)</Code>, starting with <Code>x</Code> and <Code>y</Code> any elements in <Arg>gens</Arg>.
-      The function will not terminate until no new members are produced when applying <Arg>op</Arg>
+      computes the closure of <Arg>gens</Arg> by addition of all elements of the form 
+      <Code><Arg>op</Arg>(x,y)</Code>, starting with <Code>x</Code> and <Code>y</Code> any elements 
+      in <Arg>gens</Arg>. The function will not terminate until no new members are produced when 
+      applying <Arg>op</Arg>
       to all ordered pairs of generated elements. The argument <Arg>option</Arg>, if supplied,
       ensures that the function treats <Arg>op</Arg> as a commutative operation. <P /> Caution must
-      be exercised when using this function to prevent attempting to compute the closure of infinite
+      be exercised when using this function to prevent attempting to compute the closure of large 
+      or possibly infinite
       sets. <Example><![CDATA[gap> Closure([1,E(7)], \*);
 [ 1, E(7)^6, E(7)^5, E(7)^4, E(7)^3, E(7)^2, E(7) ]
 gap> QuaternionD4Basis;
@@ -2180,46 +2330,36 @@ gap> Closure(QuaternionD4Basis,\*);
       in interpreting the output. Even for large values of <Arg>N</Arg>, the result is not
       necessarily the full closure of set <Arg>gens</Arg>. Furthermore, repeated calls to this
       function may result in different outputs due to the random selection of elements involved
-      throughout. <Example><![CDATA[gap> AsList(Basis(Oct));
-[ e1, e2, e3, e4, e5, e6, e7, e8 ]
-gap> RandomClosure(Basis(Oct), \*, 2, true);
-8
-12
-14
-16
-16
-16
-[ (-1)*e1, (-1)*e2, (-1)*e3, (-1)*e4, (-1)*e5, (-1)*e6, (-1)*e7, (-1)*e8, e8, e7, e6, e5, e4, e3, e2, e1 ]]]></Example>
+      throughout. <Example><![CDATA[gap> start := Basis(QuaternionAlgebra(Rationals)){[2,3]};
+[ i, j ]
+gap> repeat
+> start := RandomClosure(start, \*);
+> until Length(start) = 8;
+gap> start;
+[ (-1)*e, (-1)*i, (-1)*j, (-1)*k, k, j, i, e ]]]></Example>
           </Description>
         </ManSection>  
 
     <ManSection>
           <Func Name="RandomOrbitOnSets" Arg="gens, start, op [, N, [, print ] ] " />
           <Description> This function proceeds in a manner very similar to <Ref Func="RandomClosure" />
-      with the following differences. This function instead selects a random element random element <Arg>
-      r</Arg> in <Arg>gens</Arg> and then for every <Arg>x</Arg> in <Arg>start</Arg>, or the set of
+      with the following differences. This function instead selects a random element <Arg>r</Arg> 
+      in <Arg>gens</Arg> and then for every <Arg>x</Arg> in <Arg>start</Arg>, or the set of
       previously generated elements, computes <Code><Arg>op</Arg>(<Arg>r</Arg>,<Arg>x</Arg>)</Code>.
       At each step the cardinality of the union of <Arg>start</Arg> and any previously generated
       elements is computed. Once the cardinality is fixed for <Arg>N + 1</Arg> steps, the function
       returns the set of generated elements. <P /> The same cautions as described in <Ref
               Func="RandomClosure" /> apply. Note that while <Arg>start</Arg> is always a subset of
       the output, <Code>Difference(<Arg>gens</Arg>,<Arg>start</Arg>)</Code> is not a subset of the
-      output. <Example><![CDATA[gap> gens := Basis(Oct){[1,2,3]};
-[ e1, e2, e3 ]
-gap> start := Basis(Oct){[8]};
-[ e8 ]
-gap> RandomOrbitOnSets(gens, start, {x,y} -> x*y, 3, true);
-1
-2
-4
-6
-7
-8
-8
-16
-16
-16
-[ (-1)*e1, (-1)*e2, (-1)*e3, (-1)*e4, (-1)*e5, (-1)*e6, (-1)*e7, (-1)*e8, e8, e7, e6, e5, e4, e3, e2, e1 ]]]></Example>
+      output. <Example><![CDATA[gap> start := Basis(QuaternionAlgebra(Rationals)){[1,2]};
+[ e, i ]
+gap> gens := Basis(QuaternionAlgebra(Rationals)){[3]};
+[ j ]
+gap> repeat 
+> start := RandomOrbitOnSets(gens, start, {x,y} -> x*y);
+> until Length(start) = 8;
+gap> start;
+[ (-1)*e, (-1)*i, (-1)*j, (-1)*k, k, j, i, e ]]]></Example>
           </Description>
         </ManSection>
 

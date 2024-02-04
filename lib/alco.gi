@@ -507,38 +507,54 @@ InstallMethod( \mod,
         return LinearCombination(Basis(OctavianIntegers),  coeffs mod m);
     end );
 
+# Potentially replace the function below with a method.
+
+# InstallMethod( OctonionToRealVector, 
+#     "For an octonion basis and vector",
+#     [ IsBasis, IsRowVector ], 0,
+#     function(basis, x)
+#         if IsHomogeneousList(Flat(AsList(Basis), x)) and 
+#             IsOctonionCollection(x) 
+#         then 
+#             return Flat(List(x, y -> Coefficients(basis, y)) );
+#         fi;
+#         return fail;
+#     end );
+
 InstallGlobalFunction( OctonionToRealVector,
-    function(basis, x) 
-    # In the case of an octonion basis.
-    if IsBasis(basis) and IsOctonionCollection(UnderlyingLeftModule(basis)) and IsOctonionCollection(x) then 
-        return Flat(List(x, y -> Coefficients(basis, y)) );
-    fi;
-    # In the case of an octonion lattice.
-    if IsOctonionLattice(basis) and IsOctonionCollection(x) then 
-        return SolutionMat(LLLReducedBasisCoefficients(basis),
-            OctonionToRealVector(CanonicalBasis(UnderlyingOctonionRing(basis)), x)
-        );
+    function(arg, x) 
+    # In the case of an octonion basis return the concatenated octonion basis expansion.
+    if IsBasis(arg) and IsOctonionCollection(UnderlyingLeftModule(arg)) and IsOctonionCollection(x) then 
+        return Concatenation(List(x, y -> Coefficients(arg, y)) );
     fi;
     return fail;
     end );
 
-InstallGlobalFunction( RealToOctonionVector,
+InstallMethod( Coefficients, 
+    "For an octonion lattice basis and an octonion vector",
+    [ IsOctonionLatticeBasis, IsOctonionCollection ], 0,
     function(basis, x)
+        local L;
+        L := UnderlyingLeftModule(basis);
+        if x in L then 
+            # return OctonionToRealVector(UnderlyingLeftModule(basis), x);
+            return SolutionMat(LLLReducedBasisCoefficients(L),
+            OctonionToRealVector((UnderlyingOctonionRingBasis(L)), x));
+        fi;
+        return fail;
+    end );
+
+InstallGlobalFunction( RealToOctonionVector,
+    function(arg, x)
         local n, temp;
-        if Length(x) mod 8 <> 0 or not IsHomogeneousList(x) then 
-            return fail; 
-        fi;
-        # In the case of an octonion basis,
-        if IsBasis(basis) and IsOctonionCollection(UnderlyingLeftModule(basis)) then
-            n := Length(x)/8;
-            temp := List([1..n], m -> x{[(m-1)*8+1 .. m*8]} );;
-            return List(temp, y -> LinearCombination(basis, y) );
-        fi;
-        # In the case of an octonion lattice.
-        if IsOctonionLattice(basis) then 
-            temp := LinearCombination(LLLReducedBasisCoefficients(basis), x );
-            temp := RealToOctonionVector(CanonicalBasis(UnderlyingOctonionRing(basis)), temp );
-            return temp;
+        # In the case of an octonion basis convert each length of 8 into an octonion,
+        # Check length of coefficient vector.
+        if IsBasis(arg) and IsOctonionCollection(UnderlyingLeftModule(arg)) then
+            if Length(x) mod 8 = 0 and IsHomogeneousList(x) then 
+                n := Length(x)/8;
+                temp := List([1..n], m -> x{[(m-1)*8+1 .. m*8]} );;
+                return List(temp, y -> LinearCombination(arg, y) );
+            fi;
         fi;
         return fail;
     end );
@@ -1879,13 +1895,26 @@ InstallMethod( ScalarProduct,
     "for an octonion lattice",
     [ IsOctonionLattice, IsRowVector, IsRowVector ],
     function(L, x, y)
-        local a, b;
-        if IsOctonionCollection(x) and IsOctonionCollection(y) then 
-            return Trace(x*OctonionGramMatrix(L)*ComplexConjugate(y) );
+        local a, b, G;
+        G := OctonionGramMatrix(L);
+        # If x and y are octonion vectors
+        if Length(Set([x,y,G], Length)) = 1 and 
+            IsOctonionCollection(x) and 
+            IsOctonionCollection(y) 
+        then 
+                return Trace( x*G*ComplexConjugate(y) );
         fi;
-        a := RealToOctonionVector(CanonicalBasis(UnderlyingOctonionRing(L)), x );
-        b := RealToOctonionVector(CanonicalBasis(UnderlyingOctonionRing(L)), y );
-        return Trace(a*OctonionGramMatrix(L)*ComplexConjugate(b) );
+        # If x and y are coefficient vectors
+        if IsHomogeneousList(Flat([x,y,GeneratorsAsCoefficients(L)])) and 
+            Length(x) = Rank(L) and 
+            Length(y) = Rank(L)
+        then 
+            a := RealToOctonionVector(UnderlyingOctonionRingBasis(L), x );
+            b := RealToOctonionVector(UnderlyingOctonionRingBasis(L), y );
+            return Trace( a*G*ComplexConjugate(b) );
+        fi;
+        # Otherwise return fail;
+        return fail;
     end );
 
 InstallMethod( GramMatrix,
@@ -1899,29 +1928,29 @@ InstallMethod( Rank,
     "For an octonion lattice",
     [IsOctonionLattice],
     function(L)
-        return Rank(GeneratorsAsCoefficients(L) );
+        return Dimension(L);
     end );
 
 InstallMethod( Dimension,
     "For an octonion lattice",
     [IsOctonionLattice],
     function(L)
-        return Rank(GeneratorsAsCoefficients(L) );
+        return Rank( GeneratorsAsCoefficients(L) );
     end );
 
 InstallMethod( CanonicalBasis,
     "for an octonion lattice",
     [ IsOctonionLattice ],
-    function( V )
+    function( L )
     local B;
-    B:= Objectify( NewType( FamilyObj( V ),
+    B:= Objectify( NewType( FamilyObj( L ),
                                 IsFiniteBasisDefault
                             and IsCanonicalBasis
                             and IsOctonionLatticeBasis
                             and IsAttributeStoringRep ),
                    rec() );
-    SetUnderlyingLeftModule( B, V );
-    SetUnderlyingOctonionRing( B, UnderlyingOctonionRing( V ) );
+    SetUnderlyingLeftModule( B, L );
+    SetUnderlyingOctonionRing( B, UnderlyingOctonionRing( L ) );
     return B;
     end );
 
@@ -1934,43 +1963,51 @@ InstallMethod( BasisVectors,
     "for canonical basis of a full row module",
     [ IsCanonicalBasis and IsOctonionLatticeBasis ],
     function( B )
-        return LLLReducedBasisCoefficients(UnderlyingLeftModule( B ) );
+        return List(LLLReducedBasisCoefficients(UnderlyingLeftModule( B ) ), 
+            x -> RealToOctonionVector(UnderlyingOctonionRingBasis(UnderlyingLeftModule( B )), x)
+        );
     end );
 
-InstallMethod( TotallyIsotropicCode,
-    "For an octonion lattice",
-    [ IsOctonionLattice ],
-    function(L)
-        local lll_basis;
-        lll_basis := BasisVectors(CanonicalBasis(L) );
-        if Set(Flat(lll_basis), IsInt) = [true] and Set(Flat(GramMatrix(L)*Z(2))) = [Z(2)*0] then 
-            return VectorSpace(GF(2), lll_basis*Z(2) );
-        fi;
-        return fail;
-    end );
+# Maybe include this function in a future release. Needs work.
+
+# InstallMethod( TotallyIsotropicCode,
+#     "For an octonion lattice",
+#     [ IsOctonionLattice ],
+#     function(L)
+#         local lll_basis;
+#         lll_basis := LLLReducedBasisCoefficients(L);
+#         if Set(Flat(lll_basis), IsInt) = [true] and Set(Flat(GramMatrix(L)*Z(2))) = [Z(2)*0] then 
+#             return VectorSpace(GF(2), lll_basis*Z(2) );
+#         fi;
+#         return fail;
+#     end );
 
 InstallMethod( \in,
     "for and octonion vector and lattice.",
     IsElmsColls,
-    [ IsOctonionCollection, IsOctonionLattice ],
+    [ IsOctonionCollection and IsRowVector, IsOctonionLattice ],
     function( x, L )
         local A;
         A := FamilyObj(One(x))!.fullSCAlgebra;
         if A = UnderlyingOctonionRing(L) then 
-            x := OctonionToRealVector(CanonicalBasis(A), x );
-            return Set(SolutionMat(LLLReducedBasisCoefficients(L), x), IsInt) = [true];
+            x := OctonionToRealVector(UnderlyingOctonionRingBasis(L), x );
+            return ForAll(SolutionMat(LLLReducedBasisCoefficients(L), x), IsInt);
         fi;
-        return false;
+        return fail;
     end );
 
 InstallMethod( IsSublattice,
     "For octonion lattices",
     [ IsOctonionLattice, IsOctonionLattice ],
     function(L1, L2)
-        if UnderlyingOctonionRing(L1) = UnderlyingOctonionRing(L2) then
-            return IsSublattice(LLLReducedBasisCoefficients(L1), LLLReducedBasisCoefficients(L2) );
+        if UnderlyingOctonionRing(L1) = UnderlyingOctonionRing(L2) then 
+            if UnderlyingOctonionRingBasis(L1) = UnderlyingOctonionRingBasis(L2) then 
+                return IsSublattice(LLLReducedBasisCoefficients(L1), LLLReducedBasisCoefficients(L2) );
+            else 
+                return ForAll(BasisVectors(Basis(L2)), x -> x in L1);
+            fi;
         fi;
-        return false;
+        return fail;
     end );
 
 InstallMethod( IsSubset,

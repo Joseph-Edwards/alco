@@ -306,6 +306,9 @@ DeclareCategory( "IsOctonionLatticeBasis", IsCanonicalBasis );
 
 DeclareOperation( "IsSublattice", [ IsOctonionLattice, IsOctonionLattice ] );
 
+DeclareOperation( "Coefficients", [ IsOctonionLatticeBasis,
+      IsOctonionCollection ] );
+
 # Other Tools
 
 DeclareGlobalFunction( "Closure" );
