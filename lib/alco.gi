@@ -936,7 +936,7 @@ InstallGlobalFunction( SimpleEuclideanJordanAlgebra, function(rho, d, args...)
             return JordanSpinFactor(IdentityMat(d+1) );
             elif IsMatrix(args[1]) and DimensionsMat(args[1]) = [d+1, d+1] and TransposedMat(args[1]) = args[1] and Inverse(args[1]) <> fail then 
                 return JordanSpinFactor(args[1] );
-        elif d in [1,2,4,8] and IsBasis(args[1]) and Dimension(args[1]) = d then 
+        elif d in [1,2,4,8] and IsBasis(args[1]) and Size(args[1]) = d then 
             return HermitianSimpleJordanAlgebra(rho, args[1] );
         else
             Display("Usage: SimpleEuclideanJordanAlgebra(2, d [, args]) where <args> is either empty, a symmetric invertible matrix, or when <d> = 1,2,4,8 <args> can also be a basis for a composition algebra."); 
@@ -954,7 +954,7 @@ InstallGlobalFunction( SimpleEuclideanJordanAlgebra, function(rho, d, args...)
         elif d = 1 then 
             return HermitianSimpleJordanAlgebra(rho, Basis(Rationals, [1]) );
         fi;
-    elif IsBasis(args[1]) and Dimension(args[1]) = d then 
+    elif IsBasis(args[1]) and Size(args[1]) = d then 
         return HermitianSimpleJordanAlgebra(rho, args[1] );
     else 
         return fail;
