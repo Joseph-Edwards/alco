@@ -11,7 +11,7 @@ SetPackageInfo( rec(
   Date := "04/02/2024", # dd/mm/yyyy format
   License := "GPL-3.0-or-later",
 
-  PackageWWWHome := "https://github.com/BNasmith/alco",
+  PackageWWWHome := "https://bnasmith.github.io/alco/",
 
   SourceRepository := rec(
       Type := "git",
