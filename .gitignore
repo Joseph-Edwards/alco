@@ -25,6 +25,7 @@ default
 /doc/_*.xml
 /doc/title.xml
 
+/tmp/
 
 # /doc/ALCO.pdf
 /doc/ALCO.fls
