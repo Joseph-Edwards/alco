@@ -198,41 +198,41 @@ DeclareGlobalFunction( "R_k_epsilon" );
 
 # Designs
 
-DeclareCategory( "IsDesign", IsObject );
+DeclareCategory( "IsJordanDesign", IsObject );
 
-DeclareCategory( "IsSphericalDesign", IsDesign );
+DeclareCategory( "IsSphericalDesign", IsJordanDesign );
 
-DeclareCategory( "IsProjectiveDesign", IsDesign );
+DeclareCategory( "IsProjectiveDesign", IsJordanDesign );
 
 DeclareGlobalFunction( "DesignByJordanParameters" );
 
-DeclareAttribute( "DesignJordanRank", IsDesign );
+DeclareAttribute( "DesignJordanRank", IsJordanDesign );
 
-DeclareAttribute( "DesignJordanDegree", IsDesign );
+DeclareAttribute( "DesignJordanDegree", IsJordanDesign );
 
-DeclareAttribute( "DesignQPolynomials", IsDesign );
+DeclareAttribute( "DesignQPolynomials", IsJordanDesign );
 
-DeclareAttribute( "DesignConnectionCoefficients", IsDesign );
+DeclareAttribute( "DesignConnectionCoefficients", IsJordanDesign );
 
-DeclareCategory( "IsDesignWithAngleSet", IsDesign );
+DeclareCategory( "IsJordanDesignWithAngleSet", IsJordanDesign );
 
-DeclareAttribute( "DesignAngleSet", IsDesignWithAngleSet );
+DeclareAttribute( "DesignAngleSet", IsJordanDesignWithAngleSet );
 
-DeclareOperation( "DesignAddAngleSet", [ IsDesign, IsList ] );
+DeclareOperation( "DesignAddAngleSet", [ IsJordanDesign, IsList ] );
 
 DeclareGlobalFunction( "DesignByAngleSet" );
 
-DeclareAttribute( "DesignNormalizedAnnihilatorPolynomial", IsDesignWithAngleSet );
+DeclareAttribute( "DesignNormalizedAnnihilatorPolynomial", IsJordanDesignWithAngleSet );
 
-DeclareAttribute( "DesignNormalizedIndicatorCoefficients", IsDesignWithAngleSet );
+DeclareAttribute( "DesignNormalizedIndicatorCoefficients", IsJordanDesignWithAngleSet );
 
-DeclareCategory( "IsDesignWithPositiveIndicatorCoefficients", IsDesignWithAngleSet );
+DeclareCategory( "IsJordanDesignWithPositiveIndicatorCoefficients", IsJordanDesignWithAngleSet );
 
-DeclareAttribute( "DesignSpecialBound", IsDesignWithAngleSet ); 
+DeclareAttribute( "DesignSpecialBound", IsJordanDesignWithAngleSet ); 
 
-DeclareCategory( "IsDesignWithCardinality", IsDesign );
+DeclareCategory( "IsJordanDesignWithCardinality", IsJordanDesign );
 
-DeclareCategory( "IsRegularSchemeDesign", IsDesignWithCardinality );
+DeclareCategory( "IsRegularSchemeDesign", IsJordanDesignWithCardinality );
 
 DeclareCategory( "IsSpecialBoundDesign", IsRegularSchemeDesign );
 
@@ -240,17 +240,17 @@ DeclareCategory( "IsAssociationSchemeDesign", IsSpecialBoundDesign );
 
 DeclareCategory( "IsTightDesign", IsAssociationSchemeDesign );
 
-DeclareAttribute( "DesignCardinality", IsDesignWithAngleSet );
+DeclareAttribute( "DesignCardinality", IsJordanDesignWithAngleSet );
 
-DeclareOperation( "DesignAddCardinality", [ IsDesignWithAngleSet, IsInt ] );
+DeclareOperation( "DesignAddCardinality", [ IsJordanDesignWithAngleSet, IsInt ] );
 
-DeclareCategory( "IsDesignWithStrength", IsDesign );
+DeclareCategory( "IsJordanDesignWithStrength", IsJordanDesign );
 
-DeclareAttribute( "DesignAnnihilatorPolynomial", IsDesignWithAngleSet and IsDesignWithCardinality );
+DeclareAttribute( "DesignAnnihilatorPolynomial", IsJordanDesignWithAngleSet and IsJordanDesignWithCardinality );
 
-DeclareAttribute( "DesignIndicatorCoefficients", IsDesignWithAngleSet and IsDesignWithCardinality );
+DeclareAttribute( "DesignIndicatorCoefficients", IsJordanDesignWithAngleSet and IsJordanDesignWithCardinality );
 
-DeclareAttribute( "DesignStrength", IsDesignWithAngleSet and IsDesignWithCardinality );
+DeclareAttribute( "DesignStrength", IsJordanDesignWithAngleSet and IsJordanDesignWithCardinality );
 
 DeclareAttribute( "DesignSubdegrees", IsRegularSchemeDesign );
 

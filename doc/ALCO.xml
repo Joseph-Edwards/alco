@@ -1085,7 +1085,7 @@ gap> ValuePol(last,x);
 
         <ManSection>
           <Heading>Jordan Design Categories</Heading>
-          <Filt Name="IsDesign" />
+          <Filt Name="IsJordanDesign" />
           <Filt Name="IsSphericalDesign" />
           <Filt Name="IsProjectiveDesign" />
           <Description>These filters determine whether an object is a Jordan design and whether the
@@ -1098,7 +1098,7 @@ gap> ValuePol(last,x);
           <Description> This function constructs a Jordan design in the manifold of Jordan primitive
       idempotents of rank <Arg>rank</Arg> and degree <Arg>degree</Arg>. <Example><![CDATA[gap> D := DesignByJordanParameters(3,8);
 <design with rank 3 and degree 8>
-gap> IsDesign(D);
+gap> IsJordanDesign(D);
 true
 gap> IsSphericalDesign(D);
 false
@@ -1115,7 +1115,7 @@ fail]]></Example>
           <Heading>Jordan Rank and Degree</Heading>
           <Attr Name="DesignJordanRank" Arg="D" />
           <Attr Name="DesignJordanDegree" Arg="D" />
-          <Description> The rank and degree of an object satisfying filter <Code>IsDesign</Code> are
+          <Description> The rank and degree of an object satisfying filter <Code>IsJordanDesign</Code> are
       stored as attributes. <Example><![CDATA[gap> D := DesignByJordanParameters(3,8);
 <design with rank 3 and degree 8>
 gap> [DesignJordanRank(D), DesignJordanDegree(D)];
@@ -1177,8 +1177,8 @@ gap> for j in [1..4] do Display(Sum(List([1..4], i ->
         We can compute many additional properties of a design once the angle set is known. 
       
       <ManSection>
-          <Filt Name="IsDesignWithAngleSet" />
-          <Description>This filter identifies whether an object that satisfies <Code>IsDesign</Code> is 
+          <Filt Name="IsJordanDesignWithAngleSet" />
+          <Description>This filter identifies whether an object that satisfies <Code>IsJordanDesign</Code> is 
             equipped with an angle set.
           </Description>
         </ManSection>
@@ -1254,7 +1254,7 @@ gap> DesignNormalizedAnnihilatorPolynomial(D);
         </ManSection>
 
         <ManSection>
-          <Filt Name="IsDesignWithPositiveIndicatorCoefficients" />
+          <Filt Name="IsJordanDesignWithPositiveIndicatorCoefficients" />
           <Description>
             This filter determines whether the normalized indicator coefficients of a design are
             positive, which has significance for certain theorems about designs.
@@ -1264,12 +1264,12 @@ gap> DesignNormalizedAnnihilatorPolynomial(D);
         <ManSection>
           <Attr Name="DesignSpecialBound" Arg="D" />
           <Description> The special bound of a design satisfying 
-            <Code>IsDesignWithPositiveIndicatorCoefficients</Code> is the upper limit on the possible
+            <Code>IsJordanDesignWithPositiveIndicatorCoefficients</Code> is the upper limit on the possible
       cardinality for the given angle set <Cite Key="hoggar_t-designs_1992" Where="pp. 257-258"/>. 
       This attribute stores the special bound when it exists for a design.
         <Example><![CDATA[gap> D := DesignByAngleSet(4, 4, [1/3,1/9]);
 <design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>
-gap> IsDesignWithPositiveIndicatorCoefficients(D);
+gap> IsJordanDesignWithPositiveIndicatorCoefficients(D);
 true
 gap> DesignSpecialBound(D);
 64]]></Example>
@@ -1287,11 +1287,11 @@ gap> DesignSpecialBound(D);
         
         <ManSection>
           <Heading>Design Cardinality</Heading>
-            <Filt Name="IsDesignWithCardinality" />
+            <Filt Name="IsJordanDesignWithCardinality" />
             <Oper Name="DesignAddCardinality" Arg="D, v" />
             <Attr Name="DesignCardinality" Arg="D" />
           <Description>
-              As a finite set, each design has a cardinality. When this cardinality is known for an object <Arg>D</Arg> that satisfies <Code>IsDesign(<Arg>D</Arg>)</Code>, the cardinality is stored as the attribute <Code>DesignCardinality(<Arg>D</Arg>)</Code>. 
+              As a finite set, each design has a cardinality. When this cardinality is known for an object <Arg>D</Arg> that satisfies <Code>IsJordanDesign(<Arg>D</Arg>)</Code>, the cardinality is stored as the attribute <Code>DesignCardinality(<Arg>D</Arg>)</Code>. 
               In order to set the cardinality of a design, we can use the operation <Code>DesignAddCardinality(<Arg>D</Arg>, v)</Code>.
               When <Code>DesignAddCardinality</Code> is called, the <Package>ALCO</Package> package immediately attempts to compute <Ref Attr="DesignStrength" />.
               <Example><![CDATA[gap> D := DesignByAngleSet(4,4, [1/3,1/9]);
@@ -1347,7 +1347,7 @@ gap> DesignIndicatorCoefficients(D);
         
         <ManSection>
           <Heading>Design Strength</Heading>
-            <Filt Name="IsDesignWithStrength" />
+            <Filt Name="IsJordanDesignWithStrength" />
             <Attr Name="DesignStrength" Arg="D" />
             <Description> 
               The <Math>t</Math>-design is a design with the following special property: 
@@ -1358,16 +1358,16 @@ gap> DesignIndicatorCoefficients(D);
               for detailed definitions).
               The parameter <Math>t</Math> is called the <Emph>strength</Emph> of the design. <P/> 
               
-              For a design <Arg>D</Arg> that satisfies <Code>IsDesignWithPositiveIndicatorCoefficients</Code>, <Code>IsDesignWithCardinality</Code>, and <Code>IsSpecialBoundDesign</Code>, we can compute the 
+              For a design <Arg>D</Arg> that satisfies <Code>IsJordanDesignWithPositiveIndicatorCoefficients</Code>, <Code>IsJordanDesignWithCardinality</Code>, and <Code>IsSpecialBoundDesign</Code>, we can compute the 
               strength <Math>t</Math> of the design using a theorem given in 
               <Cite Key="hoggar_t-designs_1992" Where="p. 258" /> that examines the indicator coefficients.
-              The filter <Code>IsDesignWithStrength</Code> indicates when the attribute <Code>DesignStrength</Code>
+              The filter <Code>IsJordanDesignWithStrength</Code> indicates when the attribute <Code>DesignStrength</Code>
               has been successfully computed.  
               <Example><![CDATA[gap> D := DesignByAngleSet(4,4, [1/3,1/9]);
 <design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>
 gap> DesignAddCardinality(D, 64);
 <2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
-gap> IsDesignWithStrength(D);
+gap> IsJordanDesignWithStrength(D);
 true
 gap> DesignStrength(D);
 2]]></Example>
@@ -1380,7 +1380,7 @@ gap> DesignStrength(D);
             <Filt Name="IsRegularSchemeDesign" />
             <Filt Name="IsAssociationSchemeDesign" />
             <Filt Name="IsTightDesign" />
-            <Description> These filters identify various special categories of designs that satisfy <Ref Filt="IsDesignWithStrength" />. In what follows recall that <Math>t</Math> denotes the strength
+            <Description> These filters identify various special categories of designs that satisfy <Ref Filt="IsJordanDesignWithStrength" />. In what follows recall that <Math>t</Math> denotes the strength
               of the design and <Math>s</Math> denotes the cardinality of the angle set <Math>A</Math>. 
               The definitions below are provided in <Cite Key="hoggar_t-designs_1992" />. <P/>
 

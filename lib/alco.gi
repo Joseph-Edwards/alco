@@ -1301,7 +1301,7 @@ InstallGlobalFunction( DesignByJordanParameters, function(rank, degree)
     if rank > 2 and not degree in [1,2,4,8] then return fail; fi;
     if degree = 8 and rank > 3 then return fail; fi; 
     # Create the object
-    obj := Objectify(NewType(NewFamily( "Design"), IsDesign and IsComponentObjectRep, rec()), rec() );
+    obj := Objectify(NewType(NewFamily( "Design"), IsJordanDesign and IsComponentObjectRep, rec()), rec() );
     SetFilterObj(obj, IsAttributeStoringRep );
     # Assign rank and degree attributes.
     SetDesignJordanRank(obj, rank );
@@ -1318,7 +1318,7 @@ end );
 
 InstallMethod( PrintObj,
     "for a design",
-    [ IsDesign ],
+    [ IsJordanDesign ],
     function(x)
     local text;
     Print( "<design with rank ", DesignJordanRank(x), " and degree ", DesignJordanDegree(x), ">" );
@@ -1326,7 +1326,7 @@ InstallMethod( PrintObj,
 
 InstallMethod(DesignQPolynomials,
     "Generic method for designs",
-    [ IsDesign ],
+    [ IsJordanDesign ],
     function(D)
         local x, temp;
         x := Indeterminate(Rationals, "x" );
@@ -1341,7 +1341,7 @@ InstallMethod(DesignQPolynomials,
 
 InstallMethod( DesignConnectionCoefficients,
     "Generic method for designs",
-    [ IsDesign ],
+    [ IsJordanDesign ],
     function(D)
         local temp;
         temp := function(s)
@@ -1363,7 +1363,7 @@ InstallMethod( DesignConnectionCoefficients,
 
 InstallMethod( DesignAddAngleSet, 
     "for designs",
-    [ IsDesign, IsList ],
+    [ IsJordanDesign, IsList ],
     function(D, A)
         if not (ForAll(A, IsCyc) and 
             ForAll(A, x -> ComplexConjugate(x) = x) and
@@ -1372,10 +1372,10 @@ InstallMethod( DesignAddAngleSet,
             return fail;
         fi;  
         SetDesignAngleSet(D, Set(A) );
-        SetFilterObj(D, IsDesignWithAngleSet );
+        SetFilterObj(D, IsJordanDesignWithAngleSet );
         # Assign Positive Indicator Coefficients filter if applicable.
         if [true] = Set(DesignNormalizedIndicatorCoefficients(D), x -> x > 0) then 
-            SetFilterObj(D, IsDesignWithPositiveIndicatorCoefficients );
+            SetFilterObj(D, IsJordanDesignWithPositiveIndicatorCoefficients );
         fi;
         return D; 
     end );
@@ -1393,17 +1393,17 @@ InstallGlobalFunction( DesignByAngleSet,  function(rank, degree, A)
     fi; 
     # Assign angle set.
     SetDesignAngleSet(obj, Set(A) );
-    SetFilterObj(obj, IsDesignWithAngleSet ); 
+    SetFilterObj(obj, IsJordanDesignWithAngleSet ); 
     # Assign Positive Indicator Coefficients filter if applicable.
     if [true] = Set(DesignNormalizedIndicatorCoefficients(obj), x -> x > 0) then 
-        SetFilterObj(obj, IsDesignWithPositiveIndicatorCoefficients );
+        SetFilterObj(obj, IsJordanDesignWithPositiveIndicatorCoefficients );
     fi;
     return obj;
 end );
 
 InstallMethod( PrintObj,
     "for a design with angle set",
-    [ IsDesignWithAngleSet ],
+    [ IsJordanDesignWithAngleSet ],
     function(x)
     local text;
     Print( "<design with rank ", DesignJordanRank(x), ", degree ", DesignJordanDegree(x), ", and angle set ", DesignAngleSet(x), ">" );
@@ -1411,7 +1411,7 @@ InstallMethod( PrintObj,
 
 InstallMethod( DesignNormalizedAnnihilatorPolynomial,
     "generic method for designs",
-    [ IsDesignWithAngleSet ],
+    [ IsJordanDesignWithAngleSet ],
     function(D)
     local x, F, A;
     A := DesignAngleSet(D );
@@ -1422,7 +1422,7 @@ InstallMethod( DesignNormalizedAnnihilatorPolynomial,
 
 InstallMethod( DesignNormalizedIndicatorCoefficients,
     "generic method for designs",
-    [ IsDesignWithAngleSet ],
+    [ IsJordanDesignWithAngleSet ],
     function(D)
     local x, r, d, Q, F, V, basis;
     r := DesignJordanRank(D );
@@ -1437,7 +1437,7 @@ InstallMethod( DesignNormalizedIndicatorCoefficients,
 
 InstallMethod( DesignSpecialBound,
     "generic method for designs",
-    [ IsDesignWithAngleSet and IsDesignWithPositiveIndicatorCoefficients ],
+    [ IsJordanDesignWithAngleSet and IsJordanDesignWithPositiveIndicatorCoefficients ],
     function(D)
     if Filtered(DesignNormalizedIndicatorCoefficients(D), x -> x < 0) <> [] then 
         return fail; 
@@ -1447,11 +1447,11 @@ InstallMethod( DesignSpecialBound,
 
 InstallMethod( DesignAddCardinality, 
     "for designs with angle sets",
-    [ IsDesignWithAngleSet, IsInt ],
+    [ IsJordanDesignWithAngleSet, IsInt ],
     function(D, v)
         local obj;
         SetDesignCardinality(D, v );
-        SetFilterObj(D, IsDesignWithCardinality );
+        SetFilterObj(D, IsJordanDesignWithCardinality );
         if DesignSpecialBound(D) = DesignCardinality(D) then 
             SetFilterObj(D, IsSpecialBoundDesign );
             DesignStrength(D );
@@ -1461,14 +1461,14 @@ InstallMethod( DesignAddCardinality,
 
 InstallMethod( PrintObj,
     "for a design with cardinality",
-    [ IsDesignWithCardinality ],
+    [ IsJordanDesignWithCardinality ],
     function(x)
         Print( "<design with rank ", DesignJordanRank(x), ", degree ", DesignJordanDegree(x), ", cardinality ", DesignCardinality(x), ", and angle set ", DesignAngleSet(x), ">" );
    end );
 
 InstallMethod( DesignStrength, 
     "method for designs with positive indicator coefficients",
-    [ IsDesignWithPositiveIndicatorCoefficients and IsDesignWithCardinality and IsSpecialBoundDesign ],
+    [ IsJordanDesignWithPositiveIndicatorCoefficients and IsJordanDesignWithCardinality and IsSpecialBoundDesign ],
     function(D)
         local s, i, t, e;
         s := Size(DesignAngleSet(D) );
@@ -1477,7 +1477,7 @@ InstallMethod( DesignStrength,
                 t := s + i;
             fi;
         od;
-        SetFilterObj(D, IsDesignWithStrength );
+        SetFilterObj(D, IsJordanDesignWithStrength );
         if 0 in DesignAngleSet(D) then 
             e := 1;
         else 
@@ -1497,21 +1497,21 @@ InstallMethod( DesignStrength,
 
 InstallMethod( DesignAnnihilatorPolynomial, 
     "generic method for designs",
-    [ IsDesignWithAngleSet and IsDesignWithCardinality ],
+    [ IsJordanDesignWithAngleSet and IsJordanDesignWithCardinality ],
     function(D)
         return DesignCardinality(D)*DesignNormalizedAnnihilatorPolynomial(D );
     end );
 
 InstallMethod( DesignIndicatorCoefficients, 
     "generic method for designs",
-    [ IsDesignWithAngleSet and IsDesignWithCardinality ],
+    [ IsJordanDesignWithAngleSet and IsJordanDesignWithCardinality ],
     function(D)
         return DesignCardinality(D)*DesignNormalizedIndicatorCoefficients(D );
     end );
 
 InstallMethod( PrintObj,
     "for a design with angle set and strength",
-    [IsDesignWithAngleSet and IsDesignWithStrength],
+    [IsJordanDesignWithAngleSet and IsJordanDesignWithStrength],
     function(x)
     local text;
     Print( "<", DesignStrength(x), "-design with rank ", DesignJordanRank(x), ", degree ", DesignJordanDegree(x), ", cardinality ", DesignCardinality(x), ", and angle set ", DesignAngleSet(x), ">" );
@@ -1526,7 +1526,7 @@ InstallMethod( PrintObj,
 
 InstallMethod( DesignSubdegrees, 
     "method for a regular scheme design",
-    [ IsRegularSchemeDesign and IsDesignWithCardinality and IsDesignWithAngleSet ],
+    [ IsRegularSchemeDesign and IsJordanDesignWithCardinality and IsJordanDesignWithAngleSet ],
     function(D)
         local rank, degree, v, A, f, s, mat, vec, i;
         v := DesignCardinality(D );

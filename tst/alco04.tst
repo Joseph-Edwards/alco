@@ -24,7 +24,7 @@ gap> ValuePol(last,x);
 # doc/ALCO.xml:1099-1110
 gap> D := DesignByJordanParameters(3,8);
 <design with rank 3 and degree 8>
-gap> IsDesign(D);
+gap> IsJordanDesign(D);
 true
 gap> IsSphericalDesign(D);
 false
@@ -113,7 +113,7 @@ gap> DesignNormalizedAnnihilatorPolynomial(D);
 # doc/ALCO.xml:1270-1275
 gap> D := DesignByAngleSet(4, 4, [1/3,1/9]);
 <design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>
-gap> IsDesignWithPositiveIndicatorCoefficients(D);
+gap> IsJordanDesignWithPositiveIndicatorCoefficients(D);
 true
 gap> DesignSpecialBound(D);
 64
@@ -148,7 +148,7 @@ gap> D := DesignByAngleSet(4,4, [1/3,1/9]);
 <design with rank 4, degree 4, and angle set [ 1/9, 1/3 ]>
 gap> DesignAddCardinality(D, 64);
 <2-design with rank 4, degree 4, cardinality 64, and angle set [ 1/9, 1/3 ]>
-gap> IsDesignWithStrength(D);
+gap> IsJordanDesignWithStrength(D);
 true
 gap> DesignStrength(D);
 2
