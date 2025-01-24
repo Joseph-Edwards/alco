@@ -8,7 +8,7 @@ SetPackageInfo( rec(
   PackageName := "ALCO",
   Subtitle := "Tools for algebraic combinatorics",
   Version := "1.0",
-  Date := "16/01/2025", # dd/mm/yyyy format
+  Date := "25/01/2025", # dd/mm/yyyy format
   License := "GPL-3.0-or-later",
 
   PackageWWWHome := "https://bnasmith.github.io/alco/",
@@ -54,7 +54,7 @@ SetPackageInfo( rec(
   ##    "other"         for all other packages
   ##
   # Status := "accepted",
-  Status := "dev",
+  Status := "deposited",
 
   ##  You must provide the next two entries if and only if the status is
   ##  "accepted" because is was successfully refereed:
@@ -102,7 +102,7 @@ SetPackageInfo( rec(
   Dependencies := rec(
     # GAP version, use the version string for specifying a least version,
     # prepend a '=' for specifying an exact version.
-    GAP := "4.12",
+    GAP := "4.14",
     SuggestedOtherPackages := [],
     ExternalConditions := [],
     NeededOtherPackages := []
