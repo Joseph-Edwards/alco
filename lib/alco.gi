@@ -2064,7 +2064,7 @@ InstallGlobalFunction( Closure, function(gens, mult_func, opt...)
     return Set(temp );
 end );
 
-InstallGlobalFunction( RandomClosure, function(gens, mult_func, opt...)
+InstallGlobalFunction( RandomElementClosure, function(gens, mult_func, opt...)
     local r, temp, N, n, prior, print_yes;
     temp := ShallowCopy(gens );
     if not IsHomogeneousList(gens) then return fail; fi;

@@ -2298,7 +2298,7 @@ gap> Closure(QuaternionD4Basis,\*);
       without directly proving closure. 
       
       <ManSection>
-          <Func Name="RandomClosure" Arg="gens, op [, N, [, print ] ] " />
+          <Func Name="RandomElementClosure" Arg="gens, op [, N, [, print ] ] " />
           <Description> For <Arg>gens</Arg> satisfying <Code>IsHomogeneousList</Code>, this function
       selects a random element <Arg>r</Arg> in <Arg>gens</Arg> and computes all elements of the form <Code><Arg>
       op</Arg>(<Arg>r</Arg>,<Arg>x</Arg>)</Code> for <Arg>x</Arg> either in <Arg>gens</Arg> or
@@ -2317,7 +2317,7 @@ gap> Closure(QuaternionD4Basis,\*);
       <Example><![CDATA[gap> start := Basis(QuaternionAlgebra(Rationals)){[2,3]};
 [ i, j ]
 gap> repeat
-> start := RandomClosure(start, \*);
+> start := RandomElementClosure(start, \*);
 > until Length(start) = 8;
 gap> start;
 [ (-1)*e, (-1)*i, (-1)*j, (-1)*k, k, j, i, e ]]]></Example>
@@ -2326,14 +2326,14 @@ gap> start;
 
     <ManSection>
           <Func Name="RandomOrbitOnSets" Arg="gens, start, op [, N, [, print ] ] " />
-          <Description> This function proceeds in a manner very similar to <Ref Func="RandomClosure" />
+          <Description> This function proceeds in a manner very similar to <Ref Func="RandomElementClosure" />
       with the following differences. This function instead selects a random element <Arg>r</Arg> 
       in <Arg>gens</Arg> and then for every <Arg>x</Arg> in <Arg>start</Arg>, or the set of
       previously generated elements, computes <Code><Arg>op</Arg>(<Arg>r</Arg>,<Arg>x</Arg>)</Code>.
       At each step the cardinality of the union of <Arg>start</Arg> and any previously generated
       elements is computed. Once the cardinality is fixed for <Arg>N + 1</Arg> steps, the function
       returns the set of generated elements. <P /> The same cautions as described in <Ref
-              Func="RandomClosure" /> apply. Note that while <Arg>start</Arg> is always a subset of
+              Func="RandomElementClosure" /> apply. Note that while <Arg>start</Arg> is always a subset of
       the output, the elements of <Arg>gens</Arg> are not necessarily included in the output. 
       <Example><![CDATA[gap> start := Basis(QuaternionAlgebra(Rationals)){[1,2]};
 [ e, i ]

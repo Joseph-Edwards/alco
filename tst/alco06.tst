@@ -32,7 +32,7 @@ gap> Closure(QuaternionD4Basis,\*);
 gap> start := Basis(QuaternionAlgebra(Rationals)){[2,3]};
 [ i, j ]
 gap> repeat
-> start := RandomClosure(start, \*);
+> start := RandomElementClosure(start, \*);
 > until Length(start) = 8;
 gap> start;
 [ (-1)*e, (-1)*i, (-1)*j, (-1)*k, k, j, i, e ]

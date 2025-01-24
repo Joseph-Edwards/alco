@@ -313,7 +313,7 @@ DeclareOperation( "Coefficients", [ IsOctonionLatticeBasis,
 
 DeclareGlobalFunction( "Closure" );
 
-DeclareGlobalFunction( "RandomClosure" );
+DeclareGlobalFunction( "RandomElementClosure" );
 
 DeclareGlobalFunction( "RandomOrbitOnSets" );
 
