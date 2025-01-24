@@ -1294,7 +1294,7 @@ InstallGlobalFunction( R_k_epsilon, function(k, epsilon, rank, degree, x)
     return temp;
 end );
 
-InstallGlobalFunction( DesignByJordanParameters, function(rank, degree)
+InstallGlobalFunction( JordanDesignByParameters, function(rank, degree)
     local obj, F, x;
     # Check that the inputs match a Jordan primitive idempotent space    
     if not IsInt(rank) or rank < 2 then return fail; fi;
@@ -1304,14 +1304,14 @@ InstallGlobalFunction( DesignByJordanParameters, function(rank, degree)
     obj := Objectify(NewType(NewFamily( "Design"), IsJordanDesign and IsComponentObjectRep, rec()), rec() );
     SetFilterObj(obj, IsAttributeStoringRep );
     # Assign rank and degree attributes.
-    SetDesignJordanRank(obj, rank );
-    SetDesignJordanDegree(obj, degree );
+    SetJordanDesignRank(obj, rank );
+    SetJordanDesignDegree(obj, degree );
     # Assign Spherical or Projective filters.
     if rank = 2 then 
-        SetFilterObj(obj, IsSphericalDesign );
+        SetFilterObj(obj, IsSphericalJordanDesign );
     fi;
     if degree in [1,2,4,8] then 
-        SetFilterObj(obj, IsProjectiveDesign );
+        SetFilterObj(obj, IsProjectiveJordanDesign );
     fi;
     return obj;
 end );
@@ -1321,10 +1321,10 @@ InstallMethod( PrintObj,
     [ IsJordanDesign ],
     function(x)
     local text;
-    Print( "<design with rank ", DesignJordanRank(x), " and degree ", DesignJordanDegree(x), ">" );
+    Print( "<design with rank ", JordanDesignRank(x), " and degree ", JordanDesignDegree(x), ">" );
    end );
 
-InstallMethod(DesignQPolynomials,
+InstallMethod(JordanDesignQPolynomials,
     "Generic method for designs",
     [ IsJordanDesign ],
     function(D)
@@ -1332,14 +1332,14 @@ InstallMethod(DesignQPolynomials,
         x := Indeterminate(Rationals, "x" );
         temp := function(k)
             if IsInt(k) and k > -1 then 
-                return CoefficientsOfUnivariatePolynomial((Q_k_epsilon(k, 0, DesignJordanRank(D), DesignJordanDegree(D), x)) );
+                return CoefficientsOfUnivariatePolynomial((Q_k_epsilon(k, 0, JordanDesignRank(D), JordanDesignDegree(D), x)) );
             fi;
             return fail;
         end;
         return temp;
     end );
 
-InstallMethod( DesignConnectionCoefficients,
+InstallMethod( JordanDesignConnectionCoefficients,
     "Generic method for designs",
     [ IsJordanDesign ],
     function(D)
@@ -1347,7 +1347,7 @@ InstallMethod( DesignConnectionCoefficients,
         temp := function(s)
             local x, Q, V, basis, mat, k, i;
             x := Indeterminate(Rationals, "x" );
-            Q := List([0..s], i -> Q_k_epsilon(i,0, DesignJordanRank(D), DesignJordanDegree(D), x) );
+            Q := List([0..s], i -> Q_k_epsilon(i,0, JordanDesignRank(D), JordanDesignDegree(D), x) );
             V := VectorSpace(Rationals, Q );
             basis := Basis(V, Q );
             mat := [];
@@ -1361,7 +1361,7 @@ InstallMethod( DesignConnectionCoefficients,
         return temp; 
     end );
 
-InstallMethod( DesignAddAngleSet, 
+InstallMethod( JordanDesignAddAngleSet, 
     "for designs",
     [ IsJordanDesign, IsList ],
     function(D, A)
@@ -1371,18 +1371,18 @@ InstallMethod( DesignAddAngleSet,
         then 
             return fail;
         fi;  
-        SetDesignAngleSet(D, Set(A) );
+        SetJordanDesignAngleSet(D, Set(A) );
         SetFilterObj(D, IsJordanDesignWithAngleSet );
         # Assign Positive Indicator Coefficients filter if applicable.
-        if [true] = Set(DesignNormalizedIndicatorCoefficients(D), x -> x > 0) then 
+        if [true] = Set(JordanDesignNormalizedIndicatorCoefficients(D), x -> x > 0) then 
             SetFilterObj(D, IsJordanDesignWithPositiveIndicatorCoefficients );
         fi;
         return D; 
     end );
 
-InstallGlobalFunction( DesignByAngleSet,  function(rank, degree, A)
+InstallGlobalFunction( JordanDesignByAngleSet,  function(rank, degree, A)
     local obj, F, x;
-    obj := DesignByJordanParameters(rank, degree );
+    obj := JordanDesignByParameters(rank, degree );
     if obj = fail then return obj; fi;
     # Test the angle set:
     if not (ForAll(A, IsCyc) and 
@@ -1392,10 +1392,10 @@ InstallGlobalFunction( DesignByAngleSet,  function(rank, degree, A)
             return fail;
     fi; 
     # Assign angle set.
-    SetDesignAngleSet(obj, Set(A) );
+    SetJordanDesignAngleSet(obj, Set(A) );
     SetFilterObj(obj, IsJordanDesignWithAngleSet ); 
     # Assign Positive Indicator Coefficients filter if applicable.
-    if [true] = Set(DesignNormalizedIndicatorCoefficients(obj), x -> x > 0) then 
+    if [true] = Set(JordanDesignNormalizedIndicatorCoefficients(obj), x -> x > 0) then 
         SetFilterObj(obj, IsJordanDesignWithPositiveIndicatorCoefficients );
     fi;
     return obj;
@@ -1406,55 +1406,55 @@ InstallMethod( PrintObj,
     [ IsJordanDesignWithAngleSet ],
     function(x)
     local text;
-    Print( "<design with rank ", DesignJordanRank(x), ", degree ", DesignJordanDegree(x), ", and angle set ", DesignAngleSet(x), ">" );
+    Print( "<design with rank ", JordanDesignRank(x), ", degree ", JordanDesignDegree(x), ", and angle set ", JordanDesignAngleSet(x), ">" );
    end );
 
-InstallMethod( DesignNormalizedAnnihilatorPolynomial,
+InstallMethod( JordanDesignNormalizedAnnihilatorPolynomial,
     "generic method for designs",
     [ IsJordanDesignWithAngleSet ],
     function(D)
     local x, F, A;
-    A := DesignAngleSet(D );
+    A := JordanDesignAngleSet(D );
     x := Indeterminate(Field(A), "x" );
     F := Product(List(A, a -> (x - a)/(1-a)) );
     return CoefficientsOfUnivariatePolynomial(F );
     end );
 
-InstallMethod( DesignNormalizedIndicatorCoefficients,
+InstallMethod( JordanDesignNormalizedIndicatorCoefficients,
     "generic method for designs",
     [ IsJordanDesignWithAngleSet ],
     function(D)
     local x, r, d, Q, F, V, basis;
-    r := DesignJordanRank(D );
-    d := DesignJordanDegree(D );
-    x := Indeterminate(Field(DesignAngleSet(D)), "x" );
+    r := JordanDesignRank(D );
+    d := JordanDesignDegree(D );
+    x := Indeterminate(Field(JordanDesignAngleSet(D)), "x" );
     Q := k -> Q_k_epsilon(k, 0, r, d, x );
-    F := ValuePol(DesignNormalizedAnnihilatorPolynomial(D), x );
-    V := VectorSpace(Field(DesignAngleSet(D)), List([0..Degree(F)], Q) );
+    F := ValuePol(JordanDesignNormalizedAnnihilatorPolynomial(D), x );
+    V := VectorSpace(Field(JordanDesignAngleSet(D)), List([0..Degree(F)], Q) );
     basis := Basis(V, List([0..Degree(F)], Q) );  
     return Coefficients(basis, F );
     end );
 
-InstallMethod( DesignSpecialBound,
+InstallMethod( JordanDesignSpecialBound,
     "generic method for designs",
     [ IsJordanDesignWithAngleSet and IsJordanDesignWithPositiveIndicatorCoefficients ],
     function(D)
-    if Filtered(DesignNormalizedIndicatorCoefficients(D), x -> x < 0) <> [] then 
+    if Filtered(JordanDesignNormalizedIndicatorCoefficients(D), x -> x < 0) <> [] then 
         return fail; 
     fi;
-    return 1/DesignNormalizedIndicatorCoefficients(D)[1];
+    return 1/JordanDesignNormalizedIndicatorCoefficients(D)[1];
     end );
 
-InstallMethod( DesignAddCardinality, 
+InstallMethod( JordanDesignAddCardinality, 
     "for designs with angle sets",
     [ IsJordanDesignWithAngleSet, IsInt ],
     function(D, v)
         local obj;
-        SetDesignCardinality(D, v );
+        SetJordanDesignCardinality(D, v );
         SetFilterObj(D, IsJordanDesignWithCardinality );
-        if DesignSpecialBound(D) = DesignCardinality(D) then 
-            SetFilterObj(D, IsSpecialBoundDesign );
-            DesignStrength(D );
+        if JordanDesignSpecialBound(D) = JordanDesignCardinality(D) then 
+            SetFilterObj(D, IsSpecialBoundJordanDesign );
+            JordanDesignStrength(D );
         fi;
         return D; 
     end );
@@ -1463,50 +1463,50 @@ InstallMethod( PrintObj,
     "for a design with cardinality",
     [ IsJordanDesignWithCardinality ],
     function(x)
-        Print( "<design with rank ", DesignJordanRank(x), ", degree ", DesignJordanDegree(x), ", cardinality ", DesignCardinality(x), ", and angle set ", DesignAngleSet(x), ">" );
+        Print( "<design with rank ", JordanDesignRank(x), ", degree ", JordanDesignDegree(x), ", cardinality ", JordanDesignCardinality(x), ", and angle set ", JordanDesignAngleSet(x), ">" );
    end );
 
-InstallMethod( DesignStrength, 
+InstallMethod( JordanDesignStrength, 
     "method for designs with positive indicator coefficients",
-    [ IsJordanDesignWithPositiveIndicatorCoefficients and IsJordanDesignWithCardinality and IsSpecialBoundDesign ],
+    [ IsJordanDesignWithPositiveIndicatorCoefficients and IsJordanDesignWithCardinality and IsSpecialBoundJordanDesign ],
     function(D)
         local s, i, t, e;
-        s := Size(DesignAngleSet(D) );
+        s := Size(JordanDesignAngleSet(D) );
         for i in [0..s] do 
-            if DesignIndicatorCoefficients(D)[i+1] = 1 then 
+            if JordanDesignIndicatorCoefficients(D)[i+1] = 1 then 
                 t := s + i;
             fi;
         od;
         SetFilterObj(D, IsJordanDesignWithStrength );
-        if 0 in DesignAngleSet(D) then 
+        if 0 in JordanDesignAngleSet(D) then 
             e := 1;
         else 
             e := 0;
         fi;
         # Check for tightness, etc
         if t = 2*s - e then
-            SetFilterObj(D, IsTightDesign );
+            SetFilterObj(D, IsTightJordanDesign );
             return t;
         fi;
         if t >= 2*s - 2 then
-            SetFilterObj(D, IsAssociationSchemeDesign );
+            SetFilterObj(D, IsAssociationSchemeJordanDesign );
             return t;
         fi;
         return t;
     end );
 
-InstallMethod( DesignAnnihilatorPolynomial, 
+InstallMethod( JordanDesignAnnihilatorPolynomial, 
     "generic method for designs",
     [ IsJordanDesignWithAngleSet and IsJordanDesignWithCardinality ],
     function(D)
-        return DesignCardinality(D)*DesignNormalizedAnnihilatorPolynomial(D );
+        return JordanDesignCardinality(D)*JordanDesignNormalizedAnnihilatorPolynomial(D );
     end );
 
-InstallMethod( DesignIndicatorCoefficients, 
+InstallMethod( JordanDesignIndicatorCoefficients, 
     "generic method for designs",
     [ IsJordanDesignWithAngleSet and IsJordanDesignWithCardinality ],
     function(D)
-        return DesignCardinality(D)*DesignNormalizedIndicatorCoefficients(D );
+        return JordanDesignCardinality(D)*JordanDesignNormalizedIndicatorCoefficients(D );
     end );
 
 InstallMethod( PrintObj,
@@ -1514,27 +1514,27 @@ InstallMethod( PrintObj,
     [IsJordanDesignWithAngleSet and IsJordanDesignWithStrength],
     function(x)
     local text;
-    Print( "<", DesignStrength(x), "-design with rank ", DesignJordanRank(x), ", degree ", DesignJordanDegree(x), ", cardinality ", DesignCardinality(x), ", and angle set ", DesignAngleSet(x), ">" );
+    Print( "<", JordanDesignStrength(x), "-design with rank ", JordanDesignRank(x), ", degree ", JordanDesignDegree(x), ", cardinality ", JordanDesignCardinality(x), ", and angle set ", JordanDesignAngleSet(x), ">" );
    end );
 
 InstallMethod( PrintObj,
     "for a tight design",
-    [IsTightDesign],
+    [IsTightJordanDesign],
     function(x)
-        Print( "<Tight ", DesignStrength(x), "-design with rank ", DesignJordanRank(x), ", degree ", DesignJordanDegree(x), ", cardinality ", DesignCardinality(x), ", and angle set ", DesignAngleSet(x), ">" );
+        Print( "<Tight ", JordanDesignStrength(x), "-design with rank ", JordanDesignRank(x), ", degree ", JordanDesignDegree(x), ", cardinality ", JordanDesignCardinality(x), ", and angle set ", JordanDesignAngleSet(x), ">" );
    end );
 
-InstallMethod( DesignSubdegrees, 
+InstallMethod( JordanDesignSubdegrees, 
     "method for a regular scheme design",
-    [ IsRegularSchemeDesign and IsJordanDesignWithCardinality and IsJordanDesignWithAngleSet ],
+    [ IsRegularSchemeJordanDesign and IsJordanDesignWithCardinality and IsJordanDesignWithAngleSet ],
     function(D)
         local rank, degree, v, A, f, s, mat, vec, i;
-        v := DesignCardinality(D );
-        A := DesignAngleSet(D );
-        rank := DesignJordanRank(D );
-        degree := DesignJordanDegree(D );
+        v := JordanDesignCardinality(D );
+        A := JordanDesignAngleSet(D );
+        rank := JordanDesignRank(D );
+        degree := JordanDesignDegree(D );
         s := Size(A );
-        f := DesignConnectionCoefficients(D)(s );
+        f := JordanDesignConnectionCoefficients(D)(s );
         # f := ConnectionCoefficients(rank, degree, s );
         mat := [];
         vec := [];
@@ -1547,22 +1547,22 @@ InstallMethod( DesignSubdegrees,
         return SolutionMat(TransposedMat(mat), vec );
     end );
 
-InstallMethod( DesignIntersectionNumbers, 
+InstallMethod( JordanDesignIntersectionNumbers, 
     "method for an association scheme design",
-    [ IsAssociationSchemeDesign ],
+    [ IsAssociationSchemeJordanDesign ],
     function(D)
         local rank, degree, v, A, F, s, delta, mat, vec, i, j, temp, p, result, gamma, Convolution;
-        v := DesignCardinality(D );
-        A := DesignAngleSet(D );
-        rank := DesignJordanRank(D );
-        degree := DesignJordanDegree(D );
+        v := JordanDesignCardinality(D );
+        A := JordanDesignAngleSet(D );
+        rank := JordanDesignRank(D );
+        degree := JordanDesignDegree(D );
         s := Size(A );
         Convolution := function(rank, degree, i, j, x)
             local f, temp, q, y;
             y := Indeterminate(Rationals, "x" );
-            q := DesignQPolynomials(D );
-            q := k -> ValuePol(DesignQPolynomials(D)(k), y );
-            f := DesignConnectionCoefficients(D)(Maximum(i,j) );
+            q := JordanDesignQPolynomials(D );
+            q := k -> ValuePol(JordanDesignQPolynomials(D)(k), y );
+            f := JordanDesignConnectionCoefficients(D)(Maximum(i,j) );
             # f := ConnectionCoefficients(rank, degree, Maximum(i,j) );
             temp := List([0..Minimum(i,j)], k -> f[i+1][k+1]*f[j+1][k+1]*q(k) );
             temp := Sum(temp );
@@ -1597,28 +1597,28 @@ InstallMethod( DesignIntersectionNumbers,
             result[i][s+1][i] := 1;
         od;
         # degree := DiagonalMat(Subdegrees(rank, degree, v, A)) + IdentityMat(s+1)*0;
-        degree := DiagonalMat(DesignSubdegrees(D)) + IdentityMat(s+1)*0;
+        degree := DiagonalMat(JordanDesignSubdegrees(D)) + IdentityMat(s+1)*0;
         degree[s+1][s+1] := 1;
         Append(result, [degree] );
         return result;
     end );
 
-InstallMethod( DesignReducedAdjacencyMatrices, 
+InstallMethod( JordanDesignReducedAdjacencyMatrices, 
     "method for an association scheme design",
-    [ IsAssociationSchemeDesign ],
+    [ IsAssociationSchemeJordanDesign ],
     function(D)
         local s;
-        s := Size(DesignAngleSet(D) );
-        return List([1..s+1], i -> List([1..s+1], j -> List([1..s+1], k -> DesignIntersectionNumbers(D)[k][i][j])) );
+        s := Size(JordanDesignAngleSet(D) );
+        return List([1..s+1], i -> List([1..s+1], j -> List([1..s+1], k -> JordanDesignIntersectionNumbers(D)[k][i][j])) );
     end );
 
 
-InstallMethod( DesignBoseMesnerAlgebra, 
+InstallMethod( JordanDesignBoseMesnerAlgebra, 
     "method for an association scheme design",
-    [ IsAssociationSchemeDesign ],
+    [ IsAssociationSchemeJordanDesign ],
     function(D)
         local p, T, basis, space, coeffs, i, j, k;
-        p := DesignReducedAdjacencyMatrices(D );
+        p := JordanDesignReducedAdjacencyMatrices(D );
         space := VectorSpace(Rationals, p );
         basis := Basis(space, p );
         T := EmptySCTable(Length(p), 0, "symmetric" );
@@ -1635,13 +1635,13 @@ InstallMethod( DesignBoseMesnerAlgebra,
         return AlgebraByStructureConstants(Rationals, T, "A" );
     end );
 
-InstallMethod( DesignBoseMesnerIdempotentBasis,
+InstallMethod( JordanDesignBoseMesnerIdempotentBasis,
     "method for a tight t-design",
-    [ IsAssociationSchemeDesign ],
+    [ IsAssociationSchemeJordanDesign ],
     function(D)
         local i, A, s, v, temp, idempotents, epsilon, final;
-        A := DesignAngleSet(D );
-        v := DesignCardinality(D );
+        A := JordanDesignAngleSet(D );
+        v := JordanDesignCardinality(D );
         s := Size(A );
         if 0 in A then 
             epsilon := 1;
@@ -1650,11 +1650,11 @@ InstallMethod( DesignBoseMesnerIdempotentBasis,
         fi;
         idempotents := [];
         # The 0th idempotent
-        final := Sum(Basis(DesignBoseMesnerAlgebra(D)))/v;
+        final := Sum(Basis(JordanDesignBoseMesnerAlgebra(D)))/v;
         # The 1 to s-1 idempotents.
         for i in [1..s-1] do 
-            temp := Sum(List([1..s], k -> ValuePol(DesignQPolynomials(D)(i), A[k])*Basis(DesignBoseMesnerAlgebra(D))[k]) ); 
-            temp := temp + ValuePol(DesignQPolynomials(D)(i), 1)*Basis(DesignBoseMesnerAlgebra(D))[s + 1];
+            temp := Sum(List([1..s], k -> ValuePol(JordanDesignQPolynomials(D)(i), A[k])*Basis(JordanDesignBoseMesnerAlgebra(D))[k]) ); 
+            temp := temp + ValuePol(JordanDesignQPolynomials(D)(i), 1)*Basis(JordanDesignBoseMesnerAlgebra(D))[s + 1];
             temp := temp/v;
             Append(idempotents, [temp] );
         od;
@@ -1663,62 +1663,62 @@ InstallMethod( DesignBoseMesnerIdempotentBasis,
         Append(idempotents, [temp] );
         # The 0th idempotent.
         Append(idempotents, [final] );
-        idempotents := Basis(DesignBoseMesnerAlgebra(D), idempotents );
+        idempotents := Basis(JordanDesignBoseMesnerAlgebra(D), idempotents );
         return idempotents;
     end );
 
 
-InstallMethod( DesignFirstEigenmatrix, 
+InstallMethod( JordanDesignFirstEigenmatrix, 
     "method for a design with association scheme",
-    [ IsAssociationSchemeDesign ],
+    [ IsAssociationSchemeJordanDesign ],
     function(D)
-        return List(CanonicalBasis(DesignBoseMesnerAlgebra(D)), x -> Coefficients(DesignBoseMesnerIdempotentBasis(D), x) );
+        return List(CanonicalBasis(JordanDesignBoseMesnerAlgebra(D)), x -> Coefficients(JordanDesignBoseMesnerIdempotentBasis(D), x) );
     end );
 
-InstallMethod( DesignSecondEigenmatrix, 
+InstallMethod( JordanDesignSecondEigenmatrix, 
     "method for a design with association scheme",
-    [ IsAssociationSchemeDesign ],
+    [ IsAssociationSchemeJordanDesign ],
     function(D)
-        return List(DesignBoseMesnerIdempotentBasis(D), x -> Coefficients(CanonicalBasis(DesignBoseMesnerAlgebra(D)), x))*DesignCardinality(D );
+        return List(JordanDesignBoseMesnerIdempotentBasis(D), x -> Coefficients(CanonicalBasis(JordanDesignBoseMesnerAlgebra(D)), x))*JordanDesignCardinality(D );
     end );
 
-InstallMethod( DesignMultiplicities, 
+InstallMethod( JordanDesignMultiplicities, 
     "method for a design with association scheme",
-    [ IsAssociationSchemeDesign ],
+    [ IsAssociationSchemeJordanDesign ],
     function(D)
         local Q, zero; 
-        Q := DesignSecondEigenmatrix(D );
-        zero := Size(DesignAngleSet(D)) + 1;
+        Q := JordanDesignSecondEigenmatrix(D );
+        zero := Size(JordanDesignAngleSet(D)) + 1;
         return List([1..zero], i -> Q[i][zero] );
     end );
 
 InstallMethod( DesignValencies, 
     "method for a design with association scheme",
-    [ IsAssociationSchemeDesign ],
+    [ IsAssociationSchemeJordanDesign ],
     function(D)
         local Pmat, zero; 
-        Pmat := DesignFirstEigenmatrix(D );
-        zero := Size(DesignAngleSet(D)) + 1;
+        Pmat := JordanDesignFirstEigenmatrix(D );
+        zero := Size(JordanDesignAngleSet(D)) + 1;
         return List([1..zero], i -> Pmat[i][zero] );
     end );
 
-InstallMethod( DesignKreinNumbers, 
+InstallMethod( JordanDesignKreinNumbers, 
     # Definition in bannai_algebraic_2021 Theorem 2.23, page 61
     "method for a design with association scheme",
-    [ IsAssociationSchemeDesign ],
+    [ IsAssociationSchemeJordanDesign ],
     function(D)
         local s, temp, mat, i, j, k, l, test;
-        s := Size(DesignAngleSet(D) );
+        s := Size(JordanDesignAngleSet(D) );
         temp := [];
         for l in [1..s+1] do
             mat := List([1..s+1], i ->
                 List([1..s+1], j -> 
-                    (DesignMultiplicities(D)[i]*DesignMultiplicities(D)[j]/DesignCardinality(D))
+                    (JordanDesignMultiplicities(D)[i]*JordanDesignMultiplicities(D)[j]/JordanDesignCardinality(D))
                     *
                     Sum(
                         List([1..s+1], v ->
                             (1/DesignValencies(D)[v]^2)*
-                            DesignFirstEigenmatrix(D)[v][i]*DesignFirstEigenmatrix(D)[v][j]*ComplexConjugate(DesignFirstEigenmatrix(D)[v][l])
+                            JordanDesignFirstEigenmatrix(D)[v][i]*JordanDesignFirstEigenmatrix(D)[v][j]*ComplexConjugate(JordanDesignFirstEigenmatrix(D)[v][l])
                         )
                     )
                 )
@@ -1729,7 +1729,7 @@ InstallMethod( DesignKreinNumbers,
         for i in [1..s+1] do 
             for j in [1..s+1] do
                 for l in [1..s+1] do 
-                    test := DesignSecondEigenmatrix(D)[i][l]*DesignSecondEigenmatrix(D)[j][l] = Sum(List([1..s+1], k -> temp[k][i][j]*DesignSecondEigenmatrix(D)[k][l]) );
+                    test := JordanDesignSecondEigenmatrix(D)[i][l]*JordanDesignSecondEigenmatrix(D)[j][l] = Sum(List([1..s+1], k -> temp[k][i][j]*JordanDesignSecondEigenmatrix(D)[k][l]) );
                     if test = false then return fail; fi;
                 od;
             od;

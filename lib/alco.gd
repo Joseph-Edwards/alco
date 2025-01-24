@@ -200,77 +200,77 @@ DeclareGlobalFunction( "R_k_epsilon" );
 
 DeclareCategory( "IsJordanDesign", IsObject );
 
-DeclareCategory( "IsSphericalDesign", IsJordanDesign );
+DeclareCategory( "IsSphericalJordanDesign", IsJordanDesign );
 
-DeclareCategory( "IsProjectiveDesign", IsJordanDesign );
+DeclareCategory( "IsProjectiveJordanDesign", IsJordanDesign );
 
-DeclareGlobalFunction( "DesignByJordanParameters" );
+DeclareGlobalFunction( "JordanDesignByParameters" );
 
-DeclareAttribute( "DesignJordanRank", IsJordanDesign );
+DeclareAttribute( "JordanDesignRank", IsJordanDesign );
 
-DeclareAttribute( "DesignJordanDegree", IsJordanDesign );
+DeclareAttribute( "JordanDesignDegree", IsJordanDesign );
 
-DeclareAttribute( "DesignQPolynomials", IsJordanDesign );
+DeclareAttribute( "JordanDesignQPolynomials", IsJordanDesign );
 
-DeclareAttribute( "DesignConnectionCoefficients", IsJordanDesign );
+DeclareAttribute( "JordanDesignConnectionCoefficients", IsJordanDesign );
 
 DeclareCategory( "IsJordanDesignWithAngleSet", IsJordanDesign );
 
-DeclareAttribute( "DesignAngleSet", IsJordanDesignWithAngleSet );
+DeclareAttribute( "JordanDesignAngleSet", IsJordanDesignWithAngleSet );
 
-DeclareOperation( "DesignAddAngleSet", [ IsJordanDesign, IsList ] );
+DeclareOperation( "JordanDesignAddAngleSet", [ IsJordanDesign, IsList ] );
 
-DeclareGlobalFunction( "DesignByAngleSet" );
+DeclareGlobalFunction( "JordanDesignByAngleSet" );
 
-DeclareAttribute( "DesignNormalizedAnnihilatorPolynomial", IsJordanDesignWithAngleSet );
+DeclareAttribute( "JordanDesignNormalizedAnnihilatorPolynomial", IsJordanDesignWithAngleSet );
 
-DeclareAttribute( "DesignNormalizedIndicatorCoefficients", IsJordanDesignWithAngleSet );
+DeclareAttribute( "JordanDesignNormalizedIndicatorCoefficients", IsJordanDesignWithAngleSet );
 
 DeclareCategory( "IsJordanDesignWithPositiveIndicatorCoefficients", IsJordanDesignWithAngleSet );
 
-DeclareAttribute( "DesignSpecialBound", IsJordanDesignWithAngleSet ); 
+DeclareAttribute( "JordanDesignSpecialBound", IsJordanDesignWithAngleSet ); 
 
 DeclareCategory( "IsJordanDesignWithCardinality", IsJordanDesign );
 
-DeclareCategory( "IsRegularSchemeDesign", IsJordanDesignWithCardinality );
+DeclareCategory( "IsRegularSchemeJordanDesign", IsJordanDesignWithCardinality );
 
-DeclareCategory( "IsSpecialBoundDesign", IsRegularSchemeDesign );
+DeclareCategory( "IsSpecialBoundJordanDesign", IsRegularSchemeJordanDesign );
 
-DeclareCategory( "IsAssociationSchemeDesign", IsSpecialBoundDesign );
+DeclareCategory( "IsAssociationSchemeJordanDesign", IsSpecialBoundJordanDesign );
 
-DeclareCategory( "IsTightDesign", IsAssociationSchemeDesign );
+DeclareCategory( "IsTightJordanDesign", IsAssociationSchemeJordanDesign );
 
-DeclareAttribute( "DesignCardinality", IsJordanDesignWithAngleSet );
+DeclareAttribute( "JordanDesignCardinality", IsJordanDesignWithAngleSet );
 
-DeclareOperation( "DesignAddCardinality", [ IsJordanDesignWithAngleSet, IsInt ] );
+DeclareOperation( "JordanDesignAddCardinality", [ IsJordanDesignWithAngleSet, IsInt ] );
 
 DeclareCategory( "IsJordanDesignWithStrength", IsJordanDesign );
 
-DeclareAttribute( "DesignAnnihilatorPolynomial", IsJordanDesignWithAngleSet and IsJordanDesignWithCardinality );
+DeclareAttribute( "JordanDesignAnnihilatorPolynomial", IsJordanDesignWithAngleSet and IsJordanDesignWithCardinality );
 
-DeclareAttribute( "DesignIndicatorCoefficients", IsJordanDesignWithAngleSet and IsJordanDesignWithCardinality );
+DeclareAttribute( "JordanDesignIndicatorCoefficients", IsJordanDesignWithAngleSet and IsJordanDesignWithCardinality );
 
-DeclareAttribute( "DesignStrength", IsJordanDesignWithAngleSet and IsJordanDesignWithCardinality );
+DeclareAttribute( "JordanDesignStrength", IsJordanDesignWithAngleSet and IsJordanDesignWithCardinality );
 
-DeclareAttribute( "DesignSubdegrees", IsRegularSchemeDesign );
+DeclareAttribute( "JordanDesignSubdegrees", IsRegularSchemeJordanDesign );
 
-DeclareAttribute( "DesignIntersectionNumbers", IsAssociationSchemeDesign );
+DeclareAttribute( "JordanDesignIntersectionNumbers", IsAssociationSchemeJordanDesign );
 
-DeclareAttribute( "DesignReducedAdjacencyMatrices", IsAssociationSchemeDesign );
+DeclareAttribute( "JordanDesignReducedAdjacencyMatrices", IsAssociationSchemeJordanDesign );
 
-DeclareAttribute( "DesignBoseMesnerAlgebra", IsAssociationSchemeDesign );
+DeclareAttribute( "JordanDesignBoseMesnerAlgebra", IsAssociationSchemeJordanDesign );
 
-DeclareAttribute( "DesignBoseMesnerIdempotentBasis", IsAssociationSchemeDesign );
+DeclareAttribute( "JordanDesignBoseMesnerIdempotentBasis", IsAssociationSchemeJordanDesign );
 
-DeclareAttribute( "DesignFirstEigenmatrix", IsAssociationSchemeDesign );
+DeclareAttribute( "JordanDesignFirstEigenmatrix", IsAssociationSchemeJordanDesign );
 
-DeclareAttribute( "DesignSecondEigenmatrix", IsAssociationSchemeDesign );
+DeclareAttribute( "JordanDesignSecondEigenmatrix", IsAssociationSchemeJordanDesign );
 
-DeclareAttribute( "DesignMultiplicities", IsAssociationSchemeDesign );
+DeclareAttribute( "JordanDesignMultiplicities", IsAssociationSchemeJordanDesign );
 
-DeclareAttribute( "DesignValencies", IsAssociationSchemeDesign );
+DeclareAttribute( "DesignValencies", IsAssociationSchemeJordanDesign );
 
-DeclareAttribute( "DesignKreinNumbers", IsAssociationSchemeDesign );
+DeclareAttribute( "JordanDesignKreinNumbers", IsAssociationSchemeJordanDesign );
 
 # Octonion Lattice Tools
 
