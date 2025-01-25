@@ -1,4 +1,4 @@
-Main changes from ALCO 0.2 to ALCO 1.0 (Jan 2025)
+Main changes from ALCO 0.2 to ALCO 1.1 (Jan 2025)
 
 1. Final preparation for distribution with GAP. 
 
