@@ -105,7 +105,7 @@ SetPackageInfo( rec(
     GAP := "4.14",
     SuggestedOtherPackages := [],
     ExternalConditions := [],
-    NeededOtherPackages := []
+    NeededOtherPackages := [["ResClasses",">=4.7.3"]]
   ),
 
   AvailabilityTest := ReturnTrue,
