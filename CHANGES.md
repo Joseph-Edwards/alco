@@ -1,3 +1,11 @@
+Main changes from ALCO 0.2 to ALCO 1.0 (Jan 2025)
+
+1. Final preparation for distribution with GAP. 
+
+2. Adjusted for dependence on GAP 4.14. 
+
+3. Function names adjusted to comport with the SONATA package. 
+
 Main changes from ALCO 0.1 to ALCO 0.2 (Feb 2024)
 -------------------------------------------------
 
