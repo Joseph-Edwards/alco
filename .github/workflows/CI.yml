@@ -37,6 +37,9 @@ jobs:
       - uses: gap-actions/run-pkg-tests@v2
         with:
           load-all: true
+      - uses: gap-actions/run-pkg-tests@v2
+        with:
+          only-needed: true
       - uses: gap-actions/process-coverage@v2
       - uses: codecov/codecov-action@v3
 
