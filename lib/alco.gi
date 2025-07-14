@@ -160,7 +160,7 @@ InstallMethod( Norm,
     quat -> ExtRepOfObj(quat*ComplexConjugate(quat))[1]
     );
 
-InstallValue( QuaternionD4Basis, Basis(QuaternionAlgebra(Rationals), 
+BindGlobal( "QuaternionD4Basis", Basis(QuaternionAlgebra(Rationals),
     List([  [  -1/2,  -1/2,  -1/2,   1/2 ],
             [  -1/2,  -1/2,   1/2,  -1/2 ],
             [  -1/2,   1/2,  -1/2,  -1/2 ],
@@ -244,7 +244,7 @@ InstallGlobalFunction( GoldenModSigma, function(q)
     return Coefficients(Basis(NF(5,[1,4]), [1, (1-Sqrt(5))/2]), q)[1];
 end );
 
-InstallValue( IcosianH4Generators, Basis(QuaternionAlgebra(Field(Sqrt(5))),
+BindGlobal( "IcosianH4Generators", Basis(QuaternionAlgebra(Field(Sqrt(5))),
     List([  [ 0, -1, 0, 0 ], 
             [ 0, -1/2*E(5)^2-1/2*E(5)^3, 1/2, -1/2*E(5)-1/2*E(5)^4 ],
             [ 0, 0, -1, 0 ], 
@@ -414,7 +414,7 @@ InstallMethod( RealPart,
 
 # Octonion arithmetic tools
 
-InstallValue( OctonionE8Basis, Basis(OctonionAlgebra(Rationals),
+BindGlobal( "OctonionE8Basis", Basis(OctonionAlgebra(Rationals),
     List(
         [[ -1/2, 0, 0, 0, 1/2, 1/2, 1/2, 0 ], 
     [ -1/2, -1/2, 0, -1/2, 0, 0, -1/2, 0 ], 
@@ -1801,7 +1801,7 @@ InstallGlobalFunction( IsGossetLatticeGramMatrix, function(G)
     return true;
 end );
 
-InstallValue( MOGLeechLatticeGeneratorMatrix, [
+BindGlobal( "MOGLeechLatticeGeneratorMatrix", [
     [8,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
     [4,4,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
     [4,0,4,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0],
@@ -1828,7 +1828,7 @@ InstallValue( MOGLeechLatticeGeneratorMatrix, [
    [-3,1,1,1, 1,1,1,1, 1,1,1,1, 1,1,1,1, 1,1,1,1, 1,1,1,1]
     ]);
 
-InstallValue( MOGLeechLatticeGramMatrix, 
+BindGlobal( "MOGLeechLatticeGramMatrix",
     List(MOGLeechLatticeGeneratorMatrix, x -> 
         List(MOGLeechLatticeGeneratorMatrix, y -> 
             x*y/8

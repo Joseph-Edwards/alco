@@ -45,8 +45,6 @@ DeclareOperation( "Coefficients", [ IsCanonicalBasisKleinianIntegersRep,
 
 # Quaternion Tools
 
-DeclareGlobalVariable( "QuaternionD4Basis" );
-
 DeclareOperation("IsHurwitzInt", [ IsQuaternion ] );
 
 DeclareGlobalName( "HurwitzIntegers" );
@@ -67,8 +65,6 @@ DeclareGlobalFunction( "GoldenRationalComponent" );
 DeclareGlobalFunction( "GoldenIrrationalComponent" );
 
 DeclareGlobalFunction( "GoldenModSigma" );
-
-DeclareGlobalVariable( "IcosianH4Generators" );
 
 DeclareOperation("IsIcosian", [ IsQuaternion ] );
 
@@ -100,8 +96,6 @@ BindGlobal( "OctonionAlgebraData", NEW_SORTED_CACHE(true) );
 DeclareCategory( "IsOctonionAlgebra", IsOctonionCollection and IsFullSCAlgebra );
 
     DeclareAttribute( "GramMatrix", IsOctonionAlgebra );
-
-DeclareGlobalVariable( "OctonionE8Basis" );
 
 DeclareOperation("IsOctavianInt", [ IsOctonion ] );
 
@@ -277,10 +271,6 @@ DeclareAttribute( "JordanDesignKreinNumbers", IsAssociationSchemeJordanDesign );
 DeclareGlobalFunction( "IsLeechLatticeGramMatrix" );
 
 DeclareGlobalFunction( "IsGossetLatticeGramMatrix" );
-
-DeclareGlobalVariable( "MOGLeechLatticeGeneratorMatrix" );
-
-DeclareGlobalVariable( "MOGLeechLatticeGramMatrix" );
 
 DeclareCategory( "IsOctonionLattice", IsFreeLeftModule );
 
