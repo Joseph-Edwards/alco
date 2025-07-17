@@ -51,7 +51,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: gap-actions/setup-gap@v2
-      - uses: gap-actions/build-pkg-docs@v1
+      - uses: joseph-edwards/build-pkg-docs@latex-warnings
         with:
           use-latex: 'true'
       - name: 'Upload documentation'
