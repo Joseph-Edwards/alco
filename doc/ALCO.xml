@@ -190,7 +190,7 @@ false]]></Example>
           <Var Name="OctonionE8Basis" />
           <Description> The <Package>ALCO</Package> package also loads a basis for 
             <Code>OctonionAlgebra(<Arg>Rationals</Arg>)</Code> which also serves as generators for 
-            <Ref Var="OctavianIntegers" />. This octonion integer lattice has the geometry of a 
+            <Ref Var="OctavianIntegersXYZ" />. This octonion integer lattice has the geometry of a 
               <Math>E_8</Math> (Gossett) lattice relative to the inner product defined by the octonion norm. 
             <Example><![CDATA[gap> BasisVectors(OctonionE8Basis) = BasisVectors(Basis(OctavianIntegers));
 true
